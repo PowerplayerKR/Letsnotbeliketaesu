@@ -2,7 +2,9 @@ package dao;
 
 public class test {
 	public static void main(String[] args) {
-		System.out.println("송은이");
-		System.out.println("자은이");
+		//규칙을 정하자 
+		System.out.println("fidosjfio");
+		System.out.println("하하하하");
+		System.out.println("카카카");
 	}
 }
