@@ -1,0 +1,52 @@
+메인 페이지
+	순위 - X (애매함 네이버api)
+	오늘의 책 - X
+	베스트 셀러 -X
+	신작 - X
+	장르별
+	검색
+검색(메인페이지에서 검색)
+	책사진,줄거리
+	스크롤 페이징
+로그인 페이지
+	네이버로 로그인
+	페이스북으로 로그인
+뷰 페이지
+	책 사진,책 별점,판매량,작가,출판일
+	책 줄거리
+	책 리뷰 : 전문가 리뷰,일반인 리뷰,신고(스포일러 신고)
+	책 구매처 추천(근처 서점,인터넷사이트)
+	비슷한책 추천
+	보고싶어요(즐겨찾기), 	
+	별점주기,리뷰달기
+	책공유하기!!
+	
+마이페이지
+	즐겨찾기한 책보여주기
+	이름변경 
+	코멘트 
+장르별 보기 페이지
+	책사진,줄거리
+	스크롤 페이징
+DB
+User	  	
+(PLATFORM,id,email)
+
+Review
+(num(리뷰번호),rwriter(리뷰쓴사람),declaration(리뷰신고),
+bookNum(몇 번책의),reviewScore,wdate,udate,ddate,viewCheck)
+
+Book
+(num,title,bwriter,story,genre,image,price,publicationDate,
+publisher,salesRate,ageRestrictionLevel,
+reviewRate,wdate,udate,ddate,viewCheck) 
+//별점평균 
+
+
+//생각중 (bestCheck(베스트 셀러 여부),newCheck(신작여부))
+
+Favorites//즐겨찾기
+(PLATFORM,id,bookNum,fcheck,)
+
+
+						
