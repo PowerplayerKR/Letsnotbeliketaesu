@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="dao.ICategorysDao">
+  	<select id="selectAllCategorys" resultType="java.util.HashMap">
+  		SELECT *
+  		FROM categorys
+  	</select>
+  	<select id="selectCategorys" parameterType="int" resultType="java.util.HashMap">
+  		SELECT *
+  		FROM categorys
+  		WHERE num=#{num}
+  	</select>
+  	<insert id="insertCategorys" parameterType="java.util.HashMap">
+  		INSERT INTO categorys
+  		VALUES 0,#{category}
+  	</insert>
+  	<update id="updateCategorys" parameterType="java.util.HashMap" >
+  		UPDATE categorys
+  		SET category=#{category}
+  		WHERE num=#{num}
+  	</update>
+  	<delete id="deleteCategorys" parameterType="int">
+  		DELETE FROM categorys
+  		WHERE num=#{num}
+  	</delete>
+  	
+  </mapper>

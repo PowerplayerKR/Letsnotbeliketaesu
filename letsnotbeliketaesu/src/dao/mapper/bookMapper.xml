@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="dao.IBookDao">
+  	<select id="selectAllBook" resultType="java.util.HashMap">
+  		SELECT *
+  		FROM book
+  	</select>
+  	<select id="selectBook" parameterType="int" resultType="java.util.HashMap">
+  		SELECT *
+  		FROM book
+  		WHERE num=#{num}
+  	</select>
+  	<insert id="insertBook" parameterType="java.util.HashMap">
+  		INSERT INTO book
+  		VALUES 0,#{title},#{introduce},#{book_writer},#{category_num},
+  		#{image},#{public_date},#{publisher},#{age_revel},#{star_point_avg},#{regdate}
+  	</insert>
+  	<update id="updateBook" parameterType="java.util.HashMap" >
+  		UPDATE book
+  		SET title=#{title},introduce=#{introduce},book_writer=#{book_writer},category_num=#{category_num},
+  		image=#{image},public_date=#{public_date},publisher=#{publisher},age_revel=#{age_revel},star_point_avg=#{star_point_avg},regdate=#{regdate}
+  		WHERE num=#{num}
+  	</update>
+  	<delete id="deleteBook" parameterType="int">
+  		DELETE FROM book
+  		WHERE num=#{num}
+  	</delete>
+  	
+  	<sql id="search">
+  		<choose>
+  			<when test="keyword=제목">
+  				WHERE title LIKE CONCAT(‘%’, #{title}, ‘%’)
+  			</when>
+  			<when test="keyword=작가">
+  				WHERE book_writer LIKE CONCAT(‘%’, #{book_writer}, ‘%’)
+  			</when>
+  			<when test="keyword=출판사">
+  				WHERE publisher LIKE CONCAT(‘%’, #{publisher}, ‘%’)
+  			</when>
+  		</choose>
+  	</sql>
+  	
+  	<select id="bookSearch" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+  		SELECT *
+  		FROM book
+  		<include refid="search"></include>
+  	</select>
+  	
+  	<select id="bookSearchCategory" parameterType="String" resultType="java.util.HashMap">
+  		SELECT *
+  		FROM book
+  		WHERE category_num = (
+  			SELECT num
+  			FROM categorys
+  			WHERE category LIKE CONCAT(‘%’, #{category}, ‘%’)
+  		)
+  	</select>
+  	
+  	<sql id="selectUserBook">
+  		<choose>
+  			<when test="myPage=1">
+  					FROM favorites
+  					WHERE user_name = #{user_name}
+  			</when>
+  			<when test="myPage=2">
+  				FROM not_interested
+  				WHERE user_name = #{user_name}
+  			</when>
+  			<when test="myPage=3">
+  				FROM star_point_list
+  				WHERE star_point_writer = #{user_name}
+  			</when>
+  			<when test="myPage=4">
+  				FROM review_list
+  				WHERE review_writer = #{user_name}
+  			</when>
+  		</choose>
+  	</sql>
+  	
+  	<select id="selectUserBook" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+  		SELECT *
+  		FROM book
+  		WHERE num=(
+  			SELECT book_num
+  			<include refid="selectUserBook"></include>
+  		)
+  	</select>
+  	
+  		
+  </mapper>
