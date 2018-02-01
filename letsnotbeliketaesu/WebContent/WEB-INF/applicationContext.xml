@@ -12,8 +12,8 @@
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://localhost/jsd"></property>
-		<property name="username" value="root"></property>
+		<property name="url" value="jdbc:mysql://192.168.0.17:3306/project"></property>
+		<property name="username" value="newuser"></property>
 		<property name="password" value="mysql"></property>
 	</bean>
 
