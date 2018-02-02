@@ -13,7 +13,7 @@ import dao.IBestBookDao;
 public class BestBookService {
 	@Autowired
 	private IBestBookDao bestBookDao;
-	
+	 
 	public List<HashMap<String, Object>> selectAllBestBook(){
 		return bestBookDao.selectAllBestBook();
 	}
