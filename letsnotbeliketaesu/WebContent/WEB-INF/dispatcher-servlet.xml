@@ -19,6 +19,9 @@
 		<property name="maxInMemorySize" value="100000000" />
 	</bean>
 
+<mvc:resources location="/css/**" mapping="/css/**"/>
+<mvc:resources location="/image/**" mapping="/image/**"/>
+<mvc:resources location="/js/**" mapping="/js/**"/>
 
 
 </beans>
