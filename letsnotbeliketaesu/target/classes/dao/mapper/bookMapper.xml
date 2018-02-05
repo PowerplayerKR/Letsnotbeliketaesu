@@ -3,6 +3,12 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="dao.IBookDao">
+  	<sql id="bookInfo">
+  		<choose>
+  			<when test=""></when>
+  		</choose>
+  	</sql>
+  
   	<select id="selectAllBook" resultType="java.util.HashMap">
   		SELECT *
   		FROM book
@@ -10,17 +16,17 @@
   	<select id="selectBook" parameterType="int" resultType="java.util.HashMap">
   		SELECT *
   		FROM book
-  		WHERE num=#{num}
+  		WHERE title = #{title]
   	</select>
   	<insert id="insertBook" parameterType="java.util.HashMap">
   		INSERT INTO book
   		VALUES 0,#{title},#{introduce},#{book_writer},#{category_num},
-  		#{image},#{public_date},#{publisher},#{age_revel},#{star_point_avg},#{regdate}
+  		#{image},#{public_date},#{publisher},0,now()
   	</insert>
   	<update id="updateBook" parameterType="java.util.HashMap" >
   		UPDATE book
   		SET title=#{title},introduce=#{introduce},book_writer=#{book_writer},category_num=#{category_num},
-  		image=#{image},public_date=#{public_date},publisher=#{publisher},age_revel=#{age_revel},star_point_avg=#{star_point_avg},regdate=#{regdate}
+  		image=#{image},public_date=#{public_date},publisher=#{publisher},star_point_avg=#{star_point_avg},regdate=#{regdate}
   		WHERE num=#{num}
   	</update>
   	<delete id="deleteBook" parameterType="int">
@@ -46,16 +52,6 @@
   		SELECT *
   		FROM book
   		<include refid="search"></include>
-  	</select>
-  	
-  	<select id="bookSearchCategory" parameterType="String" resultType="java.util.HashMap">
-  		SELECT *
-  		FROM book
-  		WHERE category_num = (
-  			SELECT num
-  			FROM categorys
-  			WHERE category LIKE CONCAT(‘%’, #{category}, ‘%’)
-  		)
   	</select>
   	
   	<sql id="selectUserBook">

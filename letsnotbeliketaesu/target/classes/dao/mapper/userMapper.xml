@@ -26,5 +26,4 @@
   		WHERE email=#{email} AND pwd=#{pwd}
   	</delete>
   	
-  	
   </mapper>
