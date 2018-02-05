@@ -14,7 +14,7 @@
   	</select>
   	<insert id="insertCategorys" parameterType="java.util.HashMap">
   		INSERT INTO categorys
-  		VALUES 0,#{category}
+  		VALUES #{num},#{category}
   	</insert>
   	<update id="updateCategorys" parameterType="java.util.HashMap" >
   		UPDATE categorys

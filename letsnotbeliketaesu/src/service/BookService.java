@@ -18,8 +18,8 @@ public class BookService {
 		return bookDao.selectAllBook();
 	}
 	
-	public HashMap<String, Object> selectBook(int num){
-		return bookDao.selectBook(num);
+	public HashMap<String, Object> selectBook(String title){
+		return bookDao.selectBook(title);
 	}
 	
 	public void insertBook(HashMap<String, Object> params) {

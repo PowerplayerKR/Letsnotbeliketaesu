@@ -9,4 +9,5 @@ public interface IBestBookDao {
 	public int deleteBestBook(int num);
 	public HashMap<String,Object> selectBestBook(int num);
 	public List<HashMap<String, Object>> selectAllBestBook();
+	public List<HashMap<String, Object>> selectRankingBestBook();
 }	
