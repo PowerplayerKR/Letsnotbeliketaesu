@@ -10,3 +10,5 @@ ttbqwea541844001
 4B01F0AB0D7B11980EE34998587F4864FF739F587DC557E0E20351AE7E11EE43 
 
 ttbbongjongwon1935001
+
+select * from book where not(category_num in(select category_id from categorys))
