@@ -8,7 +8,7 @@
 					<a href="main.do" class="logo"> <img src="logo.jpg"
 						alt="lnblt logo" style="width: 48px; height: 48px">
 					</a>
-				</h1>
+				<	/h1>
 			</li>
 			<li><a href="bestBook.do">베스트 셀러</a></li>
 			<li><a href="newBook.do">신간</a></li>

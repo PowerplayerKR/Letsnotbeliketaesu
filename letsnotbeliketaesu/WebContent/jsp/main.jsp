@@ -62,7 +62,7 @@
 		color: #FFFFFF;
     	line-height:20px;
     	width: 160px;
-    	display: inline-block;
+ 		display: inline-block;
     	white-space: nowrap;
    	 	overflow: hidden;
     	text-overflow: ellipsis;
@@ -82,7 +82,16 @@
     	-webkit-margin-end: 0px;
     	font-weight: bold;
 	}
-	
+	.book_info_table{
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		border:1px solid black;
+		width: 800px;
+		height: 700px;
+		margin-top: -351px;
+		margin-left: -401px;
+	}
 </style>
 </head>
 <body>
@@ -92,12 +101,58 @@
 	<div>
 			<ol>
 				<c:forEach var="bestBook" items="${bookRanking}">
-					<li>
+					<li data-title="${bestBook.title}">
 						<a href="#"><span>${bestBook.num}</span>${bestBook.title}</a>
 					</li>
 				</c:forEach>
 			</ol>
 	</div>
+<div class="book_info_table">
+	<div class="book_info_wrap">
+		<div class="title">제목</div>
+		<div class="book_writer">작가</div>
+		<img class="cover" alt="" src="">
+		<span style="display: inline-block; width: 14px; height: 13px; background: url(&quot;https://d3sz5r0rl9fxuc.cloudfront.net/assets/stars/star_H.gray_1-2502b64644c5146129a92d5849112b08e460a5c3ca270048e8d708edf5d115fe.png&quot;) 0px 0px / 14px 13px no-repeat;"></span>
+		<span style="display: inline-block; width: 14px; height: 13px; margin-left: 1px; background: url(&quot;https://d3sz5r0rl9fxuc.cloudfront.net/assets/stars/star_gray-ab3f922b9014d6e60902dec1d93ae5493f36f7f37971c6791be64c56d903ef63.png&quot;) 0px 0px / 14px 13px no-repeat;"></span>
+	</div>
 </div>
+</div>
+<script type="text/javascript" src="../last_project/js/jquery.js"/></script>
+<script>
+	var li = $('li');
+	li.click(function() {
+		
+		var q = "";
+			q = $(this).data('title');
+		function getUsers() {
+			$.ajax({
+				url:"getBook.do",
+				type:"post",//post방식
+				dataType:"json",//json
+				data:{"title":q},//넘어가는 파라미터
+				error:function(){
+					alert("에러!!");
+				},
+				success:function(json) {
+					$("tbody").empty();
+					$(json).each(function() {
+						
+						var title = $('.title');
+						var bookWriter = $('.book_writer');
+						var cover = $('.cover');
+						
+						title.text(this.title);
+						bookWriter.text(this.book_writer);
+						cover.attr('src',this.image);
+						cover.attr('alt',this.title+'의 커버 사진');
+					});//each() end
+				}
+		});//$.ajax() end
+			
+	}//getUsers() end
+		
+		getUsers();
+	});
+</script>
 </body>
 </html>
