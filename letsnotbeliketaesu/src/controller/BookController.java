@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,12 +28,12 @@ public class BookController {
 		ModelAndView mav = new ModelAndView();
 		List<HashMap<String, Object>> bookRankingList = bestBookService.selectRankingBestBook();
 		mav.addObject("bookRanking", bookRankingList);
-//		
-//		List<HashMap<String,Object>> bookList = bookService.selectAllBook();
-//		
-//		mav.addObject("book", bookList);
-//		
-//		mav.setViewName("main");
+		
+		HashMap<String,Object> bookList = bookService.selectBook("진실 이야기");
+		
+		mav.addObject("book", bookList);
+		
+		mav.setViewName("main");
 		return mav;
 	}
 	
@@ -40,12 +43,8 @@ public class BookController {
 		
 		ObjectMapper mapper = new ObjectMapper(); 
 		HashMap<String, Object> bookInfo = bookService.selectBook(title);
-		ArrayList<HashMap<String,Object>> arrayList = new ArrayList<>();
-		arrayList.add(bookInfo);
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("book", arrayList);
 		String json =
-		new ObjectMapper().writeValueAsString(map);
+		new ObjectMapper().writeValueAsString(bookInfo);
 		
 		mav.addObject("bookInfo",json);
 		mav.setViewName("getBook");

@@ -13,10 +13,10 @@
   		SELECT *
   		FROM book
   	</select>
-  	<select id="selectBook" parameterType="String" resultType="java.util.HashMap">
+  	<select id="selectBook" parameterType="int" resultType="java.util.HashMap">
   		SELECT *
   		FROM book
-  		WHERE title = #{title}
+  		WHERE title = #{title]
   	</select>
   	<insert id="insertBook" parameterType="java.util.HashMap">
   		INSERT INTO book
@@ -36,13 +36,13 @@
   	
   	<sql id="search">
   		<choose>
-  			<when test="searchOption=title">
+  			<when test="keyword=제목">
   				WHERE title LIKE CONCAT(‘%’, #{title}, ‘%’)
   			</when>
-  			<when test="searchOption=writer">
+  			<when test="keyword=작가">
   				WHERE book_writer LIKE CONCAT(‘%’, #{book_writer}, ‘%’)
   			</when>
-  			<when test="searchOption=publisher">
+  			<when test="keyword=출판사">
   				WHERE publisher LIKE CONCAT(‘%’, #{publisher}, ‘%’)
   			</when>
   		</choose>

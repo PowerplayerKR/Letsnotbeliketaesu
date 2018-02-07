@@ -87,10 +87,20 @@
 		top: 50%;
 		left: 50%;
 		border:1px solid black;
+		background:white;
 		width: 800px;
 		height: 700px;
 		margin-top: -351px;
 		margin-left: -401px;
+		display: none;
+		z-index: 1;
+	}
+	.screen{
+		position:fixed;
+		width: 10000px;
+		height: 10000px;
+		background: rgba(200,200,200,.5);
+		display: none;
 	}
 </style>
 </head>
@@ -101,26 +111,29 @@
 	<div>
 			<ol>
 				<c:forEach var="bestBook" items="${bookRanking}">
-					<li data-title="${bestBook.title}">
+					<li class="best_book_list" data-title="${bestBook.title}">
 						<a href="#"><span>${bestBook.num}</span>${bestBook.title}</a>
 					</li>
 				</c:forEach>
 			</ol>
 	</div>
-<div class="book_info_table">
-	<div class="book_info_wrap">
-		<div class="title">제목</div>
-		<div class="book_writer">작가</div>
-		<img class="cover" alt="" src="">
-		<span style="display: inline-block; width: 14px; height: 13px; background: url(&quot;https://d3sz5r0rl9fxuc.cloudfront.net/assets/stars/star_H.gray_1-2502b64644c5146129a92d5849112b08e460a5c3ca270048e8d708edf5d115fe.png&quot;) 0px 0px / 14px 13px no-repeat;"></span>
-		<span style="display: inline-block; width: 14px; height: 13px; margin-left: 1px; background: url(&quot;https://d3sz5r0rl9fxuc.cloudfront.net/assets/stars/star_gray-ab3f922b9014d6e60902dec1d93ae5493f36f7f37971c6791be64c56d903ef63.png&quot;) 0px 0px / 14px 13px no-repeat;"></span>
-	</div>
+		<div class="book_info_table">
+			<div class="book_info_wrap">
+				<div class="title">제목</div>
+				<div class="book_writer">작가</div>
+				<img class="cover" alt="" src="">
+				<span style="display: inline-block; width: 14px; height: 13px; background: url(&quot;https://d3sz5r0rl9fxuc.cloudfront.net/assets/stars/star_H.gray_1-2502b64644c5146129a92d5849112b08e460a5c3ca270048e8d708edf5d115fe.png&quot;) 0px 0px / 14px 13px no-repeat;"></span>
+				<span style="display: inline-block; width: 14px; height: 13px; margin-left: 1px; background: url(&quot;https://d3sz5r0rl9fxuc.cloudfront.net/assets/stars/star_gray-ab3f922b9014d6e60902dec1d93ae5493f36f7f37971c6791be64c56d903ef63.png&quot;) 0px 0px / 14px 13px no-repeat;"></span>
+			</div>
+		</div>
 </div>
+<div class="screen">
+	
 </div>
 <script type="text/javascript" src="../last_project/js/jquery.js"/></script>
 <script>
-	var li = $('li');
-	li.click(function() {
+	var list = $('.best_book_list');
+	list.click(function() {
 		
 		var q = "";
 			q = $(this).data('title');
@@ -134,13 +147,10 @@
 					alert("에러!!");
 				},
 				success:function(json) {
-					$("tbody").empty();
 					$(json).each(function() {
-						
 						var title = $('.title');
 						var bookWriter = $('.book_writer');
 						var cover = $('.cover');
-						
 						title.text(this.title);
 						bookWriter.text(this.book_writer);
 						cover.attr('src',this.image);
@@ -152,6 +162,22 @@
 	}//getUsers() end
 		
 		getUsers();
+		function screenHide() {
+			$('.book_info_table').show();
+			$('.screen').show();	
+		}
+		setTimeout(screenHide, 500);
+	});
+	$('.screen').click(function() {
+		$('.book_info_table').hide();
+		$('.screen').hide();
+		var title = $('.title');
+		var bookWriter = $('.book_writer');
+		var cover = $('.cover');
+		title.text('');
+		bookWriter.text('');
+		cover.attr('alt','');
+		cover.attr('src','');
 	});
 </script>
 </body>
