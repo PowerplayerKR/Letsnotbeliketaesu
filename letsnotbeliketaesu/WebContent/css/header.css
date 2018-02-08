@@ -18,6 +18,7 @@ body {
 	line-height: 100px;
 	font-weight: bold;
 	overflow: auto;
+	z-index: 1;
 }
 
 #header img {
@@ -62,10 +63,11 @@ body {
 
 #content {
 	height: autopx;
-	float: left;
-	width: 100%;
+	float: right;
+	width: 80%;
 	margin-top: 120px;
 }
+
 
 .search {
 	text-align: center;
