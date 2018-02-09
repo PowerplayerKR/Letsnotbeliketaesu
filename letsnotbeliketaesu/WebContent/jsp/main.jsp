@@ -186,7 +186,7 @@
 </style>
 </head>
 <body>
-	<%@ include file="/template/header.jsp" %>
+	<jsp:include page="/template/header.jsp"></jsp:include>
 	<div id="wrap">
 		<div id="side">
 			<h4>베스트셀러 랭킹</h4>
