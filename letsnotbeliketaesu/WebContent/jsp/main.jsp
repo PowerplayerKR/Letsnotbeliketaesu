@@ -110,7 +110,7 @@
 	border-radius: 5px;
 	background-color: pink;
 	position: absolute !important;
-	height: 315px;
+	height: 314px;
 	float: left;
 	margin: 10px;
 	width: 220px;
