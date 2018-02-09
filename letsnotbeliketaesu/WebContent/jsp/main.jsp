@@ -121,7 +121,7 @@
 }
 
 .top-0 {
-	top: 50px;
+	top: 150px;
 }
 
 .top-1 {
@@ -129,11 +129,11 @@
 }
 
 .top-2 {
-	top: 1050px;
+	top: 950px;
 }
 
 .top-3 {
-	top: 1550px;
+	top: 1350px;
 }
 
 .left-0 {
@@ -173,7 +173,7 @@
 }
 
 .booktitle-top-0 {
-	top: 25px;
+	top: 125px;
 }
 
 .booktitle-top-1 {
@@ -181,12 +181,12 @@
 }
 
 .booktitle-top-2 {
-	top: 1025px;
+	top: 925px;
 }
 </style>
 </head>
 <body>
-	<%@ include file="/template/header.jsp"%>
+	<jsp:include page="/template/header.jsp"></jsp:include>
 	<div id="wrap">
 		<div id="side">
 			<h4>베스트셀러 랭킹</h4>
@@ -209,33 +209,36 @@
 				</div>
 			</div>
 		</div>
-		<div>
-			<span class="booktitle booktitle-top-0 left-0">asoidfjoisajdf</span>
-			<span class="book top-0 left-0">asdfasdf</span> <span
-				class="book top-0 left-1">asdfasdf</span> <span
-				class="book top-0 left-2">asdfasdf</span> <span
-				class="book top-0 left-3">asdfasdf</span> <span
-				class="book top-0 left-4">asdfasdf</span> <span
-				class="book top-0 left-5">asdfasdf</span>
+		<div id="content">
+			<div>
+				<span class="booktitle booktitle-top-0 left-0">asoidfjoisajdf</span>
+				<span class="book top-0 left-0">asdfasdf</span> <span
+					class="book top-0 left-1">asdfasdf</span> <span
+					class="book top-0 left-2">asdfasdf</span> <span
+					class="book top-0 left-3">asdfasdf</span> <span
+					class="book top-0 left-4">asdfasdf</span> <span
+					class="book top-0 left-5">asdfasdf</span>
+			</div>
+			<div>
+				<span class="booktitle booktitle-top-1 left-0">asoidfjoisajdf</span>
+				<span class="book top-1 left-0">asdfasdf</span> <span
+					class="book top-1 left-1">asdfasdf</span> <span
+					class="book top-1 left-2">asdfasdf</span> <span
+					class="book top-1 left-3">asdfasdf</span> <span
+					class="book top-1 left-4">asdfasdf</span> <span
+					class="book top-1 left-5">asdfasdf</span>
+			</div>
+			<div>
+				<span class="booktitle booktitle-top-2 left-0">asoidfjoisajdf</span>
+				<span class="book top-2 left-0">asdfasdf</span> <span
+					class="book top-2 left-1">asdfasdf</span> <span
+					class="book top-2 left-2">asdfasdf</span> <span
+					class="book top-2 left-3">asdfasdf</span> <span
+					class="book top-2 left-4">asdfasdf</span> <span
+					class="book top-2 left-5">asdfasdf</span>
+			</div>
 		</div>
-		<div>
-			<span class="booktitle booktitle-top-1 left-0">asoidfjoisajdf</span>
-			<span class="book top-1 left-0">asdfasdf</span> <span
-				class="book top-1 left-1">asdfasdf</span> <span
-				class="book top-1 left-2">asdfasdf</span> <span
-				class="book top-1 left-3">asdfasdf</span> <span
-				class="book top-1 left-4">asdfasdf</span> <span
-				class="book top-1 left-5">asdfasdf</span>
-		</div>
-		<div>
-			<span class="booktitle booktitle-top-2 left-0">asoidfjoisajdf</span>
-			<span class="book top-2 left-0">asdfasdf</span> <span
-				class="book top-2 left-1">asdfasdf</span> <span
-				class="book top-2 left-2">asdfasdf</span> <span
-				class="book top-2 left-3">asdfasdf</span> <span
-				class="book top-2 left-4">asdfasdf</span> <span
-				class="book top-2 left-5">asdfasdf</span>
-		</div>
+		<div id="footer">2018. LNBLT</div>
 	</div>
 	<div class="screen"></div>
 	<script type="text/javascript" src="../letsnotbeliketaesu/js/jquery.js" /></script>
