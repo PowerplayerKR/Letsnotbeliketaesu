@@ -28,7 +28,7 @@ public class UserService {
 	public void updateUser(HashMap<String, Object> params) {
 		userDao.updateUser(params);
 	}
-	public void deleteUser(HashMap<String, Object> params) {
-		userDao.deleteUser(params);
+	public int deleteUser(HashMap<String, Object> params) {
+		return userDao.deleteUser(params);
 	}
 }

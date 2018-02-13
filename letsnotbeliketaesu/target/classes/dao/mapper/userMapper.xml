@@ -10,15 +10,15 @@
   	<select id="selectUser" parameterType="java.util.HashMap" resultType="java.util.HashMap">
   		SELECT *
   		FROM user
-  		WHERE email=#{email} AND pwd=#{pwd}
+  		WHERE email=#{id} AND pwd=#{pwd}
   	</select>
   	<insert id="insertUser" parameterType="java.util.HashMap">
   		INSERT INTO user
-  		VALUES #{email},#{pwd},#{name},#{regdate}
+  		VALUES( #{email},#{pwd},#{name},now())
   	</insert>
   	<update id="updateUser" parameterType="java.util.HashMap" >
   		UPDATE user
-  		SET pwd=#{pwd},name=#{name},regdate=#{regdate}
+  		SET pwd=#{pwd},name=#{name},regdate=now()
   		WHERE email=#{email}
   	</update>
   	<delete id="deleteUser" parameterType="java.util.HashMap">

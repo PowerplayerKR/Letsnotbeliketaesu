@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import service.BestBookService;
 import service.BookService;
+import service.FavoritesService;
+import service.SeaService;
+import service.UserService;
 
 @Controller
 public class BookController {
@@ -22,32 +24,41 @@ public class BookController {
 	private BestBookService bestBookService;
 	@Autowired
 	private BookService bookService;
-	
+
 	@RequestMapping("main.do")
-	public ModelAndView main(HttpSession httpSession){
+	public ModelAndView main(HttpSession httpSession) {
 		ModelAndView mav = new ModelAndView();
 		List<HashMap<String, Object>> bookRankingList = bestBookService.selectRankingBestBook();
 		mav.addObject("bookRanking", bookRankingList);
-		
-		HashMap<String,Object> bookList = bookService.selectBook("진실 이야기");
-		
+
+		HashMap<String, Object> bookList = bookService.selectBook("筌욊쑴�뼄 占쎌뵠占쎈튊疫뀐옙");
+
 		mav.addObject("book", bookList);
-		
+
 		mav.setViewName("main");
 		return mav;
 	}
-	
-	@RequestMapping("getBook.do")
-	public ModelAndView getBook(@RequestParam String title) throws Exception{
-		ModelAndView mav = new ModelAndView();
-		
-		ObjectMapper mapper = new ObjectMapper(); 
-		HashMap<String, Object> bookInfo = bookService.selectBook(title);
-		String json =
-		new ObjectMapper().writeValueAsString(bookInfo);
-		
-		mav.addObject("bookInfo",json);
-		mav.setViewName("getBook");
-		return mav;
+
+	@RequestMapping("likee.do")
+	public String likee() {
+		return "redirect:like";
 	}
+
+	@RequestMapping("like.do")
+	public String like(@RequestParam HashMap<String, Object> params) {
+		System.out.println(params);
+		return "";
+	}
+
+	@RequestMapping("mypage.do")
+	public String mypage(@RequestParam HashMap<String, Object> params) {
+		if (params.get("myPage") == null)
+			params.put("myPage", 1);
+		params.put("user_name", "bong");
+
+		System.out.println(bookService.selectUserBook(params));
+		return "";
+
+	}
+
 }

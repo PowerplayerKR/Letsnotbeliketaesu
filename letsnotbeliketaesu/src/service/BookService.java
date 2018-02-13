@@ -38,4 +38,7 @@ public class BookService {
 	public List<HashMap<String, Object>> bookSearchCategory(HashMap<String, Object> params){
 		return bookDao.bookSearchCategory(params);
 	}
+	public List<HashMap<String, Object> > selectUserBook(HashMap<String, Object> params){
+		return bookDao.selectUserBook(params);
+	}
 }

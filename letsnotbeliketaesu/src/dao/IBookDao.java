@@ -11,4 +11,6 @@ public interface IBookDao {
 	public List<HashMap<String, Object>>  bookSearch(HashMap<String,Object> params);
 	public List<HashMap<String, Object>>  bookSearchCategory(HashMap<String,Object> params);
 	public List<HashMap<String, Object>> selectAllBook();
+	
+	public List<HashMap<String, Object>> selectUserBook(HashMap<String, Object> params);
 }	
