@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import service.BestBookService;
 import service.BookService;
 import service.FavoritesService;
-import service.SeaService;
+
 import service.UserService;
 
 @Controller
@@ -51,13 +52,13 @@ public class BookController {
 	}
 
 	@RequestMapping("mypage.do")
-	public String mypage(@RequestParam HashMap<String, Object> params) {
+	public String mypage(@RequestParam HashMap<String, Object> params, Model model) {
 		if (params.get("myPage") == null)
 			params.put("myPage", 1);
 		params.put("user_name", "bong");
-
-		System.out.println(bookService.selectUserBook(params));
-		return "";
+		
+		model.addAttribute("list", bookService.selectUserBook(params));
+		return "mypage";
 
 	}
 
