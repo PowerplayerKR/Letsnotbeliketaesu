@@ -25,5 +25,36 @@
   		DELETE FROM star_point_list
   		WHERE num=#{num}
   	</delete>
+  	<sql id="selectUserStar">
+		<choose>
+			<when test="myPage=1">
+				favorites on book.num = favorites.book_num where
+				favorites.user_name = #{user_name}
+			</when>
+			<when test="myPage=2">
+				not_interested on book.num = not_interested.book_num
+				where
+				not_interested.user_name = #{user_name}
+			</when>
+			<when test="myPage=3">
+				star_point_list on book.num =
+				star_point_list.book_num where
+				star_point_list.star_point_writer =
+				#{user_name}
+			</when>
+			<when test="myPage=4">
+				review_list on book.num = review_list.book_num where
+				review_list.review_writer = #{user_name}
+			</when>
+		</choose>
+	</sql>
+
+	<select id="selectUserStar" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT *
+		FROM book
+		join
+		<include refid="selectUserStar"></include>
+	</select>
   	
   </mapper>

@@ -9,4 +9,6 @@ public interface IStarPointListDao {
 	public int deleteStarPointList(int num);
 	public HashMap<String,Object> selectStarPointList(int num);
 	public List<HashMap<String, Object>> selectAllStarPointList();
+	
+	public List<HashMap<String, Object>>selectUserStar(HashMap<String, Object> params);
 }	

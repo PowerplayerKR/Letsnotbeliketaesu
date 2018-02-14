@@ -90,10 +90,7 @@
 		join
 		<include refid="selectUserBook"></include>
 	</select>
-	<insert id="bookNum" parameterType="java.util.HashMap">
-		select num image
-		from book
-	</insert>
+
 
 
 </mapper>

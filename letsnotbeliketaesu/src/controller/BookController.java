@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import service.BestBookService;
 import service.BookService;
 import service.FavoritesService;
-
+import service.StarPointListService;
 import service.UserService;
 
 @Controller
@@ -25,6 +25,10 @@ public class BookController {
 	private BestBookService bestBookService;
 	@Autowired
 	private BookService bookService;
+	@Autowired
+	private StarPointListService starList;
+	@Autowired
+	private UserService userService;
 
 	@RequestMapping("main.do")
 	public ModelAndView main(HttpSession httpSession) {
@@ -40,26 +44,31 @@ public class BookController {
 		return mav;
 	}
 
-	@RequestMapping("likee.do")
-	public String likee() {
-		return "redirect:like";
-	}
+	
 
-	@RequestMapping("like.do")
-	public String like(@RequestParam HashMap<String, Object> params) {
-		System.out.println(params);
-		return "";
-	}
+	
 
 	@RequestMapping("mypage.do")
-	public String mypage(@RequestParam HashMap<String, Object> params, Model model) {
-		if (params.get("myPage") == null)
-			params.put("myPage", 1);
-		params.put("user_name", "bong");
+	public String mypage(@RequestParam HashMap<String, Object> params, Model model,HttpSession session) {
 		
-		model.addAttribute("list", bookService.selectUserBook(params));
+			params.put("myPage", 1);
+			params.put("user_name", "bong");
+			model.addAttribute("list", bookService.selectUserBook(params));
+		    HashMap<String, Object> user = userService.selectUser(params);
+            session.setAttribute("userInfo", user);
+            System.out.println(user);
 		return "mypage";
 
 	}
+	
+	@RequestMapping("Star.do")
+	public String StarPage(@RequestParam HashMap<String, Object> params, Model model) {
+		params.put("myPage", 3);
+		params.put("user_name", "bong");
+		model.addAttribute("list",starList.selectUserStar(params));
+		return "mypage";
+	}
+			
+	
 
 }

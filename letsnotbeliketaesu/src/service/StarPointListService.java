@@ -31,4 +31,7 @@ public class StarPointListService {
 	public void deleteStarPointList(int num) {
 		starPointListDao.deleteStarPointList(num);
 	}
+	public List<HashMap<String, Object> >selectUserStar(HashMap<String, Object> params){
+		return starPointListDao.selectUserStar(params);
+	}
 }
