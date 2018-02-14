@@ -50,13 +50,15 @@ public class BookController {
 
 	@RequestMapping("mypage.do")
 	public String mypage(@RequestParam HashMap<String, Object> params, Model model,HttpSession session) {
-		
+		  HashMap<String, Object> user = (HashMap<String, Object>) session.getAttribute("userInfo");
+          
+          System.out.println(user);
+
 			params.put("myPage", 1);
-			params.put("user_name", "bong");
+			params.put("user_name", user.get("name"));
+			
 			model.addAttribute("list", bookService.selectUserBook(params));
-		    HashMap<String, Object> user = userService.selectUser(params);
-            session.setAttribute("userInfo", user);
-            System.out.println(user);
+		  
 		return "mypage";
 
 	}
