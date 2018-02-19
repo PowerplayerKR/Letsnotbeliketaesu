@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import service.BestBookService;
 import service.BookService;
 import service.FavoritesService;
+import service.NewBookService;
 import service.StarPointListService;
 import service.UserService;
 
@@ -29,6 +31,8 @@ public class BookController {
 	private StarPointListService starList;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private NewBookService newBookService;
 
 	@RequestMapping("main.do")
 	public String main(HttpSession httpSession, Model model) {
@@ -45,34 +49,44 @@ public class BookController {
 		}
 	}
 
+	@RequestMapping("getBook.do")
+	public ModelAndView getBook(@RequestParam String title) throws Exception {
+		ModelAndView mav = new ModelAndView();
 
-	
+		ObjectMapper mapper = new ObjectMapper();
+		HashMap<String, Object> bookInfo = bookService.selectBook(title);
+		String json = new ObjectMapper().writeValueAsString(bookInfo);
 
-	
-
-	@RequestMapping("mypage.do")
-	public String mypage(@RequestParam HashMap<String, Object> params, Model model,HttpSession session) {
-		  HashMap<String, Object> user = (HashMap<String, Object>) session.getAttribute("userInfo");
-          
-          System.out.println(user);
-
-			params.put("myPage", 1);
-			params.put("user_name", user.get("name"));
-			
-			model.addAttribute("list", bookService.selectUserBook(params));
-		  
-		return "mypage";
-
+		mav.addObject("bookInfo", json);
+		mav.setViewName("getBook");
+		return mav;
 	}
-	
-	@RequestMapping("Star.do")
-	public String StarPage(@RequestParam HashMap<String, Object> params, Model model) {
-		params.put("myPage", 3);
-		params.put("user_name", "bong");
-		model.addAttribute("list",starList.selectUserStar(params));
-		return "mypage";
+
+	@RequestMapping("bookSearch.do")
+	public ModelAndView bookSearch(@RequestParam HashMap<String, Object> params) {
+		ModelAndView mav = new ModelAndView();
+		List<HashMap<String, Object>> searchBookList = bookService.bookSearch(params);
+		mav.addObject("searchBookList", searchBookList);
+		mav.setViewName("bookSearchList");
+		return mav;
 	}
-			
-	
+
+	@RequestMapping("bestBook.do")
+	public ModelAndView bestBook() {
+		ModelAndView mav = new ModelAndView();
+		List<HashMap<String, Object>> bestBookList = bestBookService.selectAllBestBook();
+		mav.addObject("bestBookList", bestBookList);
+		mav.setViewName("bestBook");
+		return mav;
+	}
+
+	@RequestMapping("newBook.do")
+	public ModelAndView newBook() {
+		ModelAndView mav = new ModelAndView();
+		List<HashMap<String, Object>> newBookList = newBookService.selectAllNewBook();
+		mav.addObject("newBookList", newBookList);
+		mav.setViewName("newBook");
+		return mav;
+	}
 
 }
