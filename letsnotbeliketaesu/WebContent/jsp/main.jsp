@@ -5,9 +5,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="../last_project/css/header.css">
-<link rel="stylesheet" href="../last_project/css/reset.css">
-<link rel="stylesheet" href="../last_project/css/notosanskr.css">
+<link rel="stylesheet" href="../letsnotbeliketaesu/css/header.css">
+<link rel="stylesheet" href="../letsnotbeliketaesu/css/reset.css">
+<link rel="stylesheet" href="../letsnotbeliketaesu/css/notosanskr.css">
 
 <title>Insert title here</title>
 <style>
