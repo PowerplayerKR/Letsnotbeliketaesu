@@ -31,18 +31,20 @@ public class BookController {
 	private UserService userService;
 
 	@RequestMapping("main.do")
-	public ModelAndView main(HttpSession httpSession) {
-		ModelAndView mav = new ModelAndView();
-		List<HashMap<String, Object>> bookRankingList = bestBookService.selectRankingBestBook();
-		mav.addObject("bookRanking", bookRankingList);
-
-		HashMap<String, Object> bookList = bookService.selectBook("筌욊쑴�뼄 占쎌뵠占쎈튊疫뀐옙");
-
-		mav.addObject("book", bookList);
-
-		mav.setViewName("main");
-		return mav;
+	public String main(HttpSession httpSession, Model model) {
+		HashMap<String, Object> userInfo = (HashMap<String, Object>) httpSession.getAttribute("userInfo");
+		if (userInfo == null)
+			return "redirect:loginForm.do";
+		else {
+			List<HashMap<String, Object>> bookRankingList = bestBookService.selectRankingBestBook();
+			model.addAttribute("bookRanking", bookRankingList);
+			HashMap<String, Object> bookList = bookService.selectBook("筌욊쑴�뼄 占쎌뵠占쎈튊疫뀐옙");
+			model.addAttribute("userInfo", userInfo);
+			model.addAttribute("book", bookList);
+			return "main";
+		}
 	}
+
 
 	
 
