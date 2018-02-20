@@ -5,10 +5,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="../last_project/css/header.css">
-<link rel="stylesheet" href="../last_project/css/reset.css">
-<link rel="stylesheet" href="../last_project/css/notosanskr.css">
-<link rel="stylesheet" href="../last_project/css/font-awesome.min.css">
+<link rel="stylesheet" href="../letsnotbeliketaesu/css/header.css">
+<link rel="stylesheet" href="../letsnotbeliketaesu/css/reset.css">
+<link rel="stylesheet" href="../letsnotbeliketaesu/css/notosanskr.css">
+<link rel="stylesheet" href="../letsnotbeliketaesu/css/font-awesome.min.css">
 <title>책 읽으실?</title>
 <style>
 	body{
@@ -101,7 +101,7 @@
 			</li>
 		</c:forEach>
 </ul>
-	<script type="text/javascript" src="../last_project/js/jquery.js"/></script>
+	<script type="text/javascript" src="../letsnotbeliketaesu/js/jquery.js"/></script>
 	<script type=""></script>
 </body>
 </html>

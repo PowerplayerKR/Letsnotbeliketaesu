@@ -14,7 +14,7 @@
 		<li><a href="recommended.do">책 추천</a></li>
 		<li><a href="recommend.do">책 평가 늘리기</a></li>
 		<li class="search">
-			<form action="">
+			<form action="bookSearch.do">
 				<select name="searchOption" id="">
 					<option value="title">제목</option>
 					<option value="writer">작가</option>
