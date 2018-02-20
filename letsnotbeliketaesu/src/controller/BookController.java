@@ -39,14 +39,12 @@ public class BookController {
 		HashMap<String, Object> userInfo = (HashMap<String, Object>) httpSession.getAttribute("userInfo");
 		if (userInfo == null)
 			return "redirect:loginForm.do";
-		else {
-			List<HashMap<String, Object>> bookRankingList = bestBookService.selectRankingBestBook();
-			model.addAttribute("bookRanking", bookRankingList);
-			HashMap<String, Object> bookList = bookService.selectBook("筌욊쑴�뼄 占쎌뵠占쎈튊疫뀐옙");
-			model.addAttribute("userInfo", userInfo);
-			model.addAttribute("book", bookList);
-			return "main";
-		}
+		List<HashMap<String, Object>> bookRankingList = bestBookService.selectRankingBestBook();
+		model.addAttribute("bookRanking", bookRankingList);
+		HashMap<String, Object> bookList = bookService.selectBook("筌욊쑴�뼄 占쎌뵠占쎈튊疫뀐옙");
+		model.addAttribute("userInfo", userInfo);
+		model.addAttribute("book", bookList);
+		return "main";
 	}
 
 	@RequestMapping("getBook.do")
