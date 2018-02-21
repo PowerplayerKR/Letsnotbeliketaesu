@@ -211,31 +211,134 @@
 		</div>
 		<div id="content">
 			<div>
-				<span class="booktitle booktitle-top-0 left-0">asoidfjoisajdf</span>
-				<span class="book top-0 left-0">asdfasdf</span> <span
-					class="book top-0 left-1">asdfasdf</span> <span
-					class="book top-0 left-2">asdfasdf</span> <span
-					class="book top-0 left-3">asdfasdf</span> <span
-					class="book top-0 left-4">asdfasdf</span> <span
-					class="book top-0 left-5">asdfasdf</span>
+				<%
+					int i = 0;
+				%>
+				<span class="booktitle booktitle-top-0 left-0">신간</span>
+				<ul class="book_wrap">
+					<c:forEach var="book" items="${newBook}">
+						<li><span class="book top-0 left-<%=i++%>"><a href="#">
+									<div class="info_box">
+										<h3>${book.title}</h3>
+										<div class="star_rating" id="${book.num}">
+											<i class="fa fa-star-o fa-2x" aria-hidden="true"><div
+													class="head <c:if test="${book.star_point eq 0.5}">true</c:if>"></div>
+												<div
+													class="tail <c:if test="${book.star_point eq 1}">true</c:if>"></div></i>
+											<i class="fa fa-star-o fa-2x" aria-hidden="true"><div
+													class="head  <c:if test="${book.star_point eq 1.5}">true</c:if>"></div>
+												<div
+													class="tail <c:if test="${book.star_point eq 2}">true</c:if>"></div></i>
+											<i class="fa fa-star-o fa-2x" aria-hidden="true"><div
+													class="head <c:if test="${book.star_point eq 2.5}">true</c:if>"></div>
+												<div
+													class="tail <c:if test="${book.star_point eq 3}">true</c:if>"></div></i>
+											<i class="fa fa-star-o fa-2x" aria-hidden="true "><div
+													class="head <c:if test="${book.star_point eq 3.5}">true</c:if>"></div>
+												<div
+													class="tail <c:if test="${book.star_point eq 4}">true</c:if>"></div></i>
+											<i class="fa fa-star-o fa-2x" aria-hidden="true"><div
+													class="head <c:if test="${book.star_point eq 4.5}">true</c:if>"></div>
+												<div
+													class="tail <c:if test="${book.star_point eq 5}">true</c:if>"></div></i>
+										</div>
+										<button class="wish_btn">
+											<i class="fa fa-heart"></i>보고싶어요
+										</button>
+										<button class="comment_btn">
+											<i class="fa fa-comment"></i> 코멘트쓰기
+										</button>
+									</div> <img src="${book.image}" alt="${book.title}" />
+							</a> </span></li>
+					</c:forEach>
+				</ul>
+			</div>
+
+			<div>
+				<%
+					i = 0;
+				%>
+				<span class="booktitle booktitle-top-1 left-0">베스트 셀러</span>
+				<ul class="book_wrap">
+					<c:forEach var="book" items="${bestBook}">
+						<li><span class="book top-1 left-<%=i++%>"><a href="#">
+									<div class="info_box">
+										<h3>${book.title}</h3>
+										<div class="star_rating" id="${book.num}">
+											<i class="fa fa-star-o fa-2x" aria-hidden="true"><div
+													class="head <c:if test="${book.star_point eq 0.5}">true</c:if>"></div>
+												<div
+													class="tail <c:if test="${book.star_point eq 1}">true</c:if>"></div></i>
+											<i class="fa fa-star-o fa-2x" aria-hidden="true"><div
+													class="head  <c:if test="${book.star_point eq 1.5}">true</c:if>"></div>
+												<div
+													class="tail <c:if test="${book.star_point eq 2}">true</c:if>"></div></i>
+											<i class="fa fa-star-o fa-2x" aria-hidden="true"><div
+													class="head <c:if test="${book.star_point eq 2.5}">true</c:if>"></div>
+												<div
+													class="tail <c:if test="${book.star_point eq 3}">true</c:if>"></div></i>
+											<i class="fa fa-star-o fa-2x" aria-hidden="true "><div
+													class="head <c:if test="${book.star_point eq 3.5}">true</c:if>"></div>
+												<div
+													class="tail <c:if test="${book.star_point eq 4}">true</c:if>"></div></i>
+											<i class="fa fa-star-o fa-2x" aria-hidden="true"><div
+													class="head <c:if test="${book.star_point eq 4.5}">true</c:if>"></div>
+												<div
+													class="tail <c:if test="${book.star_point eq 5}">true</c:if>"></div></i>
+										</div>
+										<button class="wish_btn">
+											<i class="fa fa-heart"></i>보고싶어요
+										</button>
+										<button class="comment_btn">
+											<i class="fa fa-comment"></i> 코멘트쓰기
+										</button>
+									</div> <img src="${book.image}" alt="${book.title}" />
+							</a> </span></li>
+					</c:forEach>
+				</ul>
 			</div>
 			<div>
-				<span class="booktitle booktitle-top-1 left-0">asoidfjoisajdf</span>
-				<span class="book top-1 left-0">asdfasdf</span> <span
-					class="book top-1 left-1">asdfasdf</span> <span
-					class="book top-1 left-2">asdfasdf</span> <span
-					class="book top-1 left-3">asdfasdf</span> <span
-					class="book top-1 left-4">asdfasdf</span> <span
-					class="book top-1 left-5">asdfasdf</span>
-			</div>
-			<div>
-				<span class="booktitle booktitle-top-2 left-0">asoidfjoisajdf</span>
-				<span class="book top-2 left-0">asdfasdf</span> <span
-					class="book top-2 left-1">asdfasdf</span> <span
-					class="book top-2 left-2">asdfasdf</span> <span
-					class="book top-2 left-3">asdfasdf</span> <span
-					class="book top-2 left-4">asdfasdf</span> <span
-					class="book top-2 left-5">asdfasdf</span>
+				<%
+					i = 0;
+				%>
+				<span class="booktitle booktitle-top-2 left-0">추천책</span>
+				<ul class="book_wrap">
+					<c:forEach var="book" items="${book}">
+						<li><span class="book top-2 left-<%=i++%>"><a href="#">
+									<div class="info_box">
+										<h3>${book.title}</h3>
+										<div class="star_rating" id="${book.num}">
+											<i class="fa fa-star-o fa-2x" aria-hidden="true"><div
+													class="head <c:if test="${book.star_point eq 0.5}">true</c:if>"></div>
+												<div
+													class="tail <c:if test="${book.star_point eq 1}">true</c:if>"></div></i>
+											<i class="fa fa-star-o fa-2x" aria-hidden="true"><div
+													class="head  <c:if test="${book.star_point eq 1.5}">true</c:if>"></div>
+												<div
+													class="tail <c:if test="${book.star_point eq 2}">true</c:if>"></div></i>
+											<i class="fa fa-star-o fa-2x" aria-hidden="true"><div
+													class="head <c:if test="${book.star_point eq 2.5}">true</c:if>"></div>
+												<div
+													class="tail <c:if test="${book.star_point eq 3}">true</c:if>"></div></i>
+											<i class="fa fa-star-o fa-2x" aria-hidden="true "><div
+													class="head <c:if test="${book.star_point eq 3.5}">true</c:if>"></div>
+												<div
+													class="tail <c:if test="${book.star_point eq 4}">true</c:if>"></div></i>
+											<i class="fa fa-star-o fa-2x" aria-hidden="true"><div
+													class="head <c:if test="${book.star_point eq 4.5}">true</c:if>"></div>
+												<div
+													class="tail <c:if test="${book.star_point eq 5}">true</c:if>"></div></i>
+										</div>
+										<button class="wish_btn">
+											<i class="fa fa-heart"></i>보고싶어요
+										</button>
+										<button class="comment_btn">
+											<i class="fa fa-comment"></i> 코멘트쓰기
+										</button>
+									</div> <img src="${book.image}" alt="${book.title}" />
+							</a> </span></li>
+					</c:forEach>
+				</ul>
 			</div>
 		</div>
 	</div>
