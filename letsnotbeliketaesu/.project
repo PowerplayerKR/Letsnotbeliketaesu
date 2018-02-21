@@ -49,7 +49,7 @@
 		<link>
 			<name>WebContent/jsp</name>
 			<type>2</type>
-			<locationURI>PARENT-3-PROJECT_LOC/Desktop/letsnotbeliketaesu/WebContent/jsp</locationURI>
+			<location>D:/Git/project/letsnotbeliketaesu/WebContent/jsp</location>
 		</link>
 	</linkedResources>
 </projectDescription>
