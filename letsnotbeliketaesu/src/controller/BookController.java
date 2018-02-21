@@ -155,20 +155,19 @@ public class BookController {
 
 	}
 
-	@RequestMapping("Star.do")
+	@RequestMapping("UserStarList.do")
 	public String StarPage(@RequestParam HashMap<String, Object> params, Model model, HttpSession session) {
 
 		HashMap<String, Object> user = (HashMap<String, Object>) session.getAttribute("userInfo");
+		System.out.println(user);
 
 		params.put("myPage", 3);
 
 		params.put("email", user.get("email"));
 
-		params.put("name", user.get("name"));
+		model.addAttribute("list", bookService.selectUserBook(params));
 
-		model.addAttribute("list", starList.selectUserStar(params));
-
-		System.out.println(starList.selectUserStar(params));
+		System.out.println(bookService.selectUserBook(params));
 
 		return "mypage";
 
