@@ -33,7 +33,10 @@
   		DELETE FROM best_book
   		WHERE num=#{num}
   	</delete>
-  	
+  		<select id="selectBookMain" resultType="java.util.HashMap">
+		SELECT * FROM best_book
+		order by rand() limit 6
+	</select>
   	
   		
   </mapper>

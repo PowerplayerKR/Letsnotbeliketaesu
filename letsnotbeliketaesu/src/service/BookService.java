@@ -56,4 +56,8 @@ public class BookService {
 	public int starUpdate(HashMap<String, Object> params) {
 		return bookDao.starUpdate(params);
 	}
+
+	public List<HashMap<String, Object>> selectBookMain() {
+		return bookDao.selectBookMain();
+	}
 }

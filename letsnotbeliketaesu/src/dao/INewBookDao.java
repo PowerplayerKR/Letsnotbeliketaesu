@@ -13,4 +13,6 @@ public interface INewBookDao {
 	public HashMap<String, Object> selectNewBook(int num);
 
 	public List<HashMap<String, Object>> selectAllNewBook();
+
+	public List<HashMap<String, Object>> selectBookMain();
 }

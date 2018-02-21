@@ -112,7 +112,10 @@
 		book_num=#{bookNum}
 
 	</delete>
-
+	<select id="selectBookMain" resultType="java.util.HashMap">
+		SELECT * FROM book
+		order by rand() limit 6
+	</select>
 
 
 

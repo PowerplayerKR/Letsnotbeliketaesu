@@ -8,31 +8,36 @@ import org.springframework.stereotype.Service;
 
 import dao.IBestBookDao;
 
-
 @Service
 public class BestBookService {
 	@Autowired
 	private IBestBookDao bestBookDao;
-	
-	public List<HashMap<String, Object>> selectAllBestBook(){
+
+	public List<HashMap<String, Object>> selectAllBestBook() {
 		return bestBookDao.selectAllBestBook();
 	}
-	
-	public List<HashMap<String, Object>> selectRankingBestBook(){
+
+	public List<HashMap<String, Object>> selectRankingBestBook() {
 		return bestBookDao.selectRankingBestBook();
 	}
-	
-	public HashMap<String, Object> selectBestBook(int num){
+
+	public HashMap<String, Object> selectBestBook(int num) {
 		return bestBookDao.selectBestBook(num);
 	}
-	
+
 	public void insertBestBook(HashMap<String, Object> params) {
 		bestBookDao.insertBestBook(params);
 	}
+
 	public void updateBestBook(HashMap<String, Object> params) {
 		bestBookDao.updateBestBook(params);
 	}
+
 	public void deleteBestBook(int num) {
 		bestBookDao.deleteBestBook(num);
+	}
+
+	public List<HashMap<String, Object>> selectBookMain() {
+		return bestBookDao.selectBookMain();
 	}
 }

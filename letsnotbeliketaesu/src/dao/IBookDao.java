@@ -25,4 +25,6 @@ public interface IBookDao {
 	public int starDelete(HashMap<String, Object> params);
 
 	public int starUpdate(HashMap<String, Object> params);
+
+	public List<HashMap<String, Object>> selectBookMain();
 }
