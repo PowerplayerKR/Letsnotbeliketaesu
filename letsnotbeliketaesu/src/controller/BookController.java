@@ -107,7 +107,7 @@ public class BookController {
 
 		model.addAttribute("bookSearchList");
 
-		return "bookSearch";
+		return "bookSearchList";
 
 	}
 
