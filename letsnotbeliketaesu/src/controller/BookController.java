@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +16,9 @@ import org.springframework.web.servlet.ModelAndView;
 import service.BestBookService;
 import service.BookService;
 import service.FavoritesService;
-import service.NewBookService;
+import service.NotInterestedService;
+import service.ReportListService;
+import service.ReviewListService;
 import service.StarPointListService;
 import service.UserService;
 
@@ -32,59 +33,81 @@ public class BookController {
 	@Autowired
 	private UserService userService;
 	@Autowired
-	private NewBookService newBookService;
+	private ReviewListService listService;
+	@Autowired
+	private NotInterestedService notInterested;
 
+	@RequestMapping("review.do")
+	public String reviewPage(@RequestParam HashMap<String, Object> params,Model model,HttpSession session) {
+		HashMap<String, Object> user = (HashMap<String, Object>) session.getAttribute("userInfo");
+		System.out.println(user);
+		params.put("myPage", 4);
+		params.put("user_name", user.get("name"));
+		model.addAttribute("list",listService.selectAllReviewList(params));
+		System.out.println(listService.selectAllReviewList(params));
+		return "review";
+		
+	}
 	@RequestMapping("main.do")
-	public String main(HttpSession httpSession, Model model) {
-		HashMap<String, Object> userInfo = (HashMap<String, Object>) httpSession.getAttribute("userInfo");
-		if (userInfo == null)
-			return "redirect:loginForm.do";
+	public ModelAndView main(HttpSession httpSession) {
+		ModelAndView mav = new ModelAndView();
 		List<HashMap<String, Object>> bookRankingList = bestBookService.selectRankingBestBook();
-		model.addAttribute("bookRanking", bookRankingList);
+		mav.addObject("bookRanking", bookRankingList);
+
 		HashMap<String, Object> bookList = bookService.selectBook("筌욊쑴�뼄 占쎌뵠占쎈튊疫뀐옙");
-		model.addAttribute("userInfo", userInfo);
-		model.addAttribute("book", bookList);
-		return "main";
-	}
 
-	@RequestMapping("getBook.do")
-	public ModelAndView getBook(@RequestParam String title) throws Exception {
-		ModelAndView mav = new ModelAndView();
+		mav.addObject("book", bookList);
 
-		ObjectMapper mapper = new ObjectMapper();
-		HashMap<String, Object> bookInfo = bookService.selectBook(title);
-		String json = new ObjectMapper().writeValueAsString(bookInfo);
-
-		mav.addObject("bookInfo", json);
-		mav.setViewName("getBook");
+		mav.setViewName("main");
 		return mav;
 	}
-
-	@RequestMapping("bookSearch.do")
-	public ModelAndView bookSearch(@RequestParam HashMap<String, Object> params) {
-		ModelAndView mav = new ModelAndView();
-		List<HashMap<String, Object>> searchBookList = bookService.bookSearch(params);
-		mav.addObject("searchBookList", searchBookList);
-		mav.setViewName("bookSearchList");
-		return mav;
+	@RequestMapping("notInterested.do")
+	public String Interested(@RequestParam HashMap<String, Object> params,Model model,HttpSession session) {
+		HashMap<String, Object> user = (HashMap<String, Object>) session.getAttribute("userInfo");
+		params.put("myPage", 2);
+		params.put("user_name", user.get("name"));
+		model.addAttribute("list",bookService.selectUserBook(params));
+		return "mypage";
+		
+		
 	}
 
-	@RequestMapping("bestBook.do")
-	public ModelAndView bestBook() {
-		ModelAndView mav = new ModelAndView();
-		List<HashMap<String, Object>> bestBookList = bestBookService.selectAllBestBook();
-		mav.addObject("bestBookList", bestBookList);
-		mav.setViewName("bestBook");
-		return mav;
+	@RequestMapping("mypage.do")
+	public String mypage(@RequestParam HashMap<String, Object> params, Model model,HttpSession session) {
+		  HashMap<String, Object> user = (HashMap<String, Object>) session.getAttribute("userInfo");
+			params.put("myPage", 1);
+			params.put("user_name", user.get("name"));
+			System.out.println(user);
+			model.addAttribute("list", bookService.selectUserBook(params));
+			System.out.println(params);
+		  
+		return "mypage";
+
+	}
+	
+	@RequestMapping("Star.do")
+	public String StarPage(@RequestParam HashMap<String, Object> params, Model model,HttpSession session) {
+		HashMap<String, Object> user = (HashMap<String, Object>) session.getAttribute("userInfo");
+		System.out.println(user);
+		params.put("myPage", 3);
+		params.put("user_name", user.get("name"));
+		model.addAttribute("list",starList.selectUserStar(params));
+		System.out.println(starList.selectUserStar(params));
+		return "mypage";
 	}
 
-	@RequestMapping("newBook.do")
-	public ModelAndView newBook() {
-		ModelAndView mav = new ModelAndView();
-		List<HashMap<String, Object>> newBookList = newBookService.selectAllNewBook();
-		mav.addObject("newBookList", newBookList);
-		mav.setViewName("newBook");
-		return mav;
+	@RequestMapping("bookReview.do")
+		public void bookreview() {
+		
 	}
+	@RequestMapping("reviewInsert.do")
+	public String insert(@RequestParam HashMap<String, Object> params) {
+		listService.insertReviewList(params);
+		System.out.println(params);
+		return "redirect:review.do";
+			
+	}
+	
+	
 
 }

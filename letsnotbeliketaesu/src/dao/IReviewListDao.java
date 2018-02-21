@@ -8,5 +8,8 @@ public interface IReviewListDao {
 	public int updateReviewList(HashMap<String,Object> params);
 	public int deleteReviewList(int num);
 	public HashMap<String,Object> selectReviewList(int num);
-	public List<HashMap<String, Object>> selectAllReviewList();
+	
+	public List<HashMap<String, Object>> selectAllReviewList(HashMap<String, Object> params);
+	
+	
 }	
