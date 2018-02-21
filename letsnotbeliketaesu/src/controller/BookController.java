@@ -97,7 +97,7 @@ public class BookController {
 		return mav;
 
 	}
-	
+
 	@RequestMapping("bookSearch.do")
 	public String bookSearch(@RequestParam HashMap<String, Object> params, Model model) {
 
@@ -118,9 +118,9 @@ public class BookController {
 
 		params.put("myPage", 1);
 
-		params.put("user_name", user.get("name"));
+		params.put("email", user.get("email"));
 
-		System.out.println(user);
+		params.put("name", user.get("name"));
 
 		model.addAttribute("list", bookService.selectUserBook(params));
 
@@ -137,7 +137,9 @@ public class BookController {
 
 		params.put("myPage", 2);
 
-		params.put("user_name", user.get("name"));
+		params.put("email", user.get("email"));
+
+		params.put("name", user.get("name"));
 
 		model.addAttribute("list", bookService.selectUserBook(params));
 
@@ -152,7 +154,9 @@ public class BookController {
 
 		params.put("myPage", 3);
 
-		params.put("user_name", user.get("name"));
+		params.put("email", user.get("email"));
+
+		params.put("name", user.get("name"));
 
 		model.addAttribute("list", starList.selectUserStar(params));
 
@@ -171,7 +175,9 @@ public class BookController {
 
 		params.put("myPage", 4);
 
-		params.put("user_name", user.get("name"));
+		params.put("email", user.get("email"));
+
+		params.put("name", user.get("name"));
 
 		model.addAttribute("list", listService.selectAllReviewList(params));
 
