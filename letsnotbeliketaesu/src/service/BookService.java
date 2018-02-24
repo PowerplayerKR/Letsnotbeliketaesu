@@ -45,22 +45,10 @@ public class BookService {
 		return bookDao.selectUserBook(params);
 	}
 
-	public int starInsert(HashMap<String, Object> params) {
-		return bookDao.starInsert(params);
-	}
-
-	public int starDelete(HashMap<String, Object> params) {
-		return bookDao.starDelete(params);
-	}
-
-	public int starUpdate(HashMap<String, Object> params) {
-		return bookDao.starUpdate(params);
-	}
-
 	public List<HashMap<String, Object>> selectBookMain() {
 		return bookDao.selectBookMain();
 	}
-	
+
 	public List<HashMap<String, Object>> bookAutocomplete(HashMap<String, Object> params) {
 
 		return bookDao.bookAutocomplete(params);
