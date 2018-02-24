@@ -2,34 +2,28 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="dao.IStarPointListDao">
-  	<select id="selectAllStarPointList" resultType="java.util.HashMap">
-  		SELECT *
-  		FROM star_point_list
-  	</select>
-  	<select id="selectStarPointList" parameterType="int" resultType="java.util.HashMap">
-  		SELECT *
-  		FROM star_point_list
-  		WHERE num=#{num}
-  	</select>
-  	<insert id="insertStarPointList" parameterType="java.util.HashMap">
-  		INSERT INTO star_point_list
-  		VALUES 0,#{star_point_writer},#{book_num},#{review_num},#{star_point},#{regdate}
-  	</insert>
-  	<update id="updateStarPointList" parameterType="java.util.HashMap" >
-  		UPDATE star_point_list
-  		SET star_point_writer=#{star_point_writer},book_num=#{book_num},review_num=#{review_num},star_point=#{star_point},regdate=#{regdate}
-  		WHERE num=#{num} 
-  	</update>
-  	<delete id="deleteStarPointList" parameterType="int">
-  		DELETE FROM star_point_list
-  		WHERE num=#{num}
-  	</delete>
-   	<select id="selectStarList" resultType="java.util.HashMap">
-  		SELECT *
-  		FROM star_point_list
-  		where star_point
-  	
-  	</select>
-  	
-  </mapper>
+<mapper namespace="dao.IStarPointListDao">
+	<insert id="starInsert" parameterType="java.util.HashMap">
+		insert into
+		star_point_list(star_point_email,book_num,review_num,star_point,regdate)
+		values(#{email},#{name},#{bookNum},#{reviewNum},#{starPoint},now())
+	</insert>
+
+	<update id="starUpdate" parameterType="java.util.HashMap">
+		update star_point_list
+		set
+		star_point=#{starPoint},
+		regdate=now()
+		where
+		star_point_email=#{email}
+		and book_num=#{bookNum}
+
+	</update>
+	<delete id="starDelete" parameterType="java.util.HashMap">
+		delete from
+		star_point_list where star_point_email=#{email} and
+		book_num=#{bookNum}
+
+	</delete>
+
+</mapper>
