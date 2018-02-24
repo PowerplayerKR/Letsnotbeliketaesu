@@ -36,4 +36,10 @@ public class NewBookService {
 	public List<HashMap<String, Object>> selectBookMain() {
 		return newBookDao.selectBookMain();
 	}
+	
+	public List<HashMap<String, Object>> selectNewBookMore(int num) {
+
+		return newBookDao.selectNewBookMore(num);
+
+	}
 }
