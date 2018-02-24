@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.codehaus.jackson.map.ObjectMapper;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -59,17 +63,17 @@ public class BookController {
 		model.addAttribute("bookRanking", bookRankingList);
 
 		List<HashMap<String, Object>> book = bookService.selectBookMain();
-		
+
 		List<HashMap<String, Object>> bestBook = bookService.selectBookMain();
-		
+
 		List<HashMap<String, Object>> newBook = bookService.selectBookMain();
 
 		model.addAttribute("userInfo", userInfo);
 
 		model.addAttribute("book", book);
-		
+
 		model.addAttribute("bestBook", bestBook);
-		
+
 		model.addAttribute("newBook", newBook);
 
 		return "main";
@@ -210,7 +214,7 @@ public class BookController {
 	@ResponseBody
 	public String starInsert(@RequestParam HashMap<String, Object> params) {
 
-		bookService.starInsert(params);
+		starList.starInsert(params);
 
 		return "{\"booknum\":\"에러내지마\" }";
 
@@ -220,6 +224,8 @@ public class BookController {
 	@ResponseBody
 	public String starUpdate(@RequestParam HashMap<String, Object> params) {
 
+		starList.starUpdate(params);
+		
 		return "{\"booknum\":\"에러내지마\" }";
 
 	}
@@ -228,7 +234,7 @@ public class BookController {
 	@ResponseBody
 	public String starDelete(@RequestParam HashMap<String, Object> params) {
 
-		bookService.starDelete(params);
+		starList.starDelete(params);
 
 		return "{\"booknum\":\"에러내지마\" }";
 
@@ -251,7 +257,7 @@ public class BookController {
 		return new ResponseEntity(json, responseHeaders, HttpStatus.CREATED);
 
 	}
-	
+
 	@RequestMapping("autocomplete.do")
 
 	@ResponseBody
@@ -300,8 +306,5 @@ public class BookController {
 		return new ResponseEntity(json, responseHeaders, HttpStatus.CREATED);
 
 	}
-
-}
-
 
 }
