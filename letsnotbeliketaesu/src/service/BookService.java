@@ -60,4 +60,9 @@ public class BookService {
 	public List<HashMap<String, Object>> selectBookMain() {
 		return bookDao.selectBookMain();
 	}
-}
+	
+	public List<HashMap<String, Object>> bookAutocomplete(HashMap<String, Object> params) {
+
+		return bookDao.bookAutocomplete(params);
+
+	}
