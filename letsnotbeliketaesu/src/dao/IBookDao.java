@@ -27,4 +27,6 @@ public interface IBookDao {
 	public int starUpdate(HashMap<String, Object> params);
 
 	public List<HashMap<String, Object>> selectBookMain();
+	
+	public List<HashMap<String, Object>> bookAutocomplete(HashMap<String, Object> params);
 }
