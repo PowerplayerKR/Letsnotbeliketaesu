@@ -14,24 +14,15 @@ public class StarPointListService {
 	@Autowired
 	private IStarPointListDao starPointListDao;
 	
-	public List<HashMap<String, Object>> selectAllStarPointList(){
-		return starPointListDao.selectAllStarPointList();
+	public int starInsert(HashMap<String, Object> params) {
+		return starPointListDao.starInsert(params);
 	}
-	
-	public HashMap<String, Object> selectStarPointList(int num){
-		return starPointListDao.selectStarPointList(num);
+
+	public int starDelete(HashMap<String, Object> params) {
+		return starPointListDao.starDelete(params);
 	}
-	
-	public void insertStarPointList(HashMap<String, Object> params) {
-		starPointListDao.insertStarPointList(params);
-	}
-	public void updateStarPointList(HashMap<String, Object> params) {
-		starPointListDao.updateStarPointList(params);
-	}
-	public void deleteStarPointList(int num) {
-		starPointListDao.deleteStarPointList(num);
-	}
-	public List<HashMap<String, Object> >selectUserStar(HashMap<String, Object> params){
-		return starPointListDao.selectUserStar(params);
+
+	public int starUpdate(HashMap<String, Object> params) {
+		return starPointListDao.starUpdate(params);
 	}
 }
