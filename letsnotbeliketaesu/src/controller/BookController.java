@@ -251,5 +251,57 @@ public class BookController {
 		return new ResponseEntity(json, responseHeaders, HttpStatus.CREATED);
 
 	}
+	
+	@RequestMapping("autocomplete.do")
+
+	@ResponseBody
+
+	public ResponseEntity<String> autocomplete(@RequestParam HashMap<String, Object> params,
+			HttpServletResponse response) throws Exception {
+
+		HttpHeaders responseHeaders = new HttpHeaders();
+
+		responseHeaders.add("Content-Type", MediaType.APPLICATION_JSON_UTF8_VALUE);
+
+		JSONArray list = new JSONArray();
+
+		JSONObject obj = null;
+
+		for (HashMap<String, Object> map : bookService.bookAutocomplete(params)) {
+
+			obj = new JSONObject();
+
+			obj.put("title", map.get("title").toString());
+
+			list.add(obj);
+
+		}
+
+		HashMap<String, Object> map = new HashMap<>();
+
+		return new ResponseEntity(new ObjectMapper().writeValueAsString(list), responseHeaders, HttpStatus.OK);
+
+	}
+
+	@RequestMapping("newBookMore.do")
+
+	@ResponseBody
+
+	public ResponseEntity<String> newBookMore(@RequestParam int num) throws Exception {
+
+		List<HashMap<String, Object>> newBookList = newBookService.selectNewBookMore(num);
+
+		String json = new ObjectMapper().writeValueAsString(newBookList);
+
+		HttpHeaders responseHeaders = new HttpHeaders();
+
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+
+		return new ResponseEntity(json, responseHeaders, HttpStatus.CREATED);
+
+	}
+
+}
+
 
 }
