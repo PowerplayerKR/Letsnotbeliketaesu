@@ -20,13 +20,7 @@ public interface IBookDao {
 
 	public List<HashMap<String, Object>> selectUserBook(HashMap<String, Object> params);
 
-	public int starInsert(HashMap<String, Object> params);
-
-	public int starDelete(HashMap<String, Object> params);
-
-	public int starUpdate(HashMap<String, Object> params);
-
 	public List<HashMap<String, Object>> selectBookMain();
-	
+
 	public List<HashMap<String, Object>> bookAutocomplete(HashMap<String, Object> params);
 }
