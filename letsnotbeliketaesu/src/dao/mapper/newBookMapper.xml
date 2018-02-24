@@ -4,8 +4,15 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dao.INewBookDao">
 	<select id="selectAllNewBook" resultType="java.util.HashMap">
+
 		SELECT *
-		FROM new_book limit 0,5
+
+		FROM new_book
+
+		ORDER BY num desc
+
+		LIMIT 0,20
+
 	</select>
 	<select id="selectNewBook" parameterType="int" resultType="java.util.HashMap">
 		SELECT *
@@ -31,6 +38,19 @@
 		<select id="selectBookMain" resultType="java.util.HashMap">
 		SELECT * FROM book
 		order by rand() limit 6
+	</select>
+	<select id="selectNewBookMore" parameterType="int" resultType="java.util.HashMap">
+
+		SELECT *
+
+		FROM new_book
+
+		WHERE num<![CDATA[<]]>#{num}
+
+		AND num >= #{num}-20
+
+		ORDER BY num desc
+
 	</select>
 
 
