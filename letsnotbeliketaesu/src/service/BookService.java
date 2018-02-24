@@ -66,3 +66,4 @@ public class BookService {
 		return bookDao.bookAutocomplete(params);
 
 	}
+}
