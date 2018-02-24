@@ -116,7 +116,18 @@
 		SELECT * FROM book
 		order by rand() limit 6
 	</select>
+	<select id="bookAutocomplete" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
 
+		SELECT *
+
+		FROM book
+
+		<include refid="search"></include>
+
+		LIMIT 0,10;
+
+	</select>
 
 
 </mapper>
