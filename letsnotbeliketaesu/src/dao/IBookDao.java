@@ -13,6 +13,8 @@ public interface IBookDao {
 	public HashMap<String, Object> selectBook(String title);
 
 	public List<HashMap<String, Object>> bookSearch(HashMap<String, Object> params);
+	
+	public List<HashMap<String, Object>>  bookSearchMore(HashMap<String,Object> params);
 
 	public List<HashMap<String, Object>> bookSearchCategory(HashMap<String, Object> params);
 
