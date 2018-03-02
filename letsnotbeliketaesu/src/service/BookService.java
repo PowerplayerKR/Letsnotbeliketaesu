@@ -36,7 +36,11 @@ public class BookService {
 	public List<HashMap<String, Object>> bookSearch(HashMap<String, Object> params) {
 		return bookDao.bookSearch(params);
 	}
-
+	
+	public List<HashMap<String, Object>>bookSearchMore(HashMap<String, Object> params){
+		return bookDao.bookSearchMore(params);
+	}
+	
 	public List<HashMap<String, Object>> bookSearchCategory(HashMap<String, Object> params) {
 		return bookDao.bookSearchCategory(params);
 	}
