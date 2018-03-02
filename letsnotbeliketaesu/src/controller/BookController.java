@@ -111,16 +111,22 @@ public class BookController {
 	}
 
 	@RequestMapping("bookSearch.do")
-	public String bookSearch(@RequestParam HashMap<String, Object> params, Model model) {
-
+	public ModelAndView bookSearch(@RequestParam HashMap<String,Object> params) {
+		ModelAndView mav = new ModelAndView();
 		List<HashMap<String, Object>> searchBookList = bookService.bookSearch(params);
-
-		model.addAttribute("searchBookList", searchBookList);
-
-		model.addAttribute("bookSearchList");
-
-		return "bookSearchList";
-
+		mav.addObject("searchBookList",searchBookList);
+		mav.setViewName("bookSearchList");
+		return mav;
+	}
+	
+	@RequestMapping("bookSearchMore.do")
+	@ResponseBody
+	public ResponseEntity<String> bookSearchMore(@RequestParam HashMap<String,Object> params) throws Exception{
+		List<HashMap<String, Object>> bookInfo = bookService.bookSearchMore(params);
+		String json = new ObjectMapper().writeValueAsString(bookInfo);
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+		return new ResponseEntity(json, responseHeaders, HttpStatus.CREATED);
 	}
 
 	@RequestMapping("mypage.do")
