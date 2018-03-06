@@ -497,6 +497,232 @@ body {
 	margin-top: 20px;
 	cursor: pointer;
 }
+	.wrap{
+		position:absolute;
+		top:100px;
+		width:220px;
+		height:500px;
+		background:  rgb(255, 56, 46);
+		text-align: left;
+	}
+	.wrap ol{
+		text-align: center;
+		list-style: none;
+	}
+	.wrap ol li{
+		padding-bottom: 2px;
+    	color: #FFFFFF;
+    	position: relative;
+    	padding-left: 28px;
+    	margin-top: 15px;
+	}
+	span {	
+    	position: absolute;
+		left: 15px;
+		top: 2px;
+		display: block;
+		width: 18px;
+		height: 18px;
+		line-height: 20px;
+		text-align: center;
+		color: black;
+	 	font-size: 13px;
+		background-color: white;
+		-moz-border-radius: 3px;
+		-webkit-border-radius: 3px;
+		border-radius: 3px;
+    }
+    .wrap ol li:nth-child(1) span{
+    	background-color: black;
+    	color: white;	
+    }
+     .wrap ol li:nth-child(2) span{
+    	background-color: black;
+    	color: white;	
+    }
+    .wrap ol li:nth-child(3) span{
+    	background-color: black;
+    	color: white;	
+    }
+	.wrap ol li a{
+		color: #FFFFFF;
+    	line-height:20px;
+    	width: 160px;
+ 		display: inline-block;
+    	white-space: nowrap;
+   	 	overflow: hidden;
+    	text-overflow: ellipsis;
+    	text-decoration: none;
+	}
+	.wrap h4{
+		position:relative;
+		height: 50px;
+		line-height:30px;
+    	font-size: 14px;
+    	text-indent: 15px;
+    	border-bottom: 1px solid black;
+    	display: block;
+    	-webkit-margin-before: 1.33em;
+    	-webkit-margin-after: 1.33em;
+    	-webkit-margin-start: 0px;
+    	-webkit-margin-end: 0px;
+    	font-weight: bold;
+    	text-align: center;
+	}
+	.book_info_table{
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		background: #FAF8F5;
+		width: 800px;
+		height:750px;
+		margin-top: -351px;
+		margin-left: -401px;
+		display: none;
+		z-index: 5;
+	}
+	.book_info_wrap{
+		position: relative;
+		width: 800px;
+		height: 290px;
+		border-bottom:1px solid #d5d5d5;
+		background-color: white;
+	}
+	.screen{
+		position:fixed;
+		width: 10000px;
+		height: 10000px;
+		background: rgba(51,51,51,0.5);
+		display: none;
+		z-index: 4;
+	}
+	.cover{
+		width:200px;
+		height:250px;
+		position: absolute;
+		top: 15px;
+		left: 20px;
+	}
+	.title{
+		font-weight: bold;
+    	font-size: 20px;
+    	line-height: 35px;
+    	width: 430px;
+    	color: #333333;
+    	margin-bottom: 5px;
+    	display: inline-block;
+    	white-space: nowrap;
+   	 	overflow: hidden;
+    	text-overflow: ellipsis;
+    	text-decoration: none;
+	}
+	.book_writer{
+		position: absolute;
+		left:230px;
+		top:80px;
+	}
+	.info{
+		position:absolute;	
+		left:220px;
+		top:20px;
+	    margin: 0;
+    	padding: 0;
+    	border: 0;
+    	font: inherit;
+    	font-size: 100%;
+    	vertical-align: baseline;
+    	border-bottom: 1px solid #ded6c7;
+    }
+    .book_intro_start{
+    	font-size: 14px;
+    	font-weight: bold;
+    	color: #555555;
+    	margin-top: 20px;
+    	margin-left: 20px;
+    	margin-bottom: 20px;
+    }
+    .book_intro{
+    	margin-left: 20px;
+    }
+    .book_review_start{
+    	margin-top: 20px;
+    	margin-left: 20px;
+    	font-size: 14px;
+    	font-weight: bold;
+    	color: #555555;
+    }
+    .review_balloon {
+	    display: inline-block;
+	    position: relative;
+	    background: #FFFFFF;
+	    height: 125px;
+	    width: 487px;
+	    margin: 0 auto 10px;
+	    border-radius: 10px;
+	    margin-left: 100px;
+	}
+	.review_balloon:after {
+	    content: "";
+	    position: absolute;
+	    height: 50px;
+	    width: 50px;
+	    border-radius: 25px;
+	    z-index: 1;
+	    background: transparent;
+	    bottom: 95px;
+	    left: -20px;
+	}
+	.review_balloon:before {
+	    content: "";
+	    position: absolute;
+	    height: 50px;
+	    width: 50px;
+	    border-radius: 25px;
+	    z-index: 2;
+	    background: transparent;
+	    bottom: 101px;
+	    left: -20px;
+	}
+	.review_box{
+		margin-top: 20px;
+		margin-left: 30px;
+	}
+	.content{
+		margin-top: 10px;
+	    line-height: 20px;
+	    color: #555555;
+	    font-size: 14px;
+	    white-space: pre-wrap;
+	    margin-left: 20px;
+	}
+	.review_writer{
+		font-size: 14px;
+		margin-left: 20px;
+		margin-top: 5px;
+	}
+	.review_update_date{
+		display:block;
+		color: #aaaaaa;
+    	font-size: 12px;
+    	position: absolute;
+    	bottom: 20px;
+    	left: 20px;
+	}
+	.review_more{
+		color: #777777;
+	    font-size: 12px;
+	    font-weight: bold;
+	    height: 40px;
+	    line-height: 40px;
+	    background-color: #f1efeb;
+	    border: 1px solid #e8e4dc;
+	    text-align: center;
+	    -moz-border-radius: 3px;
+	    -webkit-border-radius: 3px;
+	    border-radius: 3px;
+	    margin-top: 20px;
+	    cursor: pointer;
+	}
 </style>
 </head>
 <body>
