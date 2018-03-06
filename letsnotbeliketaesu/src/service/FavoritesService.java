@@ -28,7 +28,7 @@ public class FavoritesService {
 	public void updateFavorites(HashMap<String, Object> params) {
 		favoritesDao.updateFavorites(params);
 	}
-	public void deleteFavorites(int num) {
-		favoritesDao.deleteFavorites(num);
+	public void deleteFavorites(HashMap<String, Object> params) {
+		favoritesDao.deleteFavorites(params);
 	}
 }
