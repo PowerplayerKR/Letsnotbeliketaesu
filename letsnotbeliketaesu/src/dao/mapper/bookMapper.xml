@@ -124,5 +124,278 @@
 
 	</select>
 
+	<!-- 
+	  최송은mapper
+	-->
+
+
+
+	<!-- 
+
+	바꿈 
+
+	
+
+	바꿈
+
+
+
+	-->
+
+	<insert id="starInsert" parameterType="java.util.HashMap">
+
+	insert into star_point_list(star_point_email,isbn,review_num,star_point,regdate)
+
+	values(#{email},#{isbn},#{reviewNum},#{starPoint},now())
+
+	</insert>
+
+	<!-- 
+
+	바꿈 
+
+	
+
+	바꿈
+
+
+
+	-->
+
+	<update id="starUpdate" parameterType="java.util.HashMap">
+
+	update star_point_list 
+
+	set  
+
+	star_point=#{starPoint},
+
+	regdate=now()
+
+	where
+
+	star_point_email=#{email} and isbn=#{isbn}
+
+	
+
+	</update>
+
+	<!-- 
+
+	바꿈 
+
+	
+
+	바꿈
+
+
+
+	-->
+
+	<delete id="starDelete" parameterType="java.util.HashMap">
+
+	delete  from star_point_list where star_point_email=#{email} and isbn=#{isbn}
+
+	
+
+	</delete>
+
+	<!-- 
+
+	바꿈 
+
+	
+
+	바꿈
+
+
+
+	-->
+
+		<insert id="insertReviewList" parameterType="java.util.HashMap">
+
+  		INSERT INTO review_list (review_email,review_writer,content,isbn,regdate)
+
+  	    VALUES (#{review_writer},#{review_writer},#{content},#{isbn},now())
+
+  	</insert>
+
+  	
+
+  	<!-- 
+
+	바꿈 
+
+	
+
+	바꿈
+
+
+
+	-->
+
+  	<update id="updateReviewList" parameterType="java.util.HashMap" >
+
+  		UPDATE review_list
+
+  		SET content=#{content},regdate=now()
+
+  		WHERE review_writer=#{review_writer} and isbn=#{isbn}
+
+  	</update>
+
+  	
+
+  	<!-- 
+
+	바꿈 
+
+	
+
+	바꿈
+
+
+
+	-->
+
+  	<delete id="deleteReviewList" parameterType="java.util.HashMap">
+
+  		delete from review_list
+
+  		where review_writer=#{review_writer} and isbn=#{isbn}
+
+  		
+
+  	
+
+  	</delete>
+
+  	<!-- 
+
+	바꿈 
+
+	
+
+	바꿈
+
+
+
+	-->
+
+  	<update id="starAvgCount" parameterType="java.util.HashMap">
+
+  	update book
+
+  	set
+
+  	star_point_count=star_point_count+1,
+
+  	star_point_avg=(star_point_avg*(star_point_count-1)+#{starPoint})/(star_point_count)
+
+  	where isbn=#{isbn}
+
+  	</update>
+
+  	
+
+  	<!-- 
+
+	바꿈 
+
+	
+
+	바꿈
+
+
+
+	-->
+
+  	<update id="starAvgDelete" parameterType="java.util.HashMap">
+
+  	update book
+
+  	set
+
+  	star_point_count=star_point_count-1,
+
+  	star_point_avg=(star_point_avg*(star_point_count+1)-#{starPoint})/(star_point_count)
+
+  	where isbn=#{isbn}
+
+  	
+
+  	
+
+  	</update>
+
+  	
+
+  	<!-- 
+
+	바꿈 
+
+	
+
+	바꿈
+
+
+
+	-->
+
+  	<update id="starAvgUpdate" parameterType="java.util.HashMap">
+
+  	update book
+
+  	set
+
+  	star_point_avg=((star_point_avg*star_point_count)+#{starSub})/star_point_count
+
+  	where isbn=#{isbn}
+
+  	</update>
+
+  	
+
+  	<!-- 
+
+	바꿈 
+
+	
+
+	바꿈
+
+
+
+	-->
+
+  	<select id="recommended" parameterType="String" resultType="java.util.HashMap">
+
+  	<![CDATA[ 
+
+  	select isbn,title,introduce,book_writer,category_num,
+
+		image,public_date,publisher,star_point_avg,isbn,book.regdate,
+
+		avg(star_point)as avs,count(*)as coun from(
+
+	select isbn,star_point from(
+
+	select star_point_email ,(sum(distance) / (sqrt(sum(pow(star_point,2))*sum((select pow(star_point,2) from star_point_list where star_point_email=#{email} and isbn=m.isbn))) ))as p from 
+
+	(select star_point_email,isbn,star_point,(star_point*(select star_point from star_point_list where star_point_email=#{email} and a.isbn=isbn))as distance
+
+	from star_point_list as a where isbn in(select isbn from star_point_list where star_point_email=#{email}) and star_point_email<>#{email} )as m 
+
+	group by star_point_email)as z join star_point_list on z.star_point_email=star_point_list.star_point_email where isbn Not in(select isbn from star_point_list where star_point_email=#{email})
+
+	)as m join book on isbn=m.isbn group by isbn order by coun desc,avs desc
+
+  	]]> 
+
+  	</select>
+
+
+	
+	
 
 </mapper>
