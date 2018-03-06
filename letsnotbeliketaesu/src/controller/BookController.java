@@ -219,7 +219,9 @@ public class BookController {
 	@RequestMapping("starInsert.do")
 	@ResponseBody
 	public String starInsert(@RequestParam HashMap<String, Object> params) {
-
+		 params.put("email",((HashMap<String,Object>)session.getAttribute("userInfo")).get("email"));
+		 bookService.starAvgCount(params);
+		
 		starList.starInsert(params);
 
 		return "{\"booknum\":\"에러내지마\" }";
@@ -229,7 +231,8 @@ public class BookController {
 	@RequestMapping("starUpdate.do")
 	@ResponseBody
 	public String starUpdate(@RequestParam HashMap<String, Object> params) {
-
+		params.put("email",((HashMap<String,Object>)session.getAttribute("userInfo")).get("email"));
+		bookService.starAvgUpdate(params);
 		starList.starUpdate(params);
 		
 		return "{\"booknum\":\"에러내지마\" }";
@@ -239,7 +242,8 @@ public class BookController {
 	@RequestMapping("starDelete.do")
 	@ResponseBody
 	public String starDelete(@RequestParam HashMap<String, Object> params) {
-
+		 params.put("email",((HashMap<String,Object>)session.getAttribute("userInfo")).get("email"));
+		 bookService.starAvgDelete(params);
 		starList.starDelete(params);
 
 		return "{\"booknum\":\"에러내지마\" }";
