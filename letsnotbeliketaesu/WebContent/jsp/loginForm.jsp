@@ -2,37 +2,76 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+.container{
+    width: 400px;
+    height: 500px;
+    border:1px solid black;
+    margin-top: 220px;
+    background-color: silver;
+  }
+  #id{
+  width:300px;
+  height:50px;
+
+  }
+  #password{
+    width: 300px;
+    height: 50px;
+  }
+  #login{
+    margin-left: 15px;
+    margin-top: 70px;
+  }
+  #login>div{
+    margin-top: 20px;
+  }
+  #name{
+    width: 300px;
+    height: 50px;
+  }
+  h1{
+    text-align: center;
+
+  }
+  #button{
+    width: 350px;
+
+  }
+  #join{
+    width: 350px;
+    padding-top: -20px;
+  }
+
+
+</style>
 </head>
 <body>
-	<center>
-		<h1>로그인 페이지</h1>
-		<form action="login.do">
-			<table>
-				<tr>
-					<td width="150px" align="center">유저네임:</td>
-					<td width="150px" align="center">
-					<input type="text" name="id">
-					</td>
-				</tr>
-				<tr>
-					<td width="150px" align="center">비밀번호:</td>
-					<td width="150px" align="center">
-					<input type="password" name="pwd">
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2" align="center">
-					<input type="submit" value="로그인">
-								
-					</td>
-				</tr>
-			</table>
-		</form>
-		<button type="button" onclick="location.href='joinForm.do'">회원가입</button>
-	</center>
+	<div class="container">
+<h1>로그인</h1>
+  <form action="login.do" id="login">
+    <div class="input-group">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+      <input id="id" type="text" class="form-control" name="id" placeholder="Email">
+    </div>
+    <div class="input-group">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+      <input id="password" type="password" class="form-control" name="pwd" placeholder="Password">
+    </div>
+    <div id="button">
+        <button type="submit" class="form-control btn btn-primary">로그인</button>
+    </div>
+    <div id="join">
+  <button type="submit" class="form-control btn btn-primary">회원가입</button>
+    </div>
+  </form>
+</div>
 
 </body>
 </html>
