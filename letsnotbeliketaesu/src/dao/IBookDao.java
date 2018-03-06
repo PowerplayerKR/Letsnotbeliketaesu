@@ -26,7 +26,11 @@ public interface IBookDao {
 
 	public List<HashMap<String, Object>> bookAutocomplete(HashMap<String, Object> params);
 	
-		//최송은  내가만들어논 dao
+	//최송은  내가만들어논 dao
+	
+	public int starInsert(HashMap<String, Object> params);
+	public int starDelete(HashMap<String, Object> params);
+	public int starUpdate(HashMap<String, Object> params);
 	public int insertReviewList(HashMap<String,Object> params);
 	public int updateReviewList(HashMap<String,Object> params);
 	public int deleteReviewList(HashMap<String, Object>params);
