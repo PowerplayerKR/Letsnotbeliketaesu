@@ -7,18 +7,24 @@
   		SELECT *
   		FROM review_list
   	</select>
-  	<select id="selectReviewList" parameterType="int" resultType="java.util.HashMap">
+  	<select id="selectReviewList" parameterType="String" resultType="java.util.HashMap">
+  		SELECT review_writer,content,isbn,DATE_FORMAT(regdate, "%Y년 %m월 %d일") as 'regdate'
+  		FROM review_list
+  		WHERE isbn = #{isbn}
+  		LIMIT 0,5
+  	</select>
+  	<select id="selectReviewListMore" parameterType="java.util.HashMap" resultType="java.util.HashMap">
   		SELECT *
   		FROM review_list
-  		WHERE num=#{num}
+  		WHERE isbn = #{isbn}
   	</select>
   	<insert id="insertReviewList" parameterType="java.util.HashMap">
   		INSERT INTO review_list
-  		VALUES 0,#{review_writer},#{content},#{book_num},#{regdate}
+  		VALUES 0,#{review_email},#{review_writer},#{content},#{isbn},#{regdate}
   	</insert>
   	<update id="updateReviewList" parameterType="java.util.HashMap" >
   		UPDATE review_list
-  		SET review_writer=#{review_writer},content=#{content},book_num=#{book_num},regdate=#{regdate}
+  		SET review_writer=#{review_writer},content=#{content},isbn=#{isbn},regdate=#{regdate}
   		WHERE num=#{num} 
   	</update>
   	<delete id="deleteReviewList" parameterType="int">
