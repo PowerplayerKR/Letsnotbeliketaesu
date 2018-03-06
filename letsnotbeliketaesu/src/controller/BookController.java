@@ -128,8 +128,7 @@ public class BookController {
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		return new ResponseEntity(json, responseHeaders, HttpStatus.CREATED);
 	}
-
-	@RequestMapping("mypage.do")
+@RequestMapping("mypage1.do")
 	public String mypage(@RequestParam HashMap<String, Object> params, Model model, HttpSession session) {
 
 		HashMap<String, Object> user = (HashMap<String, Object>) session.getAttribute("userInfo");
@@ -138,50 +137,39 @@ public class BookController {
 
 		params.put("email", user.get("email"));
 
-		params.put("name", user.get("name"));
-
-		model.addAttribute("list", bookService.selectUserBook(params));
-
-		System.out.println(params);
-
-		return "mypage";
-
-	}
-
-	@RequestMapping("notInterested.do")
-	public String Interested(@RequestParam HashMap<String, Object> params, Model model, HttpSession session) {
-
-		HashMap<String, Object> user = (HashMap<String, Object>) session.getAttribute("userInfo");
-
-		params.put("myPage", 2);
-
-		params.put("email", user.get("email"));
-
-		params.put("name", user.get("name"));
-
-		model.addAttribute("list", bookService.selectUserBook(params));
-
-		return "mypage";
-
-	}
-
-	@RequestMapping("UserStarList.do")
-	public String StarPage(@RequestParam HashMap<String, Object> params, Model model, HttpSession session) {
-
-		HashMap<String, Object> user = (HashMap<String, Object>) session.getAttribute("userInfo");
-		System.out.println(user);
-
-		params.put("myPage", 3);
-
-		params.put("email", user.get("email"));
-
-		model.addAttribute("list", bookService.selectUserBook(params));
+		model.addAttribute("book", bookService.selectUserBook(params));
 
 		System.out.println(bookService.selectUserBook(params));
 
-		return "mypage";
+		return "mypage1";
 
 	}
+
+
+	@RequestMapping("mypage3.do")
+	public String Interested(@RequestParam HashMap<String, Object> params, Model model, HttpSession session) {
+		HashMap<String, Object> user = (HashMap<String, Object>) session.getAttribute("userInfo");
+		params.put("myPage", 3);
+		params.put("email", user.get("email"));
+		model.addAttribute("book", bookService.selectUserBook(params));
+		System.out.println(bookService.selectUserBook(params));
+		return "mypage3";
+
+	}
+
+@RequestMapping("mypage2.do")
+	public String StarPage(@RequestParam HashMap<String, Object> params, Model model, HttpSession session) {
+		HashMap<String, Object> user = (HashMap<String, Object>) session.getAttribute("userInfo");
+		System.out.println(user);
+		params.put("myPage", 2);
+		params.put("email", user.get("email"));
+		System.out.println(params);
+		model.addAttribute("book", bookService.selectUserBook(params));
+		model.addAttribute("user", user);
+		System.out.println(bookService.selectUserBook(params));
+
+		return "mypage2";
+
 
 	@RequestMapping("review.do")
 	public String reviewPage(@RequestParam HashMap<String, Object> params, Model model, HttpSession session) {
