@@ -52,27 +52,31 @@
 		</choose>
 	</sql>
 
-	<select id="bookSearch" parameterType="java.util.HashMap" resultType="java.util.HashMap">
-			SELECT CAST(@ROWNUM := @ROWNUM + 1 AS signed integer) AS ROWNUM,book.*
-			FROM book left join star_point_list on(book.num=star_point_list.book_num and star_point_list.star_point_email='bong'),(SELECT @ROWNUM := 0) R
-			<include refid="search"></include>
-			ORDER BY public_date desc
-			LIMIT 0,20
+	<select id="bookSearch" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT num,title,introduce,book_writer,category_num,
+		image,public_date,publisher,star_point_avg,book.isbn,book.regdate,star_point,content
+		FROM book left join star_point_list on(book.isbn=star_point_list.isbn
+		and star_point_list.star_point_email=#{email}) left join review_list
+		on(book.isbn=review_list.isbn and review_list.review_email=#{email})
+		<include refid="search"></include>
 	</select>
-	
-	<select id="bookSearchMore" parameterType="java.util.HashMap" resultType="java.util.HashMap">
-			SELECT A.*
-        	FROM 
-        	(
-				SELECT CAST(@ROWNUM := @ROWNUM + 1 AS signed integer) ROWNUM,book.*
-				FROM book left join star_point_list on(book.num=star_point_list.book_num 
-				and star_point_list.star_point_email='bong'),
-				(SELECT @ROWNUM := 0) R
-				<include refid="search"></include>
-				ORDER BY public_date desc
-        	) A
-        	WHERE A.ROWNUM > #{num}
-        	AND A.ROWNUM <![CDATA[<=]]> #{num}+20
+
+	<select id="bookSearchMore" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT A.*
+		FROM
+		(
+		SELECT CAST(@ROWNUM := @ROWNUM + 1 AS signed integer) ROWNUM,book.*
+		FROM book left join star_point_list on(book.num=star_point_list.book_num
+		and star_point_list.star_point_email='bong'),
+		(SELECT @ROWNUM := 0) R
+		<include refid="search"></include>
+		ORDER BY public_date desc
+		) A
+		WHERE A.ROWNUM > #{num}
+		AND A.ROWNUM <![CDATA[<=]]>
+		#{num}+20
 	</select>
 
 	<sql id="selectUserBook">
@@ -109,7 +113,8 @@
 
 	<select id="selectBookMain" resultType="java.util.HashMap">
 		SELECT * FROM book
-		order by rand() limit 6
+		order
+		by rand() limit 6
 	</select>
 	<select id="bookAutocomplete" parameterType="java.util.HashMap"
 		resultType="java.util.HashMap">
@@ -124,251 +129,150 @@
 
 	</select>
 
-	<!-- 
-	  최송은mapper
-	-->
+	<!-- 최송은mapper -->
 
 
 
-	<!-- 
-
-	바꿈 
-
-	
-
-	바꿈
-
-
-
-	-->
+	<!-- 바꿈 바꿈 -->
 
 	<insert id="starInsert" parameterType="java.util.HashMap">
 
-	insert into star_point_list(star_point_email,isbn,review_num,star_point,regdate)
+		insert into
+		star_point_list(star_point_email,isbn,review_num,star_point,regdate)
 
-	values(#{email},#{isbn},#{reviewNum},#{starPoint},now())
+		values(#{email},#{isbn},#{reviewNum},#{starPoint},now())
 
 	</insert>
 
-	<!-- 
-
-	바꿈 
-
-	
-
-	바꿈
-
-
-
-	-->
+	<!-- 바꿈 바꿈 -->
 
 	<update id="starUpdate" parameterType="java.util.HashMap">
 
-	update star_point_list 
+		update star_point_list
 
-	set  
+		set
 
-	star_point=#{starPoint},
+		star_point=#{starPoint},
 
-	regdate=now()
+		regdate=now()
 
-	where
+		where
 
-	star_point_email=#{email} and isbn=#{isbn}
+		star_point_email=#{email} and isbn=#{isbn}
 
-	
+
 
 	</update>
 
-	<!-- 
-
-	바꿈 
-
-	
-
-	바꿈
-
-
-
-	-->
+	<!-- 바꿈 바꿈 -->
 
 	<delete id="starDelete" parameterType="java.util.HashMap">
 
-	delete  from star_point_list where star_point_email=#{email} and isbn=#{isbn}
+		delete from star_point_list where star_point_email=#{email} and isbn=#{isbn}
 
-	
+
 
 	</delete>
 
-	<!-- 
+	<!-- 바꿈 바꿈 -->
 
-	바꿈 
+	<insert id="insertReviewList" parameterType="java.util.HashMap">
 
-	
+		INSERT INTO review_list (review_email,review_writer,content,isbn,regdate)
 
-	바꿈
+		VALUES (#{review_writer},#{review_writer},#{content},#{isbn},now())
 
+	</insert>
 
 
-	-->
 
-		<insert id="insertReviewList" parameterType="java.util.HashMap">
+	<!-- 바꿈 바꿈 -->
 
-  		INSERT INTO review_list (review_email,review_writer,content,isbn,regdate)
+	<update id="updateReviewList" parameterType="java.util.HashMap">
 
-  	    VALUES (#{review_writer},#{review_writer},#{content},#{isbn},now())
+		UPDATE review_list
 
-  	</insert>
+		SET content=#{content},regdate=now()
 
-  	
+		WHERE review_writer=#{review_writer} and isbn=#{isbn}
 
-  	<!-- 
+	</update>
 
-	바꿈 
 
-	
 
-	바꿈
+	<!-- 바꿈 바꿈 -->
 
+	<delete id="deleteReviewList" parameterType="java.util.HashMap">
 
+		delete from review_list
 
-	-->
+		where review_writer=#{review_writer} and isbn=#{isbn}
 
-  	<update id="updateReviewList" parameterType="java.util.HashMap" >
 
-  		UPDATE review_list
 
-  		SET content=#{content},regdate=now()
 
-  		WHERE review_writer=#{review_writer} and isbn=#{isbn}
 
-  	</update>
+	</delete>
 
-  	
+	<!-- 바꿈 바꿈 -->
 
-  	<!-- 
+	<update id="starAvgCount" parameterType="java.util.HashMap">
 
-	바꿈 
+		update book
 
-	
+		set
 
-	바꿈
+		star_point_count=star_point_count+1,
 
+		star_point_avg=(star_point_avg*(star_point_count-1)+#{starPoint})/(star_point_count)
 
+		where isbn=#{isbn}
 
-	-->
+	</update>
 
-  	<delete id="deleteReviewList" parameterType="java.util.HashMap">
 
-  		delete from review_list
 
-  		where review_writer=#{review_writer} and isbn=#{isbn}
+	<!-- 바꿈 바꿈 -->
 
-  		
+	<update id="starAvgDelete" parameterType="java.util.HashMap">
 
-  	
+		update book
 
-  	</delete>
+		set
 
-  	<!-- 
+		star_point_count=star_point_count-1,
 
-	바꿈 
+		star_point_avg=(star_point_avg*(star_point_count+1)-#{starPoint})/(star_point_count)
 
-	
+		where isbn=#{isbn}
 
-	바꿈
 
 
 
-	-->
 
-  	<update id="starAvgCount" parameterType="java.util.HashMap">
+	</update>
 
-  	update book
 
-  	set
 
-  	star_point_count=star_point_count+1,
+	<!-- 바꿈 바꿈 -->
 
-  	star_point_avg=(star_point_avg*(star_point_count-1)+#{starPoint})/(star_point_count)
+	<update id="starAvgUpdate" parameterType="java.util.HashMap">
 
-  	where isbn=#{isbn}
+		update book
 
-  	</update>
+		set
 
-  	
+		star_point_avg=((star_point_avg*star_point_count)+#{starSub})/star_point_count
 
-  	<!-- 
+		where isbn=#{isbn}
 
-	바꿈 
+	</update>
 
-	
 
-	바꿈
 
+	<!-- 바꿈 바꿈 -->
 
-
-	-->
-
-  	<update id="starAvgDelete" parameterType="java.util.HashMap">
-
-  	update book
-
-  	set
-
-  	star_point_count=star_point_count-1,
-
-  	star_point_avg=(star_point_avg*(star_point_count+1)-#{starPoint})/(star_point_count)
-
-  	where isbn=#{isbn}
-
-  	
-
-  	
-
-  	</update>
-
-  	
-
-  	<!-- 
-
-	바꿈 
-
-	
-
-	바꿈
-
-
-
-	-->
-
-  	<update id="starAvgUpdate" parameterType="java.util.HashMap">
-
-  	update book
-
-  	set
-
-  	star_point_avg=((star_point_avg*star_point_count)+#{starSub})/star_point_count
-
-  	where isbn=#{isbn}
-
-  	</update>
-
-  	
-
-  	<!-- 
-
-	바꿈 
-
-	
-
-	바꿈
-
-
-
-	-->
-
-  	<select id="recommended" parameterType="String" resultType="java.util.HashMap">
+	<select id="recommended" parameterType="String" resultType="java.util.HashMap">
 
   	<![CDATA[ 
 
@@ -390,12 +294,12 @@
 
 	)as m join book on isbn=m.isbn group by isbn order by coun desc,avs desc
 
-  	]]> 
+  	]]>
 
-  	</select>
+	</select>
 
 
-	
-	
+
+
 
 </mapper>
