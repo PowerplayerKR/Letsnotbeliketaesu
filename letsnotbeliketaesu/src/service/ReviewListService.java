@@ -14,10 +14,18 @@ public class ReviewListService {
 	@Autowired
 	private IReviewListDao reviewListDao;
 	
-	public List<HashMap<String, Object>> selectAllReviewList(HashMap<String, Object> params){
-		return reviewListDao.selectAllReviewList(params);
+	public List<HashMap<String, Object>> selectAllReviewList(){
+		return reviewListDao.selectAllReviewList();
 	}
-
+	
+	public List<HashMap<String, Object>> selectReviewList(String isbn){
+		return reviewListDao.selectReviewList(isbn);
+	}
+	
+	public List<HashMap<String, Object>> selectReviewListMore(HashMap<String,Object> params){
+		return reviewListDao.selectReviewListMore(params);
+	}
+	
 	public HashMap<String, Object> selectReviewList(int num){
 		return reviewListDao.selectReviewList(num);
 	}
@@ -31,5 +39,4 @@ public class ReviewListService {
 	public void deleteReviewList(int num) {
 		reviewListDao.deleteReviewList(num);
 	}
-	
 }
