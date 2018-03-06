@@ -25,4 +25,14 @@ public interface IBookDao {
 	public List<HashMap<String, Object>> selectBookMain();
 
 	public List<HashMap<String, Object>> bookAutocomplete(HashMap<String, Object> params);
+	
+		//최송은  내가만들어논 dao
+	public int insertReviewList(HashMap<String,Object> params);
+	public int updateReviewList(HashMap<String,Object> params);
+	public int deleteReviewList(HashMap<String, Object>params);
+	public int starAvgCount(HashMap<String, Object> params);
+	public int starAvgDelete(HashMap<String, Object> params);
+	public int starAvgUpdate(HashMap<String, Object> params);
+	public List<HashMap<String, Object>>recommended(String email);
+	
 }
