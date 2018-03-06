@@ -58,4 +58,43 @@ public class BookService {
 		return bookDao.bookAutocomplete(params);
 
 	}
+	
+	//최송은이 만든 service
+	public int starInsert(HashMap<String, Object> params) {
+		return bookDao.starInsert(params);
+	}
+	public int starDelete(HashMap<String, Object> params) {
+		return bookDao.starDelete(params);
+	}
+	public int starUpdate(HashMap<String, Object> params) {
+		return bookDao.starUpdate(params);
+	}
+	public int insertReviewList(HashMap<String,Object> params) {
+		return bookDao.insertReviewList(params);
+	}
+	public int updateReviewList(HashMap<String,Object> params) {
+		return bookDao.updateReviewList(params);
+	}
+	public int deleteReviewList(HashMap<String, Object> params) {
+	
+	return bookDao.deleteReviewList(params);
+	}
+	public int starAvgCount(HashMap<String, Object> params) {
+		return bookDao.starAvgCount(params);
+	}
+	public int starAvgDelete(HashMap<String, Object> params) {
+	
+		return bookDao.starAvgDelete(params);
+	}
+	public int starAvgUpdate(HashMap<String, Object> params) {
+	
+		return bookDao.starAvgUpdate(params);
+	}
+	public List<HashMap<String, Object>> recommended(String email){
+		
+		return bookDao.recommended(email);
+	}
+	
+	
+	
 }
