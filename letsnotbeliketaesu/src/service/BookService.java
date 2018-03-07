@@ -90,10 +90,15 @@ public class BookService {
 	
 		return bookDao.starAvgUpdate(params);
 	}
-	public List<HashMap<String, Object>> recommended(String email){
+	public List<HashMap<String, Object>> recommended1(String email){
 		
-		return bookDao.recommended(email);
+		return bookDao.recommended1(email);
 	}
+	public List<HashMap<String, Object>> recommended2(String email){
+		
+		return bookDao.recommended2(email);
+	}
+	
 	
 	
 	
