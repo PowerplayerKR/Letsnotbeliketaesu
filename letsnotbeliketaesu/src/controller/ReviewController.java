@@ -1,32 +1,46 @@
-package controller;
+package service;
 
 import java.util.HashMap;
 import java.util.List;
 
-import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import service.ReviewListService;
+import org.springframework.stereotype.Service;
 
-@Controller
-public class ReviewController {
+import dao.IReviewListDao;
+
+
+@Service
+public class ReviewListService {
 	@Autowired
-	private ReviewListService reviewListService;
-	
-	@RequestMapping("getReview.do")
-	@ResponseBody
-	public ResponseEntity<String> getReview(@RequestParam String isbn) throws Exception{
-		List<HashMap<String,Object>> reviewList = reviewListService.selectReviewList(isbn);
-		String json = new ObjectMapper().writeValueAsString(reviewList);
-		HttpHeaders responseHeaders = new HttpHeaders();
-		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
-		return new ResponseEntity(json, responseHeaders, HttpStatus.CREATED);
+	private IReviewListDao reviewListDao;
+	public List<HashMap<String, Object>> selectAllReviewList(){
+		return reviewListDao.selectAllReviewList();
 	}
 	
+	public int selectCountReviewList(String isbn){
+		return reviewListDao.selectCountReviewList(isbn);
+	}
+	
+	
+	public List<HashMap<String, Object>> selectReviewList(String isbn){
+		return reviewListDao.selectReviewList(isbn);
+	}
+	
+	public List<HashMap<String, Object>> selectReviewListMore(HashMap<String,Object> params){
+		return reviewListDao.selectReviewListMore(params);
+	}
+	
+	public HashMap<String, Object> selectReviewList(int num){
+		return reviewListDao.selectReviewList(num);
+	}
+	
+	public void insertReviewList(HashMap<String, Object> params) {
+		reviewListDao.insertReviewList(params);
+	}
+	public void updateReviewList(HashMap<String, Object> params) {
+		reviewListDao.updateReviewList(params);
+	}
+	public void deleteReviewList(int num) {
+		reviewListDao.deleteReviewList(num);
+	}
 }
