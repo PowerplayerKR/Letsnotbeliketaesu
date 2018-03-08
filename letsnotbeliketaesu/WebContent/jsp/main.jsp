@@ -1069,6 +1069,89 @@ body {
 			cover.attr('src', '');
 		});
 
+		$(document).ready(function() {
+			$('.star_rating').trigger('mouseleave');
+		});
+		$(".star_rating  i .tail").mouseenter(
+				function(event) {
+					var offset = $(this).offset();
+					var toolTip = $('#tool_tip');
+					toolTip.css({
+						"top" : offset.top + 50,
+						"left" : offset.left - 38
+					});
+					if ($(this).hasClass('true')) {
+						toolTip.find('p').text('취소하기');
+						toolTip.find('p').css('color', 'red');
+					} else {
+						toolTip.find('p').css('color', 'black');
+						switch ($(this).closest('i').prevAll().length) {
+						case 0:
+							toolTip.find('p').text('싫어요');
+							break;
+						case 1:
+							toolTip.find('p').text('별로예요');
+							break;
+						case 2:
+							toolTip.find('p').text('보통 이예요');
+							break;
+						case 3:
+							toolTip.find('p').text('재미 있어요');
+							break;
+						case 4:
+							toolTip.find('p').text('최고예요!');
+						}
+					}
+					toolTip.show();
+					$(this).closest("i").parent().children("i").removeClass(
+							"fa fa-star 2x").removeClass("fa fa-star-o fa-2x")
+							.removeClass("fa fa-star-half-o fa-2x");
+					$(this).closest("i").addClass("fa fa-star fa-2x").prevAll(
+							"i").addClass("fa fa-star fa-2x");
+					$(this).closest("i").nextAll("i").addClass(
+							"fa fa-star-o fa-2x");
+					return false;
+				});
+		$(".star_rating i .head").mouseenter(
+				function(event) {
+					var offset = $(this).offset();
+					var toolTip = $('#tool_tip');
+					toolTip.css({
+						"top" : offset.top + 50,
+						"left" : offset.left - 38
+					});
+					if ($(this).hasClass('true')) {
+						toolTip.find('p').text('취소하기');
+						toolTip.find('p').css('color', 'red');
+					} else {
+						toolTip.find('p').css('color', 'black');
+						switch ($(this).closest('i').prevAll().length) {
+						case 0:
+							toolTip.find('p').text('최악 이에요');
+							break;
+						case 1:
+							toolTip.find('p').text('재미 없어요');
+							break;
+						case 2:
+							toolTip.find('p').text('부족 해요');
+							break;
+						case 3:
+							toolTip.find('p').text('볼만 해요');
+							break;
+						case 4:
+							toolTip.find('p').text('훌륭 해요');
+						}
+					}
+					toolTip.show();
+					$(this).closest("i").parent().children("i").removeClass(
+							"fa fa-star 2x").removeClass("fa fa-star-o fa-2x")
+							.removeClass("fa fa-star-half-o fa-2x");
+					$(this).closest("i").addClass("fa fa-star-half-o fa-2x")
+							.prevAll("i").addClass("fa fa-star fa-2x");
+					$(this).closest("i").nextAll("i").addClass(
+							"fa fa-star-o fa-2x");
+					return false;
+				});
 		$(".star_rating").mouseleave(
 				function() {
 					var a = $(this).find('.true');
