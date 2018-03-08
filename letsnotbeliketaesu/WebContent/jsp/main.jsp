@@ -715,8 +715,8 @@ body {
 
 		<div id="comment_head">
 			<h3>
-				<h4>제목</h4>
-				<i class="fa fa-angle-down fa-1x" id="star_check">
+				<span id="comment_title"></span> <i class="fa fa-angle-down fa-1x"
+					id="star_check">
 					<div id="comment_content_wrap_star_grade_wrap">
 						<div id="comment_content_wrap_star_grade_head">
 
@@ -806,6 +806,7 @@ body {
 
 
 	</div>
+
 	<div class="wrap">
 		<jsp:include page="/template/header.jsp"></jsp:include>
 		<div class="side">
