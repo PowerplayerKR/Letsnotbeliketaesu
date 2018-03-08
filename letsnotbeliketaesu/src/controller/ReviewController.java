@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -24,6 +25,36 @@ public class ReviewController {
 	public ResponseEntity<String> getReview(@RequestParam String isbn) throws Exception{
 		List<HashMap<String,Object>> reviewList = reviewListService.selectReviewList(isbn);
 		String json = new ObjectMapper().writeValueAsString(reviewList);
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+		return new ResponseEntity(json, responseHeaders, HttpStatus.CREATED);
+	}
+	
+	@RequestMapping("getReviewMore.do")
+	@ResponseBody
+	public ResponseEntity<String> getReviewMore(@RequestParam HashMap<String, Object> params) throws Exception{
+		List<HashMap<String,Object>> reviewList = reviewListService.selectReviewListMore(params);
+		List<HashMap<String, Object>> list = new ArrayList<>();
+		for(HashMap<String, Object> map:reviewList) {
+			int rownum = Integer.valueOf(map.get("ROWNUM").toString());
+			int lastNum = Integer.valueOf(params.get("num").toString());
+			if(rownum>lastNum && rownum<=lastNum+5) {
+				list.add(map);
+			}
+		}
+		String json = new ObjectMapper().writeValueAsString(list);
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+		return new ResponseEntity(json, responseHeaders, HttpStatus.CREATED);
+	}
+	
+	@RequestMapping("getCountReview.do")
+	@ResponseBody
+	public ResponseEntity<String> getCountReview(@RequestParam String isbn) throws Exception{
+		int count = reviewListService.selectCountReviewList(isbn);
+		HashMap<String,Object> map = new HashMap<>();
+		map.put("num",count);
+		String json = new ObjectMapper().writeValueAsString(map);
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		return new ResponseEntity(json, responseHeaders, HttpStatus.CREATED);

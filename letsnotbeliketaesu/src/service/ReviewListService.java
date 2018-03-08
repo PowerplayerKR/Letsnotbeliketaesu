@@ -13,10 +13,14 @@ import dao.IReviewListDao;
 public class ReviewListService {
 	@Autowired
 	private IReviewListDao reviewListDao;
-	
 	public List<HashMap<String, Object>> selectAllReviewList(){
 		return reviewListDao.selectAllReviewList();
 	}
+	
+	public int selectCountReviewList(String isbn){
+		return reviewListDao.selectCountReviewList(isbn);
+	}
+	
 	
 	public List<HashMap<String, Object>> selectReviewList(String isbn){
 		return reviewListDao.selectReviewList(isbn);

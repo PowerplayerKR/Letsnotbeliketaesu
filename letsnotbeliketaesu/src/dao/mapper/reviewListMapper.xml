@@ -7,16 +7,23 @@
   		SELECT *
   		FROM review_list
   	</select>
-  	<select id="selectReviewList" parameterType="String" resultType="java.util.HashMap">
-  		SELECT review_writer,content,isbn,DATE_FORMAT(regdate, "%Y년 %m월 %d일") as 'regdate'
+  	<select id="selectCountReviewList" parameterType="String" resultType="int">
+  		SELECT count(*) as 'num'
   		FROM review_list
   		WHERE isbn = #{isbn}
-  		LIMIT 0,5
+  	</select>
+  	<select id="selectReviewList" parameterType="String" resultType="java.util.HashMap">
+  			SELECT CAST(@ROWNUM := @ROWNUM + 1 AS signed integer) AS ROWNUM,review_writer,content,isbn,DATE_FORMAT(regdate, "%Y년 %m월 %d일") as 'regdate'
+			FROM (SELECT @ROWNUM := 0) R,review_list
+			WHERE isbn = #{isbn}
+            ORDER BY num desc
+  			LIMIT 0,5
   	</select>
   	<select id="selectReviewListMore" parameterType="java.util.HashMap" resultType="java.util.HashMap">
-  		SELECT *
-  		FROM review_list
-  		WHERE isbn = #{isbn}
+  			SELECT CAST(@ROWNUM := @ROWNUM + 1 AS signed integer) AS ROWNUM,review_writer,content,isbn,DATE_FORMAT(regdate, "%Y년 %m월 %d일") as 'regdate'
+			FROM (SELECT @ROWNUM := 0) R,review_list
+			WHERE isbn = #{isbn}
+            ORDER BY num desc
   	</select>
   	<insert id="insertReviewList" parameterType="java.util.HashMap">
   		INSERT INTO review_list
