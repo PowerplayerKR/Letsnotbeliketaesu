@@ -19,7 +19,7 @@
 					<option value="title">제목</option>
 					<option value="writer">작가</option>
 					<option value="publisher">출판사</option>
-				</select> <input type="search" name="searchValue" id="search"
+				</select> <input type="search" name="keyword" id="search"
 					placeholder="검색" style="width: 500px"> <input type="submit"
 					value="검색하기">
 			</form>

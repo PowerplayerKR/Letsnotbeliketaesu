@@ -40,14 +40,14 @@
 	<sql id="search">
 		<choose>
 			<when test="searchOption='title'">
-				WHERE title LIKE CONCAT('%', #{searchValue}, '%')
+				WHERE title LIKE CONCAT('%', #{keyword}, '%')
 			</when>
 			<when test="searchOption='writer'">
-				WHERE book_writer LIKE CONCAT('%', #{searchValue},
+				WHERE book_writer LIKE CONCAT('%', #{keyword},
 				'%')
 			</when>
 			<when test="searchOption='publisher'">
-				WHERE publisher LIKE CONCAT('%', #{searchValue}, '%')
+				WHERE publisher LIKE CONCAT('%', #{keyword}, '%')
 			</when>
 		</choose>
 	</sql>

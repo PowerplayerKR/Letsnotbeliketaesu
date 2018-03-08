@@ -716,7 +716,7 @@ var getclick = function() {
 									'#comment_content_wrap_star_grade_body_star .star_rating')
 									.removeAttr('id');
 						});
-		$("form")
+		$("#comment form")
 				.on(
 						"submit",
 						function(event) {
