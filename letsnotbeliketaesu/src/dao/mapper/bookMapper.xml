@@ -54,7 +54,7 @@
 
 	<select id="bookSearch" parameterType="java.util.HashMap"
 		resultType="java.util.HashMap">
-		SELECT num,title,introduce,book_writer,category_num,
+		SELECT book.num,title,introduce,book_writer,category_num,
 		image,public_date,publisher,star_point_avg,book.isbn,book.regdate,star_point,content
 		FROM book left join star_point_list on(book.isbn=star_point_list.isbn
 		and star_point_list.star_point_email=#{email}) left join review_list
@@ -167,9 +167,9 @@
 
 	<insert id="insertReviewList" parameterType="java.util.HashMap">
 
-		INSERT INTO review_list (review_email,review_writer,content,isbn,regdate)
+		INSERT INTO review_list (num,review_email,review_writer,content,isbn,regdate)
 
-		VALUES (#{review_writer},#{review_writer},#{content},#{isbn},now())
+		VALUES (0,#{review_writer},#{review_writer},#{content},#{isbn},now())
 
 	</insert>
 
