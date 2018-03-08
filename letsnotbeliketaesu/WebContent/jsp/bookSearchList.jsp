@@ -348,92 +348,109 @@ body {
 </head>
 
 <body>
-<div id="tool_tip"><i class="fa fa-caret-up fa-2x" aria-hidden="true" id="tool_tip_head"></i><p style="text-align:center">보고 싶어요</p></div>
-	<div id="body_blind_wrap"></div>
-	
-	
-		<div id="comment">
-
-	<div id="comment_head">
-		<h3><h4>제목</h4> <i class="fa fa-angle-down fa-1x" id="star_check">
-			<div id="comment_content_wrap_star_grade_wrap">
-				<div id="comment_content_wrap_star_grade_head">
-
-					<i class="fa fa-caret-up fa-2x" id="comment_content_wrap_star_grade_head_up"></i>
-
-				</div>
-				<div id="comment_content_wrap_star_grade_body">
-					<div id="comment_content_wrap_star_grade_body_infotext">
-						<h4  style="
-    display:  block;
-    margin: 19px 61px;
-						">평가 해주세요</h4>
-					</div>
-
-					<div id="comment_content_wrap_star_grade_body_mid_text">
-						<h5 style="
-    margin: 22px 63px;
-">본책 확실함?</h5>
-
-					</div>
-					<div id="comment_content_wrap_star_grade_body_star">
-						<div class="star_rating" style="text-align: center;">
-							<i class="fa fa-star-o fa-2x"   aria-hidden="true"><div class="head"></div><div class="tail"></div><span></span></i>
-							<i class="fa fa-star-o fa-2x"  aria-hidden="true"><div class="head"></div><div class="tail"></div><span></span></i>
-							<i class="fa fa-star-o fa-2x"  aria-hidden="true"><div class="head"></div><div class="tail"></div><span></span></i>
-							<i class="fa fa-star-o fa-2x"  aria-hidden="true"><div class="head"></div><div class="tail"></div><span></span></i>
-							<i class="fa fa-star-o fa-2x"  aria-hidden="true"><div class="head"></div><div class="tail"></div><span></span></i>
-						</div>
-					</div >
-
-					<div id="comment_content_wrap_star_grade_body_bottom_text">
-						<h4 style="text-align: center;margin-bottom: 15px;margin-top: 17px;">댓글 달려면 별점 클릭</h4>
-
-					</div>
-
-
-
-
-					<div class="book_wrap">
-									<button class="wish_btn" >
-										<i class="fa fa-heart"></i>보고싶어요
-									</button>
-									<button class="comment_btn">
-										<i class="fa fa-comment"></i> 관심없어요
-									</button>
-						</div>
-					</div>
-				</div>
-			</i>
-			<i class="fa fa-times fa-2x" style=" position:absolute; right: 4%; top: 4%" id="comment_head_end"></i>
-		</h3>
+<div id="tool_tip">
+		<i class="fa fa-caret-up fa-2x" aria-hidden="true" id="tool_tip_head"></i>
+		<p style="text-align: center">보고 싶어요</p>
 	</div>
-		<div id="comment_blind_wrap" ></div>
+	<div id="body_blind_wrap"></div>
+
+
+	<div id="comment">
+
+		<div id="comment_head">
+			<h3>
+				<span id="comment_title"></span> <i class="fa fa-angle-down fa-1x"
+					id="star_check">
+					<div id="comment_content_wrap_star_grade_wrap">
+						<div id="comment_content_wrap_star_grade_head">
+
+							<i class="fa fa-caret-up fa-2x"
+								id="comment_content_wrap_star_grade_head_up"></i>
+
+						</div>
+						<div id="comment_content_wrap_star_grade_body">
+							<div id="comment_content_wrap_star_grade_body_infotext">
+								<h4 style="display: block; margin: 19px 61px;">평가 해주세요</h4>
+							</div>
+
+							<div id="comment_content_wrap_star_grade_body_mid_text">
+								<h5 style="margin: 22px 63px;">본책 확실함?</h5>
+
+							</div>
+							<div id="comment_content_wrap_star_grade_body_star">
+								<div class="star_rating" style="text-align: center;">
+									<i class="fa fa-star-o fa-2x" aria-hidden="true"><div
+											class="head"></div>
+										<div class="tail"></div> <span></span></i> <i
+										class="fa fa-star-o fa-2x" aria-hidden="true"><div
+											class="head"></div>
+										<div class="tail"></div> <span></span></i> <i
+										class="fa fa-star-o fa-2x" aria-hidden="true"><div
+											class="head"></div>
+										<div class="tail"></div> <span></span></i> <i
+										class="fa fa-star-o fa-2x" aria-hidden="true"><div
+											class="head"></div>
+										<div class="tail"></div> <span></span></i> <i
+										class="fa fa-star-o fa-2x" aria-hidden="true"><div
+											class="head"></div>
+										<div class="tail"></div> <span></span></i>
+								</div>
+							</div>
+
+							<div id="comment_content_wrap_star_grade_body_bottom_text">
+								<h4
+									style="text-align: center; margin-bottom: 15px; margin-top: 17px;">댓글
+									달려면 별점 클릭</h4>
+
+							</div>
+
+
+
+
+							<div class="book_wrap">
+								<button class="wish_btn">
+									<i class="fa fa-heart"></i>보고싶어요
+								</button>
+								<button class="comment_btn">
+									<i class="fa fa-comment"></i> 관심없어요
+								</button>
+							</div>
+						</div>
+					</div>
+				</i> <i class="fa fa-times fa-2x"
+					style="position: absolute; right: 4%; top: 4%"
+					id="comment_head_end"></i>
+			</h3>
+		</div>
+		<div id="comment_blind_wrap"></div>
 
 
 		<div id="comment_content_wrap">
-			<img src="http://chulsa.kr/files/attach/images/67/647/673/018/220ebc4544181643a70ac6f4af9c617f.jpg" id="comment_content_wrap_img">
+			<img
+				src="http://chulsa.kr/files/attach/images/67/647/673/018/220ebc4544181643a70ac6f4af9c617f.jpg"
+				id="comment_content_wrap_img">
 			<tr></tr>
-			<div  id="comment_content_wrap_star_rating" style="text-align: center;">
-				<i   aria-hidden="true"></i>
-				<i   aria-hidden="true"></i>
-				<i   aria-hidden="true"></i>
-				<i   aria-hidden="true"></i>
-				<i   aria-hidden="true"></i>
+			<div id="comment_content_wrap_star_rating"
+				style="text-align: center;">
+				<i aria-hidden="true"></i> <i aria-hidden="true"></i> <i
+					aria-hidden="true"></i> <i aria-hidden="true"></i> <i
+					aria-hidden="true"></i>
 			</div>
 			<form>
-		<textarea placeholder="여기에 댓글을 입력해주세요 " id="inputText" name="comment"></textarea>
+				<textarea placeholder="여기에 댓글을 입력해주세요 " id="inputText"
+					name="comment"></textarea>
 
-		<input type="submit" id="comment_content_wrap_button">
+				<input type="submit" id="comment_content_wrap_button">
 			</form>
 
 		</div>
 
-	
+
 
 
 
 	</div>
+
 	
 	
 	<div id="wrap">
