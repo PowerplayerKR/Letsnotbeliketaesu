@@ -37,6 +37,7 @@ public interface IBookDao {
 	public int starAvgCount(HashMap<String, Object> params);
 	public int starAvgDelete(HashMap<String, Object> params);
 	public int starAvgUpdate(HashMap<String, Object> params);
-	public List<HashMap<String, Object>>recommended(String email);
+	public List<HashMap<String, Object>>recommended1(String email);
+	public List<HashMap<String, Object>>recommended2(String email);
 	
 }

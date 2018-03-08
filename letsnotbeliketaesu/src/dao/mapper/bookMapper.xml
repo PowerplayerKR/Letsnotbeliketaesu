@@ -54,7 +54,7 @@
 
 	<select id="bookSearch" parameterType="java.util.HashMap"
 		resultType="java.util.HashMap">
-		SELECT num,title,introduce,book_writer,category_num,
+		SELECT book.num,title,introduce,book_writer,category_num,
 		image,public_date,publisher,star_point_avg,book.isbn,book.regdate,star_point,content
 		FROM book left join star_point_list on(book.isbn=star_point_list.isbn
 		and star_point_list.star_point_email=#{email}) left join review_list
@@ -167,9 +167,9 @@
 
 	<insert id="insertReviewList" parameterType="java.util.HashMap">
 
-		INSERT INTO review_list (review_email,review_writer,content,isbn,regdate)
+		INSERT INTO review_list (num,review_email,review_writer,content,isbn,regdate)
 
-		VALUES (#{review_writer},#{review_writer},#{content},#{isbn},now())
+		VALUES (0,#{review_writer},#{review_writer},#{content},#{isbn},now())
 
 	</insert>
 
@@ -261,31 +261,25 @@
 
 	<!-- 바꿈 바꿈 -->
 
-	<select id="recommended" parameterType="String" resultType="java.util.HashMap">
-
+	<select id="recommended1" parameterType="String" resultType="java.util.HashMap">
   	<![CDATA[ 
-
-  	select isbn,title,introduce,book_writer,category_num,
-
-		image,public_date,publisher,star_point_avg,isbn,book.regdate,
-
+  	select num,title,introduce,book_writer,category_num,
+		image,public_date,publisher,star_point_avg,book.isbn,book.regdate,
 		avg(star_point)as avs,count(*)as coun from(
-
 	select isbn,star_point from(
-
 	select star_point_email ,(sum(distance) / (sqrt(sum(pow(star_point,2))*sum((select pow(star_point,2) from star_point_list where star_point_email=#{email} and isbn=m.isbn))) ))as p from 
-
 	(select star_point_email,isbn,star_point,(star_point*(select star_point from star_point_list where star_point_email=#{email} and a.isbn=isbn))as distance
-
 	from star_point_list as a where isbn in(select isbn from star_point_list where star_point_email=#{email}) and star_point_email<>#{email} )as m 
-
 	group by star_point_email)as z join star_point_list on z.star_point_email=star_point_list.star_point_email where isbn Not in(select isbn from star_point_list where star_point_email=#{email})
-
-	)as m join book on isbn=m.isbn group by isbn order by coun desc,avs desc
-
-  	]]>
-
-	</select>
+	)as m join book on book.isbn=m.isbn group by m.isbn order by rand() limit 5
+  	]]> 
+  	</select>
+  	<select id="recommended2" parameterType="String" resultType="java.util.HashMap">
+  	select * from book where category_num in(
+		select category_num from (
+			select *,count(category_num)as x from book where isbn in(
+			SELECT isbn FROM project.star_point_list where star_point_email=#{email})group by category_num order by x desc limit 2)as x)and isbn not in(SELECT isbn FROM project.star_point_list where star_point_email=#{email}) order by rand() limit 10;
+  	</select>
 
 
 

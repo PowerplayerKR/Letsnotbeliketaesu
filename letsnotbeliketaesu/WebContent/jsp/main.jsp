@@ -13,99 +13,20 @@
 
 <title>LNBLT Main</title>
 <style>
-#side {
-	position: absolute;
-	top: 100px;
-	width: 220px;
-	height: 500px;
-	background: rgb(255, 56, 46);
-	text-align: center;
-}
-
-#side ol {
-	text-align: center;
-	list-style: none;
-}
-
-#side ol li {
-	padding-bottom: 2px;
-	color: #FFFFFF;
-	position: relative;
-	padding-left: 28px;
-	margin-top: 15px;
-}
-
-#side ol li span {
-	position: absolute;
-	left: 15px;
-	top: 2px;
-	display: block;
-	width: 18px;
-	height: 18px;
-	line-height: 20px;
-	text-align: center;
-	color: black;
-	font-size: 13px;
-	background-color: white;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	border-radius: 3px;
-}
-
-#side ol li:nth-child(1) span {
-	background-color: black;
-	color: white;
-}
-
-#side ol li:nth-child(2) span {
-	background-color: black;
-	color: white;
-}
-
-#side ol li:nth-child(3) span {
-	background-color: black;
-	color: white;
-}
-
-#side ol li a {
-	color: #FFFFFF;
-	line-height: 20px;
-	width: 160px;
-	display: inline-block;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	text-decoration: none;
-}
-
-#side h4 {
-	position: relative;
-	height: 50px;
-	line-height: 30px;
-	font-size: 14px;
-	text-indent: 15px;
-	border-bottom: 1px solid black;
-	display: block;
-	-webkit-margin-before: 1.33em;
-	-webkit-margin-after: 1.33em;
-	-webkit-margin-start: 0px;
-	-webkit-margin-end: 0px;
-	font-weight: bold;
-}
-
-.book_info_table {
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	border: 1px solid black;
-	background: white;
-	width: 800px;
-	height: 700px;
-	margin-top: -351px;
-	margin-left: -401px;
-	display: none;
-	z-index: 1;
-}
+	body{
+		background: #E5E5E5;
+	}
+.book_info_table{
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		background: rgb(250,248,248);
+		width: 800px;
+		margin-left:-400px;
+		margin-top: 150px;
+		display: none;
+		z-index: 5;
+	}
 
 .book {
 	overflow: hidden;
@@ -218,6 +139,7 @@ body {
 	float: left;
 	position: relative;
 	overflow: hidden;
+	cursor: pointer;
 }
 
 .book_wrap a {
@@ -286,7 +208,8 @@ body {
 .book_wrap li:hover .info_box {
 	transform: translateY(0px);
 }
-.info_box h3{
+
+.info_box h3 {
 	overflow: hidden;
 }
 
@@ -343,297 +266,341 @@ body {
 	top: 0;
 	left: 50%;
 }
-	.book_info_table{
-		position: fixed;
-		top: 50%;
-		left: 50%;
-		background: #FAF8F5;
-		width: 800px;
-		height:750px;
-		margin-top: -351px;
-		margin-left: -401px;
-		display: none;
-		z-index: 5;
-	}
-	.book_info_wrap{
-		position: relative;
-		width: 800px;
-		height: 290px;
-		border-bottom:1px solid #d5d5d5;
-		background-color: white;
-	}
-	.screen{
-		position:fixed;
-		width: 10000px;
-		height: 10000px;
-		background: rgba(51,51,51,0.5);
-		display: none;
-		z-index: 4;
-	}
-	.cover{
-		width:200px;
-		height:250px;
-		position: absolute;
-		top: 15px;
-		left: 20px;
-	}
-	.title{
-		font-weight: bold;
-    	font-size: 20px;
-    	line-height: 35px;
-    	width: 430px;
-    	color: #333333;
-    	margin-bottom: 5px;
-    	display: inline-block;
-    	white-space: nowrap;
-   	 	overflow: hidden;
-    	text-overflow: ellipsis;
-    	text-decoration: none;
-	}
-	.book_writer{
-		position: absolute;
-		left:230px;
-		top:80px;
-	}
-	.info{
-		position:absolute;	
-		left:220px;
-		top:20px;
-	    margin: 0;
-    	padding: 0;
-    	border: 0;
-    	font: inherit;
-    	font-size: 100%;
-    	vertical-align: baseline;
-    	border-bottom: 1px solid #ded6c7;
-    }
-    .book_intro_start{
-    	font-size: 14px;
-    	font-weight: bold;
-    	color: #555555;
-    	margin-top: 20px;
-    	margin-left: 20px;
-    	margin-bottom: 20px;
-    }
-    .book_intro{
-    	margin-left: 20px;
-    }
-    .book_review_start{
-    	margin-top: 20px;
-    	margin-left: 20px;
-    	font-size: 14px;
-    	font-weight: bold;
-    	color: #555555;
-    }
-    .review_balloon {
-	    display: inline-block;
-	    position: relative;
-	    background: #FFFFFF;
-	    height: 125px;
-	    width: 487px;
-	    margin: 0 auto 10px;
-	    border-radius: 10px;
-	    margin-left: 100px;
-	}
-	.review_balloon:after {
-	    content: "";
-	    position: absolute;
-	    height: 50px;
-	    width: 50px;
-	    border-radius: 25px;
-	    z-index: 1;
-	    background: transparent;
-	    bottom: 95px;
-	    left: -20px;
-	}
-	.review_balloon:before {
-	    content: "";
-	    position: absolute;
-	    height: 50px;
-	    width: 50px;
-	    border-radius: 25px;
-	    z-index: 2;
-	    background: transparent;
-	    bottom: 101px;
-	    left: -20px;
-	}
-	.review_box{
-		margin-top: 20px;
-		margin-left: 30px;
-	}
-	.content{
-		margin-top: 10px;
-	    line-height: 20px;
-	    color: #555555;
-	    font-size: 14px;
-	    white-space: pre-wrap;
-	    margin-left: 20px;
-	}
-	.review_writer{
-		font-size: 14px;
-		margin-left: 20px;
-		margin-top: 5px;
-	}
-	.review_update_date{
-		display:block;
-		color: #aaaaaa;
-    	font-size: 12px;
-    	position: absolute;
-    	bottom: 20px;
-    	left: 20px;
-	}
-	.review_more{
-		color: #777777;
-	    font-size: 12px;
-	    font-weight: bold;
-	    height: 40px;
-	    line-height: 40px;
-	    background-color: #f1efeb;
-	    border: 1px solid #e8e4dc;
-	    text-align: center;
-	    -moz-border-radius: 3px;
-	    -webkit-border-radius: 3px;
-	    border-radius: 3px;
-	margin-top: 20px;
-	cursor: pointer;
+
+#comment {
+	width: 600px;
+	height: 300px;
+	padding: 0px;
+	background: #737373;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -150px 0 0 -300px;
+	display: none;
+	z-index: 33;
+	border-radius: 2px;
+	text-align: left;
 }
-	.wrap{
-		position:absolute;
-		top:100px;
-		width:220px;
-		height:500px;
-		background:  rgb(255, 56, 46);
-		text-align: left;
-	}
-	.wrap ol{
-		text-align: center;
-		list-style: none;
-	}
-	.wrap ol li{
-		padding-bottom: 2px;
-    	color: #FFFFFF;
-    	position: relative;
-    	padding-left: 28px;
-    	margin-top: 15px;
-	}
-	span {	
-    	position: absolute;
-		left: 15px;
-		top: 2px;
-		display: block;
-		width: 18px;
-		height: 18px;
-		line-height: 20px;
-		text-align: center;
-		color: black;
-	 	font-size: 13px;
-		background-color: white;
-		-moz-border-radius: 3px;
-		-webkit-border-radius: 3px;
-		border-radius: 3px;
-    }
-    .wrap ol li:nth-child(1) span{
-    	background-color: black;
-    	color: white;	
-    }
-     .wrap ol li:nth-child(2) span{
-    	background-color: black;
-    	color: white;	
-    }
-    .wrap ol li:nth-child(3) span{
-    	background-color: black;
-    	color: white;	
-    }
-	.wrap ol li a{
-		color: #FFFFFF;
-    	line-height:20px;
-    	width: 160px;
- 		display: inline-block;
-    	white-space: nowrap;
-   	 	overflow: hidden;
-    	text-overflow: ellipsis;
-    	text-decoration: none;
-	}
-	.wrap h4{
-		position:relative;
-		height: 50px;
-		line-height:30px;
-    	font-size: 14px;
-    	text-indent: 15px;
-    	border-bottom: 1px solid black;
-    	display: block;
-    	-webkit-margin-before: 1.33em;
-    	-webkit-margin-after: 1.33em;
-    	-webkit-margin-start: 0px;
-    	-webkit-margin-end: 0px;
-    	font-weight: bold;
-    	text-align: center;
-	}
-	.book_info_table{
-		position: fixed;
-		top: 50%;
-		left: 50%;
-		background: #FAF8F5;
-		width: 800px;
-		height:750px;
-		margin-top: -351px;
-		margin-left: -401px;
-		display: none;
-		z-index: 5;
-	}
-	.book_info_wrap{
+
+#comment_content_wrap {
+	width: 100%;
+	height: 70%;
+	position: absolute;
+	top: 20%;
+	left: 0%;
+	margin: 0;
+	padding: 0;
+	margin: 30px 0 0 0;
+}
+
+#comment_content_wrap_img {
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	width: 15%;
+	height: 40%;
+	margin: -30px 0 0 15px;
+}
+
+#inputText {
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	width: 75%;
+	height: 70%;
+	margin: 0 0 0 125px;
+}
+
+#comment_content_wrap_button {
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	width: 60px;
+	height: 40px;
+	bottom: 5%;
+	right: 3%;
+	border: 0px;
+	background: yellow;
+	border-radius: 20px;
+}
+
+#comment_content_wrap_star_rating {
+	position: absolute;
+	margin: -30px 0 0 125px;
+	padding: 0;
+	letter-spacing: 0;
+	display: inline-block;
+	color: #ccc;
+	text-decoration: none;
+	position: absolute;
+}
+
+#comment_content_wrap_star_rating i {
+	color: #ffff00;
+}
+
+#body_blind_wrap {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	z-index: 32;
+	background-color: #000000;
+	opacity: 0.3;
+	display: none;
+}
+
+#comment_content_wrap_star_grade_wrap {
+	width: 222px;
+	height: 250px;
+	position: absolute;
+	margin: 0 0 0 -111px;
+	z-index: 51;
+	display: none;
+}
+
+#comment_content_wrap_star_grade_head {
+	width: 100%;
+	height: 10%;
+	position: absolute;
+}
+
+#comment_content_wrap_star_grade_head_up {
+	margin: 2px 0 0 106px;
+}
+
+#comment_content_wrap_star_grade_body {
+	width: 100%;
+	height: 90%;
+	position: absolute;
+	margin: 25px 0 0 0;
+	background: gray;
+	border-radius: 10px;
+}
+
+#comment_blind_wrap {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background: white;
+	opacity: 0.5;
+	display: none;
+	z-index: 50;
+}
+
+#comment_content_wrap_star_grade_body_star {
+	width: 80%;
+	height: 37px;
+	margin: -20px 0 0 22px;
+}
+
+#comment_head {
+	width: 100%;
+	height: 20%;
+	position: absolute;
+}
+
+#tool_tip {
+	width: 90px;
+	height: 30px;
+	background: white;
+	text-align: center;
+	display: none;
+	position: absolute;
+	border: 1px solid black;
+	z-index: 99;
+}
+
+#tool_tip_head {
+	margin: -22px 0 0 -9px;
+	position: absolute;
+}
+
+.book_info_table {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	background: #FAF8F5;
+	width: 800px;
+	height: 750px;
+	margin-top: -351px;
+	margin-left: -401px;
+	display: none;
+	z-index: 5;
+}
+
+.side {
+	position: absolute;
+	top: 100px;
+	width: 220px;
+	height: 500px;
+	background: rgb(255, 56, 46);
+	text-align: left;
+}
+
+.side ol {
+	text-align: center;
+	list-style: none;
+}
+
+.side ol li {
+	padding-bottom: 2px;
+	color: #FFFFFF;
+	position: relative;
+	padding-left: 28px;
+	margin-top: 15px;
+}
+
+.side ol li span {
+	position: absolute;
+	left: 15px;
+	top: 2px;
+	display: block;
+	width: 18px;
+	height: 18px;
+	line-height: 20px;
+	text-align: center;
+	color: black;
+	font-size: 13px;
+	background-color: white;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+
+.side ol li:nth-child(1) span {
+	background-color: black;
+	color: white;
+}
+
+.side ol li:nth-child(2) span {
+	background-color: black;
+	color: white;
+}
+
+.side ol li:nth-child(3) span {
+	background-color: black;
+	color: white;
+}
+
+.side ol li a {
+	color: #FFFFFF;
+	line-height: 20px;
+	width: 160px;
+	display: inline-block;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-decoration: none;
+}
+
+.side h4 {
+	position: relative;
+	height: 50px;
+	line-height: 30px;
+	font-size: 14px;
+	text-indent: 15px;
+	border-bottom: 1px solid black;
+	display: block;
+	-webkit-margin-before: 1.33em;
+	-webkit-margin-after: 1.33em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.book_info_table {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	background: #FAF8F5;
+	width: 800px;
+	height: 750px;
+	margin-top: -351px;
+	margin-left: -401px;
+	display: none;
+	z-index: 5;
+}
+
+.book_info_wrap{
 		position: relative;
 		width: 800px;
 		height: 290px;
 		border-bottom:1px solid #d5d5d5;
 		background-color: white;
 	}
-	.screen{
-		position:fixed;
-		width: 10000px;
-		height: 10000px;
-		background: rgba(51,51,51,0.5);
-		display: none;
-		z-index: 4;
-	}
-	.cover{
-		width:200px;
-		height:250px;
-		position: absolute;
-		top: 15px;
-		left: 20px;
-	}
-	.title{
-		font-weight: bold;
-    	font-size: 20px;
-    	line-height: 35px;
-    	width: 430px;
-    	color: #333333;
-    	margin-bottom: 5px;
-    	display: inline-block;
-    	white-space: nowrap;
-   	 	overflow: hidden;
-    	text-overflow: ellipsis;
-    	text-decoration: none;
-	}
-	.book_writer{
-		position: absolute;
-		left:230px;
-		top:80px;
-	}
-	.info{
-		position:absolute;	
-		left:220px;
-		top:20px;
-	    margin: 0;
-    	padding: 0;
-    	border: 0;
-    	font: inherit;
-    	font-size: 100%;
-    	vertical-align: baseline;
-    	border-bottom: 1px solid #ded6c7;
-    }
-    .book_intro_start{
+
+.screen {
+	position: fixed;
+	width: 10000px;
+	height: 10000px;
+	background: rgba(51, 51, 51, 0.5);
+	display: none;
+	z-index: 4;
+}
+
+.cover {
+	width: 200px;
+	height: 250px;
+	position: absolute;
+	top: 15px;
+	left: 20px;
+}
+
+.title {
+	font-weight: bold;
+	font-size: 20px;
+	line-height: 35px;
+	width: 430px;
+	color: #333333;
+	margin-bottom: 5px;
+	display: inline-block;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-decoration: none;
+}
+
+.book_writer {
+	position: absolute;
+	left: 230px;
+	top: 80px;
+}
+
+.info {
+	position: absolute;
+	left: 220px;
+	top: 20px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font: inherit;
+	font-size: 100%;
+	vertical-align: baseline;
+	border-bottom: 1px solid #ded6c7;
+}
+
+.book_intro_start {
+	font-size: 14px;
+	font-weight: bold;
+	color: #555555;
+	margin-top: 20px;
+	margin-left: 20px;
+	margin-bottom: 20px;
+}
+
+.book_intro {
+	margin-left: 20px;
+}
+
+  .book_intro_start{
     	font-size: 14px;
     	font-weight: bold;
     	color: #555555;
@@ -659,7 +626,9 @@ body {
 	    width: 487px;
 	    margin: 0 auto 10px;
 	    border-radius: 10px;
-	    margin-left: 100px;
+	    margin-left:30px;
+	    margin-top:20px;
+	    border: 1px solid #eeeeee;
 	}
 	.review_balloon:after {
 	    content: "";
@@ -667,33 +636,37 @@ body {
 	    height: 50px;
 	    width: 50px;
 	    border-radius: 25px;
-	    z-index: 1;
-	    background: transparent;
-	    bottom: 95px;
+	    z-index: -2;
+	    background: #fff;
+	    bottom: 80px;
 	    left: -20px;
+	    border: 1px solid #eeeeee;
 	}
 	.review_balloon:before {
 	    content: "";
 	    position: absolute;
-	    height: 50px;
-	    width: 50px;
-	    border-radius: 25px;
-	    z-index: 2;
-	    background: transparent;
-	    bottom: 101px;
-	    left: -20px;
+	    height: 100px;
+	    width: 100px;
+	    border-radius: 50px;
+	    z-index: -1;
+	    background: #FAF8F5;
+	    bottom: 90px;
+	    left: -30px;
 	}
 	.review_box{
-		margin-top: 20px;
+		margin-top: 10px;
 		margin-left: 30px;
 	}
-	.content{
+	.content_wrap{
+		width:300px;
+		height:50px;
 		margin-top: 10px;
 	    line-height: 20px;
 	    color: #555555;
 	    font-size: 14px;
 	    white-space: pre-wrap;
 	    margin-left: 20px;
+	    overflow: hidden;
 	}
 	.review_writer{
 		font-size: 14px;
@@ -714,7 +687,7 @@ body {
 	    font-weight: bold;
 	    height: 40px;
 	    line-height: 40px;
-	    background-color: #f1efeb;
+	    background-color: #fff;
 	    border: 1px solid #e8e4dc;
 	    text-align: center;
 	    -moz-border-radius: 3px;
@@ -722,50 +695,180 @@ body {
 	    border-radius: 3px;
 	    margin-top: 20px;
 	    cursor: pointer;
+	    margin-bottom: 50px;
 	}
+	.book{
+		position:relative;
+		width: 100%;
+		height: auto;
+	}
+	.user_img{
+		display: inline-block;
+	    position: relative;
+		-moz-border-radius: 50%;
+	    -webkit-border-radius: 50%;
+	    border-radius: 50%;
+	    border: 1px solid #d4d8d9;
+	    width: 52px;
+	    height: 52px;
+	}
+
+#header {
+	top: 0;
+}
+
+.book img {
+	width: 220px;
+	height: 314px;
+}
+
+.book_title {
+	width: 220px;
+	height: 17px;
+	overflow: hidden;
+}
 </style>
 </head>
 <body>
-		<div class="wrap">
+	<div id="tool_tip">
+		<i class="fa fa-caret-up fa-2x" aria-hidden="true" id="tool_tip_head"></i>
+		<p style="text-align: center">보고 싶어요</p>
+	</div>
+	<div id="body_blind_wrap"></div>
+
+
+	<div id="comment">
+
+		<div id="comment_head">
+			<h3>
+				<span id="comment_title"></span> <i class="fa fa-angle-down fa-1x"
+					id="star_check">
+					<div id="comment_content_wrap_star_grade_wrap">
+						<div id="comment_content_wrap_star_grade_head">
+
+							<i class="fa fa-caret-up fa-2x"
+								id="comment_content_wrap_star_grade_head_up"></i>
+
+						</div>
+						<div id="comment_content_wrap_star_grade_body">
+							<div id="comment_content_wrap_star_grade_body_infotext">
+								<h4 style="display: block; margin: 19px 61px;">평가 해주세요</h4>
+							</div>
+
+							<div id="comment_content_wrap_star_grade_body_mid_text">
+								<h5 style="margin: 22px 63px;">본책 확실함?</h5>
+
+							</div>
+							<div id="comment_content_wrap_star_grade_body_star">
+								<div class="star_rating" style="text-align: center;">
+									<i class="fa fa-star-o fa-2x" aria-hidden="true"><div
+											class="head"></div>
+										<div class="tail"></div> <span></span></i> <i
+										class="fa fa-star-o fa-2x" aria-hidden="true"><div
+											class="head"></div>
+										<div class="tail"></div> <span></span></i> <i
+										class="fa fa-star-o fa-2x" aria-hidden="true"><div
+											class="head"></div>
+										<div class="tail"></div> <span></span></i> <i
+										class="fa fa-star-o fa-2x" aria-hidden="true"><div
+											class="head"></div>
+										<div class="tail"></div> <span></span></i> <i
+										class="fa fa-star-o fa-2x" aria-hidden="true"><div
+											class="head"></div>
+										<div class="tail"></div> <span></span></i>
+								</div>
+							</div>
+
+							<div id="comment_content_wrap_star_grade_body_bottom_text">
+								<h4
+									style="text-align: center; margin-bottom: 15px; margin-top: 17px;">댓글
+									달려면 별점 클릭</h4>
+
+							</div>
+
+
+
+
+							<div class="book_wrap">
+								<button class="wish_btn">
+									<i class="fa fa-heart"></i>보고싶어요
+								</button>
+								<button class="comment_btn">
+									<i class="fa fa-comment"></i> 관심없어요
+								</button>
+							</div>
+						</div>
+					</div>
+				</i> <i class="fa fa-times fa-2x"
+					style="position: absolute; right: 4%; top: 4%"
+					id="comment_head_end"></i>
+			</h3>
+		</div>
+		<div id="comment_blind_wrap"></div>
+
+
+		<div id="comment_content_wrap">
+			<img
+				src="http://chulsa.kr/files/attach/images/67/647/673/018/220ebc4544181643a70ac6f4af9c617f.jpg"
+				id="comment_content_wrap_img">
+			<tr></tr>
+			<div id="comment_content_wrap_star_rating"
+				style="text-align: center;">
+				<i aria-hidden="true"></i> <i aria-hidden="true"></i> <i
+					aria-hidden="true"></i> <i aria-hidden="true"></i> <i
+					aria-hidden="true"></i>
+			</div>
+			<form>
+				<textarea placeholder="여기에 댓글을 입력해주세요 " id="inputText"
+					name="comment"></textarea>
+
+				<input type="submit" id="comment_content_wrap_button">
+			</form>
+
+		</div>
+
+
+
+
+
+	</div>
+
+	<div class="wrap">
+		<jsp:include page="/template/header.jsp"></jsp:include>
+		<div class="side">
 			<h4>베스트셀러 랭킹</h4>
 			<div>
 				<ol>
 					<c:forEach var="bestBook" items="${bookRanking}">
-						<li class="best_book_list"  data-isbn="${bestBook.isbn}" data-title="${bestBook.title}">
-							<a href="#"><span>${bestBook.num}</span>${bestBook.title}</a>
+						<li class="best_book_list" data-isbn="${bestBook.isbn}"
+							data-title="${bestBook.title}"><a href="#"><span>${bestBook.num}</span>${bestBook.title}</a>
 						</li>
 					</c:forEach>
 				</ol>
 			</div>
-			<div class="book_info_table">
-				<ul>
-					<li>
-						<div class="book_info_wrap">
-							<div class="info">
-								<div class="title">제목</div>
-							</div>
-							<div class="book_writer">작가</div>
+			
+			<div class="book">
+				<div class="book_info_table">
+					<div class="book_info_wrap">
+						<div class="info">
+							<div class="title">제목</div>
 						</div>
-						<div class="book_intro_start">줄거리</div>
-						<div class="book_intro">내용</div>
-						<div class="book_review_start">코멘트</div>
-						<div class="review_box">
-						<div class="review_balloon">
-							<div class="review_writer">코멘터</div>
-								<p class="content">안녕</p>
-								<p class="review_update_date">날짜</p>
-									<a></a>
-									<a></a>
-							</div>
-						</div>
-						<img class="cover" alt="" src="">
-					</li>
-				</ul>
-				<div class="review_more" style="display: block;">더보기</div>
-			</div>
-		</div>
-		<div class="screen">
+						<div class="book_writer">작가</div>
+					</div>
+				
+					<div class="book_intro_start">줄거리</div>
+					<div class="book_intro">내용</div>
+					<div class="book_review_start">코멘트</div>
+					<img class="cover" alt="" src="">
 
+					<ul class="book_info_ul">
+						<li class="book_info_li" data-isbn>
+
+						</li>
+					</ul>
+					<div class="review_more" style="display: block;">더보기</div>
+				</div>
+			</div>
 		</div>
 		<div id="content">
 			<div>
@@ -775,10 +878,13 @@ body {
 				<span class="booktitle booktitle-top-0 left-0">신간</span>
 				<ul class="book_wrap">
 					<c:forEach var="book" items="${newBook}">
-						<li class="book top-0 left-<%=i++%>"><a href="#">
+						<li class="book top-0 left-<%=i++%>" data-isbn="${book.isbn}"
+							data-title="${book.title}"><a href="#">
 								<div class="info_box">
-									<h3>${book.title}</h3>
-									<div class="star_rating" id="${book.num}">
+									<div class="book_title">
+										<h3>${book.title}</h3>
+									</div>
+									<div class="star_rating" id="${book.isbn}">
 										<i class="fa fa-star-o fa-2x" aria-hidden="true"><div
 												class="head <c:if test="${book.star_point eq 0.5}">true</c:if>"></div>
 											<div
@@ -819,10 +925,13 @@ body {
 				<span class="booktitle booktitle-top-1 left-0">베스트 셀러</span>
 				<ul class="book_wrap">
 					<c:forEach var="book" items="${bestBook}">
-						<li class="book top-1 left-<%=i++%>"><a href="#">
+						<li class="book top-1 left-<%=i++%>" data-isbn="${book.isbn}"
+							data-title="${book.title}"><a href="#">
 								<div class="info_box">
-									<h3>${book.title}</h3>
-									<div class="star_rating" id="${book.num}">
+									<div class="book_title">
+										<h3>${book.title}</h3>
+									</div>
+									<div class="star_rating" id="${book.isbn}">
 										<i class="fa fa-star-o fa-2x" aria-hidden="true"><div
 												class="head <c:if test="${book.star_point eq 0.5}">true</c:if>"></div>
 											<div
@@ -862,10 +971,13 @@ body {
 				<span class="booktitle booktitle-top-2 left-0">추천책</span>
 				<ul class="book_wrap">
 					<c:forEach var="book" items="${book}">
-						<li class="book top-2 left-<%=i++%>"><a href="#">
+						<li class="book top-2 left-<%=i++%>" data-isbn="${book.isbn}"
+							data-title="${book.title}"><a href="#">
 								<div class="info_box">
-									<h3>${book.title}</h3>
-									<div class="star_rating" id="${book.num}">
+									<div class="book_title">
+										<h3>${book.title}</h3>
+									</div>
+									<div class="star_rating" id="${book.isbn}">
 										<i class="fa fa-star-o fa-2x" aria-hidden="true"><div
 												class="head <c:if test="${book.star_point eq 0.5}">true</c:if>"></div>
 											<div
@@ -900,44 +1012,171 @@ body {
 			</div>
 		</div>
 	</div>
+
 	<div class="screen"></div>
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="../letsnotbeliketaesu/js/default.js"></script>
 	<script>
-		var list = $('.best_book_list');
-		list.click(function() {
-
-			var q = "";
+	var search = $('#search');
+	var searchOption = $("#searchOption");
+	var keyword = "";
+	var searchOptionNum= 1;
+	search.keyup(function() {
+		keyword = search.val();
+	});
+	searchOption.change(function() {
+		alert(this.value);
+		searchOptionNum = this.value;
+	})
+	
+	$(function(){
+	    $( "#search" ).autocomplete({
+	        source : function( request, response ) {
+	             $.ajax({
+	                    type: 'post',
+	                    url: "autocomplete.do",
+	                    dataType: "json",
+	                    data: {"searchOption":searchOptionNum,"keyword":keyword},
+	                    success: function(data) {
+	                        //서버에서 json 데이터 response 후 목록에 뿌려주기 위함
+	                        response(
+	                            $.map(data, function(item) {
+	                                return {
+	                                    label: item.title,
+	                                    value: item.title
+	                                }
+	                            })
+	                        );
+	                    }
+	               });
+	            },
+	        //조회를 위한 최소글자수
+	        minLength: 2,
+	        select: function( event, ui ) {
+	            // 만약 검색리스트에서 선택하였을때 선택한 데이터에 의한 이벤트발생
+	        }
+	    });
+	});
+       
+	var list = $('.best_book_list');
+	list.click(function() {
+		
+		var q = "";
 			q = $(this).data('title');
-			function getBook() {
+		function getBook() {
+			$.ajax({
+				url:"getBook.do",
+				type:"post",//post방식
+				dataType:"json",//json
+				data:{"title":q},//넘어가는 파라미터
+				error:function(){
+					alert("에러!!");
+				},
+				success:function(json) {
+					$(json).each(function() {
+						var title = $('.title');
+						var bookWriter = $('.book_writer');
+						var book_intro = $('.book_intro');
+						var cover = $('.cover');
+						title.text(this.title);
+						bookWriter.text(this.book_writer);
+						cover.attr('src',this.image);
+						cover.attr('alt',this.title+'의 커버 사진');
+						book_intro.text(this.introduce);
+					});//each() end
+					setTimeout(screenHide, 500);
+				}
+		});//$.ajax() end
+	}//getBook() end	
+	
+
+	var isbn = "";
+		isbn = $(this).data('isbn');
+	function getReview() {
+		$.ajax({
+			url:"getReview.do",
+			type:"post",//post방식
+			dataType:"json",//json
+			data:{"isbn":isbn},//넘어가는 파라미터
+			error:function(){
+				alert("에러!!");
+			},
+			success:function(json) {
+				var Cnum = 0; 
+				$(json).each(function() {
+					var review_box = $("<div class='review_box' data-num='"+this.ROWNUM+"'>");
+					var review_balloon = $("<div class='review_balloon'>");
+					var review_writer = $("<div class='review_writer'>").text(this.review_writer);
+					var content = $("<div class='content_wrap'>").text(this.content);
+					var review_update_date = $("<p class='review_update_date'>").text(this.regdate);
+					var user_img = $("<img class='user_img' src='../last_project/img/user.jpg'>");
+					
+					review_balloon.append(review_writer,content,review_update_date);
+					review_box.append(user_img,review_balloon);
+					$(".book_info_li").append(review_box);
+					Cnum= this.ROWNUM;
+					
+				});//each() end
+				$(".book_info_li").attr("data-isbn",isbn);
 				$.ajax({
-					url : "getBook.do",
-					type : "post",//post방식
-					dataType : "json",//json
-					data : {
-						"title" : q
-					},//넘어가는 파라미터
-					error : function() {
+					url:"getCountReview.do",
+					type:"post",//post방식
+					dataType:"json",//json
+					data:{"isbn":isbn},//넘어가는 파라미터
+					error:function(){
 						alert("에러!!");
 					},
-					success : function(json) {
+					success:function(json) {	
 						$(json).each(function() {
-							var title = $('.title');
-							var bookWriter = $('.book_writer');
-							var cover = $('.cover');
-							title.text(this.title);
-							bookWriter.text(this.book_writer);
-							cover.attr('src', this.image);
-							cover.attr('alt', this.title + '의 커버 사진');
+							$(".book_review_start").text("코멘트 ("+this.num+")");
+							if(this.num==Cnum){
+								$(".review_more").hide();
+							}
 						});//each() end
-					}
+					}//success end
 				});//$.ajax() end
-
-			}//getBook() end
-			var isbn = "";
-			isbn = $(this).data('isbn');
-			function getReview() {
+			}//success end
+		});//$.ajax() end
+	}//getReview() end
+	
+	getReview();
+	getBook();
+	function screenHide() {
+			$('.book_info_table').show();
+			$('.screen').show();	
+	}
+	});
+	
+	
+	$(".review_more").click(function() {
+		var lastNum = $(".review_box:last").attr("data-num");
+		var isbn = $(".book_info_li").attr("data-isbn");
+		$.ajax({
+			url:"getReviewMore.do",
+			type:"post",//post방식
+			dataType:"json",//json
+			data:{"num":lastNum,"isbn":isbn},
+			error:function(){
+				alert("에러!!");
+			},
+			success:function(json) {
+				var Cnum = 0; 
+				$(json).each(function() {
+					var review_box = $("<div class='review_box' data-num='"+this.ROWNUM+"'>");
+					var review_balloon = $("<div class='review_balloon'>");
+					var review_writer = $("<div class='review_writer'>").text(this.review_writer);
+					var content = $("<div class='content_wrap'>").text(this.content);
+					var review_update_date = $("<p class='review_update_date'>").text(this.regdate);
+					var user_img = $("<img class='user_img' src='../last_project/img/user.jpg'>");
+					
+					review_balloon.append(review_writer,content,review_update_date);
+					review_box.append(user_img,review_balloon);
+					$(".book_info_li").append(review_box);
+					Cnum= this.ROWNUM;
+				});//each() end
+				
 				$.ajax({
-					url:"getReview.do",
+					url:"getCountReview.do",
 					type:"post",//post방식
 					dataType:"json",//json
 					data:{"isbn":isbn},//넘어가는 파라미터
@@ -946,268 +1185,51 @@ body {
 					},
 					success:function(json) {
 						$(json).each(function() {
-							var review_writer = $(".review_writer");
-							var content = $(".content");
-							var review_update_date = $(".review_update_date");
-							review_writer.text(this.review_writer);
-							content.text(this.content);
-							review_update_date.text(this.regdate);
+							$(".book_review_start").text("코멘트 ("+this.num+")");
+							if(this.num==Cnum){
+								$(".review_more").hide();
+							}
 						});//each() end
 					}
 				});//$.ajax() end
-			}//getReview() end
-			getReview();
-			getBook();
-			function screenHide() {
-				$('.book_info_table').show();
-				$('.screen').show();
 			}
-			setTimeout(screenHide, 500);
-		});
-		$('.screen').click(function() {
-			$('.book_info_table').hide();
-			$('.screen').hide();
-			var title = $('.title');
-			var bookWriter = $('.book_writer');
-			var cover = $('.cover');
-			title.text('');
-			bookWriter.text('');
-			cover.attr('alt', '');
-			cover.attr('src', '');
-		});
-
-		$(document).ready(function() {
-
-			$('.star_rating').trigger('mouseleave');
-
-		});
-
-		$(".star_rating  i .tail").mouseenter(
-				function(event) {
-
-					if ($("div").hasClass("star_rating")) {
-						$(this).closest("i").parent().children("i")
-								.removeClass("fa fa-star 2x").removeClass(
-										"fa fa-star-o fa-2x").removeClass(
-										"fa fa-star-half-o fa-2x");
-						$(this).closest("i").addClass("fa fa-star fa-2x")
-								.prevAll("i").addClass("fa fa-star fa-2x");
-						$(this).closest("i").nextAll("i").addClass(
-								"fa fa-star-o fa-2x");
-
-					}
-
-					return false;
-				});
-		4
-		$(".star_rating i .head").mouseenter(
-				function(event) {
-
-					$(this).closest("i").parent().children("i").removeClass(
-							"fa fa-star 2x").removeClass("fa fa-star-o fa-2x")
-							.removeClass("fa fa-star-half-o fa-2x");
-					$(this).closest("i").addClass("fa fa-star-half-o fa-2x")
-							.prevAll("i").addClass("fa fa-star fa-2x");
-					$(this).closest("i").nextAll("i").addClass(
-							"fa fa-star-o fa-2x");
-
-					return false;
-				});
-
-		$(".star_rating").mouseleave(
-				function() {
-					var a = $(this).find('.true');
-
-					if (a.length > 0) {
-						$(this).children("i").removeClass("fa fa-star fa-2x")
-								.removeClass("fa fa-star-o fa-2x").removeClass(
-										"fa fa-star-half-o fa-2x");
-
-						if (a.hasClass('head')) {
-							a.closest("i").addClass("fa fa-star-half-o fa-2x")
-									.prevAll("i").addClass("fa fa-star fa-2x");
-							a.closest("i").nextAll("i").addClass(
-									"fa fa-star-o fa-2x");
-						} else {
-							a.closest("i").addClass("fa fa-star fa-2x")
-									.prevAll("i").addClass("fa fa-star fa-2x");
-							a.closest("i").nextAll("i").addClass(
-									"fa fa-star-o fa-2x");
-						}
-
-					} else {
-						$(this).children("i").removeClass("fa fa-star fa-2x")
-								.removeClass("fa fa-star-o fa-2x").removeClass(
-										"fa fa-star-half-o fa-2x");
-						$(this).children("i").addClass("fa fa-star-o fa-2x");
-					}
-
-				})
-		$(".star_rating .head")
-				.click(
-						function(event) {
-
-							if ($(this).hasClass("true")) {
-								$.ajax({
-									url : "starDelete.do",
-									type : "post",//post방식
-									dataType : "json",//json
-									data : {
-										"bookNum" : $(this).closest(
-												".star_rating").attr('id'),
-										"starPointWriter" : "bong"
-									},
-
-									error : function(request, status, error) {
-										alert("code:" + request.status + "\n"
-												+ "message:"
-												+ request.responseText + "\n"
-												+ "error:" + error);
-
-									},
-									success : function(json) {
-										console.log(json);
-									}
-								});//$.ajax() end
-								$(this).removeClass("true");
-							} else if ($(this).closest('.star_rating').find(
-									'.true').length == 1) {
-								$.ajax({
-									url : "starUpdate.do",
-									type : "post",//post방식
-									dataType : "json",//json
-									data : {
-										"bookNum" : $(this).closest(
-												".star_rating").attr('id'),
-										"starPointWriter" : "bong",
-										"starPoint" : $(this).closest('i')
-												.prevAll('i').length + 0.5
-									},
-									error : function(request, status, error) {
-										alert("code:" + request.status + "\n"
-												+ "message:"
-												+ request.responseText + "\n"
-												+ "error:" + error);
-									},
-									success : function(json) {
-										console.log(json);
-									}
-								});//$.ajax() end
-								$(this).closest('.star_rating').find('.true')
-										.removeClass('true')
-								$(this).addClass("true");
-							} else {
-								$.ajax({
-									url : "starInsert.do",
-									type : "post",//post방식
-									dataType : "json",//json
-									data : {
-										"starPoint" : $(this).closest('i')
-												.prevAll('i').length + 0.5,
-										"bookNum" : $(this).closest(
-												".star_rating").attr('id'),
-										"starPointWriter" : "bong",
-										"reviewNum" : 0
-									},
-									error : function(request, status, error) {
-										alert("code:" + request.status + "\n"
-												+ "message:"
-												+ request.responseText + "\n"
-												+ "error:" + error);
-									},
-									success : function(json) {
-										console.log(json);
-									}
-								});//$.ajax() end
-								$(this).addClass("true");
-
-							}
-
-							return false;
-						});
-		$(".star_rating .tail")
-				.click(
-						function(event) {
-
-							if ($(this).hasClass("true")) {
-								$.ajax({
-									url : "starDelete.do",
-									type : "post",//post방식
-									dataType : "json",//json
-									data : {
-										"bookNum" : $(this).closest(
-												".star_rating").attr('id'),
-										"starPointWriter" : "bong"
-									},
-									error : function(request, status, error) {
-										alert("code:" + request.status + "\n"
-												+ "message:"
-												+ request.responseText + "\n"
-												+ "error:" + error);
-									},
-									success : function(json) {
-										console.log(json);
-									}
-								});//$.ajax() end
-								$(this).removeClass("true");
-							} else if ($(this).closest('.star_rating').find(
-									'.true').length == 1) {
-								$.ajax({
-									url : "starUpdate.do",
-									type : "post",//post방식
-									dataType : "json",//json
-									data : {
-										"bookNum" : $(this).closest(
-												".star_rating").attr('id'),
-										"starPointWriter" : "bong",
-										"starPoint" : $(this).closest('i')
-												.prevAll('i').length + 1
-									},
-									error : function(request, status, error) {
-										alert("code:" + request.status + "\n"
-												+ "message:"
-												+ request.responseText + "\n"
-												+ "error:" + error);
-									},
-									success : function(json) {
-										console.log(json);
-									}
-								});//$.ajax() end
-								$(this).closest('.star_rating').find('.true')
-										.removeClass('true')
-								$(this).addClass("true");
-							} else {
-								$.ajax({
-									url : "starInsert.do",
-									type : "post",//post방식
-									dataType : "json",//json
-									data : {
-										"starPoint" : $(this).closest('i')
-												.prevAll('i').length + 1,
-										"bookNum" : $(this).closest(
-												".star_rating").attr('id'),
-										"starPointWriter" : "bong",
-										"reviewNum" : 0
-									},
-									error : function(request, status, error) {
-										alert("code:" + request.status + "\n"
-												+ "message:"
-												+ request.responseText + "\n"
-												+ "error:" + error);
-									},
-									success : function(json) {
-										console.log(json);
-									}
-								});//$.ajax() end
-
-								$(this).closest('.star_rating').find('.true')
-										.removeClass('true')
-								$(this).addClass("true");
-
-							}
-
-							return false;
-						});
-	</script>
+		});//ajax end
+		
+	});
+	
+	$('.screen').click(function() {
+		$('.book_info_table').hide();
+		$('.screen').hide();
+		$(".book_info_li").empty();
+		var title = $('.title');
+		var bookWriter = $('.book_writer');
+		var cover = $('.cover');
+		title.text('');
+		bookWriter.text('');
+		cover.attr('alt','');
+		cover.attr('src','');
+		$(".book_info_li").attr("data-isbn","");
+	});
+	
+	var btn = $('.report_btn');
+	btn.click(function () {
+		var report_reason = $('.report_reason').val();
+		var review_num = $('.review_num').val();
+		var reporter_name = $('.reporter_name').val();
+		
+		$.ajax({
+			url:"report.do",
+			type:"post",//post방식
+			dataType:"json",//json
+			data:{"report_reason":report_reason,"review_num":review_num,"reporter_name":reporter_name},
+			error:function(){
+				alert("에러!!");
+			},
+			success:function(json) {
+				alert("성공!!");
+			}
+		});//$.ajax() end
+	});
+</script>
 </body>
 </html>

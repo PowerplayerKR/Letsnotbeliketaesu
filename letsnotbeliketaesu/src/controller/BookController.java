@@ -256,19 +256,18 @@ public class BookController {
 		return "{\"booknum\":\"에러내지마\" }";
 	}
 
-	@RequestMapping("recommended.do")
-	public ModelAndView recommended(HttpSession session) {
-		ModelAndView mav = new ModelAndView();
-
-		List<HashMap<String, Object>> recommendBook = bookService
-				.recommended((String) ((HashMap<String, Object>) session.getAttribute("userInfo")).get("email"));
-		recommendBook.addAll(recommendBook);
-		for (int i = 0; i < recommendBook.size(); i++) {
-			for (int j = i + 1; j < recommendBook.size(); j++) {
-				if (recommendBook.get(i).get("num") == recommendBook.get(j).get("num")) {
+	 @RequestMapping("recommended.do")
+	 public ModelAndView recommended(HttpSession session) {
+		 ModelAndView mav = new ModelAndView();
+		
+		 List<HashMap<String,Object>> recommendBook=bookService.recommended1((String)((HashMap<String,Object>)session.getAttribute("userInfo")).get("email"));
+		 recommendBook.addAll(bookService.recommended2((String)((HashMap<String,Object>)session.getAttribute("userInfo")).get("email")));
+		 for (int i=0;i<recommendBook.size();i++) {
+			for (int j = i+1; j < recommendBook.size(); j++) {
+				if(recommendBook.get(i).get("isbn")==recommendBook.get(j).get("isbn")) {
 					recommendBook.remove(j);
 				}
-			}
+			}	 
 		}
 
 		mav.addObject("recommendBook", recommendBook);
