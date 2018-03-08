@@ -627,7 +627,8 @@ body {
 			$('.star_rating').trigger('mouseleave');
 
 		});
-$(".star_rating  i .tail").mouseenter(
+
+		$(".star_rating  i .tail").mouseenter(
 				function(event) {
 
 					var offset = $(this).offset();
@@ -1170,19 +1171,26 @@ $(".star_rating  i .tail").mouseenter(
 							return false;
 						});
 
-
-
-		$('.comment_btn').click(
+		$('.comment_btn')
+				.click(
 						function() {
-
 							$('#comment').show();
-
+							$('#comment_title').text(
+									$(this).closest('a').find('img')
+											.attr('alt'));
+							$('#comment_content_wrap_img').attr(
+									'src',
+									$(this).closest('a').find('img')
+											.attr('src'));
 							$('#body_blind_wrap').show();
-							$('#comment_head h4').text($(this).data('title'));
 
 							var x = $(this).closest('.info_box').find('.true');
-
-							$('#comment_content_wrap_star_grade_body_star .star_rating').attr('id',$(this).closest('.info_box').find('.star_rating').attr('id'));
+							$(
+									'#comment_content_wrap_star_grade_body_star .star_rating')
+									.attr(
+											'id',
+											$(this).closest('.info_box').find(
+													'.star_rating').attr('id'));
 
 							$(this).closest('.info_box').find('.star_rating')
 									.removeAttr('id').attr('id', "fake");
@@ -1194,21 +1202,16 @@ $(".star_rating  i .tail").mouseenter(
 											"fa fa-star-half-o fa-1x");
 
 							$('#inputText').val($(this).data('comment'));
-
 							$('#inputText').data('comment',
 									$(this).data('comment'));
 
 							if ($(this).data('comment') == "") {
-
 								$('#comment_content_wrap_button').attr(
 										"disabled", "true");
-
 							}
 
 							if (x.hasClass('true') == true) {
-
 								if (x.hasClass('head') == true) {
-
 									$(
 											$(
 													'#comment_content_wrap_star_grade_body_star .star_rating')
@@ -1224,7 +1227,6 @@ $(".star_rating  i .tail").mouseenter(
 											.addClass("fa fa-star-half-o fa-1x")
 											.prevAll("i").addClass(
 													"fa fa-star fa-1x");
-
 									$(
 											$(
 													'#comment_content_wrap_star_rating')
@@ -1232,10 +1234,7 @@ $(".star_rating  i .tail").mouseenter(
 													'i').prevAll('i').length])
 											.nextAll("i").addClass(
 													"fa fa-star-o fa-1x");
-
-								}
-
-								else {
+								} else {
 
 									$(
 											$(
@@ -1245,7 +1244,6 @@ $(".star_rating  i .tail").mouseenter(
 											.addClass("fa fa-star fa-1x")
 											.prevAll("i").addClass(
 													"fa fa-star fa-1x");
-
 									$(
 											$(
 													'#comment_content_wrap_star_rating')
@@ -1260,41 +1258,29 @@ $(".star_rating  i .tail").mouseenter(
 													.children('i')[x.closest(
 													'i').prevAll('i').length])
 											.find('.tail').addClass('true')
-
 								}
-
 								$(
 										'#comment_content_wrap_star_grade_body_star .star_rating')
 										.trigger('mouseleave');
-
 							} else {
-
 								$('#star_check').trigger('click');
 
 							}
 
 						});
-
 		$('#body_blind_wrap')
 				.click(
 						function() {
-
 							$('#comment').hide();
-
 							$(this).hide();
-
 							$('#comment_content_wrap_star_grade_wrap').hide();
-
 							$('#comment_blind_wrap').hide();
-
 							$(
 									'#comment_content_wrap_star_grade_body_star .star_rating')
 									.find('.true').removeClass('true');
-
 							$(
 									'#comment_content_wrap_star_grade_body_star .star_rating')
 									.trigger('mouseleave');
-
 							$('#fake')
 									.removeAttr('id')
 									.attr(
@@ -1302,47 +1288,31 @@ $(".star_rating  i .tail").mouseenter(
 											$(
 													'#comment_content_wrap_star_grade_body_star .star_rating')
 													.attr('id'));
-
 							$(
 									'#comment_content_wrap_star_grade_body_star .star_rating')
 									.removeAttr('id');
-
 						});
-
 		$('#comment_blind_wrap').click(function() {
-
 			$('#comment_content_wrap_star_grade_wrap').hide();
-
 			$(this).hide();
-
 		});
 
 		$('#star_check').click(function() {
-
 			$('#comment_content_wrap_star_grade_wrap').show();
-
 			$('#comment_blind_wrap').show();
-
 		});
-
 		$('#comment_head_end')
 				.click(
 						function() {
-
 							$('#comment_content_wrap_star_grade_wrap').hide();
-
 							$('#comment').hide();
-
 							$('#body_blind_wrap').hide();
-
 							$(
 									'#comment_content_wrap_star_grade_body_star .star_rating')
 									.find('.true').removeClass('true');
-
 							$(
 									'#comment_content_wrap_star_grade_body_star .star_rating')
 									.trigger('mouseleave');
-
 							$('#fake')
 									.removeAttr('id')
 									.attr(
@@ -1350,61 +1320,41 @@ $(".star_rating  i .tail").mouseenter(
 											$(
 													'#comment_content_wrap_star_grade_body_star .star_rating')
 													.attr('id'));
-
 							$(
 									'#comment_content_wrap_star_grade_body_star .star_rating')
 									.removeAttr('id');
 
 						});
-
 		$("form")
 				.on(
 						"submit",
 						function(event) {
-
 							event.preventDefault();
-
 							var beforeComment = $('#inputText').data('comment');
-
 							var comment = $(this).find('[name=comment]').val();
-
 							console.log(comment)
-
 							if ($(
 									'#comment_content_wrap_star_grade_body_star .star_rating')
 									.find('.true').hasClass('true')) {
-
 								if (comment.trim() == ""
 										|| beforeComment == comment) {
-
 									alert("제데로 입력해주세요");
-
 								} else {
 
 									if (beforeComment == "") {
-
 										$
 												.ajax({
-
 													url : "reviewInsert.do",
-
-													type : "post",//post방식
-
+													type : "post",//post방식																																																																																																																																																																																																																																																																																																																																																								
 													dataType : "json",//json
-
 													data : {
-														"book_num" : $(
+														"isbn" : $(
 																'#comment_content_wrap_star_grade_body_star .star_rating')
 																.attr('id'),
-														"content" : comment,
-
-														"review_writer" : "bong"
-
+														"content" : comment
 													},
-
 													error : function(request,
 															status, error) {
-
 														alert("code:"
 																+ request.status
 																+ "\n"
@@ -1413,48 +1363,30 @@ $(".star_rating  i .tail").mouseenter(
 																+ "\n"
 																+ "error:"
 																+ error);
-
 													},
-
 													success : function(json) {
-
 														console.log(json);
-
 													}
-
 												});//$.ajax() end
-
 										$('#fake').closest('.info_box').find(
 												'.comment_btn').data('comment',
 												comment);
-
 										$('#inputText')
 												.data('comment', comment);
-
 									} else {
-
 										$
 												.ajax({
-
 													url : "reviewUpdate.do",
-
 													type : "post",//post방식
-
 													dataType : "json",//json
-
 													data : {
-														"book_num" : $(
+														"isbn" : $(
 																'#comment_content_wrap_star_grade_body_star .star_rating')
 																.attr('id'),
-														"content" : comment,
-
-														"review_writer" : "bong"
-
+														"content" : comment
 													},
-
 													error : function(request,
 															status, error) {
-
 														alert("code:"
 																+ request.status
 																+ "\n"
@@ -1463,34 +1395,22 @@ $(".star_rating  i .tail").mouseenter(
 																+ "\n"
 																+ "error:"
 																+ error);
-
 													},
-
 													success : function(json) {
-
 														console.log(json);
-
 													}
-
 												});//$.ajax() end
-
 										$('#fake').closest('.info_box').find(
 												'.comment_btn').data('comment',
 												comment);
-
 										$('#inputText')
 												.data('comment', comment);
-
 									}
 
 								}
-
 							} else {
-
 								$('#star_check').trigger('click');
-
 							}
-
 						});
 
 		$("textarea").on('keydown keyup', function() {
@@ -1498,13 +1418,11 @@ $(".star_rating  i .tail").mouseenter(
 			if ($(this).val().length > 2000 || $(this).val().length == 0) {
 
 				$("#comment_content_wrap_button").attr("disabled", "true");
-
 			} else {
 
 				$("#comment_content_wrap_button").removeAttr("disabled");
 
 			}
-
 		});
 	</script>
 
