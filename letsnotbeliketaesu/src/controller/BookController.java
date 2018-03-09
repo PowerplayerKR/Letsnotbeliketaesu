@@ -111,19 +111,28 @@ public class BookController {
 	}
 
 	@RequestMapping("bookSearch.do")
-	public ModelAndView bookSearch(@RequestParam HashMap<String, Object> params) {
+	public ModelAndView bookSearch(@RequestParam HashMap<String,Object> params) {
 		ModelAndView mav = new ModelAndView();
 		List<HashMap<String, Object>> searchBookList = bookService.bookSearch(params);
-		mav.addObject("searchBookList", searchBookList);
+		mav.addObject("searchBookList",searchBookList);
 		mav.setViewName("bookSearchList");
 		return mav;
 	}
-
+	
 	@RequestMapping("bookSearchMore.do")
 	@ResponseBody
-	public ResponseEntity<String> bookSearchMore(@RequestParam HashMap<String, Object> params) throws Exception {
+	public ResponseEntity<String> bookSearchMore(@RequestParam HashMap<String,Object> params) throws Exception{
 		List<HashMap<String, Object>> bookInfo = bookService.bookSearchMore(params);
-		String json = new ObjectMapper().writeValueAsString(bookInfo);
+		
+		List<HashMap<String, Object>> list = new ArrayList<>();
+		for(HashMap<String, Object> map:bookInfo) {
+			int rownum = Integer.valueOf(map.get("ROWNUM").toString());
+			int lastNum = Integer.valueOf(params.get("num").toString());
+			if(rownum>lastNum && rownum<=lastNum+20) {
+				list.add(map);
+			}
+		}
+		String json = new ObjectMapper().writeValueAsString(list);
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		return new ResponseEntity(json, responseHeaders, HttpStatus.CREATED);
