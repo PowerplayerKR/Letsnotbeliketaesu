@@ -52,31 +52,21 @@
 		</choose>
 	</sql>
 
-	<select id="bookSearch" parameterType="java.util.HashMap"
-		resultType="java.util.HashMap">
-		SELECT book.num,title,introduce,book_writer,category_num,
-		image,public_date,publisher,star_point_avg,book.isbn,book.regdate,star_point,content
-		FROM book left join star_point_list on(book.isbn=star_point_list.isbn
-		and star_point_list.star_point_email=#{email}) left join review_list
-		on(book.isbn=review_list.isbn and review_list.review_email=#{email})
-		<include refid="search"></include>
+	<select id="bookSearch" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+			SELECT CAST(@ROWNUM := @ROWNUM + 1 AS signed integer) AS ROWNUM,book.*
+			FROM book left join star_point_list on(book.isbn=star_point_list.isbn and star_point_list.star_point_email='bong'),(SELECT @ROWNUM := 0) R
+			<include refid="search"></include>
+			ORDER BY public_date desc
+			LIMIT 0,20
 	</select>
-
-	<select id="bookSearchMore" parameterType="java.util.HashMap"
-		resultType="java.util.HashMap">
-		SELECT A.*
-		FROM
-		(
-		SELECT CAST(@ROWNUM := @ROWNUM + 1 AS signed integer) ROWNUM,book.*
-		FROM book left join star_point_list on(book.num=star_point_list.book_num
-		and star_point_list.star_point_email='bong'),
-		(SELECT @ROWNUM := 0) R
-		<include refid="search"></include>
-		ORDER BY public_date desc
-		) A
-		WHERE A.ROWNUM > #{num}
-		AND A.ROWNUM <![CDATA[<=]]>
-		#{num}+20
+	
+	<select id="bookSearchMore" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+				SELECT CAST(@ROWNUM := @ROWNUM + 1 AS signed integer) ROWNUM,book.*
+				FROM book left join star_point_list on(book.isbn=star_point_list.isbn
+				and star_point_list.star_point_email='bong'),
+				(SELECT @ROWNUM := 0) R
+				<include refid="search"></include>
+				ORDER BY public_date desc
 	</select>
 <sql id="selectUserBook">
 		<choose> 
