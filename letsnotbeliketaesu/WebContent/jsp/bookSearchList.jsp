@@ -11,11 +11,11 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<link rel="stylesheet" href="../letsnotbeliketaesu/css/header.css">
+<link rel="stylesheet" href="../last_project/css/header.css">
 
-<link rel="stylesheet" href="../letsnotbeliketaesu/css/reset.css">
+<link rel="stylesheet" href="../last_project/css/reset.css">
 
-<link rel="stylesheet" href="../lletsnotbeliketaesu/css/notosanskr.css">
+<link rel="stylesheet" href="../last_project/css/notosanskr.css">
 
 <link rel="stylesheet" type="text/css"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -621,7 +621,7 @@ body {
 	        // lastScrollTop을 현재 currentScrollTop으로 갱신해준다.
 	        lastScrollTop = currentScrollTop;
 	    }// 다운스크롤인 상태
-	});
+	});//스크롤 기능
 
 	$(document).ready(function () {
 			$('.star_rating').trigger('mouseleave');
@@ -1125,6 +1125,7 @@ body {
 			var top = 120 - $(window).scrollTop();
 			var scrollTop = $(window).scrollTop();
 			
+			//스크롤 막기
 			$(".book_wrap").attr("data-scroll",scrollTop);
 			$('html, body').css({'overflow': 'hidden', 'height': '100%'});
 			$('#content').css('margin-top',top+'px');
