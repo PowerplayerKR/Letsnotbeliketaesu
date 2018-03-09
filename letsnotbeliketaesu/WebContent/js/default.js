@@ -60,7 +60,7 @@ var getclick = function() {
 		};
 
 		var list = $('.best_book_list');
-		var list1 = $('.book');
+		var list1 = $('.booklist');
 
 		list.click(getclick);
 		list1.click(getclick);

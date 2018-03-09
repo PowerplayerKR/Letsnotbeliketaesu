@@ -13,22 +13,23 @@
 
 <title>LNBLT Main</title>
 <style>
-	body{
-		background: #E5E5E5;
-	}
-.book_info_table{
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		background: rgb(250,248,248);
-		width: 800px;
-		margin-left:-400px;
-		margin-top: 150px;
-		display: none;
-		z-index: 5;
-	}
+body {
+	background: #E5E5E5;
+}
 
-.book {
+.book_info_table {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	background: rgb(250, 248, 248);
+	width: 800px;
+	margin-left: -400px;
+	margin-top: 150px;
+	display: none;
+	z-index: 5;
+}
+
+.booklist {
 	overflow: hidden;
 	border-radius: 5px;
 	background-color: pink;
@@ -422,18 +423,6 @@ body {
 	position: absolute;
 }
 
-.book_info_table {
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	background: #FAF8F5;
-	width: 800px;
-	height: 750px;
-	margin-top: -351px;
-	margin-left: -401px;
-	display: none;
-	z-index: 5;
-}
 
 .side {
 	position: absolute;
@@ -529,13 +518,13 @@ body {
 	z-index: 5;
 }
 
-.book_info_wrap{
-		position: relative;
-		width: 800px;
-		height: 290px;
-		border-bottom:1px solid #d5d5d5;
-		background-color: white;
-	}
+.book_info_wrap {
+	position: relative;
+	width: 800px;
+	height: 290px;
+	border-bottom: 1px solid #d5d5d5;
+	background-color: white;
+}
 
 .screen {
 	position: fixed;
@@ -600,126 +589,133 @@ body {
 	margin-left: 20px;
 }
 
-  .book_intro_start{
-    	font-size: 14px;
-    	font-weight: bold;
-    	color: #555555;
-    	margin-top: 20px;
-    	margin-left: 20px;
-    	margin-bottom: 20px;
-    }
-    .book_intro{
-    	margin-left: 20px;
-    }
-    .book_review_start{
-    	margin-top: 20px;
-    	margin-left: 20px;
-    	font-size: 14px;
-    	font-weight: bold;
-    	color: #555555;
-    }
-    .review_balloon {
-	    display: inline-block;
-	    position: relative;
-	    background: #FFFFFF;
-	    height: 125px;
-	    width: 487px;
-	    margin: 0 auto 10px;
-	    border-radius: 10px;
-	    margin-left:30px;
-	    margin-top:20px;
-	    border: 1px solid #eeeeee;
-	}
-	.review_balloon:after {
-	    content: "";
-	    position: absolute;
-	    height: 50px;
-	    width: 50px;
-	    border-radius: 25px;
-	    z-index: -2;
-	    background: #fff;
-	    bottom: 80px;
-	    left: -20px;
-	    border: 1px solid #eeeeee;
-	}
-	.review_balloon:before {
-	    content: "";
-	    position: absolute;
-	    height: 100px;
-	    width: 100px;
-	    border-radius: 50px;
-	    z-index: -1;
-	    background: #FAF8F5;
-	    bottom: 90px;
-	    left: -30px;
-	}
-	.review_box{
-		margin-top: 10px;
-		margin-left: 30px;
-	}
-	.content_wrap{
-		width:300px;
-		height:50px;
-		margin-top: 10px;
-	    line-height: 20px;
-	    color: #555555;
-	    font-size: 14px;
-	    white-space: pre-wrap;
-	    margin-left: 20px;
-	    overflow: hidden;
-	}
-	.review_writer{
-		font-size: 14px;
-		margin-left: 20px;
-		margin-top: 5px;
-	}
-	.review_update_date{
-		display:block;
-		color: #aaaaaa;
-    	font-size: 12px;
-    	position: absolute;
-    	bottom: 20px;
-    	left: 20px;
-	}
-	.review_more{
-		color: #777777;
-	    font-size: 12px;
-	    font-weight: bold;
-	    height: 40px;
-	    line-height: 40px;
-	    background-color: #fff;
-	    border: 1px solid #e8e4dc;
-	    text-align: center;
-	    -moz-border-radius: 3px;
-	    -webkit-border-radius: 3px;
-	    border-radius: 3px;
-	    margin-top: 20px;
-	    cursor: pointer;
-	    margin-bottom: 50px;
-	}
-	.book{
-		position:relative;
-		width: 100%;
-		height: auto;
-	}
-	.user_img{
-		display: inline-block;
-	    position: relative;
-		-moz-border-radius: 50%;
-	    -webkit-border-radius: 50%;
-	    border-radius: 50%;
-	    border: 1px solid #d4d8d9;
-	    width: 52px;
-	    height: 52px;
-	}
+.book_intro_start {
+	font-size: 14px;
+	font-weight: bold;
+	color: #555555;
+	margin-top: 20px;
+	margin-left: 20px;
+	margin-bottom: 20px;
+}
+
+.book_intro {
+	margin-left: 20px;
+}
+
+.book_review_start {
+	margin-top: 20px;
+	margin-left: 20px;
+	font-size: 14px;
+	font-weight: bold;
+	color: #555555;
+}
+
+.review_balloon {
+	display: inline-block;
+	position: relative;
+	background: #FFFFFF;
+	height: 125px;
+	width: 487px;
+	margin: 0 auto 10px;
+	border-radius: 10px;
+	margin-left: 30px;
+	margin-top: 20px;
+	border: 1px solid #eeeeee;
+}
+
+.review_balloon:after {
+	content: "";
+	position: absolute;
+	height: 50px;
+	width: 50px;
+	border-radius: 25px;
+	z-index: -2;
+	background: #fff;
+	bottom: 80px;
+	left: -20px;
+	border: 1px solid #eeeeee;
+}
+
+.review_balloon:before {
+	content: "";
+	position: absolute;
+	height: 100px;
+	width: 100px;
+	border-radius: 50px;
+	z-index: -1;
+	background: #FAF8F5;
+	bottom: 90px;
+	left: -30px;
+}
+
+.review_box {
+	margin-top: 10px;
+	margin-left: 30px;
+}
+
+.content_wrap {
+	width: 300px;
+	height: 50px;
+	margin-top: 10px;
+	line-height: 20px;
+	color: #555555;
+	font-size: 14px;
+	white-space: pre-wrap;
+	margin-left: 20px;
+	overflow: hidden;
+}
+
+.review_writer {
+	font-size: 14px;
+	margin-left: 20px;
+	margin-top: 5px;
+}
+
+.review_update_date {
+	display: block;
+	color: #aaaaaa;
+	font-size: 12px;
+	position: absolute;
+	bottom: 20px;
+	left: 20px;
+}
+
+.review_more {
+	color: #777777;
+	font-size: 12px;
+	font-weight: bold;
+	height: 40px;
+	line-height: 40px;
+	background-color: #fff;
+	border: 1px solid #e8e4dc;
+	text-align: center;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	margin-top: 20px;
+	cursor: pointer;
+	margin-bottom: 50px;
+}
+
+.book {
+	position: relative;
+	width: 100%;
+	height: auto;
+}
+
+.user_img {
+	display: inline-block;
+	position: relative;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+	border: 1px solid #d4d8d9;
+	width: 52px;
+	height: 52px;
+}
 
 #header {
 	top: 0;
-}
-
-.book img {
-	width: 220px;
-	height: 314px;
 }
 
 .book_title {
@@ -846,7 +842,7 @@ body {
 					</c:forEach>
 				</ol>
 			</div>
-			
+
 			<div class="book">
 				<div class="book_info_table">
 					<div class="book_info_wrap">
@@ -855,16 +851,14 @@ body {
 						</div>
 						<div class="book_writer">작가</div>
 					</div>
-				
+
 					<div class="book_intro_start">줄거리</div>
 					<div class="book_intro">내용</div>
 					<div class="book_review_start">코멘트</div>
 					<img class="cover" alt="" src="">
 
 					<ul class="book_info_ul">
-						<li class="book_info_li" data-isbn>
-
-						</li>
+						<li class="book_info_li" data-isbn></li>
 					</ul>
 					<div class="review_more" style="display: block;">더보기</div>
 				</div>
@@ -878,7 +872,7 @@ body {
 				<span class="booktitle booktitle-top-0 left-0">신간</span>
 				<ul class="book_wrap">
 					<c:forEach var="book" items="${newBook}">
-						<li class="book top-0 left-<%=i++%>" data-isbn="${book.isbn}"
+						<li class="booklist top-0 left-<%=i++%>" data-isbn="${book.isbn}"
 							data-title="${book.title}"><a href="#">
 								<div class="info_box">
 									<div class="book_title">
@@ -912,7 +906,8 @@ body {
 									<button class="comment_btn">
 										<i class="fa fa-comment"></i> 코멘트쓰기
 									</button>
-								</div> <img src="${book.image}" alt="${book.title}" />
+								</div> <img src="${book.image}" alt="${book.title}"
+								style="width: 220px; height: 314px;" />
 						</a></li>
 					</c:forEach>
 				</ul>
@@ -925,7 +920,7 @@ body {
 				<span class="booktitle booktitle-top-1 left-0">베스트 셀러</span>
 				<ul class="book_wrap">
 					<c:forEach var="book" items="${bestBook}">
-						<li class="book top-1 left-<%=i++%>" data-isbn="${book.isbn}"
+						<li class="booklist top-1 left-<%=i++%>" data-isbn="${book.isbn}"
 							data-title="${book.title}"><a href="#">
 								<div class="info_box">
 									<div class="book_title">
@@ -959,7 +954,8 @@ body {
 									<button class="comment_btn">
 										<i class="fa fa-comment"></i> 코멘트쓰기
 									</button>
-								</div> <img src="${book.image}" alt="${book.title}" />
+								</div> <img src="${book.image}" alt="${book.title}"
+								style="width: 220px; height: 314px;" />
 						</a></li>
 					</c:forEach>
 				</ul>
@@ -971,7 +967,7 @@ body {
 				<span class="booktitle booktitle-top-2 left-0">추천책</span>
 				<ul class="book_wrap">
 					<c:forEach var="book" items="${book}">
-						<li class="book top-2 left-<%=i++%>" data-isbn="${book.isbn}"
+						<li class="booklist top-2 left-<%=i++%>" data-isbn="${book.isbn}"
 							data-title="${book.title}"><a href="#">
 								<div class="info_box">
 									<div class="book_title">
@@ -1005,7 +1001,8 @@ body {
 									<button class="comment_btn">
 										<i class="fa fa-comment"></i> 코멘트쓰기
 									</button>
-								</div> <img src="${book.image}" alt="${book.title}" />
+								</div> <img src="${book.image}" alt="${book.title}"
+								style="width: 220px; height: 314px;" />
 						</a></li>
 					</c:forEach>
 				</ul>
@@ -1017,219 +1014,301 @@ body {
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="../letsnotbeliketaesu/js/default.js"></script>
 	<script>
-	var search = $('#search');
-	var searchOption = $("#searchOption");
-	var keyword = "";
-	var searchOptionNum= 1;
-	search.keyup(function() {
-		keyword = search.val();
-	});
-	searchOption.change(function() {
-		alert(this.value);
-		searchOptionNum = this.value;
-	})
-	
-	$(function(){
-	    $( "#search" ).autocomplete({
-	        source : function( request, response ) {
-	             $.ajax({
-	                    type: 'post',
-	                    url: "autocomplete.do",
-	                    dataType: "json",
-	                    data: {"searchOption":searchOptionNum,"keyword":keyword},
-	                    success: function(data) {
-	                        //서버에서 json 데이터 response 후 목록에 뿌려주기 위함
-	                        response(
-	                            $.map(data, function(item) {
-	                                return {
-	                                    label: item.title,
-	                                    value: item.title
-	                                }
-	                            })
-	                        );
-	                    }
-	               });
-	            },
-	        //조회를 위한 최소글자수
-	        minLength: 2,
-	        select: function( event, ui ) {
-	            // 만약 검색리스트에서 선택하였을때 선택한 데이터에 의한 이벤트발생
-	        }
-	    });
-	});
-       
-	var list = $('.best_book_list');
-	list.click(function() {
-		
-		var q = "";
-			q = $(this).data('title');
-		function getBook() {
+		var search = $('#search');
+		var searchOption = $("#searchOption");
+		var keyword = "";
+		var searchOptionNum = 1;
+		search.keyup(function() {
+			keyword = search.val();
+		});
+		searchOption.change(function() {
+			alert(this.value);
+			searchOptionNum = this.value;
+		})
+
+		$(function() {
+			$("#search").autocomplete({
+				source : function(request, response) {
+					$.ajax({
+						type : 'post',
+						url : "autocomplete.do",
+						dataType : "json",
+						data : {
+							"searchOption" : searchOptionNum,
+							"keyword" : keyword
+						},
+						success : function(data) {
+							//서버에서 json 데이터 response 후 목록에 뿌려주기 위함
+							response($.map(data, function(item) {
+								return {
+									label : item.title,
+									value : item.title
+								}
+							}));
+						}
+					});
+				},
+				//조회를 위한 최소글자수
+				minLength : 2,
+				select : function(event, ui) {
+					// 만약 검색리스트에서 선택하였을때 선택한 데이터에 의한 이벤트발생
+				}
+			});
+		});
+
+		var list = $('.best_book_list');
+		list
+				.click(function() {
+
+					var q = "";
+					q = $(this).data('title');
+					function getBook() {
+						$.ajax({
+							url : "getBook.do",
+							type : "post",//post방식
+							dataType : "json",//json
+							data : {
+								"title" : q
+							},//넘어가는 파라미터
+							error : function() {
+								alert("에러!!");
+							},
+							success : function(json) {
+								$(json).each(function() {
+									var title = $('.title');
+									var bookWriter = $('.book_writer');
+									var book_intro = $('.book_intro');
+									var cover = $('.cover');
+									title.text(this.title);
+									bookWriter.text(this.book_writer);
+									cover.attr('src', this.image);
+									cover.attr('alt', this.title + '의 커버 사진');
+									book_intro.text(this.introduce);
+								});//each() end
+								setTimeout(screenHide, 500);
+							}
+						});//$.ajax() end
+					}//getBook() end	
+
+					var isbn = "";
+					isbn = $(this).data('isbn');
+					function getReview() {
+						$
+								.ajax({
+									url : "getReview.do",
+									type : "post",//post방식
+									dataType : "json",//json
+									data : {
+										"isbn" : isbn
+									},//넘어가는 파라미터
+									error : function() {
+										alert("에러!!");
+									},
+									success : function(json) {
+										var Cnum = 0;
+										$(json)
+												.each(
+														function() {
+															var review_box = $("<div class='review_box' data-num='"+this.ROWNUM+"'>");
+															var review_balloon = $("<div class='review_balloon'>");
+															var review_writer = $(
+																	"<div class='review_writer'>")
+																	.text(
+																			this.review_writer);
+															var content = $(
+																	"<div class='content_wrap'>")
+																	.text(
+																			this.content);
+															var review_update_date = $(
+																	"<p class='review_update_date'>")
+																	.text(
+																			this.regdate);
+															var user_img = $("<img class='user_img' src='../last_project/img/user.jpg'>");
+
+															review_balloon
+																	.append(
+																			review_writer,
+																			content,
+																			review_update_date);
+															review_box
+																	.append(
+																			user_img,
+																			review_balloon);
+															$(".book_info_li")
+																	.append(
+																			review_box);
+															Cnum = this.ROWNUM;
+
+														});//each() end
+										$(".book_info_li").attr("data-isbn",
+												isbn);
+										$
+												.ajax({
+													url : "getCountReview.do",
+													type : "post",//post방식
+													dataType : "json",//json
+													data : {
+														"isbn" : isbn
+													},//넘어가는 파라미터
+													error : function() {
+														alert("에러!!");
+													},
+													success : function(json) {
+														$(json)
+																.each(
+																		function() {
+																			$(
+																					".book_review_start")
+																					.text(
+																							"코멘트 ("
+																									+ this.num
+																									+ ")");
+																			if (this.num == Cnum) {
+																				$(
+																						".review_more")
+																						.hide();
+																			}
+																		});//each() end
+													}//success end
+												});//$.ajax() end
+									}//success end
+								});//$.ajax() end
+					}//getReview() end
+
+					getReview();
+					getBook();
+					function screenHide() {
+						$('.book_info_table').show();
+						$('.screen').show();
+					}
+				});
+
+		$(".review_more")
+				.click(
+						function() {
+							var lastNum = $(".review_box:last")
+									.attr("data-num");
+							var isbn = $(".book_info_li").attr("data-isbn");
+							$
+									.ajax({
+										url : "getReviewMore.do",
+										type : "post",//post방식
+										dataType : "json",//json
+										data : {
+											"num" : lastNum,
+											"isbn" : isbn
+										},
+										error : function() {
+											alert("에러!!");
+										},
+										success : function(json) {
+											var Cnum = 0;
+											$(json)
+													.each(
+															function() {
+																var review_box = $("<div class='review_box' data-num='"+this.ROWNUM+"'>");
+																var review_balloon = $("<div class='review_balloon'>");
+																var review_writer = $(
+																		"<div class='review_writer'>")
+																		.text(
+																				this.review_writer);
+																var content = $(
+																		"<div class='content_wrap'>")
+																		.text(
+																				this.content);
+																var review_update_date = $(
+																		"<p class='review_update_date'>")
+																		.text(
+																				this.regdate);
+																var user_img = $("<img class='user_img' src='../last_project/img/user.jpg'>");
+
+																review_balloon
+																		.append(
+																				review_writer,
+																				content,
+																				review_update_date);
+																review_box
+																		.append(
+																				user_img,
+																				review_balloon);
+																$(
+																		".book_info_li")
+																		.append(
+																				review_box);
+																Cnum = this.ROWNUM;
+															});//each() end
+
+											$
+													.ajax({
+														url : "getCountReview.do",
+														type : "post",//post방식
+														dataType : "json",//json
+														data : {
+															"isbn" : isbn
+														},//넘어가는 파라미터
+														error : function() {
+															alert("에러!!");
+														},
+														success : function(json) {
+															$(json)
+																	.each(
+																			function() {
+																				$(
+																						".book_review_start")
+																						.text(
+																								"코멘트 ("
+																										+ this.num
+																										+ ")");
+																				if (this.num == Cnum) {
+																					$(
+																							".review_more")
+																							.hide();
+																				}
+																			});//each() end
+														}
+													});//$.ajax() end
+										}
+									});//ajax end
+
+						});
+
+		$('.screen').click(function() {
+			$('.book_info_table').hide();
+			$('.screen').hide();
+			$(".book_info_li").empty();
+			var title = $('.title');
+			var bookWriter = $('.book_writer');
+			var cover = $('.cover');
+			title.text('');
+			bookWriter.text('');
+			cover.attr('alt', '');
+			cover.attr('src', '');
+			$(".book_info_li").attr("data-isbn", "");
+		});
+
+		var btn = $('.report_btn');
+		btn.click(function() {
+			var report_reason = $('.report_reason').val();
+			var review_num = $('.review_num').val();
+			var reporter_name = $('.reporter_name').val();
+
 			$.ajax({
-				url:"getBook.do",
-				type:"post",//post방식
-				dataType:"json",//json
-				data:{"title":q},//넘어가는 파라미터
-				error:function(){
+				url : "report.do",
+				type : "post",//post방식
+				dataType : "json",//json
+				data : {
+					"report_reason" : report_reason,
+					"review_num" : review_num,
+					"reporter_name" : reporter_name
+				},
+				error : function() {
 					alert("에러!!");
 				},
-				success:function(json) {
-					$(json).each(function() {
-						var title = $('.title');
-						var bookWriter = $('.book_writer');
-						var book_intro = $('.book_intro');
-						var cover = $('.cover');
-						title.text(this.title);
-						bookWriter.text(this.book_writer);
-						cover.attr('src',this.image);
-						cover.attr('alt',this.title+'의 커버 사진');
-						book_intro.text(this.introduce);
-					});//each() end
-					setTimeout(screenHide, 500);
+				success : function(json) {
+					alert("성공!!");
 				}
-		});//$.ajax() end
-	}//getBook() end	
-	
-
-	var isbn = "";
-		isbn = $(this).data('isbn');
-	function getReview() {
-		$.ajax({
-			url:"getReview.do",
-			type:"post",//post방식
-			dataType:"json",//json
-			data:{"isbn":isbn},//넘어가는 파라미터
-			error:function(){
-				alert("에러!!");
-			},
-			success:function(json) {
-				var Cnum = 0; 
-				$(json).each(function() {
-					var review_box = $("<div class='review_box' data-num='"+this.ROWNUM+"'>");
-					var review_balloon = $("<div class='review_balloon'>");
-					var review_writer = $("<div class='review_writer'>").text(this.review_writer);
-					var content = $("<div class='content_wrap'>").text(this.content);
-					var review_update_date = $("<p class='review_update_date'>").text(this.regdate);
-					var user_img = $("<img class='user_img' src='../last_project/img/user.jpg'>");
-					
-					review_balloon.append(review_writer,content,review_update_date);
-					review_box.append(user_img,review_balloon);
-					$(".book_info_li").append(review_box);
-					Cnum= this.ROWNUM;
-					
-				});//each() end
-				$(".book_info_li").attr("data-isbn",isbn);
-				$.ajax({
-					url:"getCountReview.do",
-					type:"post",//post방식
-					dataType:"json",//json
-					data:{"isbn":isbn},//넘어가는 파라미터
-					error:function(){
-						alert("에러!!");
-					},
-					success:function(json) {	
-						$(json).each(function() {
-							$(".book_review_start").text("코멘트 ("+this.num+")");
-							if(this.num==Cnum){
-								$(".review_more").hide();
-							}
-						});//each() end
-					}//success end
-				});//$.ajax() end
-			}//success end
-		});//$.ajax() end
-	}//getReview() end
-	
-	getReview();
-	getBook();
-	function screenHide() {
-			$('.book_info_table').show();
-			$('.screen').show();	
-	}
-	});
-	
-	
-	$(".review_more").click(function() {
-		var lastNum = $(".review_box:last").attr("data-num");
-		var isbn = $(".book_info_li").attr("data-isbn");
-		$.ajax({
-			url:"getReviewMore.do",
-			type:"post",//post방식
-			dataType:"json",//json
-			data:{"num":lastNum,"isbn":isbn},
-			error:function(){
-				alert("에러!!");
-			},
-			success:function(json) {
-				var Cnum = 0; 
-				$(json).each(function() {
-					var review_box = $("<div class='review_box' data-num='"+this.ROWNUM+"'>");
-					var review_balloon = $("<div class='review_balloon'>");
-					var review_writer = $("<div class='review_writer'>").text(this.review_writer);
-					var content = $("<div class='content_wrap'>").text(this.content);
-					var review_update_date = $("<p class='review_update_date'>").text(this.regdate);
-					var user_img = $("<img class='user_img' src='../last_project/img/user.jpg'>");
-					
-					review_balloon.append(review_writer,content,review_update_date);
-					review_box.append(user_img,review_balloon);
-					$(".book_info_li").append(review_box);
-					Cnum= this.ROWNUM;
-				});//each() end
-				
-				$.ajax({
-					url:"getCountReview.do",
-					type:"post",//post방식
-					dataType:"json",//json
-					data:{"isbn":isbn},//넘어가는 파라미터
-					error:function(){
-						alert("에러!!");
-					},
-					success:function(json) {
-						$(json).each(function() {
-							$(".book_review_start").text("코멘트 ("+this.num+")");
-							if(this.num==Cnum){
-								$(".review_more").hide();
-							}
-						});//each() end
-					}
-				});//$.ajax() end
-			}
-		});//ajax end
-		
-	});
-	
-	$('.screen').click(function() {
-		$('.book_info_table').hide();
-		$('.screen').hide();
-		$(".book_info_li").empty();
-		var title = $('.title');
-		var bookWriter = $('.book_writer');
-		var cover = $('.cover');
-		title.text('');
-		bookWriter.text('');
-		cover.attr('alt','');
-		cover.attr('src','');
-		$(".book_info_li").attr("data-isbn","");
-	});
-	
-	var btn = $('.report_btn');
-	btn.click(function () {
-		var report_reason = $('.report_reason').val();
-		var review_num = $('.review_num').val();
-		var reporter_name = $('.reporter_name').val();
-		
-		$.ajax({
-			url:"report.do",
-			type:"post",//post방식
-			dataType:"json",//json
-			data:{"report_reason":report_reason,"review_num":review_num,"reporter_name":reporter_name},
-			error:function(){
-				alert("에러!!");
-			},
-			success:function(json) {
-				alert("성공!!");
-			}
-		});//$.ajax() end
-	});
-</script>
+			});//$.ajax() end
+		});
+	</script>
 </body>
 </html>
