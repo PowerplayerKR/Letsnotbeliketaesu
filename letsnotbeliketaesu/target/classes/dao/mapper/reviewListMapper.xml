@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="dao.IReviewListDao">
+  	<select id="selectAllReviewList" resultType="java.util.HashMap">
+  		SELECT *
+  		FROM review_list
+  	</select>
+  	<select id="selectCountReviewList" parameterType="String" resultType="int">
+  		SELECT count(*) as 'num'
+  		FROM review_list
+  		WHERE isbn = #{isbn}
+  	</select>
+  	<select id="selectReviewList" parameterType="String" resultType="java.util.HashMap">
+  			SELECT CAST(@ROWNUM := @ROWNUM + 1 AS signed integer) AS ROWNUM,review_writer,content,isbn,DATE_FORMAT(regdate, "%Y년 %m월 %d일") as 'regdate'
+			FROM (SELECT @ROWNUM := 0) R,review_list
+			WHERE isbn = #{isbn}
+            ORDER BY num desc
+  			LIMIT 0,5
+  	</select>
+  	<select id="selectReviewListMore" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+  			SELECT CAST(@ROWNUM := @ROWNUM + 1 AS signed integer) AS ROWNUM,review_writer,content,isbn,DATE_FORMAT(regdate, "%Y년 %m월 %d일") as 'regdate'
+			FROM (SELECT @ROWNUM := 0) R,review_list
+			WHERE isbn = #{isbn}
+            ORDER BY num desc
+  	</select>
+  	<insert id="insertReviewList" parameterType="java.util.HashMap">
+  		INSERT INTO review_list
+  		VALUES 0,#{review_email},#{review_writer},#{content},#{isbn},#{regdate}
+  	</insert>
+  	<update id="updateReviewList" parameterType="java.util.HashMap" >
+  		UPDATE review_list
+  		SET review_writer=#{review_writer},content=#{content},isbn=#{isbn},regdate=#{regdate}
+  		WHERE num=#{num} 
+  	</update>
+  	<delete id="deleteReviewList" parameterType="int">
+  		DELETE FROM review_list
+  		WHERE num=#{num}
+  	</delete>
+  
+  </mapper>

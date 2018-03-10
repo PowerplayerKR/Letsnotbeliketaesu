@@ -68,7 +68,7 @@
         <button type="submit" class="form-control btn btn-primary">로그인</button>
     </div>
     <div id="join">
-  <button type="submit" class="form-control btn btn-primary">회원가입</button>
+  <button type="button" class="form-control btn btn-primary" onclick="location.href='joinForm.do'">회원가입</button>
     </div>
   </form>
 </div>

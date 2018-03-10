@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.IBookDao">
+	<sql id="bookInfo">
+		<choose>
+			<when test=""></when>
+		</choose>
+	</sql>
+
+	<select id="selectAllBook" resultType="java.util.HashMap">
+		SELECT *
+		FROM book
+	</select>
+	<select id="selectBook" parameterType="String" resultType="java.util.HashMap">
+		SELECT *
+		FROM book
+		WHERE title = #{title}
+	</select>
+	<insert id="insertBook" parameterType="java.util.HashMap">
+		INSERT INTO book
+		VALUES
+		0,#{title},#{introduce},#{book_writer},#{category_num},
+		#{image},#{public_date},#{publisher},0,now()
+	</insert>
+	<update id="updateBook" parameterType="java.util.HashMap">
+		UPDATE book
+		SET
+		title=#{title},introduce=#{introduce},book_writer=#{book_writer},category_num=#{category_num},
+		image=#{image},public_date=#{public_date},publisher=#{publisher},star_point_avg=#{star_point_avg},regdate=#{regdate}
+		WHERE num=#{num}
+	</update>
+	<delete id="deleteBook" parameterType="int">
+		DELETE FROM book
+		WHERE
+		num=#{num}
+	</delete>
+
+	<sql id="search">
+		<choose>
+			<when test="searchOption='title'">
+				WHERE title LIKE CONCAT('%', #{keyword}, '%')
+			</when>
+			<when test="searchOption='writer'">
+				WHERE book_writer LIKE CONCAT('%', #{keyword},
+				'%')
+			</when>
+			<when test="searchOption='publisher'">
+				WHERE publisher LIKE CONCAT('%', #{keyword}, '%')
+			</when>
+		</choose>
+	</sql>
+
+	<select id="bookSearch" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+			SELECT CAST(@ROWNUM := @ROWNUM + 1 AS signed integer) AS ROWNUM,book.*
+			FROM book left join star_point_list on(book.isbn=star_point_list.isbn and star_point_list.star_point_email='bong'),(SELECT @ROWNUM := 0) R
+			<include refid="search"></include>
+			ORDER BY public_date desc
+			LIMIT 0,20
+	</select>
+	
+	<select id="bookSearchMore" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+				SELECT CAST(@ROWNUM := @ROWNUM + 1 AS signed integer) ROWNUM,book.*
+				FROM book left join star_point_list on(book.isbn=star_point_list.isbn
+				and star_point_list.star_point_email='bong'),
+				(SELECT @ROWNUM := 0) R
+				<include refid="search"></include>
+				ORDER BY public_date desc
+	</select>
+<sql id="selectUserBook">
+		<choose> 
+		 
+			<when test='myPage==1'>
+				favorites on (book.isbn = favorites.isbn and favorites.email = #{email}) 
+			</when>
+			<when test='myPage==2'>
+				 star_point_list on(book.num=star_point_list.book_num and star_point_list.star_point_email=#{email}) left join review_list on(book.isbn=review_list.isbn and review_list.review_email=#{email})
+			</when>
+			<when test='myPage==3'>
+				not_interested on(book.num=not_interested.book_num and not_interested.email=#{email})
+			</when>
+		</choose>
+	</sql>
+	<select id="selectUserBook" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		SELECT *
+		FROM book
+		join
+		<include refid="selectUserBook"></include>
+	</select>
+
+	<select id="selectBookMain" resultType="java.util.HashMap">
+		SELECT * FROM book
+		order
+		by rand() limit 6
+	</select>
+	<select id="bookAutocomplete" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+
+		SELECT *
+
+		FROM book
+
+		<include refid="search"></include>
+
+		LIMIT 0,10;
+
+	</select>
+
+	<!-- 최송은mapper -->
+
+
+
+	<!-- 바꿈 바꿈 -->
+
+	<insert id="starInsert" parameterType="java.util.HashMap">
+
+		insert into
+		star_point_list(star_point_email,isbn,review_num,star_point,regdate)
+
+		values(#{email},#{isbn},#{reviewNum},#{starPoint},now())
+
+	</insert>
+
+	<!-- 바꿈 바꿈 -->
+
+	<update id="starUpdate" parameterType="java.util.HashMap">
+
+		update star_point_list
+
+		set
+
+		star_point=#{starPoint},
+
+		regdate=now()
+
+		where
+
+		star_point_email=#{email} and isbn=#{isbn}
+
+
+
+	</update>
+
+	<!-- 바꿈 바꿈 -->
+
+	<delete id="starDelete" parameterType="java.util.HashMap">
+
+		delete from star_point_list where star_point_email=#{email} and isbn=#{isbn}
+
+
+
+	</delete>
+
+	<!-- 바꿈 바꿈 -->
+
+	<insert id="insertReviewList" parameterType="java.util.HashMap">
+
+		INSERT INTO review_list (num,review_email,review_writer,content,isbn,regdate)
+
+		VALUES (0,#{review_writer},#{review_writer},#{content},#{isbn},now())
+
+	</insert>
+
+
+
+	<!-- 바꿈 바꿈 -->
+
+	<update id="updateReviewList" parameterType="java.util.HashMap">
+
+		UPDATE review_list
+
+		SET content=#{content},regdate=now()
+
+		WHERE review_writer=#{review_writer} and isbn=#{isbn}
+
+	</update>
+
+
+
+	<!-- 바꿈 바꿈 -->
+
+	<delete id="deleteReviewList" parameterType="java.util.HashMap">
+
+		delete from review_list
+
+		where review_writer=#{review_writer} and isbn=#{isbn}
+
+
+
+
+
+	</delete>
+
+	<!-- 바꿈 바꿈 -->
+
+	<update id="starAvgCount" parameterType="java.util.HashMap">
+
+		update book
+
+		set
+
+		star_point_count=star_point_count+1,
+
+		star_point_avg=(star_point_avg*(star_point_count-1)+#{starPoint})/(star_point_count)
+
+		where isbn=#{isbn}
+
+	</update>
+
+
+
+	<!-- 바꿈 바꿈 -->
+
+	<update id="starAvgDelete" parameterType="java.util.HashMap">
+
+		update book
+
+		set
+
+		star_point_count=star_point_count-1,
+
+		star_point_avg=(star_point_avg*(star_point_count+1)-#{starPoint})/(star_point_count)
+
+		where isbn=#{isbn}
+
+
+
+
+
+	</update>
+
+
+
+	<!-- 바꿈 바꿈 -->
+
+	<update id="starAvgUpdate" parameterType="java.util.HashMap">
+
+		update book
+
+		set
+
+		star_point_avg=((star_point_avg*star_point_count)+#{starSub})/star_point_count
+
+		where isbn=#{isbn}
+
+	</update>
+
+
+
+	<!-- 바꿈 바꿈 -->
+
+	<select id="recommended1" parameterType="String" resultType="java.util.HashMap">
+  	<![CDATA[ 
+  	select num,title,introduce,book_writer,category_num,
+		image,public_date,publisher,star_point_avg,book.isbn,book.regdate,
+		avg(star_point)as avs,count(*)as coun from(
+	select isbn,star_point from(
+	select star_point_email ,(sum(distance) / (sqrt(sum(pow(star_point,2))*sum((select pow(star_point,2) from star_point_list where star_point_email=#{email} and isbn=m.isbn))) ))as p from 
+	(select star_point_email,isbn,star_point,(star_point*(select star_point from star_point_list where star_point_email=#{email} and a.isbn=isbn))as distance
+	from star_point_list as a where isbn in(select isbn from star_point_list where star_point_email=#{email}) and star_point_email<>#{email} )as m 
+	group by star_point_email)as z join star_point_list on z.star_point_email=star_point_list.star_point_email where isbn Not in(select isbn from star_point_list where star_point_email=#{email})
+	)as m join book on book.isbn=m.isbn group by m.isbn order by rand() limit 5
+  	]]> 
+  	</select>
+  	<select id="recommended2" parameterType="String" resultType="java.util.HashMap">
+  	select * from book where category_num in(
+		select category_num from (
+			select *,count(category_num)as x from book where isbn in(
+			SELECT isbn FROM project.star_point_list where star_point_email=#{email})group by category_num order by x desc limit 2)as x)and isbn not in(SELECT isbn FROM project.star_point_list where star_point_email=#{email}) order by rand() limit 10;
+  	</select>
+
+
+
+
+
+</mapper>

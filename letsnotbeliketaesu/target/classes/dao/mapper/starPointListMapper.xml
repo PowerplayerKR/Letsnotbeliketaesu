@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.IStarPointListDao">
+	<insert id="starInsert" parameterType="java.util.HashMap">
+		insert into
+		star_point_list(star_point_email,book_num,review_num,star_point,regdate)
+		values(#{email},#{name},#{bookNum},#{reviewNum},#{starPoint},now())
+	</insert>
+
+	<update id="starUpdate" parameterType="java.util.HashMap">
+		update star_point_list
+		set
+		star_point=#{starPoint},
+		regdate=now()
+		where
+		star_point_email=#{email}
+		and book_num=#{bookNum}
+
+	</update>
+	<delete id="starDelete" parameterType="java.util.HashMap">
+		delete from
+		star_point_list where star_point_email=#{email} and
+		book_num=#{bookNum}
+
+	</delete>
+
+</mapper>

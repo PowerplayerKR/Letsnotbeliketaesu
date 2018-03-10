@@ -13,716 +13,693 @@
 
 <title>LNBLT Main</title>
 <style>
-body {
-	background: #E5E5E5;
-}
-
-.book_info_table {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	background: rgb(250, 248, 248);
-	width: 800px;
-	margin-left: -400px;
-	margin-top: 150px;
-	display: none;
-	z-index: 5;
-}
-
-.booklist {
-	overflow: hidden;
-	border-radius: 5px;
-	background-color: pink;
-	position: absolute !important;
-	height: 314px;
-	float: left;
-	margin: 10px;
-	width: 220px;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	vertical-align: baseline;
-}
-
-.top-0 {
-	top: 150px;
-}
-
-.top-1 {
-	top: 550px;
-}
-
-.top-2 {
-	top: 950px;
-}
-
-.top-3 {
-	top: 1350px;
-}
-
-.left-0 {
-	left: 360px;
-}
-
-.left-1 {
-	left: 600px;
-}
-
-.left-2 {
-	left: 840px;
-}
-
-.left-3 {
-	left: 1080px;
-}
-
-.left-4 {
-	left: 1320px;
-}
-
-.left-5 {
-	left: 1560px;
-}
-
-.screen {
-	position: fixed;
-	width: 10000px;
-	height: 10000px;
-	background: rgba(200, 200, 200, .5);
-	display: none;
-}
-
-.booktitle {
-	position: absolute;
-}
-
-.booktitle-top-0 {
-	top: 125px;
-}
-
-.booktitle-top-1 {
-	top: 525px;
-}
-
-.booktitle-top-2 {
-	top: 925px;
-}
-
-body {
-	font-family: 'Noto Sans KR', sans-serif;
-	text-align: center;
-	background-color: #FFEBEE;
-}
-
-.screen_out {
-	width: 0;
-	height: 0;
-	line-height: 0;
-	text-indent: -9999px;
-	overflow: hidden;
-	display: block;
-	position: absolute;
-}
-
-.book_wrap {
-	width: 1250px;
-	height: 100%;
-	list-style: none;
-	padding: 0;
-	margin: 0;
-}
-
-.book_wrap li {
-	width: 220px;
-	height: 314px;
-	display: block;
-	margin: 15px;
-	float: left;
-	position: relative;
-	overflow: hidden;
-	cursor: pointer;
-}
-
-.book_wrap a {
-	text-decoration: none;
-	color: #424242;
-}
-
-.book_wrap #content {
-	margin: auto;
-	width: 1250px;
-}
-
-.book_wrap .info_box {
-	width: 220px;
-	height: 170px;
-	position: absolute;
-	top: 170px;
-	left: 0;
-	background: #fff;
-	transform: translateY(340px);
-	transition: .3s ease;
-}
-
-.book_wrap #footer {
-	clear: both;
-	line-height: 20px;
-}
-
-.book_wrap h1 {
-	color: orange;
-}
-
-.book_wrap hr {
-	border: dotted .5px gray;
-	margin: 10px;
-}
-
-.book_wrap button {
-	width: 110px;
-	height: 40px;
-	background: #fff;
-	border: 0px;
-	margin-top: 25px;
-	cursor: pointer;
-	color: gray;
-	transition: .3s ease;
-	position: absolute;
-}
-
-.book_wrap .wish_btn {
-	left: 0px;
-}
-
-.book_wrap .comment_btn {
-	right: 0px;
-}
-
-.book_wrap .wish_btn:hover {
-	color: hotpink;
-}
-
-.book_wrap .comment_btn:hover {
-	color: #4DB6AC;
-}
-
-.book_wrap li:hover .info_box {
-	transform: translateY(0px);
-}
-
-.info_box h3 {
-	overflow: hidden;
-}
-
-.book_wrap li:hover {
-	box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0
-		rgba(0, 0, 0, 0.19);
-}
-
-.book_wrap li:nth-child(7) button {
-	top: 70px
-}
-
-.book_wrap li:hover::before {
-	content: "";
-	width: 220px;
-	height: 314px;
-	position: absolute;
-	display: block;
-	transition: .5s ease;
-	background: rgba(0, 0, 0, .7)
-}
-
-.star_rating {
-	letter-spacing: -4px;
-}
-
-.star_rating i {
-	letter-spacing: 0;
-	display: inline-block;
-	margin-left: -1px;
-	color: #ccc;
-	text-decoration: none;
-	position: relative;
-}
-
-.star_rating i.fa-star, .star_rating i.fa-star-half-o {
-	color: yellow;
-}
-
-.head {
-	display: block;
-	position: absolute;
-	width: 50%;
-	height: 100%;
-	top: 0;
-	left: 0%;
-}
-
-.tail {
-	display: block;
-	position: absolute;
-	width: 50%;
-	height: 100%;
-	top: 0;
-	left: 50%;
-}
-
-#comment {
-	width: 600px;
-	height: 300px;
-	padding: 0px;
-	background: #737373;
-	margin: 0;
-	padding: 0;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	margin: -150px 0 0 -300px;
-	display: none;
-	z-index: 33;
-	border-radius: 2px;
-	text-align: left;
-}
-
-#comment_content_wrap {
-	width: 100%;
-	height: 70%;
-	position: absolute;
-	top: 20%;
-	left: 0%;
-	margin: 0;
-	padding: 0;
-	margin: 30px 0 0 0;
-}
-
-#comment_content_wrap_img {
-	position: absolute;
-	margin: 0;
-	padding: 0;
-	border: 0;
-	width: 15%;
-	height: 40%;
-	margin: -30px 0 0 15px;
-}
-
-#inputText {
-	position: absolute;
-	margin: 0;
-	padding: 0;
-	border: 0;
-	width: 75%;
-	height: 70%;
-	margin: 0 0 0 125px;
-}
-
-#comment_content_wrap_button {
-	position: absolute;
-	margin: 0;
-	padding: 0;
-	width: 60px;
-	height: 40px;
-	bottom: 5%;
-	right: 3%;
-	border: 0px;
-	background: yellow;
-	border-radius: 20px;
-}
-
-#comment_content_wrap_star_rating {
-	position: absolute;
-	margin: -30px 0 0 125px;
-	padding: 0;
-	letter-spacing: 0;
-	display: inline-block;
-	color: #ccc;
-	text-decoration: none;
-	position: absolute;
-}
-
-#comment_content_wrap_star_rating i {
-	color: #ffff00;
-}
-
-#body_blind_wrap {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	margin: 0;
-	padding: 0;
-	border: 0;
-	z-index: 32;
-	background-color: #000000;
-	opacity: 0.3;
-	display: none;
-}
-
-#comment_content_wrap_star_grade_wrap {
-	width: 222px;
-	height: 250px;
-	position: absolute;
-	margin: 0 0 0 -111px;
-	z-index: 51;
-	display: none;
-}
-
-#comment_content_wrap_star_grade_head {
-	width: 100%;
-	height: 10%;
-	position: absolute;
-}
-
-#comment_content_wrap_star_grade_head_up {
-	margin: 2px 0 0 106px;
-}
-
-#comment_content_wrap_star_grade_body {
-	width: 100%;
-	height: 90%;
-	position: absolute;
-	margin: 25px 0 0 0;
-	background: gray;
-	border-radius: 10px;
-}
-
-#comment_blind_wrap {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	background: white;
-	opacity: 0.5;
-	display: none;
-	z-index: 50;
-}
-
-#comment_content_wrap_star_grade_body_star {
-	width: 80%;
-	height: 37px;
-	margin: -20px 0 0 22px;
-}
-
-#comment_head {
-	width: 100%;
-	height: 20%;
-	position: absolute;
-}
-
-#tool_tip {
-	width: 90px;
-	height: 30px;
-	background: white;
-	text-align: center;
-	display: none;
-	position: absolute;
-	border: 1px solid black;
-	z-index: 99;
-}
-
-#tool_tip_head {
-	margin: -22px 0 0 -9px;
-	position: absolute;
-}
-
-
-.side {
-	position: absolute;
-	top: 100px;
-	width: 220px;
-	height: 500px;
-	background: rgb(255, 56, 46);
-	text-align: left;
-}
-
-.side ol {
-	text-align: center;
-	list-style: none;
-}
-
-.side ol li {
-	padding-bottom: 2px;
-	color: #FFFFFF;
-	position: relative;
-	padding-left: 28px;
-	margin-top: 15px;
-}
-
-.side ol li span {
-	position: absolute;
-	left: 15px;
-	top: 2px;
-	display: block;
-	width: 18px;
-	height: 18px;
-	line-height: 20px;
-	text-align: center;
-	color: black;
-	font-size: 13px;
-	background-color: white;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	border-radius: 3px;
-}
-
-.side ol li:nth-child(1) span {
-	background-color: black;
-	color: white;
-}
-
-.side ol li:nth-child(2) span {
-	background-color: black;
-	color: white;
-}
-
-.side ol li:nth-child(3) span {
-	background-color: black;
-	color: white;
-}
-
-.side ol li a {
-	color: #FFFFFF;
-	line-height: 20px;
-	width: 160px;
-	display: inline-block;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	text-decoration: none;
-}
-
-.side h4 {
-	position: relative;
-	height: 50px;
-	line-height: 30px;
-	font-size: 14px;
-	text-indent: 15px;
-	border-bottom: 1px solid black;
-	display: block;
-	-webkit-margin-before: 1.33em;
-	-webkit-margin-after: 1.33em;
-	-webkit-margin-start: 0px;
-	-webkit-margin-end: 0px;
-	font-weight: bold;
-	text-align: center;
-}
-
-.book_info_table {
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	background: #FAF8F5;
-	width: 800px;
-	height: 750px;
-	margin-top: -351px;
-	margin-left: -401px;
-	display: none;
-	z-index: 5;
-}
-
-.book_info_wrap {
-	position: relative;
-	width: 800px;
-	height: 290px;
-	border-bottom: 1px solid #d5d5d5;
-	background-color: white;
-}
-
-.screen {
-	position: fixed;
-	width: 10000px;
-	height: 10000px;
-	background: rgba(51, 51, 51, 0.5);
-	display: none;
-	z-index: 4;
-}
-
-.cover {
-	width: 200px;
-	height: 250px;
-	position: absolute;
-	top: 15px;
-	left: 20px;
-}
-
-.title {
-	font-weight: bold;
-	font-size: 20px;
-	line-height: 35px;
-	width: 430px;
-	color: #333333;
-	margin-bottom: 5px;
-	display: inline-block;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	text-decoration: none;
-}
-
-.book_writer {
-	position: absolute;
-	left: 230px;
-	top: 80px;
-}
-
-.info {
-	position: absolute;
-	left: 220px;
-	top: 20px;
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	font-size: 100%;
-	vertical-align: baseline;
-	border-bottom: 1px solid #ded6c7;
-}
-
-.book_intro_start {
-	font-size: 14px;
-	font-weight: bold;
-	color: #555555;
-	margin-top: 20px;
-	margin-left: 20px;
-	margin-bottom: 20px;
-}
-
-.book_intro {
-	margin-left: 20px;
-}
-
-.book_intro_start {
-	font-size: 14px;
-	font-weight: bold;
-	color: #555555;
-	margin-top: 20px;
-	margin-left: 20px;
-	margin-bottom: 20px;
-}
-
-.book_intro {
-	margin-left: 20px;
-}
-
-.book_review_start {
-	margin-top: 20px;
-	margin-left: 20px;
-	font-size: 14px;
-	font-weight: bold;
-	color: #555555;
-}
-
-.review_balloon {
-	display: inline-block;
-	position: relative;
-	background: #FFFFFF;
-	height: 125px;
-	width: 487px;
-	margin: 0 auto 10px;
-	border-radius: 10px;
-	margin-left: 30px;
-	margin-top: 20px;
-	border: 1px solid #eeeeee;
-}
-
-.review_balloon:after {
-	content: "";
-	position: absolute;
-	height: 50px;
-	width: 50px;
-	border-radius: 25px;
-	z-index: -2;
-	background: #fff;
-	bottom: 80px;
-	left: -20px;
-	border: 1px solid #eeeeee;
-}
-
-.review_balloon:before {
-	content: "";
-	position: absolute;
-	height: 100px;
-	width: 100px;
-	border-radius: 50px;
-	z-index: -1;
-	background: #FAF8F5;
-	bottom: 90px;
-	left: -30px;
-}
-
-.review_box {
-	margin-top: 10px;
-	margin-left: 30px;
-}
-
-.content_wrap {
-	width: 300px;
-	height: 50px;
-	margin-top: 10px;
-	line-height: 20px;
-	color: #555555;
-	font-size: 14px;
-	white-space: pre-wrap;
-	margin-left: 20px;
-	overflow: hidden;
-}
-
-.review_writer {
-	font-size: 14px;
-	margin-left: 20px;
-	margin-top: 5px;
-}
-
-.review_update_date {
-	display: block;
-	color: #aaaaaa;
-	font-size: 12px;
-	position: absolute;
-	bottom: 20px;
-	left: 20px;
-}
-
-.review_more {
-	color: #777777;
-	font-size: 12px;
-	font-weight: bold;
-	height: 40px;
-	line-height: 40px;
-	background-color: #fff;
-	border: 1px solid #e8e4dc;
-	text-align: center;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	border-radius: 3px;
-	margin-top: 20px;
-	cursor: pointer;
-	margin-bottom: 50px;
-}
-
-.book {
-	position: relative;
-	width: 100%;
-	height: auto;
-}
-
-.user_img {
-	display: inline-block;
-	position: relative;
-	-moz-border-radius: 50%;
-	-webkit-border-radius: 50%;
-	border-radius: 50%;
-	border: 1px solid #d4d8d9;
-	width: 52px;
-	height: 52px;
-}
-
-#header {
-	top: 0;
-}
-
-.book_title {
-	width: 220px;
-	height: 17px;
-	overflow: hidden;
-}
+	body {
+		background: #E5E5E5;
+		font-family: 'Noto Sans KR', sans-serif;
+		text-align: center;
+	}
+	.book_info_table {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		background: rgb(250, 248, 248);
+		width: 800px;
+		margin-left: -400px;
+		margin-top: -400px;
+		display: none;
+		z-index: 5;
+	}
+	
+	.book_list {
+		overflow: hidden;
+		border-radius: 5px;
+		background-color: pink;
+		position: absolute !important;
+		height: 314px;
+		float: left;
+		margin: 10px;
+		width: 220px;
+		padding: 0;
+		border: 0;
+		font: inherit;
+		vertical-align: baseline;
+	}
+	
+	.top-0 {
+		top: 150px;
+	}
+	
+	.top-1 {
+		top: 550px;
+	}
+	
+	.top-2 {
+		top: 950px;
+	}
+	
+	.top-3 {
+		top: 1350px;
+	}
+	
+	.left-0 {
+		left: 360px;
+	}
+	
+	.left-1 {
+		left: 600px;
+	}
+	
+	.left-2 {
+		left: 840px;
+	}
+	
+	.left-3 {
+		left: 1080px;
+	}
+	
+	.left-4 {
+		left: 1320px;
+	}
+	
+	.left-5 {
+		left: 1560px;
+	}
+	
+	.screen {
+		position: fixed;
+		width: 10000px;
+		height: 10000px;
+		background: rgba(200, 200, 200, .5);
+		display: none;
+	}
+	
+	.booktitle {
+		position: absolute;
+	}
+	
+	.booktitle-top-0 {
+		top: 125px;
+	}
+	
+	.booktitle-top-1 {
+		top: 525px;
+	}
+	
+	.booktitle-top-2 {
+		top: 925px;
+	}
+	
+	.screen_out {
+		width: 0;
+		height: 0;
+		line-height: 0;
+		text-indent: -9999px;
+		overflow: hidden;
+		display: block;
+		position: absolute;
+	}
+	
+	.book_wrap {
+		width: 1250px;
+		height: 100%;
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+	
+	.book_wrap li {
+		width: 220px;
+		height: 314px;
+		display: block;
+		margin: 15px;
+		float: left;
+		position: relative;
+		overflow: hidden;
+		cursor: pointer;
+	}
+	
+	.book_wrap a {
+		text-decoration: none;
+		color: #424242;
+	}
+	
+	.book_wrap #content {
+		position: relative;
+    	top: -290px;
+		width: 1250px;
+	}
+	
+	.book_wrap .info_box {
+		width: 220px;
+		height: 170px;
+		position: absolute;
+		top: 170px;
+		left: 0;
+		background: #fff;
+		transform: translateY(340px);
+		transition: .3s ease;
+		z-index:3;
+	}
+	
+	.book_wrap #footer {
+		clear: both;
+		line-height: 20px;
+	}
+	
+	.book_wrap h1 {
+		color: orange;
+	}
+	
+	.book_wrap hr {
+		border: dotted .5px gray;
+		margin: 10px;
+	}
+	
+	.book_wrap button {
+		width: 110px;
+		height: 40px;
+		background: #fff;
+		border: 0px;
+		margin-top: 25px;
+		cursor: pointer;
+		color: gray;
+		transition: .3s ease;
+		position: absolute;
+	}
+	
+	.book_wrap .wish_btn {
+		left: 0px;
+	}
+	
+	.book_wrap .comment_btn {
+		right: 0px;
+	}
+	
+	.book_wrap .wish_btn:hover {
+		color: hotpink;
+	}
+	
+	.book_wrap .comment_btn:hover {
+		color: #4DB6AC;
+	}
+	
+	.book_wrap li:hover .info_box {
+		transform: translateY(0px);
+	}
+	
+	.info_box h3 {
+		overflow: hidden;
+	}
+	
+	.book_wrap li:hover {
+		box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0
+			rgba(0, 0, 0, 0.19);
+	}
+	
+	.book_wrap li:nth-child(7) button {
+		top: 70px
+	}
+	
+	.book_img_wrap:hover::before {
+		content: "";
+		width: 220px;
+		height: 314px;
+		position: absolute;
+		display: block;
+		transition: .5s ease;
+		background: rgba(0, 0, 0, .7)
+	}
+	
+	.info_box:hover+.book_img_wrap::before {
+		content: "";
+		width: 220px;
+		height: 314px;
+		position: absolute;
+		display: block;
+		transition: .5s ease;
+		background: rgba(0, 0, 0, .7)
+	}
+	
+	.star_rating {
+		letter-spacing: -4px;
+	}
+	
+	.star_rating i {
+		letter-spacing: 0;
+		display: inline-block;
+		margin-left: -1px;
+		color: #ccc;
+		text-decoration: none;
+		position: relative;
+	}
+	
+	.star_rating i.fa-star, .star_rating i.fa-star-half-o {
+		color: yellow;
+	}
+	
+	.head {
+		display: block;
+		position: absolute;
+		width: 50%;
+		height: 100%;
+		top: 0;
+		left: 0%;
+	}
+	
+	.tail {
+		display: block;
+		position: absolute;
+		width: 50%;
+		height: 100%;
+		top: 0;
+		left: 50%;
+	}
+	
+	#comment {
+		width: 600px;
+		height: 300px;
+		padding: 0px;
+		background: #737373;
+		margin: 0;
+		padding: 0;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin: -150px 0 0 -300px;
+		display: none;
+		z-index: 33;
+		border-radius: 2px;
+		text-align: left;
+	}
+	
+	#comment_content_wrap {
+		width: 100%;
+		height: 70%;
+		position: absolute;
+		top: 20%;
+		left: 0%;
+		margin: 0;
+		padding: 0;
+		margin: 30px 0 0 0;
+	}
+	
+	#comment_content_wrap_img {
+		position: absolute;
+		margin: 0;
+		padding: 0;
+		border: 0;
+		width: 15%;
+		height: 40%;
+		margin: -30px 0 0 15px;
+	}
+	
+	#inputText {
+		position: absolute;
+		margin: 0;
+		padding: 0;
+		border: 0;
+		width: 75%;
+		height: 70%;
+		margin: 0 0 0 125px;
+	}
+	
+	#comment_content_wrap_button {
+		position: absolute;
+		margin: 0;
+		padding: 0;
+		width: 60px;
+		height: 40px;
+		bottom: 5%;
+		right: 3%;
+		border: 0px;
+		background: yellow;
+		border-radius: 20px;
+	}
+	
+	#comment_content_wrap_star_rating {
+		position: absolute;
+		margin: -30px 0 0 125px;
+		padding: 0;
+		letter-spacing: 0;
+		display: inline-block;
+		color: #ccc;
+		text-decoration: none;
+		position: absolute;
+	}
+	
+	#comment_content_wrap_star_rating i {
+		color: #ffff00;
+	}
+	
+	#body_blind_wrap {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		border: 0;
+		z-index: 32;
+		background-color: #000000;
+		opacity: 0.3;
+		display: none;
+	}
+	
+	#comment_content_wrap_star_grade_wrap {
+		width: 222px;
+		height: 250px;
+		position: absolute;
+		margin: 0 0 0 -111px;
+		z-index: 51;
+		display: none;
+	}
+	
+	#comment_content_wrap_star_grade_head {
+		width: 100%;
+		height: 10%;
+		position: absolute;
+	}
+	
+	#comment_content_wrap_star_grade_head_up {
+		margin: 2px 0 0 106px;
+	}
+	
+	#comment_content_wrap_star_grade_body {
+		width: 100%;
+		height: 90%;
+		position: absolute;
+		margin: 25px 0 0 0;
+		background: gray;
+		border-radius: 10px;
+	}
+	
+	#comment_blind_wrap {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		background: white;
+		opacity: 0.5;
+		display: none;
+		z-index: 50;
+	}
+	
+	#comment_content_wrap_star_grade_body_star {
+		width: 80%;
+		height: 37px;
+		margin: -20px 0 0 22px;
+	}
+	
+	#comment_head {
+		width: 100%;
+		height: 20%;
+		position: absolute;
+	}
+	
+	#tool_tip {
+		width: 90px;
+		height: 30px;
+		background: white;
+		text-align: center;
+		display: none;
+		position: absolute;
+		border: 1px solid black;
+		z-index: 99;
+	}
+	
+	#tool_tip_head {
+		margin: -22px 0 0 -9px;
+		position: absolute;
+	}
+	
+	
+	.side {
+		position: absolute;
+		top: 100px;
+		width: 220px;
+		height: 500px;
+		background: rgb(255, 56, 46);
+		text-align: left;
+	}
+	
+	.side ol {
+		text-align: center;
+		list-style: none;
+	}
+	
+	.side ol li {
+		padding-bottom: 2px;
+		color: #FFFFFF;
+		position: relative;
+		padding-left: 28px;
+		margin-top: 15px;
+	}
+	
+	.side ol li span {
+		position: absolute;
+		left: 15px;
+		top: 2px;
+		display: block;
+		width: 18px;
+		height: 18px;
+		line-height: 20px;
+		text-align: center;
+		color: black;
+		font-size: 13px;
+		background-color: white;
+		-moz-border-radius: 3px;
+		-webkit-border-radius: 3px;
+		border-radius: 3px;
+	}
+	
+	.side ol li:nth-child(1) span {
+		background-color: black;
+		color: white;
+	}
+	
+	.side ol li:nth-child(2) span {
+		background-color: black;
+		color: white;
+	}
+	
+	.side ol li:nth-child(3) span {
+		background-color: black;
+		color: white;
+	}
+	
+	.side ol li a {
+		color: #FFFFFF;
+		line-height: 20px;
+		width: 160px;
+		display: inline-block;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		text-decoration: none;
+	}
+	
+	.side h4 {
+		position: relative;
+		height: 50px;
+		line-height: 30px;
+		font-size: 14px;
+		text-indent: 15px;
+		border-bottom: 1px solid black;
+		display: block;
+		-webkit-margin-before: 1.33em;
+		-webkit-margin-after: 1.33em;
+		-webkit-margin-start: 0px;
+		-webkit-margin-end: 0px;
+		font-weight: bold;
+		text-align: center;
+	}
+	
+	.book_info_table{
+		position: relative;
+		top: 50%;
+		left: 50%;
+		background: rgb(250,248,248);
+		width: 800px;
+		margin-left:460px;
+		margin-top: -200px;
+		display: none;
+		z-index: 5;
+	}
+	
+	.book_info_wrap {
+		position: relative;
+		width: 800px;
+		height: 290px;
+		border-bottom: 1px solid #d5d5d5;
+		background-color: white;
+	}
+	
+	.screen {
+		position: fixed;
+		width: 10000px;
+		height: 10000px;
+		background: rgba(51, 51, 51, 0.5);
+		display: none;
+		z-index: 4;
+	}
+	
+	.cover{
+		width:200px;
+		height:250px;
+		position: absolute;
+		top: 15px;
+		left: 20px;
+	}
+	.title{
+		font-weight: bold;
+    	font-size: 20px;
+    	line-height: 35px;
+    	width: 430px;
+    	color: #333333;
+    	margin-bottom: 5px;
+    	display: inline-block;
+    	white-space: nowrap;
+   	 	overflow: hidden;
+    	text-overflow: ellipsis;
+    	text-decoration: none;
+	}
+	.book_writer{
+		position: absolute;
+		left:230px;
+		top:80px;
+	}
+	.info{
+		position:absolute;	
+		left:220px;
+		top:20px;
+	    margin: 0;
+    	padding: 0;
+    	border: 0;
+    	font: inherit;
+    	font-size: 100%;
+    	vertical-align: baseline;
+    	border-bottom: 1px solid #ded6c7;
+    }
+    .book_intro_start{	
+    	font-size: 14px;
+    	font-weight: bold;
+    	color: #555555;
+    	margin-top: 20px;
+    	margin-left: 20px;
+    	margin-bottom: 20px;
+    }
+    .book_intro{
+    	margin-left: 20px;
+    }
+    .book_review_start{
+    	margin-top: 20px;
+    	margin-left: 20px;
+    	font-size: 14px;
+    	font-weight: bold;
+    	color: #555555;
+    }
+    .review_balloon {
+	    display: inline-block;
+	    position: relative;
+	    background: #FFFFFF;
+	    height: 125px;
+	    width: 487px;
+	    margin: 0 auto 10px;
+	    border-radius: 10px;
+	    margin-left:30px;
+	    margin-top:20px;
+	    border: 1px solid #eeeeee;
+	}
+	.review_balloon:after {
+	    content: "";
+	    position: absolute;
+	    height: 50px;
+	    width: 50px;
+	    border-radius: 25px;
+	    z-index: -2;
+	    background: #fff;
+	    bottom: 80px;
+	    left: -20px;
+	    border: 1px solid #eeeeee;
+	}
+	.review_balloon:before {
+	    content: "";
+	    position: absolute;
+	    height: 100px;
+	    width: 100px;
+	    border-radius: 50px;
+	    z-index: -1;
+	    background: #FAF8F5;
+	    bottom: 90px;
+	    left: -30px;
+	}
+	.review_box{
+		margin-top: 10px;
+		margin-left: 30px;
+	}
+	.content_wrap{
+		width:300px;
+		height:50px;
+		margin-top: 10px;
+	    line-height: 20px;
+	    color: #555555;
+	    font-size: 14px;
+	    white-space: pre-wrap;
+	    margin-left: 20px;
+	    overflow: hidden;
+	}
+	.review_writer{
+		font-size: 14px;
+		margin-left: 20px;
+		margin-top: 5px;
+	}
+	.review_update_date{
+		display:block;
+		color: #aaaaaa;
+    	font-size: 12px;
+    	position: absolute;
+    	bottom: 20px;
+    	left: 20px;
+	}
+	.review_more{
+		color: #777777;
+	    font-size: 12px;
+	    font-weight: bold;
+	    height: 40px;
+	    line-height: 40px;
+	    background-color: #fff;
+	    border: 1px solid #e8e4dc;
+	    text-align: center;
+	    -moz-border-radius: 3px;
+	    -webkit-border-radius: 3px;
+	    border-radius: 3px;
+	    margin-top: 20px;
+	    cursor: pointer;
+	}
+	.book{
+		position:relative;
+		width: 100%;
+		height: auto;
+		top: -150px;
+	}
+	.user_img{
+		display: inline-block;
+	    position: relative;
+		-moz-border-radius: 50%;
+	    -webkit-border-radius: 50%;
+	    border-radius: 50%;
+	    border: 1px solid #d4d8d9;
+	    width: 52px;
+	    height: 52px;
+	}
+
+	#header {
+		top: 0;
+	}
+	
+	.book_title {
+		width: 220px;
+		height: 17px;
+		overflow: hidden;
+	}
 </style>
 </head>
 <body>
@@ -866,17 +843,13 @@ body {
 		</div>
 		<div id="content">
 			<div>
-				<%
-					int i = 0;
-				%>
 				<span class="booktitle booktitle-top-0 left-0">신간</span>
 				<ul class="book_wrap">
-					<c:forEach var="book" items="${newBook}">
-						<li class="booklist top-0 left-<%=i++%>" data-isbn="${book.isbn}"
-							data-title="${book.title}"><a href="#">
+					<c:forEach var="book" items="${newBook}" varStatus="status">
+						<li class="book_list top-0 left-${status.index}" data-isbn="${book.isbn}"data-title="${book.title}">
 								<div class="info_box">
 									<div class="book_title">
-										<h3>${book.title}</h3>
+										<h3>${book.title}</h3>		
 									</div>
 									<div class="star_rating" id="${book.isbn}">
 										<i class="fa fa-star-o fa-2x" aria-hidden="true"><div
@@ -906,21 +879,20 @@ body {
 									<button class="comment_btn">
 										<i class="fa fa-comment"></i> 코멘트쓰기
 									</button>
-								</div> <img src="${book.image}" alt="${book.title}"
-								style="width: 220px; height: 314px;" />
-						</a></li>
+								</div> 
+								<div class="book_img_wrap" data-isbn="${book.isbn}" data-title="${book.title}">				
+									<img class="book_img" src="${book.image}" alt="${book.title}" style="width: 220px; height: 314px;" />
+								</div>
+							</li>
 					</c:forEach>
 				</ul>
 			</div>
 
 			<div>
-				<%
-					i = 0;
-				%>
 				<span class="booktitle booktitle-top-1 left-0">베스트 셀러</span>
 				<ul class="book_wrap">
-					<c:forEach var="book" items="${bestBook}">
-						<li class="booklist top-1 left-<%=i++%>" data-isbn="${book.isbn}"
+					<c:forEach var="book" items="${bestBook}" varStatus="status">
+						<li class="book_list top-1 left-${status.index}" data-isbn="${book.isbn}"
 							data-title="${book.title}"><a href="#">
 								<div class="info_box">
 									<div class="book_title">
@@ -954,20 +926,19 @@ body {
 									<button class="comment_btn">
 										<i class="fa fa-comment"></i> 코멘트쓰기
 									</button>
-								</div> <img src="${book.image}" alt="${book.title}"
-								style="width: 220px; height: 314px;" />
+								</div>
+								<div class="book_img_wrap" data-isbn="${book.isbn}" data-title="${book.title}">								
+									<img class="book_img" src="${book.image}" alt="${book.title}" style="width: 220px; height: 314px;" />
+								</div>
 						</a></li>
 					</c:forEach>
 				</ul>
 			</div>
 			<div>
-				<%
-					i = 0;
-				%>
 				<span class="booktitle booktitle-top-2 left-0">추천책</span>
 				<ul class="book_wrap">
-					<c:forEach var="book" items="${book}">
-						<li class="booklist top-2 left-<%=i++%>" data-isbn="${book.isbn}"
+					<c:forEach var="book" items="${book}" varStatus="status">
+						<li class="book_list top-2 left-${status.index}" data-isbn="${book.isbn}"
 							data-title="${book.title}"><a href="#">
 								<div class="info_box">
 									<div class="book_title">
@@ -1001,8 +972,10 @@ body {
 									<button class="comment_btn">
 										<i class="fa fa-comment"></i> 코멘트쓰기
 									</button>
-								</div> <img src="${book.image}" alt="${book.title}"
-								style="width: 220px; height: 314px;" />
+								</div> 
+								<div class="book_img_wrap"  data-isbn="${book.isbn}" data-title="${book.title}">								
+									<img class="book_img" src="${book.image}" alt="${book.title}" style="width: 220px; height: 314px;" />
+								</div>
 						</a></li>
 					</c:forEach>
 				</ul>
@@ -1055,260 +1028,252 @@ body {
 				}
 			});
 		});
-
-		var list = $('.best_book_list');
-		list
-				.click(function() {
-
-					var q = "";
-					q = $(this).data('title');
-					function getBook() {
+		
+		
+		$(".book_img_wrap").click(function() {
+			var q = "";
+			q = $(this).data('title');
+			function getBook() {
+				$.ajax({
+					url:"getBook.do",
+					type:"post",//post방식
+					dataType:"json",//json
+					data:{"title":q},//넘어가는 파라미터
+					error:function(){
+						alert("에러!!");
+					},
+					success:function(json) {
+						$(json).each(function() {
+						var title = $('.title');
+						var bookWriter = $('.book_writer');
+						var book_intro = $('.book_intro');
+						var cover = $('.cover');
+						title.text(this.title);
+						bookWriter.text(this.book_writer);
+						cover.attr('src',this.image);
+						cover.attr('alt',this.title+'의 커버 사진');
+						book_intro.text(this.introduce);
+						});//each() end
+						setTimeout(screenHide, 500);
+					}
+				});//$.ajax() end
+			}//getBook() end	
+				
+		
+			var isbn = "";
+				isbn = $(this).data('isbn');
+			function getReview() {
+				$.ajax({
+					url:"getReview.do",
+					type:"post",//post방식
+					dataType:"json",//json
+					data:{"isbn":isbn},//넘어가는 파라미터
+					error:function(){
+						alert("에러!!");
+					},
+					success:function(json) {
+						var Cnum = 0; 
+						$(json).each(function() {
+							var review_box = $("<div class='review_box' data-num='"+this.ROWNUM+"'>");
+							var review_balloon = $("<div class='review_balloon'>");
+							var review_writer = $("<div class='review_writer'>").text(this.review_writer);
+							var content = $("<div class='content_wrap'>").text(this.content);
+							var review_update_date = $("<p class='review_update_date'>").text(this.regdate);
+							var user_img = $("<img class='user_img' src='../last_project/img/user.jpg'>");
+							
+							review_balloon.append(review_writer,content,review_update_date);
+							review_box.append(user_img,review_balloon);
+							$(".book_info_li").append(review_box);
+							Cnum= this.ROWNUM;
+							
+						});//each() end
+						$(".book_info_li").attr("data-isbn",isbn);
 						$.ajax({
-							url : "getBook.do",
-							type : "post",//post방식
-							dataType : "json",//json
-							data : {
-								"title" : q
-							},//넘어가는 파라미터
-							error : function() {
+							url:"getCountReview.do",
+							type:"post",//post방식
+							dataType:"json",//json
+							data:{"isbn":isbn},//넘어가는 파라미터
+							error:function(){
 								alert("에러!!");
 							},
-							success : function(json) {
+							success:function(json) {	
 								$(json).each(function() {
-									var title = $('.title');
-									var bookWriter = $('.book_writer');
-									var book_intro = $('.book_intro');
-									var cover = $('.cover');
-									title.text(this.title);
-									bookWriter.text(this.book_writer);
-									cover.attr('src', this.image);
-									cover.attr('alt', this.title + '의 커버 사진');
-									book_intro.text(this.introduce);
+									$(".book_review_start").text("코멘트 ("+this.num+")");
+									if(this.num==Cnum || this.num==0){
+										$(".review_more").hide();
+										$(".book_info_table").css("height","700px");
+									}
 								});//each() end
-								setTimeout(screenHide, 500);
-							}
+							}//success end
 						});//$.ajax() end
-					}//getBook() end	
-
-					var isbn = "";
-					isbn = $(this).data('isbn');
-					function getReview() {
-						$
-								.ajax({
-									url : "getReview.do",
-									type : "post",//post방식
-									dataType : "json",//json
-									data : {
-										"isbn" : isbn
-									},//넘어가는 파라미터
-									error : function() {
-										alert("에러!!");
-									},
-									success : function(json) {
-										var Cnum = 0;
-										$(json)
-												.each(
-														function() {
-															var review_box = $("<div class='review_box' data-num='"+this.ROWNUM+"'>");
-															var review_balloon = $("<div class='review_balloon'>");
-															var review_writer = $(
-																	"<div class='review_writer'>")
-																	.text(
-																			this.review_writer);
-															var content = $(
-																	"<div class='content_wrap'>")
-																	.text(
-																			this.content);
-															var review_update_date = $(
-																	"<p class='review_update_date'>")
-																	.text(
-																			this.regdate);
-															var user_img = $("<img class='user_img' src='../last_project/img/user.jpg'>");
-
-															review_balloon
-																	.append(
-																			review_writer,
-																			content,
-																			review_update_date);
-															review_box
-																	.append(
-																			user_img,
-																			review_balloon);
-															$(".book_info_li")
-																	.append(
-																			review_box);
-															Cnum = this.ROWNUM;
-
-														});//each() end
-										$(".book_info_li").attr("data-isbn",
-												isbn);
-										$
-												.ajax({
-													url : "getCountReview.do",
-													type : "post",//post방식
-													dataType : "json",//json
-													data : {
-														"isbn" : isbn
-													},//넘어가는 파라미터
-													error : function() {
-														alert("에러!!");
-													},
-													success : function(json) {
-														$(json)
-																.each(
-																		function() {
-																			$(
-																					".book_review_start")
-																					.text(
-																							"코멘트 ("
-																									+ this.num
-																									+ ")");
-																			if (this.num == Cnum) {
-																				$(
-																						".review_more")
-																						.hide();
-																			}
-																		});//each() end
-													}//success end
-												});//$.ajax() end
-									}//success end
-								});//$.ajax() end
-					}//getReview() end
-
-					getReview();
-					getBook();
-					function screenHide() {
-						$('.book_info_table').show();
-						$('.screen').show();
+					}//success end
+				});//$.ajax() end
+			}//getReview() end
+			
+			getReview();
+			getBook();
+			function screenHide() {
+					$('.book_info_table').show();
+					$('.screen').show();	
+			}
+		});
+		
+		var list = $('.best_book_list');
+		list.click(function() {
+			
+			var q = "";
+			q = $(this).data('title');
+			function getBook() {
+				$.ajax({
+					url:"getBook.do",
+					type:"post",//post방식
+					dataType:"json",//json
+					data:{"title":q},//넘어가는 파라미터
+					error:function(){
+						alert("에러!!");
+					},
+					success:function(json) {
+						$(json).each(function() {
+							var title = $('.title');
+							var bookWriter = $('.book_writer');
+							var book_intro = $('.book_intro');
+							var cover = $('.cover');
+							title.text(this.title);
+							bookWriter.text(this.book_writer);
+							cover.attr('src',this.image);
+							cover.attr('alt',this.title+'의 커버 사진');
+							book_intro.text(this.introduce);
+						});//each() end
+						setTimeout(screenHide, 500);
 					}
-				});
-
-		$(".review_more")
-				.click(
-						function() {
-							var lastNum = $(".review_box:last")
-									.attr("data-num");
-							var isbn = $(".book_info_li").attr("data-isbn");
-							$
-									.ajax({
-										url : "getReviewMore.do",
-										type : "post",//post방식
-										dataType : "json",//json
-										data : {
-											"num" : lastNum,
-											"isbn" : isbn
-										},
-										error : function() {
-											alert("에러!!");
-										},
-										success : function(json) {
-											var Cnum = 0;
-											$(json)
-													.each(
-															function() {
-																var review_box = $("<div class='review_box' data-num='"+this.ROWNUM+"'>");
-																var review_balloon = $("<div class='review_balloon'>");
-																var review_writer = $(
-																		"<div class='review_writer'>")
-																		.text(
-																				this.review_writer);
-																var content = $(
-																		"<div class='content_wrap'>")
-																		.text(
-																				this.content);
-																var review_update_date = $(
-																		"<p class='review_update_date'>")
-																		.text(
-																				this.regdate);
-																var user_img = $("<img class='user_img' src='../last_project/img/user.jpg'>");
-
-																review_balloon
-																		.append(
-																				review_writer,
-																				content,
-																				review_update_date);
-																review_box
-																		.append(
-																				user_img,
-																				review_balloon);
-																$(
-																		".book_info_li")
-																		.append(
-																				review_box);
-																Cnum = this.ROWNUM;
-															});//each() end
-
-											$
-													.ajax({
-														url : "getCountReview.do",
-														type : "post",//post방식
-														dataType : "json",//json
-														data : {
-															"isbn" : isbn
-														},//넘어가는 파라미터
-														error : function() {
-															alert("에러!!");
-														},
-														success : function(json) {
-															$(json)
-																	.each(
-																			function() {
-																				$(
-																						".book_review_start")
-																						.text(
-																								"코멘트 ("
-																										+ this.num
-																										+ ")");
-																				if (this.num == Cnum) {
-																					$(
-																							".review_more")
-																							.hide();
-																				}
-																			});//each() end
-														}
-													});//$.ajax() end
-										}
-									});//ajax end
-
-						});
-
+				});//$.ajax() end
+			}//getBook() end	
+			
+	
+			var isbn = "";
+				isbn = $(this).data('isbn');
+			function getReview() {
+				$.ajax({
+					url:"getReview.do",
+					type:"post",//post방식
+					dataType:"json",//json
+					data:{"isbn":isbn},//넘어가는 파라미터
+					error:function(){
+						alert("에러!!");
+					},
+					success:function(json) {
+						var Cnum = 0; 
+						$(json).each(function() {
+							var review_box = $("<div class='review_box' data-num='"+this.ROWNUM+"'>");
+							var review_balloon = $("<div class='review_balloon'>");
+							var review_writer = $("<div class='review_writer'>").text(this.review_writer);
+							var content = $("<div class='content_wrap'>").text(this.content);
+							var review_update_date = $("<p class='review_update_date'>").text(this.regdate);
+							var user_img = $("<img class='user_img' src='../last_project/img/user.jpg'>");
+							
+							review_balloon.append(review_writer,content,review_update_date);
+							review_box.append(user_img,review_balloon);
+							$(".book_info_li").append(review_box);
+							Cnum= this.ROWNUM;
+							
+						});//each() end
+						$(".book_info_li").attr("data-isbn",isbn);
+						$.ajax({
+							url:"getCountReview.do",
+							type:"post",//post방식
+							dataType:"json",//json
+							data:{"isbn":isbn},//넘어가는 파라미터
+							error:function(){
+								alert("에러!!");
+							},
+							success:function(json) {	
+								$(json).each(function() {
+									$(".book_review_start").text("코멘트 ("+this.num+")");
+									if(this.num==Cnum || this.num==0){
+										$(".review_more").hide();
+										$(".book_info_table").css("height","700px");
+									}
+								});//each() end
+							}//success end
+						});//$.ajax() end
+					}//success end
+				});//$.ajax() end
+			}//getReview() end
+			
+			getReview();
+			getBook();
+			function screenHide() {
+					$('.book_info_table').show();
+					$('.screen').show();	
+			}
+		});
+		
+		
+		$(".review_more").click(function() {
+			var lastNum = $(".review_box:last").attr("data-num");
+			var isbn = $(".book_info_li").attr("data-isbn");
+			$.ajax({
+				url:"getReviewMore.do",
+				type:"post",//post방식
+				dataType:"json",//json
+				data:{"num":lastNum,"isbn":isbn},
+				error:function(){
+					alert("에러!!");
+				},
+				success:function(json) {
+					var Cnum = 0; 
+					$(json).each(function() {
+						var review_box = $("<div class='review_box' data-num='"+this.ROWNUM+"'>");
+						var review_balloon = $("<div class='review_balloon'>");
+						var review_writer = $("<div class='review_writer'>").text(this.review_writer);
+						var content = $("<div class='content_wrap'>").text(this.content);
+						var review_update_date = $("<p class='review_update_date'>").text(this.regdate);
+						var user_img = $("<img class='user_img' src='../last_project/img/user.jpg'>");
+						
+						review_balloon.append(review_writer,content,review_update_date);
+						review_box.append(user_img,review_balloon);
+						$(".book_info_li").append(review_box);
+						Cnum= this.ROWNUM;
+					});//each() end
+					
+					$.ajax({
+						url:"getCountReview.do",
+						type:"post",//post방식
+						dataType:"json",//json
+						data:{"isbn":isbn},//넘어가는 파라미터
+						error:function(){
+							alert("에러!!");
+						},
+						success:function(json) {
+							$(json).each(function() {
+								$(".book_review_start").text("코멘트 ("+this.num+")");
+								if(this.num==Cnum){
+									$(".review_more").hide();
+								}
+							});//each() end
+						}
+					});//$.ajax() end
+				}
+			});//ajax end
+			
+		});//click() end
+		
 		$('.screen').click(function() {
 			$('.book_info_table').hide();
 			$('.screen').hide();
-			$(".book_info_li").empty();
-			var title = $('.title');
+			$('.book_info_li').empty();
+			$(".review_more").show();
+			$(".book_info_table").css("height","");
+			var title = $('.title');	
 			var bookWriter = $('.book_writer');
 			var cover = $('.cover');
 			title.text('');
 			bookWriter.text('');
-			cover.attr('alt', '');
-			cover.attr('src', '');
-			$(".book_info_li").attr("data-isbn", "");
+			cover.attr('alt','');
+			cover.attr('src','');
+			$(".book_info_li").attr("data-isbn","");
 		});
-
-		var btn = $('.report_btn');
-		btn.click(function() {
-			var report_reason = $('.report_reason').val();
-			var review_num = $('.review_num').val();
-			var reporter_name = $('.reporter_name').val();
-
-			$.ajax({
-				url : "report.do",
-				type : "post",//post방식
-				dataType : "json",//json
-				data : {
-					"report_reason" : report_reason,
-					"review_num" : review_num,
-					"reporter_name" : reporter_name
-				},
-				error : function() {
-					alert("에러!!");
-				},
-				success : function(json) {
-					alert("성공!!");
-				}
-			});//$.ajax() end
-		});
+		
 	</script>
 </body>
 </html>
