@@ -178,25 +178,6 @@ public class BookController {
 		System.out.println(bookService.selectUserBook(params));
 
 		return "mypage2";
-
-
-	@RequestMapping("review.do")
-	public String reviewPage(@RequestParam HashMap<String, Object> params, Model model, HttpSession session) {
-
-		HashMap<String, Object> user = (HashMap<String, Object>) session.getAttribute("userInfo");
-
-		System.out.println(user);
-
-		params.put("myPage", 4);
-
-		params.put("email", user.get("email"));
-
-		params.put("name", user.get("name"));
-
-		model.addAttribute("list", listService.selectAllReviewList(params));
-
-		return "review";
-
 	}
 
 	@RequestMapping("bookReview.do")
