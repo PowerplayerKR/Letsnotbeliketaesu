@@ -52,6 +52,57 @@ var getclick = function() {
 			}//getReview() end
 			getReview();
 			getBook();
+	
+			$(".review_more").click(function() {
+			var lastNum = $(".review_box:last").attr("data-num");
+			var isbn = $(".book_info_li").attr("data-isbn");
+			$.ajax({
+				url:"getReviewMore.do",
+				type:"post",//post방식
+				dataType:"json",//json
+				data:{"num":lastNum,"isbn":isbn},
+				error:function(){
+					alert("에러!!");
+				},
+				success:function(json) {
+					var Cnum = 0; 
+					$(json).each(function() {
+						var review_box = $("<div class='review_box' data-num='"+this.ROWNUM+"'>");
+						var review_balloon = $("<div class='review_balloon'>");
+						var review_writer = $("<div class='review_writer'>").text(this.review_writer);
+						var content = $("<div class='content_wrap'>").text(this.content);
+						var review_update_date = $("<p class='review_update_date'>").text(this.regdate);
+						var user_img = $("<img class='user_img' src='../last_project/img/user.jpg'>");
+						
+						review_balloon.append(review_writer,content,review_update_date);
+						review_box.append(user_img,review_balloon);
+						$(".book_info_li").append(review_box);
+						Cnum= this.ROWNUM;
+					});//each() end
+					
+					$.ajax({
+						url:"getCountReview.do",
+						type:"post",//post방식
+						dataType:"json",//json
+						data:{"isbn":isbn},//넘어가는 파라미터
+						error:function(){
+							alert("에러!!");
+						},
+						success:function(json) {
+							$(json).each(function() {
+								$(".book_review_start").text("코멘트 ("+this.num+")");
+								if(this.num==Cnum){
+									$(".review_more").hide();
+								}
+							});//each() end
+						}
+					});//$.ajax() end
+				}
+			});//ajax end
+			
+		});//review more end
+			
+	
 			function screenHide() {
 				$('.book_info_table').show();
 				$('.screen').show();
