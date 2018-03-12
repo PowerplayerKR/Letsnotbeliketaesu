@@ -70,8 +70,30 @@
     <div id="join">
   <button type="button" class="form-control btn btn-primary" onclick="location.href='joinForm.do'">회원가입</button>
     </div>
+	   <%if(session.getAttribute("msg")!=null){ %>
+    	<div> 아이디 또는 비밀번호가 일치하지 않습니다</div>
+   <%} %>
   </form>
 </div>
+<script type="text/javascript">
 
+	$(document).ready(function() {
+		$("#button").click(function() {
+			var userId =$("#id").val();
+			var userpwd =$("#password").val();
+			
+			if(userId ==""){
+				alert("아이디 입력하세요");
+				$("#id").focus();
+				return;
+			}
+			if(userpwd ==""){
+				alert("비밀번호 입력하세요");
+				$("#password").focus();
+				return;
+			}
+		})//click
+	});//ready
+</script>
 </body>
 </html>
