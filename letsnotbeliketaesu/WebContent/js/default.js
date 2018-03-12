@@ -453,11 +453,13 @@ $('.comment_btn').click(function() {
 					  	event.stopPropagation();
 					  	return false;
 					});
+					console.log($(this).closest('.book_list').find('img').attr('alt'));
+					console.log($(this).closest('.book_list').find('img').attr('src'))
 					$('#comment').show();
 					$('#comment_title').text(
-							$(this).closest('a').find('img').attr('alt'));
+							$(this).closest('.book_list').find('img').attr('alt'));
 					$('#comment_content_wrap_img').attr('src',
-							$(this).closest('a').find('img').attr('src'));
+							$(this).closest('.book_list').find('img').attr('src'));
 					$('#body_blind_wrap').show();
 					var x = $(this).closest('.info_box').find('.true');
 					$('#comment_content_wrap_star_grade_body_star .star_rating')
@@ -566,6 +568,7 @@ $("#comment form")
 		.on(
 				"submit",
 				function(event) {
+					
 					event.preventDefault();
 					var beforeComment = $('#inputText').data('comment');
 					var comment = $(this).find('[name=comment]').val();
@@ -576,7 +579,10 @@ $("#comment form")
 						if (comment.trim() == "" || beforeComment == comment) {
 							alert("제데로 입력해주세요");
 						} else {
-							if (beforeComment == "") {
+							console.log(beforeComment);
+							if (!beforeComment) {
+								
+								
 								$
 										.ajax({
 											url : "reviewInsert.do",
