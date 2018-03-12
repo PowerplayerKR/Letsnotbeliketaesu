@@ -876,8 +876,8 @@
 									<button class="wish_btn">
 										<i class="fa fa-heart"></i>보고싶어요
 									</button>
-									<button class="comment_btn">
-										<i class="fa fa-comment"></i> 코멘트쓰기
+									<button class="comment_btn" >
+										<i class="fa fa-comment" data-comment="${book.content}"></i> 코멘트쓰기
 									</button>
 								</div> 
 								<div class="book_img_wrap" data-isbn="${book.isbn}" data-title="${book.title}">				
@@ -969,7 +969,7 @@
 									<button class="wish_btn">
 										<i class="fa fa-heart"></i>보고싶어요
 									</button>
-									<button class="comment_btn">
+									<button class="comment_btn" data-comment="${book.content}">
 										<i class="fa fa-comment"></i> 코멘트쓰기
 									</button>
 								</div> 
@@ -984,7 +984,7 @@
 	</div>
 
 	<div class="screen"></div>
-	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="../letsnotbeliketaesu/js/default.js"></script>
 	<script>
 		var search = $('#search');
