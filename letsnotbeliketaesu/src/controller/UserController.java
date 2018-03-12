@@ -81,9 +81,10 @@ public class UserController {
 
 		HashMap<String, Object> user = userService.selectUser(params);
 
-		if (user == null)
-
-			return "redirect:loginForm.do";
+	if (user == null) {
+			session.setAttribute("msg", "ddd");
+          	  return "redirect:loginForm.do";
+		}
 
 		session.setAttribute("userInfo", user);
 
