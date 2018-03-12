@@ -75,8 +75,8 @@
 		
 		$('#button').click(function() {
 			var regEmail = /^[A-Za-z0-9_\.\-]+@[A-Za-z\-]+\.[A-Za-z\-]+/;
-			var regId =  /^[\w\W가-힣0-9]{2,10}$/;
-			var regpwd = /^[\w\Wa-z0-9]{2,10}$/;
+			var regId =  /^[\w\W가-힣A-Za-z]{2,20}$/;
+			var regpwd = /^[\w\Wa-z0-9]{2,55}$/;
 			
 			if(!u_email.val() ){
 				alert("이메일 주소 똑바로 써 ");
