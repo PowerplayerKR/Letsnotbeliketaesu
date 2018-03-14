@@ -333,5 +333,24 @@ public class BookController {
 		return new ResponseEntity(json, responseHeaders, HttpStatus.CREATED);
 
 	}
+@RequestMapping("DeleteLike.do")
+	@ResponseBody
+	public String DeleteLike(@RequestParam HashMap<String, Object> params,HttpSession session) {
+		System.out.println(params);
+		HashMap<String, Object> userInfo = (HashMap<String, Object>) session.getAttribute("userInfo");
+		params.put("email",userInfo.get("email"));
+		favoritesService.deleteFavorites(params);
+		return "{\"booknum\":\"오류내지마\" }";
+	}
+	@RequestMapping("InsertLike.do")
+	@ResponseBody
+	public String InsertLike(@RequestParam HashMap<String, Object> params,HttpSession session) {
+		System.out.println(params);
+		HashMap<String, Object> userInfo = (HashMap<String, Object>) session.getAttribute("userInfo");
+		params.put("email", userInfo.get("email"));
+		favoritesService.insertFavorites(params);
+		return "{\"booknum\":\"오류내지마\" }";
+	}
+		
 
 }
