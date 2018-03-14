@@ -7,7 +7,8 @@ body {
 
 #wrap {
 	width: 100%;
-	margin: auto;
+	position: relative;
+	top:200px;
 }
 
 #header {
@@ -60,14 +61,6 @@ body {
 	background-color: aquamarine;
 	text-align: center;
 }
-
-#content {
-	height: autopx;
-	float: right;
-	margin-top: 120px;
-}
-
-
 .search {
 	text-align: center;
 }

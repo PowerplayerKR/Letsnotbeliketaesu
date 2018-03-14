@@ -48,6 +48,8 @@ public class BookController {
 	private NotInterestedService notInterested;
 	@Autowired
 	private NewBookService newBookService;
+	@Autowired
+	private FavoritesService favoritesService;
 
 	@RequestMapping("main.do")
 	public String main(HttpSession session, Model model) {

@@ -353,7 +353,7 @@ body {
 <div id="tool_tip"><i class="fa fa-caret-up fa-2x" aria-hidden="true" id="tool_tip_head"></i><p style="text-align:center">보고 싶어요</p></div>
 	<div id="body_blind_wrap"></div>
 	
-	
+
 		<div id="comment">
 
 	<div id="comment_head">
@@ -441,38 +441,39 @@ body {
 	<div id="wrap">
 		<%@ include file="/template/header.jsp"%>
 		<div id="content">
-		<ul class="book_wrap">
-			<c:forEach var="book" items="${searchBookList}">
-				<li class="book_list" data-num="${book.ROWNUM}">
-					<div class="info_box">
-							<h3 class="book_title">${book.title}</h3>
-							<div class="star_rating" id="${book.num}">
-								<i class="fa fa-star-o fa-2x" aria-hidden="true">
-									<div class="head <c:if test="${book.star_point eq 0.5}">true</c:if>"></div>
-									<div class="tail <c:if test="${book.star_point eq 1}">true</c:if>"></div>
-								</i> 
-								
-								<i class="fa fa-star-o fa-2x"
-									aria-hidden="true"><div class="head  <c:if test="${book.star_point eq 1.5}">true</c:if>"></div>
-									<div class="tail <c:if test="${book.star_point eq 2}">true</c:if>"></div></i> <i class="fa fa-star-o fa-2x"
-									aria-hidden="true"><div class="head <c:if test="${book.star_point eq 2.5}">true</c:if>"></div>
-									<div class="tail <c:if test="${book.star_point eq 3}">true</c:if>"></div></i> <i class="fa fa-star-o fa-2x"
-									aria-hidden="true "><div class="head <c:if test="${book.star_point eq 3.5}">true</c:if>"></div>
-									<div class="tail <c:if test="${book.star_point eq 4}">true</c:if>"></div></i> <i class="fa fa-star-o fa-2x"
-									aria-hidden="true"><div class="head <c:if test="${book.star_point eq 4.5}">true</c:if>"></div>
-									<div class="tail <c:if test="${book.star_point eq 5}">true</c:if>"></div></i>
-							</div>
-							<button class="wish_btn" >
-								<i class="fa fa-heart"></i>보고싶어요
-							</button>
-							<button class="comment_btn" data-img="${book.image}" data-title="${book.title}" data-comment="${book.content}">
-								<i class="fa fa-comment"></i> 코멘트쓰기
-							</button>
-						</div> <img class="book_img" src="${book.image}" alt="${book.title}"/>
-				</li>
-
-			</c:forEach>
-		</ul></div>
+			<ul class="book_wrap">
+				<c:forEach var="book" items="${searchBookList}">
+					<li class="book_list" data-num="${book.ROWNUM}">
+						<div class="info_box">
+								<h3 class="book_title">${book.title}</h3>
+								<div class="star_rating" id="${book.num}">
+									<i class="fa fa-star-o fa-2x" aria-hidden="true">
+										<div class="head <c:if test="${book.star_point eq 0.5}">true</c:if>"></div>
+										<div class="tail <c:if test="${book.star_point eq 1}">true</c:if>"></div>
+									</i> 
+									
+									<i class="fa fa-star-o fa-2x"
+										aria-hidden="true"><div class="head  <c:if test="${book.star_point eq 1.5}">true</c:if>"></div>
+										<div class="tail <c:if test="${book.star_point eq 2}">true</c:if>"></div></i> <i class="fa fa-star-o fa-2x"
+										aria-hidden="true"><div class="head <c:if test="${book.star_point eq 2.5}">true</c:if>"></div>
+										<div class="tail <c:if test="${book.star_point eq 3}">true</c:if>"></div></i> <i class="fa fa-star-o fa-2x"
+										aria-hidden="true "><div class="head <c:if test="${book.star_point eq 3.5}">true</c:if>"></div>
+										<div class="tail <c:if test="${book.star_point eq 4}">true</c:if>"></div></i> <i class="fa fa-star-o fa-2x"
+										aria-hidden="true"><div class="head <c:if test="${book.star_point eq 4.5}">true</c:if>"></div>
+										<div class="tail <c:if test="${book.star_point eq 5}">true</c:if>"></div></i>
+								</div>
+								<button class="wish_btn" >
+									<i class="fa fa-heart"></i>보고싶어요
+								</button>
+								<button class="comment_btn" data-img="${book.image}" data-title="${book.title}" data-comment="${book.content}">
+									<i class="fa fa-comment"></i> 코멘트쓰기
+								</button>
+							</div> <img class="book_img" src="${book.image}" alt="${book.title}"/>
+					</li>
+	
+				</c:forEach>
+			</ul>
+		</div>
 	</div>
 	<input type="hidden" class="searchOption" name="searchOption" value="${param.searchOption}">
 	<input type="hidden" class="keyword" name="keyword" value="${param.keyword}">
