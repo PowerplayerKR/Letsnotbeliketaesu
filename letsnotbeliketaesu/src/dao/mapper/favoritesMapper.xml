@@ -12,19 +12,18 @@
   		FROM favorites
   		WHERE num=#{num}
   	</select>
-  	<insert id="insertFavorites" parameterType="java.util.HashMap">
-  		INSERT INTO favorites
-  		VALUES 0,#{user_name},#{book_num},#{regdate}
+	<insert id="insertFavorites" parameterType="java.util.HashMap">
+  		INSERT INTO favorites(num,isbn,email,regdate)
+  		VALUES (0,#{isbn},#{email},now())
   	</insert>
   	<update id="updateFavorites" parameterType="java.util.HashMap" >
   		UPDATE favorites
-  		SETuser_name=#{user_name},book_num=#{book_num},regdate=#{regdate}
-  		WHERE num=#{num}
+  		SET user_name=#{user_name},book_num=#{book_num},regdate=now()
+  		WHERE isbn=#{isbn}
   	</update>
-  	<delete id="deleteFavorites" parameterType="int">
+  	<delete id="deleteFavorites" parameterType="java.util.HashMap">
   		DELETE FROM favorites
-  		WHERE num=#{num}
+  		WHERE isbn=#{isbn} and email=#{email}
   	</delete>
-  	
   	
   </mapper>
