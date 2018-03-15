@@ -8,27 +8,28 @@ import org.springframework.stereotype.Service;
 
 import dao.IReportListDao;
 
-
 @Service
 public class ReportListService {
 	@Autowired
 	private IReportListDao reportListDao;
-	
-	public List<HashMap<String, Object>> selectAllReportList(){
-		return  reportListDao.selectAllReportList();
+
+	public List<HashMap<String, Object>> selectAllReportList() {
+		return reportListDao.selectAllReportList();
 	}
-	
-	public HashMap<String, Object> selectReportList(int num){
-		return  reportListDao.selectReportList(num);
+
+	public HashMap<String, Object> selectReportList(int num) {
+		return reportListDao.selectReportList(num);
 	}
-	
+
 	public void insertReportList(HashMap<String, Object> params) {
-		 reportListDao.insertReportList(params);
+		reportListDao.insertReportList(params);
 	}
+
 	public void updateReportList(HashMap<String, Object> params) {
-		 reportListDao.updateReportList(params);
+		reportListDao.updateReportList(params);
 	}
+
 	public void deleteReportList(int num) {
-		 reportListDao.deleteReportList(num);
+		reportListDao.deleteReportList(num);
 	}
 }

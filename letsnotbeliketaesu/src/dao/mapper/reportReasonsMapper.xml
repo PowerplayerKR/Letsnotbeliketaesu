@@ -2,28 +2,30 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="dao.IReportReasonsDao">
-  	<select id="selectAllReportReasons" resultType="java.util.HashMap">
-  		SELECT *
-  		FROM report_reasons
-  	</select>
-  	<select id="selectReportReasons" parameterType="int" resultType="java.util.HashMap">
-  		SELECT *
-  		FROM report_reasons
-  		WHERE num=#{num}
-  	</select>
-  	<insert id="insertReportReasons" parameterType="java.util.HashMap">
-  		INSERT INTO report_reasons
-  		VALUES 0,#{report_reason}
-  	</insert>
-  	<update id="updateReportReasons" parameterType="java.util.HashMap" >
-  		UPDATE report_reasons
-  		SET report_reason=#{report_reason}
-  		WHERE num=#{num}
-  	</update>
-  	<delete id="deleteReportReasons" parameterType="int">
-  		DELETE FROM report_reasons
-  		WHERE num=#{num}
-  	</delete>
-  	
-  </mapper>
+<mapper namespace="dao.IReportReasonsDao">
+	<select id="selectAllReportReasons" resultType="java.util.HashMap">
+		SELECT *
+		FROM report_reasons
+	</select>
+	<select id="selectReportReasons" parameterType="int"
+		resultType="java.util.HashMap">
+		SELECT *
+		FROM report_reasons
+		WHERE num=#{num}
+	</select>
+	<insert id="insertReportReasons" parameterType="java.util.HashMap"
+		keyProperty="num" useGeneratedKeys="true">
+		INSERT INTO report_reasons(num,report_reason,reporter_name)
+		VALUES (0,#{report_reason},#{reporter_name})
+	</insert>
+	<update id="updateReportReasons" parameterType="java.util.HashMap">
+		UPDATE report_reasons
+		SET report_reason=#{report_reason}
+		WHERE num=#{num}
+	</update>
+	<delete id="deleteReportReasons" parameterType="int">
+		DELETE FROM report_reasons
+		WHERE num=#{num}
+	</delete>
+
+</mapper>
