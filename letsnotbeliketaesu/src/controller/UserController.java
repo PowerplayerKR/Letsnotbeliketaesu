@@ -91,5 +91,14 @@ public class UserController {
 		return "redirect:main.do";
 
 	}
+	@RequestMapping("googleLogin.do")
+	@ResponseBody
+	public String googleLogin(@RequestParam HashMap<String, Object> params, HttpSession session) throws Exception {
+		params.put("email",params.get("[U3]"));
+		session.setAttribute("userInfo",params);
+		System.out.println(params);
+		
+		return "{\"booknum\":\"�뿉�윭�궡吏�留�\" }";
+	}
 
 }
