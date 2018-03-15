@@ -1,3 +1,28 @@
+$(".wish_btn").click(function() {
+	var isbn = "";
+	isbn = $(this).parent().find(".star_rating").closest(".star_rating").attr('id');
+	$.ajax({
+
+		url : "InsertLike.do",
+
+		type : "post",// post방식
+
+		dataType : "json",// json
+
+		data : {
+			"isbn" : isbn
+		},
+		error : function(request, status, error) {
+			alert("이미 누르셨습니다.");
+		},
+		success : function(json) {
+			console.log(json);
+		}
+	});// ajax
+	$(this).css("color", "hotpink");
+
+});
+
 $(document).ready(function() {
 	$('.star_rating').trigger('mouseleave');
 });
