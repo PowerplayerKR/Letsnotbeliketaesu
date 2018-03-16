@@ -1393,7 +1393,7 @@ ul {
 							console.log(json);
 						}
 					});//ajax
-					$(".wish_btn").css("color","hotpink");
+					$(this).closest("button").css("color","hotpink");
 				
 					
 					
