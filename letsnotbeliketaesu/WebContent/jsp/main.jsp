@@ -313,7 +313,7 @@
 		margin: -30px 0 0 15px;
 	}
 	
-	#inputText {
+	.inputText {
 		position: absolute;
 		margin: 0;
 		padding: 0;
@@ -700,9 +700,24 @@
 		height: 17px;
 		overflow: hidden;
 	}
+	.report_reason{
+		position: absolute;
+		z-index: 33;
+		left: 50%;
+		top:50%;
+		margin:-50px 0 0 -500px;
+		display: none;
+	}
 </style>
 </head>
 <body>
+	<div class="report_reason">
+		<form>
+				<textarea class="report_txt" placeholder="여기에 사유를(을) 입력해주세요 " style="resize: none; width: 1000px; height: 100px;"></textarea>
+
+				<input type="submit" class="report_submit">
+			</form>
+	</div>
 	<div id="tool_tip">
 		<i class="fa fa-caret-up fa-2x" aria-hidden="true" id="tool_tip_head"></i>
 		<p style="text-align: center">보고 싶어요</p>
@@ -792,7 +807,7 @@
 					aria-hidden="true"></i>
 			</div>
 			<form>
-				<textarea placeholder="여기에 댓글을 입력해주세요 " id="inputText"
+				<textarea placeholder="여기에 댓글을 입력해주세요 " class="inputText"
 					name="comment"></textarea>
 
 				<input type="submit" id="comment_content_wrap_button">
@@ -1080,9 +1095,9 @@
 							var content = $("<div class='content_wrap'>").text(this.content);
 							var review_update_date = $("<p class='review_update_date'>").text(this.regdate);
 							var user_img = $("<img class='user_img' src='../last_project/img/user.jpg'>");
-							
+							var report = $("<button onclick='report($(this));' data-email='"+this.review_email+"' data-num='"+this.num+"'>신고하기</button>");
 							review_balloon.append(review_writer,content,review_update_date);
-							review_box.append(user_img,review_balloon);
+							review_box.append(user_img,review_balloon,report);
 							$(".book_info_li").append(review_box);
 							Cnum= this.ROWNUM;
 							
@@ -1170,9 +1185,9 @@
 							var content = $("<div class='content_wrap'>").text(this.content);
 							var review_update_date = $("<p class='review_update_date'>").text(this.regdate);
 							var user_img = $("<img class='user_img' src='../last_project/img/user.jpg'>");
-							
+							var report = $("<button onclick='report($(this));' data-email='"+this.review_email+"' data-num='"+this.num+"'>신고하기</button>");
 							review_balloon.append(review_writer,content,review_update_date);
-							review_box.append(user_img,review_balloon);
+							review_box.append(user_img,review_balloon,report);
 							$(".book_info_li").append(review_box);
 							Cnum= this.ROWNUM;
 							
@@ -1229,9 +1244,9 @@
 						var content = $("<div class='content_wrap'>").text(this.content);
 						var review_update_date = $("<p class='review_update_date'>").text(this.regdate);
 						var user_img = $("<img class='user_img' src='../last_project/img/user.jpg'>");
-						
+						var report = $("<button onclick='report($(this));' data-email='"+this.review_email+"' data-num='"+this.num+"'>신고하기</button>");
 						review_balloon.append(review_writer,content,review_update_date);
-						review_box.append(user_img,review_balloon);
+						review_box.append(user_img,review_balloon,report);
 						$(".book_info_li").append(review_box);
 						Cnum= this.ROWNUM;
 					});//each() end
@@ -1273,6 +1288,43 @@
 			cover.attr('src','');
 			$(".book_info_li").attr("data-isbn","");
 		});
+		
+		function report(a) {
+			event.preventDefault();
+			var email = "";
+			email =  a.data("email");
+			console.log(a);
+			var num = "";
+			num = a.data("num");
+			console.log(num);
+
+			$(".report_reason").show();
+			$("#body_blind_wrap").show();
+			
+			$(".report_submit").click(function() {
+				$.ajax({
+
+					url : "reviewReport.do",
+
+					type : "post",// post방식
+
+					data : {
+						"report_email" : email,
+						"review_num": num,
+						"report_reason" : $(".report_txt").val()
+					},
+					error : function(request, status, error) {
+						alert("이미 누르셨습니다.");
+					},
+					success : function() {
+						$(".report_reason").hide();
+						$("#body_blind_wrap").hide();
+						 $(".report_txt").val("");
+					}
+				});// ajax
+			})
+			
+		};
 		
 	</script>
 </body>

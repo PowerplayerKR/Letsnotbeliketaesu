@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	<context:component-scan base-package="service"></context:component-scan>
-	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
+	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+		id="dataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://192.168.0.17/project"></property>
+		<!-- <property name="url" value="jdbc:mysql://localhost/project"></property> 
+			<property name="username" value="root"></property> <property name="password" 
+			value="mysql"></property> -->
+		<property name="url" value="jdbc:mysql://192.168.0.17/project?allowMultiQueries=true"></property>
 		<property name="username" value="newuser"></property>
 		<property name="password" value="fkdlej0610"></property>
 	</bean>
@@ -59,22 +61,25 @@
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 		<property name="mapperInterface" value="dao.IStarPointListDao"></property>
 	</bean>
-		<bean class="org.mybatis.spring.mapper.MapperFactoryBean" id="userDao">
+	<bean class="org.mybatis.spring.mapper.MapperFactoryBean" id="userDao">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 		<property name="mapperInterface" value="dao.IUserDao"></property>
 	</bean>
-	
-	
-	
-	<bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="txManager">
+
+
+
+	<bean
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+		id="txManager">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 	<tx:advice transaction-manager="txManager" id="mytx">
 		<tx:attributes>
-			<tx:method name="*"/>
+			<tx:method name="*" />
 		</tx:attributes>
 	</tx:advice>
 	<aop:config>
-		<aop:advisor advice-ref="mytx" pointcut="execution(public * service.*Service.*(..))"/>
+		<aop:advisor advice-ref="mytx"
+			pointcut="execution(public * service.*Service.*(..))" />
 	</aop:config>
 </beans>

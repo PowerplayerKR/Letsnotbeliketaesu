@@ -5,7 +5,8 @@
 <mapper namespace="dao.IReportListDao">
 	<select id="selectAllReportList" resultType="java.util.HashMap">
 		SELECT *
-		FROM report_list
+		FROM
+		report_list
 	</select>
 	<select id="selectReportList" parameterType="int" resultType="java.util.HashMap">
 		SELECT *
@@ -14,9 +15,9 @@
 	</select>
 	<insert id="insertReportList" parameterType="java.util.HashMap">
 		INSERT INTO
-		report_list(num,isbn,report_reason,report_name,reporter_name,regdate)
+		report_list(num,review_num,report_reason,reporter_name,regdate)
 		VALUES
-		(0,#{isbn},#{report_reason},#{report_name},#{reporter_name},now())
+		(0,#{review_num},#{report_reason},#{reporter_name},now())
 	</insert>
 	<update id="updateReportList" parameterType="java.util.HashMap">
 		UPDATE report_list
@@ -25,7 +26,8 @@
 		WHERE num=#{num}
 	</update>
 	<delete id="deleteReportList" parameterType="int">
-		DELETE FROM report_list
+		DELETE FROM
+		report_list
 		WHERE num=#{num}
 	</delete>
 

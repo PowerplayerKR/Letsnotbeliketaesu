@@ -1,27 +1,31 @@
-$(".wish_btn").click(function() {
-	var isbn = "";
-	isbn = $(this).parent().find(".star_rating").closest(".star_rating").attr('id');
-	$.ajax({
+$(".wish_btn").click(
+		function() {
+			var isbn = "";
+			isbn = $(this).parent().find(".star_rating")
+					.closest(".star_rating").attr('id');
+			$.ajax({
 
-		url : "InsertLike.do",
+				url : "InsertLike.do",
 
-		type : "post",// post방식
+				type : "post",// post방식
 
-		dataType : "json",// json
+				dataType : "json",// json
 
-		data : {
-			"isbn" : isbn
-		},
-		error : function(request, status, error) {
-			alert("이미 누르셨습니다.");
-		},
-		success : function(json) {
-			console.log(json);
-		}
-	});// ajax
-	$(this).css("color", "hotpink");
+				data : {
+					"isbn" : isbn
+				},
+				error : function(request, status, error) {
+					alert("이미 누르셨습니다.");
+				},
+				success : function(json) {
+					console.log(json);
+				}
+			});// ajax
+			$(this).css("color", "hotpink");
 
-});
+		});
+
+
 
 $(document).ready(function() {
 	$('.star_rating').trigger('mouseleave');
@@ -465,26 +469,37 @@ $(".star_rating .tail")
 					}
 					return false;
 				});
-$('.comment_btn').click(function() {
+$('.comment_btn')
+		.click(
+				function() {
 					var top = 120 - $(window).scrollTop();
 					var scrollTop = $(window).scrollTop();
-					
-					//스크롤 막기
-					$(".book_wrap").attr("data-scroll",scrollTop);
-					$('html, body').css({'overflow': 'hidden', 'height': '100%'});
-					$('#content').css('margin-top',top+'px');
-					$('#element').on('scroll touchmove mousewheel', function(event) {
-						event.preventDefault();
-					  	event.stopPropagation();
-					  	return false;
+
+					// 스크롤 막기
+					$(".book_wrap").attr("data-scroll", scrollTop);
+					$('html, body').css({
+						'overflow' : 'hidden',
+						'height' : '100%'
 					});
-					console.log($(this).closest('.book_list').find('img').attr('alt'));
-					console.log($(this).closest('.book_list').find('img').attr('src'))
+					$('#content').css('margin-top', top + 'px');
+					$('#element').on('scroll touchmove mousewheel',
+							function(event) {
+								event.preventDefault();
+								event.stopPropagation();
+								return false;
+							});
+					console.log($(this).closest('.book_list').find('img').attr(
+							'alt'));
+					console.log($(this).closest('.book_list').find('img').attr(
+							'src'))
 					$('#comment').show();
 					$('#comment_title').text(
-							$(this).closest('.book_list').find('img').attr('alt'));
-					$('#comment_content_wrap_img').attr('src',
-							$(this).closest('.book_list').find('img').attr('src'));
+							$(this).closest('.book_list').find('img').attr(
+									'alt'));
+					$('#comment_content_wrap_img').attr(
+							'src',
+							$(this).closest('.book_list').find('img').attr(
+									'src'));
 					$('#body_blind_wrap').show();
 					var x = $(this).closest('.info_box').find('.true');
 					$('#comment_content_wrap_star_grade_body_star .star_rating')
@@ -530,39 +545,63 @@ $('.comment_btn').click(function() {
 											.prevAll('i').length]).addClass(
 									"fa fa-star fa-1x").prevAll("i").addClass(
 									"fa fa-star fa-1x");
-							$($('#comment_content_wrap_star_rating').children('i')[x.closest('i').prevAll('i').length]).nextAll("i").addClass("fa fa-star-o fa-1x");
-							$($('#comment_content_wrap_star_grade_body_star .star_rating').children('i')[x.closest('i').prevAll('i').length]).find('.tail').addClass('true')
+							$(
+									$('#comment_content_wrap_star_rating')
+											.children('i')[x.closest('i')
+											.prevAll('i').length]).nextAll("i")
+									.addClass("fa fa-star-o fa-1x");
+							$(
+									$(
+											'#comment_content_wrap_star_grade_body_star .star_rating')
+											.children('i')[x.closest('i')
+											.prevAll('i').length])
+									.find('.tail').addClass('true')
 						}
-						$('#comment_content_wrap_star_grade_body_star .star_rating').trigger('mouseleave');
+						$(
+								'#comment_content_wrap_star_grade_body_star .star_rating')
+								.trigger('mouseleave');
 					} else {
 						$('#star_check').trigger('click');
 					}
 				});
-		$('#body_blind_wrap').click(function () {
-			$('html, body').css({'overflow': '', 'height': 'auto'});
-			$('#content').css('margin-top','120px');
-			var scroll = $(".book_wrap").attr("data-scroll");
-			$(window).scrollTop(scroll);
-			$(".book_wrap").attr("data-scroll","");
-			$('#element').off('scroll touchmove mousewheel');
-		    $('#comment').hide();
-		
-		    $(this).hide();
-		    
-		
-		    $('#comment_content_wrap_star_grade_wrap').hide();
-		
-		    $('#comment_blind_wrap').hide();
-		
-		    $('#comment_content_wrap_star_grade_body_star .star_rating').find('.true').removeClass('true');
-		
-		    $('#comment_content_wrap_star_grade_body_star .star_rating').trigger('mouseleave');
-		
-		    $('#fake').removeAttr('id').attr('id', $('#comment_content_wrap_star_grade_body_star .star_rating').attr('id'));
-		
-		    $('#comment_content_wrap_star_grade_body_star .star_rating').removeAttr('id');
-		
-		});
+$('#body_blind_wrap')
+		.click(
+				function() {
+					$('html, body').css({
+						'overflow' : '',
+						'height' : 'auto'
+					});
+					$('#content').css('margin-top', '120px');
+					var scroll = $(".book_wrap").attr("data-scroll");
+					$(window).scrollTop(scroll);
+					$(".book_wrap").attr("data-scroll", "");
+					$('#element').off('scroll touchmove mousewheel');
+					$('#comment').hide();
+					$(".report_reason").hide();
+					$(this).hide();
+
+					$('#comment_content_wrap_star_grade_wrap').hide();
+
+					$('#comment_blind_wrap').hide();
+
+					$('#comment_content_wrap_star_grade_body_star .star_rating')
+							.find('.true').removeClass('true');
+
+					$('#comment_content_wrap_star_grade_body_star .star_rating')
+							.trigger('mouseleave');
+
+					$('#fake')
+							.removeAttr('id')
+							.attr(
+									'id',
+									$(
+											'#comment_content_wrap_star_grade_body_star .star_rating')
+											.attr('id'));
+
+					$('#comment_content_wrap_star_grade_body_star .star_rating')
+							.removeAttr('id');
+
+				});
 $('#comment_blind_wrap').click(function() {
 	$('#comment_content_wrap_star_grade_wrap').hide();
 	$(this).hide();
@@ -571,7 +610,9 @@ $('#star_check').click(function() {
 	$('#comment_content_wrap_star_grade_wrap').show();
 	$('#comment_blind_wrap').show();
 });
-$('#comment_head_end').click(function() {
+$('#comment_head_end')
+		.click(
+				function() {
 					$('#comment_content_wrap_star_grade_wrap').hide();
 					$('#comment').hide();
 					$('#body_blind_wrap').hide();
@@ -593,7 +634,7 @@ $("#comment form")
 		.on(
 				"submit",
 				function(event) {
-					
+
 					event.preventDefault();
 					var beforeComment = $('#inputText').data('comment');
 					var comment = $(this).find('[name=comment]').val();
@@ -606,8 +647,7 @@ $("#comment form")
 						} else {
 							console.log(beforeComment);
 							if (!beforeComment) {
-								
-								
+
 								$
 										.ajax({
 											url : "reviewInsert.do",

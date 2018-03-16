@@ -13,14 +13,14 @@
   		WHERE isbn = #{isbn}
   	</select>
   	<select id="selectReviewList" parameterType="String" resultType="java.util.HashMap">
-  			SELECT CAST(@ROWNUM := @ROWNUM + 1 AS signed integer) AS ROWNUM,review_writer,content,isbn,DATE_FORMAT(regdate, "%Y년 %m월 %d일") as 'regdate'
+  			SELECT CAST(@ROWNUM := @ROWNUM + 1 AS signed integer) AS ROWNUM,review_writer,content,isbn,DATE_FORMAT(regdate, "%Y년 %m월 %d일") as 'regdate',review_email,num
 			FROM (SELECT @ROWNUM := 0) R,review_list
 			WHERE isbn = #{isbn}
             ORDER BY num desc
   			LIMIT 0,5
   	</select>
   	<select id="selectReviewListMore" parameterType="java.util.HashMap" resultType="java.util.HashMap">
-  			SELECT CAST(@ROWNUM := @ROWNUM + 1 AS signed integer) AS ROWNUM,review_writer,content,isbn,DATE_FORMAT(regdate, "%Y년 %m월 %d일") as 'regdate'
+  			SELECT CAST(@ROWNUM := @ROWNUM + 1 AS signed integer) AS ROWNUM,review_writer,content,isbn,DATE_FORMAT(regdate, "%Y년 %m월 %d일") as 'regdate',review_email,num
 			FROM (SELECT @ROWNUM := 0) R,review_list
 			WHERE isbn = #{isbn}
             ORDER BY num desc

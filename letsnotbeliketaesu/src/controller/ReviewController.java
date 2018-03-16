@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Options;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -73,13 +74,9 @@ public class ReviewController {
 	@ResponseBody
 	public String reviewReport(@RequestParam HashMap<String, Object> params, HttpSession session) {
 		HashMap<String, Object> userInfo = (HashMap<String, Object>) session.getAttribute("userInfo");
-		params.put("reporter_name", "eee");
-		params.put("report_name", "blyat");
-		params.put("report_reason", "troll");
-		params.put("isbn", "1");
-		System.out.println(params);
-		int report_reason = reportReasonsService.insertReportReasons(params);
-		params.put("report_reason", report_reason);
+		params.put("reporter_name", userInfo.get("email"));
+		int num = reportReasonsService.insertReportReasons(params);
+		params.put("report_reason", num);
 		System.out.println(params);
 		reportListService.insertReportList(params);
 		return "";

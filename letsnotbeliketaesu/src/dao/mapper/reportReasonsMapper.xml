@@ -5,26 +5,34 @@
 <mapper namespace="dao.IReportReasonsDao">
 	<select id="selectAllReportReasons" resultType="java.util.HashMap">
 		SELECT *
-		FROM report_reasons
+		FROM
+		report_reasons
 	</select>
 	<select id="selectReportReasons" parameterType="int"
 		resultType="java.util.HashMap">
 		SELECT *
 		FROM report_reasons
-		WHERE num=#{num}
+
 	</select>
-	<insert id="insertReportReasons" parameterType="java.util.HashMap"
-		keyProperty="num" useGeneratedKeys="true">
-		INSERT INTO report_reasons(num,report_reason,reporter_name)
-		VALUES (0,#{report_reason},#{reporter_name})
-	</insert>
+	<select id="insertReportReasons" parameterType="java.util.HashMap"
+		resultType="int">
+		INSERT INTO
+		report_reasons(num,report_reason,reporter_name)
+		VALUES
+		(0,#{report_reason},#{reporter_name});
+		
+		SELECT num FROM
+		report_reasons order by 1 desc limit 1;
+	</select>
 	<update id="updateReportReasons" parameterType="java.util.HashMap">
-		UPDATE report_reasons
+		UPDATE
+		report_reasons
 		SET report_reason=#{report_reason}
 		WHERE num=#{num}
 	</update>
 	<delete id="deleteReportReasons" parameterType="int">
-		DELETE FROM report_reasons
+		DELETE FROM
+		report_reasons
 		WHERE num=#{num}
 	</delete>
 
