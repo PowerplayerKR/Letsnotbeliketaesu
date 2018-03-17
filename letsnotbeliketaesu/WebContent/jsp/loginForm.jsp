@@ -74,16 +74,18 @@
     <div id="join">
   <button type="button" class="form-control btn btn-primary" onclick="location.href='joinForm.do'">회원가입</button>
     </div>
-	<button id="sign-in-or-out-button">구글로그인</button>  
+	
 	
 	<a id="custom-login-btn" href="javascript:loginWithKakao()">
 <img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="350" />
+	  </a>
 	  <!--  
 	   <%if(session.getAttribute("msg")!=null){ %>
     	<div> 아이디 또는 비밀번호가 일치하지 않습니다</div>
    <%} %>
    -->
   </form>
+	  <button id="sign-in-or-out-button">구글로그인</button>  
 </div>
 
 
@@ -113,18 +115,18 @@
       GoogleAuth = gapi.auth2.getAuthInstance();
 
       // Listen for sign-in state changes.
-      GoogleAuth.isSignedIn.listen(updateSigninStatus);
+       GoogleAuth.isSignedIn.listen(updateSigninStatus);
 
       // Handle initial sign-in state. (Determine if user is already signed in.)
-      var user = GoogleAuth.currentUser.get();
       
-      setSigninStatus();
       
+      
+
       // Call handleAuthClick function when user clicks on
       //      "Sign In/Authorize" button.
       $('#sign-in-or-out-button').click(function() {
         handleAuthClick();
-        alert("왜안됨1");
+        
       }); 
    
     });
@@ -137,54 +139,51 @@
     } else {
       // User is not signed in. Start Google auth flow.
       GoogleAuth.signIn();
-     
-      
     }
+    
   }
-
 
 
   function setSigninStatus(isSignedIn) {
     var user = GoogleAuth.currentUser.get();
     var isAuthorized = user.hasGrantedScopes(SCOPE);
-   	alert(isAuthorized);
+    
     if (isAuthorized) {
-    	alert("하하하하");
-  	$.ajax({
-		url : "googleLogin.do",
-		type : "post",// post방식
-		dataType : "json",// json
-		data : {
-		"":user["w3"]
-		},
-		error : function(request, status, error) {
-			alert("code:" + request.status + "\n"
-					+ "message:"
-					+ request.responseText + "\n"
-					+ "error:" + error);
-		},
-		success : function(json){
-			console.log(json);
-		}
-	});// $.ajax() end
-	GoogleAuth.signOut();  
-	var form = document.createElement("form");
-    form.setAttribute("action", "main.do"); //요청 보낼 주소
-    document.body.appendChild(form);
-    form.submit();
-     
-      
-     
-    } else {
-      $('#sign-in-or-out-button').html('구글 로그인');
-     
-     
+    	
+    	$.ajax({
+    		url : "googleLogin.do",
+    		type : "post",// post방식
+    		dataType : "json",// json
+    		data : {
+    		"":user["w3"]
+    		},
+    		error : function(request, status, error) {
+    			GoogleAuth.signOut();
+    			alert("code:" + request.status + "\n"
+    					+ "message:"
+    					+ request.responseText + "\n"
+    					+ "error:" + error);
+    		},
+    		success : function(json){
+    			
+    			GoogleAuth.signOut();
+    			var form = document.createElement("form");
+    	        form.setAttribute("action", "main.do"); //요청 보낼 주소
+    	        document.body.appendChild(form);
+    	        form.submit();
+    		}
+    	});// $.ajax() end
+    	  
+    	
+    	
+    	
+    	
+    	
     }
   }
-
   function updateSigninStatus(isSignedIn) {
-    setSigninStatus();
-  }
+	    setSigninStatus();
+	  }
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script async defer src="https://apis.google.com/js/api.js" 
