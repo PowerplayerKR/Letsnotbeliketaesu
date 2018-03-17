@@ -78,6 +78,7 @@
 	
 	<a id="custom-login-btn" href="javascript:loginWithKakao()">
 <img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="350" />
+	  </a>
 	  <!--  
 	   <%if(session.getAttribute("msg")!=null){ %>
     	<div> 아이디 또는 비밀번호가 일치하지 않습니다</div>
