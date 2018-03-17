@@ -1040,7 +1040,7 @@ body {
 	});//click() end
 	
 	$('.screen').click(function() {
-		$("#content").css({"position":"relative","left":"","top":"120px"});
+		$("#content").css({"position":"relative","left":"","top":"150px"});
 		var scroll = $("#content").data("scrollTop");
 		$(window).scrollTop(scroll);
 		$(".book_wrap").data("scroll","");
