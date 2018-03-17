@@ -247,6 +247,7 @@
         			},
         			success : function(json) {
         				console.log(json);
+					Kakao.Auth.logout(function() { console.log('out'); });
         			}        		        		
         	 })
         	 
