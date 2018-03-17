@@ -507,7 +507,7 @@ $(".star_rating .tail")
 $('.comment_btn')
 		.click(
 				function() {
-					var top = 120 - $(window).scrollTop();
+					var top = 150 - $(window).scrollTop();
 					var scrollTop = $(window).scrollTop();
 
 					// 스크롤 막기
@@ -516,7 +516,8 @@ $('.comment_btn')
 						'overflow' : 'hidden',
 						'height' : '100%'
 					});
-					$('#content').css('margin-top', top + 'px');
+					$("#content").css({"position":"fixed","left":"326.2px","top":top+"px"});
+					$("#content").data("scrollTop",scrollTop);
 					$('#element').on('scroll touchmove mousewheel',
 							function(event) {
 								event.preventDefault();
@@ -606,7 +607,7 @@ $('#body_blind_wrap')
 						'overflow' : '',
 						'height' : 'auto'
 					});
-					$('#content').css('margin-top', '120px');
+				
 					var scroll = $(".book_wrap").attr("data-scroll");
 					$(window).scrollTop(scroll);
 					$(".book_wrap").attr("data-scroll", "");
