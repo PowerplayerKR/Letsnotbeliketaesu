@@ -54,7 +54,6 @@
   	width: 350px;
   	height: 40px;
   }
-
 </style>
 </head>
 <body>
@@ -86,8 +85,7 @@
   </form>
 </div>
 
-<button id="revoke-access-button"
-        style="display: none; margin-left: 25px">Revoke access</button>
+
 <script>
   var GoogleAuth;
   var SCOPE = 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile';
@@ -96,10 +94,12 @@
     // Call the initClient function after the modules load.
     gapi.load('client:auth2', initClient);
   }
+
   function initClient() {
     // Retrieve the discovery document for version 3 of Google Drive API.
     // In practice, your app can retrieve one or more discovery documents.
     var discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/drive/v3/rest';
+
     // Initialize the gapi.client object, which app uses to make API requests.
     // Get API key and client ID from API Console.
     // 'scope' field specifies space-delimited list of access scopes.
@@ -110,8 +110,10 @@
         'scope': SCOPE
     }).then(function () {
       GoogleAuth = gapi.auth2.getAuthInstance();
+
       // Listen for sign-in state changes.
       GoogleAuth.isSignedIn.listen(updateSigninStatus);
+
       // Handle initial sign-in state. (Determine if user is already signed in.)
       var user = GoogleAuth.currentUser.get();
       
@@ -121,15 +123,16 @@
       //      "Sign In/Authorize" button.
       $('#sign-in-or-out-button').click(function() {
         handleAuthClick();
-        
+        alert("왜안됨1");
       }); 
    
     });
   }
+
   function handleAuthClick() {
     if (GoogleAuth.isSignedIn.get()) {
       // User is authorized and has clicked 'Sign out' button.
-      GoogleAuth.signOut();
+      
     } else {
       // User is not signed in. Start Google auth flow.
       GoogleAuth.signIn();
@@ -137,17 +140,15 @@
       
     }
   }
+
+
+
   function setSigninStatus(isSignedIn) {
     var user = GoogleAuth.currentUser.get();
     var isAuthorized = user.hasGrantedScopes(SCOPE);
-    var x=0;
-   
+   	alert(isAuthorized);
     if (isAuthorized) {
-      $('#sign-in-or-out-button').html('Sign out');
-      $('#revoke-access-button').css('display', 'inline-block');
-      $('#auth-status').html('You are currently signed in and have granted ' +
-          'access to this app.');
-      
+    	alert("하하하하");
   	$.ajax({
 		url : "googleLogin.do",
 		type : "post",// post방식
@@ -161,27 +162,33 @@
 					+ request.responseText + "\n"
 					+ "error:" + error);
 		},
-		success : function(json) {
+		success : function(json){
 			console.log(json);
 		}
 	});// $.ajax() end
+	GoogleAuth.signOut();  
+	var form = document.createElement("form");
+    form.setAttribute("action", "main.do"); //요청 보낼 주소
+    document.body.appendChild(form);
+    form.submit();
+     
       
-      
-      var form = document.createElement("form");
-      form.setAttribute("action", "main.do"); //요청 보낼 주소
-      document.body.appendChild(form);
-      form.submit();
-      GoogleAuth.signOut();
+     
     } else {
-      $('#sign-in-or-out-button').html('구글로그인');
-      $('#revoke-access-button').css('display', 'none');
-      $('#auth-status').html('You have not authorized this app or you are ' +
-          'signed out.');
+      $('#sign-in-or-out-button').html('구글 로그인');
+     
+     
     }
   }
+
   function updateSigninStatus(isSignedIn) {
     setSigninStatus();
   }
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script async defer src="https://apis.google.com/js/api.js" 
+        onload="this.onload=function(){};handleClientLoad()" 
+        onreadystatechange="if (this.readyState === 'complete') this.onload()">
 </script>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -202,16 +209,12 @@
 		})//click
 	});//ready
 </script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script async defer src="https://apis.google.com/js/api.js" 
-        onload="this.onload=function(){};handleClientLoad()" 
-        onreadystatechange="if (this.readyState === 'complete') this.onload()">
-</script>
 
 
-<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
-<script type='text/javascript'>
+<script  src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
+<script  type='text/javascript'>
   
     // 사용할 앱의 JavaScript 키를 설정해 주세요.
     Kakao.init('b3dda290379e06dadbd80864ab45c2ec');
@@ -247,7 +250,6 @@
         			},
         			success : function(json) {
         				console.log(json);
-					Kakao.Auth.logout(function() { console.log('out'); });
         			}        		        		
         	 })
         	 
