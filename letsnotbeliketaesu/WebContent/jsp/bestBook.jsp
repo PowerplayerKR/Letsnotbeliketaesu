@@ -193,7 +193,7 @@
 
  
 
-.book_wrap button {
+.button_wrap button {
 
 	width: 110px;
 
@@ -886,7 +886,7 @@
 								</h4>
 							</div>
 							
-							<div class="book_wrap">
+							<div class="button_wrap">
 								<button class="wish_btn">
 									<i class="fa fa-heart"></i>보고싶어요
 								</button>

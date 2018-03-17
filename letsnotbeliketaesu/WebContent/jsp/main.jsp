@@ -703,7 +703,8 @@
 </style>
 </head>
 <body>
-	<div class="report_reason">
+	<div class="
+">
 		<form>
 				<textarea class="report_txt" placeholder="여기에 사유를(을) 입력해주세요 " style="resize: none; width: 1000px; height: 100px;"></textarea>
 
