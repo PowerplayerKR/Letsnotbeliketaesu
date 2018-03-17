@@ -75,10 +75,10 @@
 				favorites on (book.isbn = favorites.isbn and favorites.email = #{email}) 
 			</when>
 			<when test='myPage==2'>
-				 star_point_list on(book.num=star_point_list.book_num and star_point_list.star_point_email=#{email}) left join review_list on(book.isbn=review_list.isbn and review_list.review_email=#{email})
+				 star_point_list on(book.isbn=star_point_list.isbn and star_point_list.star_point_email=#{email}) left join review_list on(book.isbn=review_list.isbn and review_list.review_email=#{email})
 			</when>
 			<when test='myPage==3'>
-				not_interested on(book.num=not_interested.book_num and not_interested.email=#{email})
+				not_interested on(book.isbn=not_interested.isbn and not_interested.email=#{email})
 			</when>
 		</choose>
 	</sql>

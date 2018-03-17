@@ -700,14 +700,6 @@
 		height: 17px;
 		overflow: hidden;
 	}
-	.report_reason{
-		position: absolute;
-		z-index: 33;
-		left: 50%;
-		top:50%;
-		margin:-50px 0 0 -500px;
-		display: none;
-	}
 </style>
 </head>
 <body>
@@ -1289,42 +1281,7 @@
 			$(".book_info_li").attr("data-isbn","");
 		});
 		
-		function report(a) {
-			event.preventDefault();
-			var email = "";
-			email =  a.data("email");
-			console.log(a);
-			var num = "";
-			num = a.data("num");
-			console.log(num);
-
-			$(".report_reason").show();
-			$("#body_blind_wrap").show();
-			
-			$(".report_submit").click(function() {
-				$.ajax({
-
-					url : "reviewReport.do",
-
-					type : "post",// post방식
-
-					data : {
-						"report_email" : email,
-						"review_num": num,
-						"report_reason" : $(".report_txt").val()
-					},
-					error : function(request, status, error) {
-						alert("이미 누르셨습니다.");
-					},
-					success : function() {
-						$(".report_reason").hide();
-						$("#body_blind_wrap").hide();
-						 $(".report_txt").val("");
-					}
-				});// ajax
-			})
-			
-		};
+		
 		
 	</script>
 </body>

@@ -520,8 +520,8 @@ ul {
 
 <div id="userpage">
 <a id="see" href="#">보고싶어요</a>
-<a id="saw" href="#">봤어요</a>
-<a id="interested" href="#">관심없어요</a>
+<a id="saw" href="mypage2.do">봤어요</a>
+<a id="interested" href="mypage3.do">관심없어요</a>
 <p id="songeunBar"></p>
 
 </div>

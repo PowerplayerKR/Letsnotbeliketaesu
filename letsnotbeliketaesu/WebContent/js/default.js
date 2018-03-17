@@ -25,7 +25,42 @@ $(".wish_btn").click(
 
 		});
 
+function report(a) {
+	var email = "";
+	email = a.data("email");
+	console.log(email);
+	var num = "";
+	num = a.data("num");
+	console.log(num);
 
+	$(".report_reason").show();
+	$("#body_blind_wrap").show();
+
+	$(".report_submit").click(function() {
+		$.ajax({
+
+			url : "reviewReport.do",
+
+			type : "post",// post방식
+
+			data : {
+				"report_email" : email,
+				"review_num" : num,
+				"report_reason" : $(".report_txt").val()
+			},
+			error : function(request, status, error) {
+				alert("이미 누르셨습니다.");
+			},
+			success : function() {
+				$(".report_reason").hide();
+				$("#body_blind_wrap").hide();
+				$(".report_txt").val("");
+				$(this).preventDefault();
+			}
+		});// ajax
+	})
+
+};
 
 $(document).ready(function() {
 	$('.star_rating').trigger('mouseleave');

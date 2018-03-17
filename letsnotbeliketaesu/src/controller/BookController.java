@@ -66,9 +66,9 @@ public class BookController {
 
 		List<HashMap<String, Object>> book = bookService.selectBookMain();
 
-		List<HashMap<String, Object>> bestBook = bookService.selectBookMain();
+		List<HashMap<String, Object>> bestBook = bestBookService.selectBookMain();
 
-		List<HashMap<String, Object>> newBook = bookService.selectBookMain();
+		List<HashMap<String, Object>> newBook = newBookService.selectBookMain();
 
 		model.addAttribute("userInfo", userInfo);
 
@@ -152,7 +152,7 @@ public class BookController {
 
 		System.out.println(bookService.selectUserBook(params));
 
-		return "mypage1";
+		return "mypage";
 
 	}
 

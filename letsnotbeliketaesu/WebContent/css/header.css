@@ -73,3 +73,12 @@ body {
 #user img {
 	border-radius: 100px;
 }
+
+.report_reason{
+		position: absolute;
+		z-index: 33;
+		left: 50%;
+		top:50%;
+		margin:-50px 0 0 -500px;
+		display: none;
+	}

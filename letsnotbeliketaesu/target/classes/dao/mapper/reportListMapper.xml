@@ -15,9 +15,9 @@
 	</select>
 	<insert id="insertReportList" parameterType="java.util.HashMap">
 		INSERT INTO
-		report_list(num,review_num,report_reason,reporter_name,regdate)
+		report_list(num,review_num,report_email,report_reason,reporter_name,regdate)
 		VALUES
-		(0,#{review_num},#{report_reason},#{reporter_name},now())
+		(0,#{review_num},#{report_email},#{report_reason},#{reporter_name},now())
 	</insert>
 	<update id="updateReportList" parameterType="java.util.HashMap">
 		UPDATE report_list
