@@ -101,5 +101,13 @@ public class UserController {
 		
 		return "{\"booknum\":\"�뿉�윭�궡吏�留�\" }";
 	}
-
+@RequestMapping("kakaoLogin.do")
+	@ResponseBody
+	public String kakaoLogin(@RequestParam HashMap<String, Object> params, HttpSession session) throws Exception{
+		 System.out.println(params);
+		params.put("email", params.get("email"));
+		 session.setAttribute("userInfo", params);
+		
+		 return "{\"booknum\":\"�뿉�윭�궡吏�留�\" }";
+	}
 }
