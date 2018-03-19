@@ -1321,8 +1321,6 @@
 			$(".book_info_li").attr("data-isbn","");
 		});
 </script>
-	/*
 	
-	*/
 </body>
 </html>
