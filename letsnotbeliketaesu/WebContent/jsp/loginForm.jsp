@@ -74,44 +74,49 @@
     <div id="join">
   <button type="button" class="form-control btn btn-primary" onclick="location.href='joinForm.do'">회원가입</button>
     </div>
-	
-	
-	<a id="custom-login-btn" href="javascript:loginWithKakao()">
-<img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="350" />
-	  </a>
+	<a id="kakao-login-btn"></a>
 	  <!--  
 	   <%if(session.getAttribute("msg")!=null){ %>
     	<div> 아이디 또는 비밀번호가 일치하지 않습니다</div>
    <%} %>
    -->
   </form>
-	  <button id="sign-in-or-out-button">구글로그인</button>  
+  <button id="sign-in-or-out-button">구글로그인</button> 
 </div>
 
 
 <script>
   var GoogleAuth;
-  var SCOPE = 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile';
+  var SCOPE ='https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile';
+  var option;
   function handleClientLoad() {
     // Load the API's client and auth2 modules.
     // Call the initClient function after the modules load.
-    gapi.load('client:auth2', initClient);
+    gapi.load('client:auth2',initClient);
   }
 
   function initClient() {
     // Retrieve the discovery document for version 3 of Google Drive API.
     // In practice, your app can retrieve one or more discovery documents.
-    var discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/drive/v3/rest';
+    var discoveryUrl ='https://www.googleapis.com/discovery/v1/apis/oauth2/v2/rest';
 
+    options = new gapi.auth2.SigninOptionsBuilder();
+    
+    options.setPrompt('select_account');
+    
+    
     // Initialize the gapi.client object, which app uses to make API requests.
     // Get API key and client ID from API Console.
     // 'scope' field specifies space-delimited list of access scopes.
+    
+    
     gapi.client.init({
-        'apiKey': 'AIzaSyDABZUfzznjrglkKhO0D6TqjL3ubVEkeRg',
-        'discoveryDocs': [discoveryUrl],
-        'clientId': '21159077001-po55cehtbl0u7dq7c9f456955e867v5p.apps.googleusercontent.com',
+        'apiKey':'AIzaSyDABZUfzznjrglkKhO0D6TqjL3ubVEkeRg',
+        'discoveryDocs':[discoveryUrl],
+        'clientId':'21159077001-po55cehtbl0u7dq7c9f456955e867v5p.apps.googleusercontent.com',
         'scope': SCOPE
     }).then(function () {
+    	
       GoogleAuth = gapi.auth2.getAuthInstance();
 
       // Listen for sign-in state changes.
@@ -119,26 +124,32 @@
 
       // Handle initial sign-in state. (Determine if user is already signed in.)
       
-      
-      
-
       // Call handleAuthClick function when user clicks on
       //      "Sign In/Authorize" button.
-      $('#sign-in-or-out-button').click(function() {
-        handleAuthClick();
-        
-      }); 
-   
+       $('#sign-in-or-out-button').click(function() {
+    	      handleAuthClick();
+    	      console.log("어디로감?");
+    	    }); 
+      
     });
   }
 
+  
   function handleAuthClick() {
     if (GoogleAuth.isSignedIn.get()) {
       // User is authorized and has clicked 'Sign out' button.
-      
+      	GoogleAuth.signOut();
+    	
+    	console.log(GoogleAuth.currentUser.get().getId());
+    	console.log(GoogleAuth.currentUser.get().isSignedIn ());
+    	// Example 2: Use gapi.client.request(args) function
+    	
     } else {
       // User is not signed in. Start Google auth flow.
-      GoogleAuth.signIn();
+    	console.log("???");
+      GoogleAuth.signIn(option);
+        
+    
     }
     
   }
@@ -147,7 +158,7 @@
   function setSigninStatus(isSignedIn) {
     var user = GoogleAuth.currentUser.get();
     var isAuthorized = user.hasGrantedScopes(SCOPE);
-    
+    console.log(isAuthorized);
     if (isAuthorized) {
     	
     	$.ajax({
@@ -173,25 +184,22 @@
     	        form.submit();
     		}
     	});// $.ajax() end
-    	  
-    	
-    	
-    	
-    	
     	
     }
   }
   function updateSigninStatus(isSignedIn) {
 	    setSigninStatus();
-	  }
+	 
+  }
 </script>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script async defer src="https://apis.google.com/js/api.js" 
         onload="this.onload=function(){};handleClientLoad()" 
         onreadystatechange="if (this.readyState === 'complete') this.onload()">
 </script>
 <script type="text/javascript">
-	$(document).ready(function() {
+	$(document).ready(function(){
 		$("#button").click(function() {
 			var userId =$("#id").val();
 			var userpwd =$("#password").val();
@@ -214,24 +222,27 @@
 
 <script  src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
-<script type='text/javascript'>
-  //<![CDATA[
+<script  type='text/javascript'>
+  
     // 사용할 앱의 JavaScript 키를 설정해 주세요.
     Kakao.init('b3dda290379e06dadbd80864ab45c2ec');
-    function loginWithKakao() {
-      // 로그인 창을 띄웁니다.
-      Kakao.Auth.login({
-        success: function(authObj) {
-          alert(JSON.stringify(authObj));
-          Kakao.API.request({
-        	  url:'/v1/user/me',
-        	  success: function(res) {
-				alert(JSON.stringify(res));
-				alert(JSON.stringify(authObj));
-				console.log(res.id)
-				console.log(res.properties.nickname);
-	
- 			$.ajax({
+    // 카카오 로그인 버튼을 생성합니다.
+    Kakao.Auth.createLoginButton({
+      container: '#kakao-login-btn',
+      success: function(authObj) {
+        // 로그인 성공시, API를 호출합니다.
+        Kakao.API.request({
+          url: '/v1/user/me',
+          success: function(res) {
+        	  /*
+        	  alert(JSON.stringify(res)); 
+              alert(JSON.stringify(authObj));
+              */
+        	 console.log(res.id);
+        	 console.log(res.kaccount_email);
+        	 console.log(res.properties.nickname);
+        	 
+        	 $.ajax({
         		 url:"kakaoLogin.do",
         		type:"post",
         		dataType:"json",
@@ -247,7 +258,6 @@
         			},
         			success : function(json) {
         				console.log(json);
-        				Kakao.Auth.logout(function() { console.log('out'); });
         			}        		        		
         	 })
         	 
@@ -256,15 +266,21 @@
         	    document.body.appendChild(form);
         	    form.submit();
    
-			}//request
-          })//api
-        },//success
-        fail: function(err) {
-          alert(JSON.stringify(err));
-        }
-      });
-    };
-  //]]>
+          },
+          
+          fail: function(error) {
+            alert(JSON.stringify(error));
+          }
+        });
+      },
+      fail: function (err) {
+		alert(JSON.stringify(err));
+	}
+    });
+    
+   
+   
+    
 </script>
 
 
