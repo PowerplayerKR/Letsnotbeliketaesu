@@ -504,19 +504,19 @@ $(".star_rating .tail")
 					}
 					return false;
 				});
-$('.comment_btn')
-		.click(
-				function() {
+$('.comment_btn').on("click", function(){
 					var top = 150 - $(window).scrollTop();
 					var scrollTop = $(window).scrollTop();
-
 					// 스크롤 막기
 					$(".book_wrap").attr("data-scroll", scrollTop);
+					$(".new_book_wrap").attr("data-scroll", scrollTop);
 					$('html, body').css({
 						'overflow' : 'hidden',
 						'height' : '100%'
 					});
-					$("#content").css({"position":"fixed","left":"326.2px","top":top+"px"});
+					$(".new_book_wrap").css({"position":"fixed","left":"301px","top":top+"px"});
+					$(".book_wrap").css({"position":"fixed","left":"472px","top":top+"px"});;
+					$("#content").css({"position":"fixed","left":"300px","top":top+"px"});
 					$("#content").data("scrollTop",scrollTop);
 					$('#element').on('scroll touchmove mousewheel',
 							function(event) {
@@ -600,17 +600,19 @@ $('.comment_btn')
 						$('#star_check').trigger('click');
 					}
 				});
-$('#body_blind_wrap')
-		.click(
+$('#body_blind_wrap').click(
 				function() {
 					$('html, body').css({
 						'overflow' : '',
 						'height' : 'auto'
 					});
-				
-					var scroll = $(".book_wrap").attr("data-scroll");
+					var scroll="";
+					$(".new_book_wrap").css({"position":"relative","left":"","top":"0px"});
+					$(".book_wrap").css({"position":"relative","left":"","top":"150px"});;
+					scroll = $(".new_book_wrap").attr("data-scroll");
 					$(window).scrollTop(scroll);
 					$(".book_wrap").attr("data-scroll", "");
+					$(".new_book_wrap").attr("data-scroll", "");
 					$('#element').off('scroll touchmove mousewheel');
 					$('#comment').hide();
 					$(".report_reason").hide();
