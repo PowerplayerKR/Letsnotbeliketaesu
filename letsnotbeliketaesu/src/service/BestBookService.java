@@ -20,6 +20,10 @@ public class BestBookService {
 	public List<HashMap<String, Object>> selectRankingBestBook() {
 		return bestBookDao.selectRankingBestBook();
 	}
+	
+	public List<HashMap<String, Object>> selectBestBookMore(int num){
+		return bestBookDao.selectBestBookMore(num);
+	}
 
 	public HashMap<String, Object> selectBestBook(int num) {
 		return bestBookDao.selectBestBook(num);
