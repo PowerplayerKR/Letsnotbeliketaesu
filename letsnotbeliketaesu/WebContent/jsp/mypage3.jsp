@@ -8,7 +8,7 @@
 
 <link rel="stylesheet" href="../letsnotbeliketaesu/css/reset.css">
 <link rel="stylesheet" href="../letsnotbeliketaesu/css/notosanskr.css">
-<link rel="stylesheet" href="../letsnotbeliketaesu/css/NewHeader.css">
+<link rel="stylesheet" href="../letsnotbeliketaesu/css/header.css">
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -774,7 +774,7 @@ ul {
 
 								dataType:"json",//json
 
-								data:{"book_num":$(this).closest(".star_rating").attr('id'),"review_writer":"bong"},
+								data:{"book_num":$(this).closest(".star_rating").attr('id')},
 
 									
 
@@ -830,7 +830,7 @@ ul {
 
 							dataType:"json",//json
 
-							data:{"bookNum":$(this).closest(".star_rating").attr('id'),"email":"bong","starPoint":$(this).closest('i').prevAll('i').length+0.5},
+							data:{"bookNum":$(this).closest(".star_rating").attr('id'),"starPoint":$(this).closest('i').prevAll('i').length+0.5},
 
 							error:function(request,status,error){
 
@@ -876,7 +876,7 @@ ul {
 
 							dataType:"json",//json
 
-							data:{"starPoint":$(this).closest('i').prevAll('i').length+0.5,"bookNum":$(this).closest(".star_rating").attr('id'),"reviewNum":0,"email":"bong"},
+							data:{"starPoint":$(this).closest('i').prevAll('i').length+0.5,"bookNum":$(this).closest(".star_rating").attr('id'),"reviewNum":0},
 
 							error:function(request,status,error){
 
@@ -938,7 +938,7 @@ ul {
 
 							dataType:"json",//json
 
-							data:{"bookNum":$(this).closest(".star_rating").attr('id'),"email":"bong"},
+							data:{"bookNum":$(this).closest(".star_rating").attr('id')},
 
 							error:function(request,status,error){
 
@@ -1020,7 +1020,7 @@ ul {
 
 							dataType:"json",//json
 
-							data:{"bookNum":$(this).closest(".star_rating").attr('id'),"email":"bong","starPoint":$(this).closest('i').prevAll('i').length+1},
+							data:{"bookNum":$(this).closest(".star_rating").attr('id'),"starPoint":$(this).closest('i').prevAll('i').length+1},
 
 							error:function(request,status,error){
 
@@ -1066,7 +1066,7 @@ ul {
 
 							dataType:"json",//json
 
-							data:{"starPoint":$(this).closest('i').prevAll('i').length+1,"bookNum":$(this).closest(".star_rating").attr('id'),"email":"bong",
+							data:{"starPoint":$(this).closest('i').prevAll('i').length+1,"bookNum":$(this).closest(".star_rating").attr('id'),
 
 								"reviewNum":0},
 
