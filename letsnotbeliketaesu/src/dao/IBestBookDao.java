@@ -16,5 +16,7 @@ public interface IBestBookDao {
 
 	public List<HashMap<String, Object>> selectRankingBestBook();
 
+	public List<HashMap<String, Object>> selectBestBookMore(int num);	
+	
 	public List<HashMap<String, Object>> selectBookMain();
 }
