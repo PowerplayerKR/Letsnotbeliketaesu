@@ -96,6 +96,16 @@ public class BookController {
 		return mav;
 
 	}
+	
+	@RequestMapping("bestBookMore.do")
+	@ResponseBody
+	public ResponseEntity<String>bestBookMore(@RequestParam int num) throws Exception{
+		List<HashMap<String,Object>> bestBookList = bestBookService.selectBestBookMore(num);
+		String json = new ObjectMapper().writeValueAsString(bestBookList);
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+		return new ResponseEntity(json, responseHeaders, HttpStatus.OK);
+	}
 
 	@RequestMapping("newBook.do")
 	public ModelAndView newBook() {
