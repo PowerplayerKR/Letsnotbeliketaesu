@@ -700,14 +700,15 @@
 		height: 17px;
 		overflow: hidden;
 	}
+	.report_text_warp{
+		display: none;
+	}
 </style>
 </head>
 <body>
-	<div class="
-">
+	<div class="report_text_warp">
 		<form>
 				<textarea class="report_txt" placeholder="여기에 사유를(을) 입력해주세요 " style="resize: none; width: 1000px; height: 100px;"></textarea>
-
 				<input type="submit" class="report_submit">
 			</form>
 	</div>
