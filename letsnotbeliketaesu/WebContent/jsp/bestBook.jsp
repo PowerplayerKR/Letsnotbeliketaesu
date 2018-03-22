@@ -975,7 +975,7 @@
 	<c:forEach var="book"  items="${bestBookList}">
 	    <div class="book_info_wrap" data-num="${book.num }">
 		    <div class="info_wrap">
-			    <div class="book_img_wrap" data-isbn="${book.isbn}" data-title="${book.title}" onclick="bookClick('${book.title}','${book.isbn}');">
+			    <div class="book_img_wrap" onclick="bookClick('${book.title}','${book.isbn}');">
 			 			<div style="background-image: url('${book.image}');" class="book_img"></div>
 		     	</div>
 			     <div class="info_box">
@@ -1007,7 +1007,7 @@
 						<button class="wish_btn">
 							<i class="fa fa-heart"></i>보고싶어요
 						</button>
-						<button class="comment_btn" onclick="commentBtnClick();" >
+						<button class="comment_btn" onclick="commentBtnClick();">
 							<i class="fa fa-comment" data-comment="${book.content}"></i> 코멘트쓰기
 						</button>
 					</div>
@@ -1033,7 +1033,6 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="../letsnotbeliketaesu/js/default.js"></script>
 <script>
-
 	function bookClick(title,isbn) {
 			$(".loader").show();
 			var scrollTop = $(window).scrollTop();
@@ -1245,7 +1244,7 @@
 	                              	var wish_btn = $("<button class='wish_btn'>");
 	                              	var heart_icon = $("<i class='fa fa-heart'>");
 	                              	
-	                            	var comment_btn = $("<button class='comment_btn' >").attr("data-title",this.title);
+	                            	var comment_btn = $("<button class='comment_btn' onclick='commentBtnClick();''>").attr("data-title",this.title);
 	                              	var comment_icon = $("<i class='fa fa-comment'>");
 	                              	
 	                              	var book_img = $("<img class='book_img' src='"+this.image+"' alt='"+this.title+"'>");
@@ -1369,6 +1368,144 @@
 	        lastScrollTop = currentScrollTop;
 	    }// 다운스크롤인 상태
 	});
+	function commentBtnClick() {
+			var top = 150 - $(window).scrollTop();
+			var scrollTop = $(window).scrollTop();
+			// 스크롤 막기
+			$(".book_wrap").attr("data-scroll", scrollTop);
+			$('html, body').css({
+				'overflow' : 'hidden',
+				'height' : '100%'
+			});
+			$(".new_book_wrap").css({"position":"fixed","left":"301px","top":top+"px"});
+			$(".book_wrap").css({"position":"fixed","left":"472px","top":top+"px"});;
+			$("#content").css({"position":"fixed","left":"300px","top":top+"px"});
+			$("#content").data("scrollTop",scrollTop);
+			$('#element').on('scroll touchmove mousewheel',
+					function(event) {
+						event.preventDefault();
+						event.stopPropagation();
+						return false;
+					});
+			console.log($(this).closest('.book_list').find('img').attr(
+					'alt'));
+			console.log($(this).closest('.book_list').find('img').attr(
+					'src'))
+			$('#comment').show();
+			$('#comment_title').text(
+					$(this).closest('.book_list').find('img').attr(
+							'alt'));
+			$('#comment_content_wrap_img').attr(
+					'src',
+					$(this).closest('.book_list').find('img').attr(
+							'src'));
+			$('#body_blind_wrap').show();
+			var x = $(this).closest('.info_box').find('.true');
+			$('#comment_content_wrap_star_grade_body_star .star_rating')
+					.attr(
+							'id',
+							$(this).closest('.info_box').find(
+									'.star_rating').attr('id'));
+			$(this).closest('.info_box').find('.star_rating')
+					.removeAttr('id').attr('id', "fake");
+			$('#comment_content_wrap_star_rating').children('i')
+					.removeClass("fa fa-star fa-1x").removeClass(
+							"fa fa-star-o fa-1x").removeClass(
+							"fa fa-star-half-o fa-1x");
+			$('#inputText').val($(this).data('comment'));
+			$('#inputText').data('comment', $(this).data('comment'));
+			if ($(this).data('comment') == "") {
+				$('#comment_content_wrap_button').attr("disabled",
+						"true");
+			}
+			if (x.hasClass('true') == true) {
+				if (x.hasClass('head') == true) {
+					$(
+							$(
+									'#comment_content_wrap_star_grade_body_star .star_rating')
+									.children('i')[x.closest('i')
+									.prevAll('i').length])
+							.find('.head').addClass('true');
+					$(
+							$('#comment_content_wrap_star_rating')
+									.children('i')[x.closest('i')
+									.prevAll('i').length]).addClass(
+							"fa fa-star-half-o fa-1x").prevAll("i")
+							.addClass("fa fa-star fa-1x");
+					$(
+							$('#comment_content_wrap_star_rating')
+									.children('i')[x.closest('i')
+									.prevAll('i').length]).nextAll("i")
+							.addClass("fa fa-star-o fa-1x");
+				} else {
+					$(
+							$('#comment_content_wrap_star_rating')
+									.children('i')[x.closest('i')
+									.prevAll('i').length]).addClass(
+							"fa fa-star fa-1x").prevAll("i").addClass(
+							"fa fa-star fa-1x");
+					$(
+							$('#comment_content_wrap_star_rating')
+									.children('i')[x.closest('i')
+									.prevAll('i').length]).nextAll("i")
+							.addClass("fa fa-star-o fa-1x");
+					$(
+							$(
+									'#comment_content_wrap_star_grade_body_star .star_rating')
+									.children('i')[x.closest('i')
+									.prevAll('i').length])
+							.find('.tail').addClass('true')
+				}
+				$(
+						'#comment_content_wrap_star_grade_body_star .star_rating')
+						.trigger('mouseleave');
+			} else {
+				$('#star_check').trigger('click');
+			}
+	}
+	$('#body_blind_wrap').click(
+			function() {
+				$('html, body').css({
+					'overflow' : '',
+					'height' : 'auto'
+				});
+				var scroll="";
+				$(".book_wrap").css({"position":"relative","left":"","top":"150px"});;
+				scroll = $(".book_wrap").attr("data-scroll");
+				$(window).scrollTop(scroll);
+				$(".book_wrap").attr("data-scroll", "");
+				$('#element').off('scroll touchmove mousewheel');
+				$('#comment').hide();
+				$(".report_reason").hide();
+				$(this).hide();
+		
+				$('#comment_content_wrap_star_grade_wrap').hide();
+		
+				$('#comment_blind_wrap').hide();
+		
+				$('#comment_content_wrap_star_grade_body_star .star_rating')
+						.find('.true').removeClass('true');
+		
+				$('#comment_content_wrap_star_grade_body_star .star_rating')
+						.trigger('mouseleave');
+		
+				$('#fake')
+						.removeAttr('id')
+						.attr(
+								'id',
+								$(
+										'#comment_content_wrap_star_grade_body_star .star_rating')
+										.attr('id'));
+		
+				$('#comment_content_wrap_star_grade_body_star .star_rating')
+						.removeAttr('id');
+		
+			});
+		
+		$('#comment_blind_wrap').click(function() {
+			$('#comment_content_wrap_star_grade_wrap').hide();
+			$(this).hide();
+		});	
 </script>
 	
 </body>
