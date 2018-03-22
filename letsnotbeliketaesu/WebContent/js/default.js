@@ -62,111 +62,33 @@ function report(a) {
 
 };
 
-$(document).ready(function() {
-	$('.star_rating').trigger('mouseleave');
+$(function(){$('.star_rating').trigger('mouseleave')});
+$('.star_rating .head,.star_rating .tail').mouseenter(function(){
+    var offset=$(this).offset(),
+        active=$(this).hasClass('true'),
+		score=$(this).parent().index()*2+$(this).index();
+    $('#tool_tip').show().css({'top':offset.top+50,'left': offset.left-38})
+		.find('p').css({color:active?'red':'black'})
+		.text(active?'취소하기':(['최악 이에요','싫어요','재미 없어요','별로예요','부족 해요',
+			'보통 이예요','볼만 해요','재미 있어요','훌륭 해요','최고예요!'])[score]);
+    $(this).closest('.star_rating').children().removeClass('fa-star-o fa-star-half-o fa-star')
+		.each(function(){var sub=score-$(this).index()*2;$(this).addClass(sub?sub<0?'fa-star-o':'fa-star':'fa-star-half-o')});
+}).click(function() {
+	if($(this).hasClass('true')) {
+		if($(this).closest('.star_rating').hasClass('true')){
+			/*insert*/
+        }else{
+            /*update*/
+        }
+	}else{ /*delete*/ }
 });
-$(".star_rating  i .tail").mouseenter(
-		function(event) {
-			var offset = $(this).offset();
-			var toolTip = $('#tool_tip');
-			toolTip.css({
-				"top" : offset.top + 50,
-				"left" : offset.left - 38
-			});
-			if ($(this).hasClass('true')) {
-				toolTip.find('p').text('취소하기');
-				toolTip.find('p').css('color', 'red');
-			} else {
-				toolTip.find('p').css('color', 'black');
-				switch ($(this).closest('i').prevAll().length) {
-				case 0:
-					toolTip.find('p').text('싫어요');
-					break;
-				case 1:
-					toolTip.find('p').text('별로예요');
-					break;
-				case 2:
-					toolTip.find('p').text('보통 이예요');
-					break;
-				case 3:
-					toolTip.find('p').text('재미 있어요');
-					break;
-				case 4:
-					toolTip.find('p').text('최고예요!');
-				}
-			}
-			toolTip.show();
-			$(this).closest("i").parent().children("i").removeClass(
-					"fa fa-star 2x").removeClass("fa fa-star-o fa-2x")
-					.removeClass("fa fa-star-half-o fa-2x");
-			$(this).closest("i").addClass("fa fa-star fa-2x").prevAll("i")
-					.addClass("fa fa-star fa-2x");
-			$(this).closest("i").nextAll("i").addClass("fa fa-star-o fa-2x");
-			return false;
-		});
-$(".star_rating i .head").mouseenter(
-		function(event) {
-			var offset = $(this).offset();
-			var toolTip = $('#tool_tip');
-			toolTip.css({
-				"top" : offset.top + 50,
-				"left" : offset.left - 38
-			});
-			if ($(this).hasClass('true')) {
-				toolTip.find('p').text('취소하기');
-				toolTip.find('p').css('color', 'red');
-			} else {
-				toolTip.find('p').css('color', 'black');
-				switch ($(this).closest('i').prevAll().length) {
-				case 0:
-					toolTip.find('p').text('최악 이에요');
-					break;
-				case 1:
-					toolTip.find('p').text('재미 없어요');
-					break;
-				case 2:
-					toolTip.find('p').text('부족 해요');
-					break;
-				case 3:
-					toolTip.find('p').text('볼만 해요');
-					break;
-				case 4:
-					toolTip.find('p').text('훌륭 해요');
-				}
-			}
-			toolTip.show();
-			$(this).closest("i").parent().children("i").removeClass(
-					"fa fa-star 2x").removeClass("fa fa-star-o fa-2x")
-					.removeClass("fa fa-star-half-o fa-2x");
-			$(this).closest("i").addClass("fa fa-star-half-o fa-2x").prevAll(
-					"i").addClass("fa fa-star fa-2x");
-			$(this).closest("i").nextAll("i").addClass("fa fa-star-o fa-2x");
-			return false;
-		});
-$(".star_rating").mouseleave(
-		function() {
-			var a = $(this).find('.true');
-			if (a.length > 0) {
-				$(this).children("i").removeClass("fa fa-star fa-2x")
-						.removeClass("fa fa-star-o fa-2x").removeClass(
-								"fa fa-star-half-o fa-2x");
-				if (a.hasClass('head')) {
-					a.closest("i").addClass("fa fa-star-half-o fa-2x").prevAll(
-							"i").addClass("fa fa-star fa-2x");
-					a.closest("i").nextAll("i").addClass("fa fa-star-o fa-2x");
-				} else {
-					a.closest("i").addClass("fa fa-star fa-2x").prevAll("i")
-							.addClass("fa fa-star fa-2x");
-					a.closest("i").nextAll("i").addClass("fa fa-star-o fa-2x");
-				}
-			} else {
-				$(this).children("i").removeClass("fa fa-star fa-2x")
-						.removeClass("fa fa-star-o fa-2x").removeClass(
-								"fa fa-star-half-o fa-2x");
-				$(this).children("i").addClass("fa fa-star-o fa-2x");
-			}
-			$('#tool_tip').hide();
-		})
+$('.star_rating').mouseleave(function(){
+	var $active=$(this).find('.true'),
+		score=$active.length?$active.parent().index()*2+$active.index():-1;
+	$('#tool_tip').hide();
+    $(this).children().removeClass('fa-star-o fa-star-half-o fa-star')
+        .each(function(){var sub=score-$(this).index()*2;$(this).addClass(sub?sub<0?'fa-star-o':'fa-star':'fa-star-half-o')});
+});
 $(".star_rating .head")
 		.click(
 				function(event) {
