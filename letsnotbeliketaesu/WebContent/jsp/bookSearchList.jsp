@@ -28,6 +28,7 @@ textarea {
   resize: none;
 }
 body {
+	background: #E5E5E5;
 	font-family: 'Noto Sans KR', sans-serif;
 }
 
@@ -37,7 +38,7 @@ body {
 	line-height: 0;
 	text-indent: -9999px;
 	overflow: hidden;
-	display: block;
+	display: block
 	position: absolute;
 }
 .book_wrap{
@@ -56,7 +57,7 @@ body {
 	height: 314px;
 	display: block;
 	margin: 15px;
-	display:inline-block;
+	float:left;
 	position: relative;
 	overflow: hidden;
 }
@@ -583,6 +584,9 @@ body {
 		margin-left: -200px;
 		margin-top: -200px;
 	}
+	.book_info_ul{
+		margin-bottom: 50px;
+	}
 </style>
 </head>
 
@@ -696,7 +700,7 @@ body {
 	<div id="wrap">
 		<jsp:include page="/template/header.jsp"></jsp:include>
 		<div id="content">
-			<ul class="book_wrap">
+			<ul class="book_wrap" >
 				<c:forEach var="book" items="${searchBookList}">
 					<li class="book_list" data-title="${book.title}" data-isbn="${book.isbn}" data-num="${book.ROWNUM}">
 						<div class="info_wrap" data-title="${book.title}" data-isbn="${book.isbn}" >
@@ -877,7 +881,7 @@ body {
 		                                
 		                             var book_img = $("<div class='book_img' style=\"background-image: url('"+this.image+"');\">");
 		                                
-	                                var book_img_wrap = $("<dic class='book_img_wrap' onclick=\"bookClick('"+this.title+"','"+this.isbn+"');\" data-isbn='"+this.isbn+"' data-title='"+this.title+"'>").append(book_img);
+	                                var book_img_wrap = $("<div class='book_img_wrap' onclick=\"bookClick('"+this.title+"','"+this.isbn+"');\" data-isbn='"+this.isbn+"' data-title='"+this.title+"'>").append(book_img);
 	                                
 	                                var book_info = $("<div class='book_info'>");
 	                                
@@ -903,7 +907,7 @@ body {
 	                                
 	                                var info = book_info.append(book_title,publisher,detail);
 									
-	                                var book_img_wrap = $("<dic class='book_img_wrap' onclick=\"bookClick('"+this.title+"','"+this.isbn+"');\" data-isbn='"+this.isbn+"' data-title='"+this.title+"'>").append(book_img);
+	                                var book_img_wrap = $("<div class='book_img_wrap' onclick=\"bookClick('"+this.title+"','"+this.isbn+"');\" data-isbn='"+this.isbn+"' data-title='"+this.title+"'>").append(book_img);
 	                                
 	                                var info_wrap = $("<div class='info_wrap' data-title='"+this.title+"' data-isbn='"+this.isbn+"'>").append(book_img_wrap,info_box);
 
@@ -990,6 +994,8 @@ body {
 								$(".book_review_start").text("코멘트 ("+this.num+")");
 								if(this.num==Cnum || this.num==0){
 									$(".review_more").hide();
+								}
+								if(this.num==0){
 									$(".book_info_table").css("height","700px");
 								}
 							});//each() end
