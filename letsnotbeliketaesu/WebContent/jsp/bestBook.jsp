@@ -852,6 +852,9 @@
 		margin-left: -200px;
 		margin-top: -200px;
 	}
+	.book_info_ul{
+		margin-bottom: 50px;
+	}
 </style>
 </head>
 <body>
@@ -1104,6 +1107,8 @@
 									$(".book_review_start").text("코멘트 ("+this.num+")");
 									if(this.num==Cnum || this.num==0){
 										$(".review_more").hide();
+									}
+									if(this.num==0){
 										$(".book_info_table").css("height","700px");
 									}
 								});//each() end
