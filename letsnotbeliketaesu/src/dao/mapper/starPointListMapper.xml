@@ -5,25 +5,30 @@
 <mapper namespace="dao.IStarPointListDao">
 	<insert id="starInsert" parameterType="java.util.HashMap">
 		insert into
-		star_point_list(star_point_email,book_num,review_num,star_point,regdate)
-		values(#{email},#{name},#{bookNum},#{reviewNum},#{starPoint},now())
+		star_point_list(star_point_email,isbn,review_num,star_point,regdate)
+		values(#{email},#{isbn},'0',#{star_point},now())
 	</insert>
 
 	<update id="starUpdate" parameterType="java.util.HashMap">
 		update star_point_list
 		set
-		star_point=#{starPoint},
+		star_point=#{star_point},
 		regdate=now()
 		where
 		star_point_email=#{email}
-		and book_num=#{bookNum}
+		and isbn=#{isbn}
 
 	</update>
 	<delete id="starDelete" parameterType="java.util.HashMap">
 		delete from
 		star_point_list where star_point_email=#{email} and
-		book_num=#{bookNum}
+		isbn=#{isbn}
 
 	</delete>
+	<select id="starSelectOne" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+	select * from star_point_list where star_point_email=#{email} and
+		isbn=#{isbn}
+	</select>
 
 </mapper>
+
