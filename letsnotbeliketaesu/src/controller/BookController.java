@@ -96,11 +96,11 @@ public class BookController {
 		return mav;
 
 	}
-	
+
 	@RequestMapping("bestBookMore.do")
 	@ResponseBody
-	public ResponseEntity<String>bestBookMore(@RequestParam int num) throws Exception{
-		List<HashMap<String,Object>> bestBookList = bestBookService.selectBestBookMore(num);
+	public ResponseEntity<String> bestBookMore(@RequestParam int num) throws Exception {
+		List<HashMap<String, Object>> bestBookList = bestBookService.selectBestBookMore(num);
 		String json = new ObjectMapper().writeValueAsString(bestBookList);
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
@@ -123,24 +123,26 @@ public class BookController {
 	}
 
 	@RequestMapping("bookSearch.do")
-	public ModelAndView bookSearch(@RequestParam HashMap<String,Object> params) {
+	public ModelAndView bookSearch(@RequestParam HashMap<String, Object> params, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
+		HashMap<String, Object> userInfo = (HashMap<String, Object>) session.getAttribute("userInfo");
+		params.put("email", userInfo.get("email"));
 		List<HashMap<String, Object>> searchBookList = bookService.bookSearch(params);
-		mav.addObject("searchBookList",searchBookList);
+		mav.addObject("searchBookList", searchBookList);
 		mav.setViewName("bookSearchList");
 		return mav;
 	}
-	
+
 	@RequestMapping("bookSearchMore.do")
 	@ResponseBody
-	public ResponseEntity<String> bookSearchMore(@RequestParam HashMap<String,Object> params) throws Exception{
+	public ResponseEntity<String> bookSearchMore(@RequestParam HashMap<String, Object> params) throws Exception {
 		List<HashMap<String, Object>> bookInfo = bookService.bookSearchMore(params);
-		
+
 		List<HashMap<String, Object>> list = new ArrayList<>();
-		for(HashMap<String, Object> map:bookInfo) {
+		for (HashMap<String, Object> map : bookInfo) {
 			int rownum = Integer.valueOf(map.get("ROWNUM").toString());
 			int lastNum = Integer.valueOf(params.get("num").toString());
-			if(rownum>lastNum && rownum<=lastNum+20) {
+			if (rownum > lastNum && rownum <= lastNum + 20) {
 				list.add(map);
 			}
 		}
@@ -149,7 +151,8 @@ public class BookController {
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		return new ResponseEntity(json, responseHeaders, HttpStatus.CREATED);
 	}
-@RequestMapping("mypage1.do")
+
+	@RequestMapping("mypage1.do")
 	public String mypage(@RequestParam HashMap<String, Object> params, Model model, HttpSession session) {
 
 		HashMap<String, Object> user = (HashMap<String, Object>) session.getAttribute("userInfo");
@@ -166,7 +169,6 @@ public class BookController {
 
 	}
 
-
 	@RequestMapping("mypage3.do")
 	public String Interested(@RequestParam HashMap<String, Object> params, Model model, HttpSession session) {
 		HashMap<String, Object> user = (HashMap<String, Object>) session.getAttribute("userInfo");
@@ -178,7 +180,7 @@ public class BookController {
 
 	}
 
-@RequestMapping("mypage2.do")
+	@RequestMapping("mypage2.do")
 	public String StarPage(@RequestParam HashMap<String, Object> params, Model model, HttpSession session) {
 		HashMap<String, Object> user = (HashMap<String, Object>) session.getAttribute("userInfo");
 		System.out.println(user);
@@ -194,40 +196,6 @@ public class BookController {
 
 	@RequestMapping("bookReview.do")
 	public void bookreview() {
-
-	}
-
-	@RequestMapping("starInsert.do")
-	@ResponseBody
-	public String starInsert(@RequestParam HashMap<String, Object> params, HttpSession session) {
-		params.put("email", ((HashMap<String, Object>) session.getAttribute("userInfo")).get("email"));
-		bookService.starAvgCount(params);
-
-		bookService.starInsert(params);
-
-		return "{\"booknum\":\"에러내지마\" }";
-
-	}
-
-	@RequestMapping("starUpdate.do")
-	@ResponseBody
-	public String starUpdate(@RequestParam HashMap<String, Object> params, HttpSession session) {
-		params.put("email", ((HashMap<String, Object>) session.getAttribute("userInfo")).get("email"));
-		bookService.starAvgUpdate(params);
-		bookService.starUpdate(params);
-
-		return "{\"booknum\":\"에러내지마\" }";
-
-	}
-
-	@RequestMapping("starDelete.do")
-	@ResponseBody
-	public String starDelete(@RequestParam HashMap<String, Object> params, HttpSession session) {
-		params.put("email", ((HashMap<String, Object>) session.getAttribute("userInfo")).get("email"));
-		bookService.starAvgDelete(params);
-		bookService.starDelete(params);
-
-		return "{\"booknum\":\"에러내지마\" }";
 
 	}
 
@@ -258,18 +226,20 @@ public class BookController {
 		return "{\"booknum\":\"에러내지마\" }";
 	}
 
-	 @RequestMapping("recommended.do")
-	 public ModelAndView recommended(HttpSession session) {
-		 ModelAndView mav = new ModelAndView();
-		
-		 List<HashMap<String,Object>> recommendBook=bookService.recommended1((String)((HashMap<String,Object>)session.getAttribute("userInfo")).get("email"));
-		 recommendBook.addAll(bookService.recommended2((String)((HashMap<String,Object>)session.getAttribute("userInfo")).get("email")));
-		 for (int i=0;i<recommendBook.size();i++) {
-			for (int j = i+1; j < recommendBook.size(); j++) {
-				if(recommendBook.get(i).get("isbn")==recommendBook.get(j).get("isbn")) {
+	@RequestMapping("recommended.do")
+	public ModelAndView recommended(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+
+		List<HashMap<String, Object>> recommendBook = bookService
+				.recommended1((String) ((HashMap<String, Object>) session.getAttribute("userInfo")).get("email"));
+		recommendBook.addAll(bookService
+				.recommended2((String) ((HashMap<String, Object>) session.getAttribute("userInfo")).get("email")));
+		for (int i = 0; i < recommendBook.size(); i++) {
+			for (int j = i + 1; j < recommendBook.size(); j++) {
+				if (recommendBook.get(i).get("isbn") == recommendBook.get(j).get("isbn")) {
 					recommendBook.remove(j);
 				}
-			}	 
+			}
 		}
 
 		mav.addObject("recommendBook", recommendBook);
@@ -345,24 +315,25 @@ public class BookController {
 		return new ResponseEntity(json, responseHeaders, HttpStatus.CREATED);
 
 	}
-@RequestMapping("DeleteLike.do")
+
+	@RequestMapping("DeleteLike.do")
 	@ResponseBody
-	public String DeleteLike(@RequestParam HashMap<String, Object> params,HttpSession session) {
+	public String DeleteLike(@RequestParam HashMap<String, Object> params, HttpSession session) {
 		System.out.println(params);
 		HashMap<String, Object> userInfo = (HashMap<String, Object>) session.getAttribute("userInfo");
-		params.put("email",userInfo.get("email"));
+		params.put("email", userInfo.get("email"));
 		favoritesService.deleteFavorites(params);
 		return "{\"booknum\":\"오류내지마\" }";
 	}
+
 	@RequestMapping("InsertLike.do")
 	@ResponseBody
-	public String InsertLike(@RequestParam HashMap<String, Object> params,HttpSession session) {
+	public String InsertLike(@RequestParam HashMap<String, Object> params, HttpSession session) {
 		System.out.println(params);
 		HashMap<String, Object> userInfo = (HashMap<String, Object>) session.getAttribute("userInfo");
 		params.put("email", userInfo.get("email"));
 		favoritesService.insertFavorites(params);
 		return "{\"booknum\":\"오류내지마\" }";
 	}
-		
 
 }
