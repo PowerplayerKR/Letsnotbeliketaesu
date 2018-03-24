@@ -53,8 +53,8 @@
 	</sql>
 
 	<select id="bookSearch" parameterType="java.util.HashMap" resultType="java.util.HashMap">
-			SELECT CAST(@ROWNUM := @ROWNUM + 1 AS signed integer) AS ROWNUM,book.*
-			FROM book left join star_point_list on(book.isbn=star_point_list.isbn and star_point_list.star_point_email='bong'),(SELECT @ROWNUM := 0) R
+			SELECT CAST(@ROWNUM := @ROWNUM + 1 AS signed integer) AS ROWNUM,book.*,star_point_list.star_point
+			FROM book left join star_point_list on(book.isbn=star_point_list.isbn and star_point_list.star_point_email=#{email}),(SELECT @ROWNUM := 0) R
 			<include refid="search"></include>
 			ORDER BY public_date desc
 			LIMIT 0,20
