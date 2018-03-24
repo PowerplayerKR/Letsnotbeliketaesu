@@ -87,8 +87,20 @@ $('.star_rating .head,.star_rating .tail').mouseenter(function(){
     $(this).closest('.star_rating').children().removeClass('fa-star-o fa-star-half-o fa-star')
 		.each(function(){var sub=score-$(this).index()*2;$(this).addClass(sub?sub<0?'fa-star-o':'fa-star':'fa-star-half-o')});
 }).click(function() {
-	var a=$(this).closest(".star_rating").find(".true");
-	a.length ?($(this).hasClass("true") ?null :$(this).addClass("true"),a.removeClass("true")):$(this).addClass("true");
+	var a=$(this).closest(".star_rating").find(".true");// 별점있는거  th는 내가 
+	console.log("클릭 console"+a.hasClass('true'));
+	if(a.length===1){
+		if(!($(this).hasClass("true"))){
+			$(this).addClass("true")
+			console.log("실행되지마 제발!~!~!~!1");
+		}
+		a.removeClass("true");
+		console.log(a);
+	}else{
+		$(this).addClass("true");
+		console.log("실행되지마 제발!~!~!~!2");
+	}
+
 	var starPoint=$(this).index()?1:0.5;
 	$.ajax({
 		url : "starQuery.do",
@@ -109,17 +121,21 @@ $('.star_rating .head,.star_rating .tail').mouseenter(function(){
 		}
 		
 	});// $.ajax() end$('.star_rating"[data-i="+$(this).closest(".star_rating").data("isbn")+"]"')
- if(!($(this).closest('.info_box').hasClass('.info_box'))){
-	 var qqq=$(this);
-	 var zzz= new Array();
-		$('.star_rating').each(function () {
-		    if ( $(this).data('isbn') === qqq.closest(".star_rating").data("isbn") ) {
-		        // do whatever you wanted to do with it
-		    	zzz.push($(this));
-		    } 
-		});
-	starSub($(this).closest('i').prevAll('i').length,$(this).index(),$(zzz));
- }
+	 if(!($(this).closest('.info_box').hasClass('.info_box'))){
+		 var qqq=$(this);
+		 var zzz= new Array();
+			$('.star_rating').each(function () {
+			    if ( $(this).data('isbn') === qqq.closest(".star_rating").data("isbn") ) {
+			        // do whatever you wanted to do with it
+			    	zzz.push($(this));
+			    } 
+			});
+		if($(this).hasClass("true")){
+		starSub($(this).closest('i').prevAll('i').length,$(this).index(),$(zzz));
+		}else{
+			starSub(-1,-1,$(zzz));
+		}
+	 }
 });
 $('.star_rating').mouseleave(function(){
 	var $active=$(this).find('.true'),
