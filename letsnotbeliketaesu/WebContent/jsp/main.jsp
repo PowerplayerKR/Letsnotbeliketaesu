@@ -689,6 +689,7 @@
 	    border: 1px solid #d4d8d9;
 	    width: 52px;
 	    height: 52px;
+	    top: -27px;
 	}
 
 	#header {
