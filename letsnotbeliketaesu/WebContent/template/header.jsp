@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div id="header">
 	<ul>
 		<li>
@@ -15,13 +16,13 @@
 		<li class="search">
 			<form action="bookSearch.do">
 				<select name="searchOption" id="">
-					<option value="title">제목</option>
-					<option value="writer">작가</option>
-					<option value="publisher">출판사</option>
+					<option value="title" <c:if test="${search.searchOption eq 'title' }">selected</c:if> >제목</option>
+					<option value="writer"<c:if test="${search.searchOption eq 'writer' }">selected</c:if> >작가</option>
+					<option value="publisher" <c:if test="${search.searchOption eq 'publisher' }">selected</c:if>  >출판사</option>
 				</select>
 				<input type="search" name="keyword" id="search" placeholder="검색"
 					style="width: 500px; line-height:normal !important;"> 
-					<input type="submit" style="line-height:normal !important;" value="검색하기">
+					<input type="submit" value="${search.keyword}">  style="line-height:normal !important;" value="검색하기">
 			</form>
 		</li>
 	</ul>
