@@ -54,6 +54,10 @@
   	width: 350px;
   	height: 40px;
   }
+ .kakao img{
+  	margin-top: 10px;
+  	margin-left: 25px;
+  }
 </style>
 </head>
 <body>
@@ -74,7 +78,8 @@
     <div id="join">
   <button type="button" class="form-control btn btn-primary" onclick="location.href='joinForm.do'">회원가입</button>
     </div>
-	<a id="kakao-login-btn"></a>
+	<a id="custom-login-btn" class="kakao"href="javascript:loginWithKakao()">
+<img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="300"/></a>
 	  <!--  
 	   <%if(session.getAttribute("msg")!=null){ %>
     	<div> 아이디 또는 비밀번호가 일치하지 않습니다</div>
@@ -222,27 +227,23 @@
 
 <script  src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
-<script  type='text/javascript'>
-  
+<script type='text/javascript'>
+  //<![CDATA[
     // 사용할 앱의 JavaScript 키를 설정해 주세요.
     Kakao.init('b3dda290379e06dadbd80864ab45c2ec');
-    // 카카오 로그인 버튼을 생성합니다.
-    Kakao.Auth.createLoginButton({
-      container: '#kakao-login-btn',
-      success: function(authObj) {
-        // 로그인 성공시, API를 호출합니다.
-        Kakao.API.request({
-          url: '/v1/user/me',
-          success: function(res) {
-        	  /*
-        	  alert(JSON.stringify(res)); 
-              alert(JSON.stringify(authObj));
-              */
-        	 console.log(res.id);
-        	 console.log(res.kaccount_email);
-        	 console.log(res.properties.nickname);
-        	 
-        	 $.ajax({
+    function loginWithKakao() {
+      // 로그인 창을 띄웁니다.
+      Kakao.Auth.login({
+        success: function(authObj) {
+          alert(JSON.stringify(authObj));
+          Kakao.API.request({
+        	  url:'/v1/user/me',
+        	  success: function(res) {
+				alert(JSON.stringify(res));
+				alert(JSON.stringify(authObj));
+				console.log(res.id)
+				console.log(res.properties.nickname);
+ 			$.ajax({
         		 url:"kakaoLogin.do",
         		type:"post",
         		dataType:"json",
@@ -266,21 +267,15 @@
         	    document.body.appendChild(form);
         	    form.submit();
    
-          },
-          
-          fail: function(error) {
-            alert(JSON.stringify(error));
-          }
-        });
-      },
-      fail: function (err) {
-		alert(JSON.stringify(err));
-	}
-    });
-    
-   
-   
-    
+			}//request
+          })//api
+        },//success
+        fail: function(err) {
+          alert(JSON.stringify(err));
+        }
+      });
+    };
+  //]]>
 </script>
 
 
