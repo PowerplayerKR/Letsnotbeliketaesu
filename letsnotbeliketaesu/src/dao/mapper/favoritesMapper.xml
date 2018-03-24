@@ -13,8 +13,8 @@
   		WHERE num=#{num}
   	</select>
 	<insert id="insertFavorites" parameterType="java.util.HashMap">
-  		INSERT INTO favorites(num,isbn,email,regdate)
-  		VALUES (0,#{isbn},#{email},now())
+  		INSERT INTO favorites(isbn,email,regdate)
+  		VALUES (#{isbn},#{email},now())
   	</insert>
   	<update id="updateFavorites" parameterType="java.util.HashMap" >
   		UPDATE favorites
