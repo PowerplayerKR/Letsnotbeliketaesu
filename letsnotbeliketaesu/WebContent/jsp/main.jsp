@@ -769,22 +769,12 @@
 							</div>
 							<div id="comment_content_wrap_star_grade_body_star">
 								<div class="star_rating" style="text-align: center;">
-									<i class="fa fa-star-o fa-2x" aria-hidden="true"><div
-											class="head"></div>
-										<div class="tail"></div> <span></span></i> <i
-										class="fa fa-star-o fa-2x" aria-hidden="true"><div
-											class="head"></div>
-										<div class="tail"></div> <span></span></i> <i
-										class="fa fa-star-o fa-2x" aria-hidden="true"><div
-											class="head"></div>
-										<div class="tail"></div> <span></span></i> <i
-										class="fa fa-star-o fa-2x" aria-hidden="true"><div
-											class="head"></div>
-										<div class="tail"></div> <span></span></i> <i
-										class="fa fa-star-o fa-2x" aria-hidden="true"><div
-											class="head"></div>
-										<div class="tail"></div> <span></span></i>
-								</div>
+								<i class="fa fa-star-o fa-2x"   aria-hidden="true"><div class="head"></div><div class="tail"></div><span></span></i>
+								<i class="fa fa-star-o fa-2x"  aria-hidden="true"><div class="head"></div><div class="tail"></div><span></span></i>
+								<i class="fa fa-star-o fa-2x"  aria-hidden="true"><div class="head"></div><div class="tail"></div><span></span></i>
+								<i class="fa fa-star-o fa-2x"  aria-hidden="true"><div class="head"></div><div class="tail"></div><span></span></i>
+								<i class="fa fa-star-o fa-2x"  aria-hidden="true"><div class="head"></div><div class="tail"></div><span></span></i>
+						</div>
 							</div>
 
 							<div id="comment_content_wrap_star_grade_body_bottom_text">
@@ -820,12 +810,13 @@
 				src="http://chulsa.kr/files/attach/images/67/647/673/018/220ebc4544181643a70ac6f4af9c617f.jpg"
 				id="comment_content_wrap_img">
 			<tr></tr>
-			<div id="comment_content_wrap_star_rating"
-				style="text-align: center;">
-				<i aria-hidden="true"></i> <i aria-hidden="true"></i> <i
-					aria-hidden="true"></i> <i aria-hidden="true"></i> <i
-					aria-hidden="true"></i>
-			</div>
+			<div class="star_rating" style="text-align: center;">
+							<i class="fa fa-star-o fa-2x"   aria-hidden="true"><div></div><div></div></i>
+							<i class="fa fa-star-o fa-2x"  aria-hidden="true"><div></div><div></div><span></span></i>
+							<i class="fa fa-star-o fa-2x"  aria-hidden="true"><div></div><div></div><span></span></i>
+							<i class="fa fa-star-o fa-2x"  aria-hidden="true"><div></div><div></div><span></span></i>
+							<i class="fa fa-star-o fa-2x"  aria-hidden="true"><div></div><div></div><span></span></i>
+						</div>
 			<form>
 				<textarea placeholder="여기에 댓글을 입력해주세요 " class="inputText"
 					name="comment"></textarea>
@@ -886,7 +877,7 @@
 									<div class="book_title">
 										<h3>${book.title}</h3>		
 									</div>
-									<div class="star_rating" id="${book.isbn}">
+									<div class="star_rating" data-isbn="${book.isbn}">
 										<i class="fa fa-star-o fa-2x" aria-hidden="true"><div
 												class="head <c:if test="${book.star_point eq 0.5}">true</c:if>"></div>
 											<div
