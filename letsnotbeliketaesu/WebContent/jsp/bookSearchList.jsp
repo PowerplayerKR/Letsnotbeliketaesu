@@ -681,12 +681,12 @@ body {
 		<div id="comment_content_wrap">
 			<img src="http://chulsa.kr/files/attach/images/67/647/673/018/220ebc4544181643a70ac6f4af9c617f.jpg" id="comment_content_wrap_img">
 			<tr></tr>
-			<div  id="comment_content_wrap_star_rating" style="text-align: center;">
-				<i   aria-hidden="true"></i>
-				<i   aria-hidden="true"></i>
-				<i   aria-hidden="true"></i>
-				<i   aria-hidden="true"></i>
-				<i   aria-hidden="true"></i>
+			<div  class="star_rating" style="text-align: center;">
+				<i   aria-hidden="true"><div></div><div></div></i>
+				<i   aria-hidden="true"><div></div><div></div></i>
+				<i   aria-hidden="true"><div></div><div></div></i>
+				<i   aria-hidden="true"><div></div><div></div></i>
+				<i   aria-hidden="true"><div></div><div></div></i>
 			</div>
 			<form>
 		<textarea placeholder="여기에 댓글을 입력해주세요 " id="inputText" name="comment"></textarea>
@@ -710,7 +710,7 @@ body {
 			     			</div>
 							<div class="info_box">
 									<h3 class="book_title">${book.title}</h3>
-									<div class="star_rating" id="${book.num}">
+									<div class="star_rating"  data-isbn="${book.isbn}">
 										<i class="fa fa-star-o fa-2x" aria-hidden="true">
 											<div class="head <c:if test="${book.star_point eq 0.5}">true</c:if>"></div>
 											<div class="tail <c:if test="${book.star_point eq 1}">true</c:if>"></div>
