@@ -24,6 +24,7 @@
 		</li>
 	</ul>
 	<div id="user">
+			${userInfo.name }	
 		<img src="logo.jpg" alt="name's img"
 			style="height: 48px; width: 48px;"> <a href="mypage1.do">마이페이지</a>
 	</div>
