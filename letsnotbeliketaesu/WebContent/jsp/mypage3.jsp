@@ -51,6 +51,8 @@ ul {
 	float: left;
 	position: relative;
 	overflow: hidden;
+	
+	
 }
 .book_wrap a {
 	text-decoration: none;
@@ -86,7 +88,7 @@ ul {
 }
 
 .book_wrap button {
-	width: 110px;
+	width: 120px;
 	height: 40px;
 	background: #fff;
 	border: 0px;
@@ -95,10 +97,12 @@ ul {
 	color: gray;
 	transition: .3s ease;
 	position: absolute;
+	
 }
 
 .book_wrap .wish_btn {
 	left: 0px;
+	
 }
 
 .book_wrap .comment_btn {
@@ -135,6 +139,7 @@ ul {
 	transition: .5s ease;
 	background: rgba(0, 0, 0, .7)
 }
+
 
 .star_rating {
 	letter-spacing: -4px;
@@ -180,7 +185,7 @@ ul {
 		position: absolute;
 		top: 50%;
 		left: 50%;
-		margin: -150px 0 0 300px;
+		margin: -150px 0 0 -300px;
 		display: none;
 		z-index:33;
 		border-radius: 2px;
@@ -245,7 +250,7 @@ ul {
 
 	}
 	#body_blind_wrap{
-		position: absolute;
+		position: fixed;
 		width: 100%;
 		height: 100%;
 		margin: 0;
@@ -255,6 +260,7 @@ ul {
 		background-color: #000000;
 		opacity: 0.3;
 		display: none;
+		top:0;
 
 	}
 	#comment_content_wrap_star_grade_wrap{
@@ -272,7 +278,9 @@ ul {
 		position: absolute;
 
 	}
-	#comment_content_wrap_star_grade_head_up{ margin: 2px 0 0 106px; }
+	#comment_content_wrap_star_grade_head_up{ 
+	margin: 2px 0 0 106px;
+	 }
 	#comment_content_wrap_star_grade_body{
 		width: 100%;
 		height: 90%;
@@ -349,17 +357,31 @@ ul {
     color: #646464;
   }
   #songeunBar{
-    width: 60px;
+    width: 80px;
     height: 5px;
     background-color: #DBA901;
     position: absolute;
     top: 50%;
     left: 51%;
-    margin: 128px 0 0 -431px;
+    margin: 127px 0 0 -343px;
   }
+  .book_wrap {
+  	position: absolute;
+  	margin-top: -500px;
+  }
+  
+
 </style>
 </head>
 <body>
+<div class="report_reason">
+		<form>
+			<textarea class="report_txt" placeholder="여기에 사유를(을) 입력해주세요 "
+				style="resize: none; width: 1000px; height: 100px;"></textarea>
+
+			<input type="submit" class="report_submit">
+		</form>
+	</div>
  <jsp:include page="/template/header.jsp"></jsp:include>
  <div id="myCarousel" class="carousel slide" data-ride="carousel">
 
@@ -390,7 +412,6 @@ ul {
   </div>
  
 
-	
 	
 	<div id="body_blind_wrap"></div>
 		<div id="comment">
@@ -424,21 +445,13 @@ ul {
 					</div >
 
 					<div id="comment_content_wrap_star_grade_body_bottom_text">
-						<h4 style="text-align: center;margin-bottom: 15px;margin-top: 17px;">댓글 달려면 별점 클릭</h4>
-
+						<h4 style="text-align: center; padding-top: 55px;">댓글 달려면 별점 클릭</h4>
 					</div>
 
 
 
 
-					<div class="book_wrap">
-									<button class="wish_btn" >
-										<i class="fa fa-heart"></i>보고싶어요
-									</button>
-									<button class="comment_btn">
-										<i class="fa fa-comment"></i> 관심없어요
-									</button>
-						</div>
+	
 					</div>
 				</div>
 			</i>
@@ -472,17 +485,19 @@ ul {
 
 	</div>
 	
+
+	
 	
 	<div id="wrap">
-		
+
 		<div id="content"><ul class="book_wrap">
 		
 			<c:forEach var="book" items="${book}">
 				
 				<li><a href="#">
 						<div class="info_box">
-							<h3 class="" style="font-size: 12px;">${book.title}</h3>
-							<div class="star_rating" id="${book.num}">
+							<h3 class="" style="font-size: 13px;">${book.title}</h3>
+							<div class="star_rating" id="${book.isbn}">
 								<i class="fa fa-star-o fa-2x" aria-hidden="true"><div
 										class="head <c:if test="${book.star_point eq 0.5}">true</c:if>"></div>
 									<div class="tail <c:if test="${book.star_point eq 1}">true</c:if>"></div></i> <i class="fa fa-star-o fa-2x"
@@ -495,28 +510,32 @@ ul {
 									aria-hidden="true"><div class="head <c:if test="${book.star_point eq 4.5}">true</c:if>"></div>
 									<div class="tail <c:if test="${book.star_point eq 5}">true</c:if>"></div></i>
 							</div>
-							<button class="wish_btn" >
+									
+							<button class="wish_btn" id="ContentButton">
 								<i class="fa fa-heart"></i>보고싶어요
 							</button>
-							<button class="comment_btn" data-comment="${book.content}">
+							
+							<button class="comment_btn" id="ContentButton" data-comment="${book.content}">
 								<i class="fa fa-comment"></i> 코멘트쓰기
 							</button>
 						</div> <img src="${book.image}" alt="${book.title}"/>
 				</a></li>
 
 			</c:forEach>
+			
 		</ul></div>
 	</div>
 
 <div id="userpage">
-<a id="see" href="#">보고싶어요</a>
-<a id="saw" href="#">봤어요</a>
+<a id="see" onclick="location.href='mypage1.do'">보고싶어요</a>
+<a id="saw" onclick="location.href='mypage2.do'">봤어요</a>
 <a id="interested" href="#">관심없어요</a>
 <p id="songeunBar"></p>
 
 </div>
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-
+	
+<script src="../letsnotbeliketaesu/js/default.js"></script>
 	<script>
 
 	$(document).ready(function () {
@@ -740,7 +759,7 @@ ul {
 
 							dataType:"json",//json
 
-							data:{"bookNum":$(this).closest(".star_rating").attr('id')},
+							data:{"isbn":$(this).closest(".star_rating").attr('id')},
 
 								
 
@@ -774,7 +793,7 @@ ul {
 
 								dataType:"json",//json
 
-								data:{"book_num":$(this).closest(".star_rating").attr('id')},
+								data:{"isbn":$(this).closest(".star_rating").attr('id')},
 
 									
 
@@ -830,7 +849,7 @@ ul {
 
 							dataType:"json",//json
 
-							data:{"bookNum":$(this).closest(".star_rating").attr('id'),"starPoint":$(this).closest('i').prevAll('i').length+0.5},
+							data:{"isbn":$(this).closest(".star_rating").attr('id'),"starPoint":$(this).closest('i').prevAll('i').length+0.5},
 
 							error:function(request,status,error){
 
@@ -876,13 +895,14 @@ ul {
 
 							dataType:"json",//json
 
-							data:{"starPoint":$(this).closest('i').prevAll('i').length+0.5,"bookNum":$(this).closest(".star_rating").attr('id'),"reviewNum":0},
+							data:{"starPoint":$(this).closest('i').prevAll('i').length+0.5,"isbn":$(this).closest(".star_rating").attr('id'),"reviewNum":0},
 
 							error:function(request,status,error){
 
 								alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 
 							},
+						
 
 							success:function(json) {
 
@@ -891,7 +911,8 @@ ul {
 							}
 
 						});//$.ajax() end
-
+						
+						
 						
 
 						$(this).addClass("true");
@@ -938,7 +959,7 @@ ul {
 
 							dataType:"json",//json
 
-							data:{"bookNum":$(this).closest(".star_rating").attr('id')},
+							data:{"isbn":$(this).closest(".star_rating").attr('id')},
 
 							error:function(request,status,error){
 
@@ -966,7 +987,7 @@ ul {
 
 								dataType:"json",//json
 
-								data:{"book_num":$(this).closest(".star_rating").attr('id')},
+								data:{"isbn":$(this).closest(".star_rating").attr('id')},
 
 									
 
@@ -1020,7 +1041,7 @@ ul {
 
 							dataType:"json",//json
 
-							data:{"bookNum":$(this).closest(".star_rating").attr('id'),"starPoint":$(this).closest('i').prevAll('i').length+1},
+							data:{"isbn":$(this).closest(".star_rating").attr('id'),"starPoint":$(this).closest('i').prevAll('i').length+1},
 
 							error:function(request,status,error){
 
@@ -1066,7 +1087,7 @@ ul {
 
 							dataType:"json",//json
 
-							data:{"starPoint":$(this).closest('i').prevAll('i').length+1,"bookNum":$(this).closest(".star_rating").attr('id'),
+							data:{"starPoint":$(this).closest('i').prevAll('i').length+1,"isbn":$(this).closest(".star_rating").attr('id'),
 
 								"reviewNum":0},
 
@@ -1256,7 +1277,7 @@ ul {
 
 					dataType:"json",//json
 
-					data:{"book_num":$('#comment_content_wrap_star_grade_body_star .star_rating').attr('id'),"content":comment,
+					data:{"isbn":$('#comment_content_wrap_star_grade_body_star .star_rating').attr('id'),"content":comment,
 
 						 
 
@@ -1290,7 +1311,7 @@ ul {
 
    							dataType:"json",//json
 
-   							data:{"book_num":$('#comment_content_wrap_star_grade_body_star .star_rating').attr('id'),"content":comment,
+   							data:{"isbn":$('#comment_content_wrap_star_grade_body_star .star_rating').attr('id'),"content":comment,
 
    							
 
@@ -1355,6 +1376,9 @@ ul {
 	    
 
 	</script>
+	
+
+
 
 </body>
 </html>
