@@ -704,12 +704,34 @@
 	.report_text_warp{
 		display: none;
 	}
+	.loader {
+		position: fixed;
+		top:0;
+		left:0;
+	    width: 10000px; 
+	    height: 10000px;
+	    background: rgba(51, 51, 51, 0.5);
+	    display: none;
+	    z-index: 20;
+	}
+	.loader_img{
+		width: 400px;
+		height: 400px;
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		margin-left: -200px;
+		margin-top: -200px;
+	}
 	.book_info_ul{
 		margin-bottom: 50px;
 	}
 </style>
 </head>
 <body>
+<div class="loader">
+	<img class="loader_img" src="../letsnotbeliketaesu/img/ajax_loader6.gif">
+</div>
 	<div class="report_text_warp">
 		<form>
 				<textarea class="report_txt" placeholder="여기에 사유를(을) 입력해주세요 " style="resize: none; width: 1000px; height: 100px;"></textarea>
@@ -1044,6 +1066,7 @@
 		
 		
 		$(".book_img_wrap").click(function() {
+			$(".loader").show();
 			var q = "";
 			q = $(this).data('title');
 			function getBook() {
@@ -1128,14 +1151,15 @@
 			getReview();
 			getBook();
 			function screenHide() {
-					$('.book_info_table').show();
-					$('.screen').show();	
+				$(".loader").hide();
+				$('.book_info_table').show();
+				$('.screen').show();	
 			}
 		});
 		
 		var list = $('.best_book_list');
 		list.click(function() {
-			
+			$(".loader").show();
 			var q = "";
 			q = $(this).data('title');
 			function getBook() {
@@ -1218,8 +1242,9 @@
 			getReview();
 			getBook();
 			function screenHide() {
-					$('.book_info_table').show();
-					$('.screen').show();	
+				$(".loader").hide();
+				$('.book_info_table').show();
+				$('.screen').show();	
 			}
 		});
 		
@@ -1258,7 +1283,7 @@
 						data:{"isbn":isbn},//넘어가는 파라미터
 						error:function(){
 							alert("에러!!");
-						},
+						},	
 						success:function(json) {
 							$(json).each(function() {
 								$(".book_review_start").text("코멘트 ("+this.num+")");
