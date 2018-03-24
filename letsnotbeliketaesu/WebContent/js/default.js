@@ -74,13 +74,39 @@ $('.star_rating .head,.star_rating .tail').mouseenter(function(){
     $(this).closest('.star_rating').children().removeClass('fa-star-o fa-star-half-o fa-star')
 		.each(function(){var sub=score-$(this).index()*2;$(this).addClass(sub?sub<0?'fa-star-o':'fa-star':'fa-star-half-o')});
 }).click(function() {
-	if($(this).hasClass('true')) {
-		if($(this).closest('.star_rating').hasClass('true')){
-			/*insert*/
-        }else{
-            /*update*/
-        }
-	}else{ /*delete*/ }
+	var a=$(this).closest(".star_rating").find(".true");
+	a.length ?($(this).hasClass("true") ?null :$(this).addClass("true"),a.removeClass("true")):$(this).addClass("true");
+	var starPoint=$(this).index()?1:0.5;
+	$.ajax({
+		url : "starQuery.do",
+		type : "post",// post방식
+		data : {
+			"isbn" : $(this).closest(".star_rating")
+				.data('isbn'),
+			"star_point" : $(this).closest('i').prevAll(
+					'i').length +starPoint,
+		},
+		error : function(request, status, error) {
+			alert("code:" + request.status + "\n"
+					+ "message:" + request.responseText
+					+ "\n" + "error:" + error);
+		},
+		success : function(json) {
+			console.log(json);
+		}
+		
+	});// $.ajax() end$('.star_rating"[data-i="+$(this).closest(".star_rating").data("isbn")+"]"')
+ if(!($(this).closest('.info_box').hasClass('.info_box'))){
+	 var qqq=$(this);
+	 var zzz= new Array();
+		$('.star_rating').each(function () {
+		    if ( $(this).data('isbn') === qqq.closest(".star_rating").data("isbn") ) {
+		        // do whatever you wanted to do with it
+		    	zzz.push($(this));
+		    } 
+		});
+	starSub($(this).closest('i').prevAll('i').length,$(this).index(),$(zzz));
+ }
 });
 $('.star_rating').mouseleave(function(){
 	var $active=$(this).find('.true'),
@@ -89,343 +115,6 @@ $('.star_rating').mouseleave(function(){
     $(this).children().removeClass('fa-star-o fa-star-half-o fa-star')
         .each(function(){var sub=score-$(this).index()*2;$(this).addClass(sub?sub<0?'fa-star-o':'fa-star':'fa-star-half-o')});
 });
-$(".star_rating .head")
-		.click(
-				function(event) {
-					if ($(this).hasClass("true")) {
-						if ($('#inputText').data('comment') != ""
-								|| $(this).closest('.info_box').find(
-										'.comment_btn').data("comment") != "") {
-							var result = confirm('확인을 누르실경우 댓글까지 함께 삭제됩니다.');
-							var check = true;
-						} else {
-							var result = true;
-							var check = false;
-						}
-						if (result) {
-							$.ajax({
-								url : "starDelete.do",
-								type : "post",// post방식
-								dataType : "json",// json
-								data : {
-									"isbn" : $(this).closest(".star_rating")
-											.attr('id'),
-									"starPoint" : $(this).closest('i').prevAll(
-											'i').length + 0.5
-								},
-								error : function(request, status, error) {
-									alert("code:" + request.status + "\n"
-											+ "message:" + request.responseText
-											+ "\n" + "error:" + error);
-								},
-								success : function(json) {
-									console.log(json);
-								}
-							});// $.ajax() end
-							if (check) {
-								$.ajax({
-									url : "reviewDelete.do",
-									type : "post",// post방식
-									dataType : "json",// json
-									data : {
-										"isbn" : $(this)
-												.closest(".star_rating").attr(
-														'id')
-									},
-									error : function(request, status, error) {
-										alert("code:" + request.status + "\n"
-												+ "message:"
-												+ request.responseText + "\n"
-												+ "error:" + error);
-									},
-									success : function(json) {
-										console.log(json);
-									}
-								});// $.ajax() end
-							}
-							$(this).closest('.star_rating').find('.true')
-									.removeClass('true')
-							if ($('#fake').length > 0) {
-								$('#fake').find('.true').removeClass('true');
-								$('#fake').trigger('mouseleave');
-								$('#fake').closest('.info_box').find(
-										'.comment_btn').data('comment', "");
-							} else {
-								$(this).closest('.info_box').find(
-										'.comment_btn').data('comment', "");
-							}
-						}
-					} else if ($(this).closest('.star_rating').find('.true').length == 1) {
-						if ($(this).closest('.star_rating').find('.true')
-								.closest('i').find('.true').hasClass('head')) {
-							var starSub = ($(this).closest('i').prevAll('i').length + 0.5)
-									- ($(this).closest('.star_rating').find(
-											'.true').closest('i').prevAll('i').length + 0.5);
-						} else {
-							var starSub = ($(this).closest('i').prevAll('i').length + 0.5)
-									- ($(this).closest('.star_rating').find(
-											'.true').closest('i').prevAll('i').length + 1);
-						}
-						$
-								.ajax({
-									url : "starUpdate.do",
-									type : "post",// post방식
-									dataType : "json",// json
-									data : {
-										"isbn" : $(this)
-												.closest(".star_rating").attr(
-														'id'),
-										"starPoint" : $(this).closest('i')
-												.prevAll('i').length + 0.5,
-										"starSub" : starSub
-									},
-									error : function(request, status, error) {
-										alert("code:" + request.status + "\n"
-												+ "message:"
-												+ request.responseText + "\n"
-												+ "error:" + error);
-									},
-									success : function(json) {
-										console.log(json);
-									}
-								});// $.ajax() end
-						$(this).closest('.star_rating').find('.true')
-								.removeClass('true')
-						$(this).addClass("true");
-						if ($('#fake').length > 0) {
-							console.log("ㅎ허ㅓ허허허");
-							$('#fake').find('.true').removeClass('true');
-							$(
-									$('#fake').children('i')[$(this).closest(
-											'i').prevAll('i').length]).find(
-									'.head').addClass('true')
-							$('#fake').trigger('mouseleave');
-						}
-					} else {
-						$
-								.ajax({
-									url : "starInsert.do",
-									type : "post",// post방식
-									dataType : "json",// json
-									data : {
-										"starPoint" : $(this).closest('i')
-												.prevAll('i').length + 0.5,
-										"isbn" : $(this)
-												.closest(".star_rating").attr(
-														'id'),
-										"reviewNum" : 0
-									},
-									error : function(request, status, error) {
-										alert("code:" + request.status + "\n"
-												+ "message:"
-												+ request.responseText + "\n"
-												+ "error:" + error);
-									},
-									success : function(json) {
-										console.log(json);
-									}
-								});// $.ajax() end
-						$(this).addClass("true");
-						if ($('#fake').length > 0) {
-							$('#fake').find('.true').removeClass('true');
-							$(
-									$('#fake').children('i')[$(this).closest(
-											'i').prevAll('i').length]).find(
-									'.head').addClass('true')
-							$('#fake').trigger('mouseleave');
-						}
-					}
-					if ($('#fake').length > 0) {
-						$('#comment_content_wrap_star_rating').children('i')
-								.removeClass("fa fa-star-half-o fa-1x")
-								.removeClass("fa fa-star fa-1x").removeClass(
-										"fa fa-star-o fa-1x");
-						if ($('#fake').find('.true').hasClass('true')) {
-							$(
-									$('#comment_content_wrap_star_rating')
-											.children('i')[$('#fake').closest(
-											'.info_box').find('.true').closest(
-											'i').prevAll('i').length])
-									.addClass("fa fa-star-half-o fa-1x")
-									.prevAll("i").addClass("fa fa-star fa-1x");
-							$(
-									$('#comment_content_wrap_star_rating')
-											.children('i')[$('#fake').closest(
-											'.info_box').find('.true').closest(
-											'i').prevAll('i').length]).nextAll(
-									"i").addClass("fa fa-star-o fa-1x");
-						}
-					}
-					return false;
-				});
-$(".star_rating .tail")
-		.click(
-				function(event) {
-					if ($(this).hasClass("true")) {
-						if ($('#inputText').data('comment') != ""
-								|| $(this).closest('.info_box').find(
-										'.comment_btn').data("comment") != "") {
-							var result = confirm('확인을 누르실경우 댓글까지 함께 삭제됩니다.');
-							var check = true;
-						} else {
-							var result = true;
-							var check = false;
-						}
-						if (result) {
-							$.ajax({
-								url : "starDelete.do",
-								type : "post",// post방식
-								dataType : "json",// json
-								data : {
-									"isbn" : $(this).closest(".star_rating")
-											.attr('id'),
-									"starPoint" : $(this).closest('i').prevAll(
-											'i').length + 1
-								},
-								error : function(request, status, error) {
-									alert("code:" + request.status + "\n"
-											+ "message:" + request.responseText
-											+ "\n" + "error:" + error);
-								},
-								success : function(json) {
-									console.log(json);
-								}
-							});// $.ajax() end
-							if (check) {
-								$.ajax({
-									url : "reviewDelete.do",
-									type : "post",// post방식
-									dataType : "json",// json
-									data : {
-										"isbn" : $(this)
-												.closest(".star_rating").attr(
-														'id')
-									},
-									error : function(request, status, error) {
-										alert("code:" + request.status + "\n"
-												+ "message:"
-												+ request.responseText + "\n"
-												+ "error:" + error);
-									},
-									success : function(json) {
-										console.log(json);
-									}
-								});// $.ajax() end
-							}
-							$(this).closest('.star_rating').find('.true')
-									.removeClass('true')
-							if ($('#fake').length > 0) {
-								$('#fake').find('.true').removeClass('true');
-								$('#fake').trigger('mouseleave');
-								$('#fake').closest('.info_box').find(
-										'.comment_btn').data('comment', "");
-							} else {
-								$(this).closest('.info_box').find(
-										'.comment_btn').data('comment', "");
-							}
-						}
-					} else if ($(this).closest('.star_rating').find('.true').length == 1) {
-						if ($(this).closest('.star_rating').find('.true')
-								.closest('i').find('.true').hasClass('head')) {
-							var starSub = ($(this).closest('i').prevAll('i').length + 1)
-									- ($(this).closest('.star_rating').find(
-											'.true').closest('i').prevAll('i').length + 0.5);
-						} else {
-							var starSub = ($(this).closest('i').prevAll('i').length + 1)
-									- ($(this).closest('.star_rating').find(
-											'.true').closest('i').prevAll('i').length + 1);
-						}
-						$
-								.ajax({
-									url : "starUpdate.do",
-									type : "post",// post방식
-									dataType : "json",// json
-									data : {
-										"isbn" : $(this)
-												.closest(".star_rating").attr(
-														'id'),
-										"starPoint" : $(this).closest('i')
-												.prevAll('i').length + 1,
-										"starSub" : starSub
-									},
-									error : function(request, status, error) {
-										alert("code:" + request.status + "\n"
-												+ "message:"
-												+ request.responseText + "\n"
-												+ "error:" + error);
-									},
-									success : function(json) {
-										console.log(json);
-									}
-								});// $.ajax() end
-						$(this).closest('.star_rating').find('.true')
-								.removeClass('true')
-						$(this).addClass("true");
-						if ($('#fake').length > 0) {
-							$('#fake').find('.true').removeClass('true');
-							$(
-									$('#fake').children('i')[$(this).closest(
-											'i').prevAll('i').length]).find(
-									'.tail').addClass('true')
-							$('#fake').trigger('mouseleave');
-						}
-					} else {
-						$
-								.ajax({
-									url : "starInsert.do",
-									type : "post",// post방식
-									dataType : "json",// json
-									data : {
-										"starPoint" : $(this).closest('i')
-												.prevAll('i').length + 1,
-										"isbn" : $(this)
-												.closest(".star_rating").attr(
-														'id'),
-										"reviewNum" : 0
-									},
-									error : function(request, status, error) {
-										alert("code:" + request.status + "\n"
-												+ "message:"
-												+ request.responseText + "\n"
-												+ "error:" + error);
-									},
-									success : function(json) {
-										console.log(json);
-									}
-								});// $.ajax() end
-						$(this).addClass("true");
-						if ($('#fake').length > 0) {
-							$('#fake').find('.true').removeClass('true');
-							$(
-									$('#fake').children('i')[$(this).closest(
-											'i').prevAll('i').length]).find(
-									'.tail').addClass('true')
-							$('#fake').trigger('mouseleave');
-						}
-					}
-					if ($('#fake').length > 0) {
-						$('#comment_content_wrap_star_rating').children('i')
-								.removeClass("fa fa-star-half-o fa-1x")
-								.removeClass("fa fa-star fa-1x").removeClass(
-										"fa fa-star-o fa-1x");
-						if ($('#fake').find('.true').hasClass('true')) {
-							$(
-									$('#comment_content_wrap_star_rating')
-											.children('i')[$('#fake').closest(
-											'.info_box').find('.true').closest(
-											'i').prevAll('i').length])
-									.addClass("fa fa-star fa-1x").prevAll("i")
-									.addClass("fa fa-star fa-1x");
-							$(
-									$('#comment_content_wrap_star_rating')
-											.children('i')[$('#fake').closest(
-											'.info_box').find('.true').closest(
-											'i').prevAll('i').length]).nextAll(
-									"i").addClass("fa fa-star-o fa-1x");
-						}
-					}
-					return false;
-				});
 $('#star_check').click(function() {
 	$('#comment_content_wrap_star_grade_wrap').show();
 	$('#comment_blind_wrap').show();
