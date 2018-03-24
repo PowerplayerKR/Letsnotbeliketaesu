@@ -268,7 +268,7 @@ $("#comment form")
 											data : {
 												"isbn" : $(
 														'#comment_content_wrap_star_grade_body_star .star_rating')
-														.attr('id'),
+														.data('isbn'),
 												"content" : comment
 											},
 											error : function(request, status,
@@ -283,9 +283,9 @@ $("#comment form")
 												console.log(json);
 											}
 										});// $.ajax() end
-								$('#fake').closest('.info_box').find(
-										'.comment_btn')
-										.data('comment', comment);
+								$('.star_rating[data-isbn='+$(this).closest('.info_box').find(".star_rating").data("isbn")+']').closest('.info_box').find(
+								'.comment_btn')
+								.data('comment', comment);
 								$('#inputText').data('comment', comment);
 							} else {
 								$
@@ -296,7 +296,7 @@ $("#comment form")
 											data : {
 												"isbn" : $(
 														'#comment_content_wrap_star_grade_body_star .star_rating')
-														.attr('id'),
+														.data('isbn'),
 												"content" : comment
 											},
 											error : function(request, status,
@@ -311,7 +311,7 @@ $("#comment form")
 												console.log(json);
 											}
 										});// $.ajax() end
-								$('#fake').closest('.info_box').find(
+								$('.star_rating[data-isbn='+$(this).closest('#comment_content_wrap').find(".star_rating").data("isbn")+']').closest('.info_box').find(
 										'.comment_btn')
 										.data('comment', comment);
 								$('#inputText').data('comment', comment);
@@ -319,6 +319,7 @@ $("#comment form")
 						}
 					} else {
 						$('#star_check').trigger('click');
+						console.log("실행되면안됨");
 					}
 				});
 $("textarea").on('keydown keyup', function() {
