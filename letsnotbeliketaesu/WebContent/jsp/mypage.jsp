@@ -8,7 +8,7 @@
 
 <link rel="stylesheet" href="../letsnotbeliketaesu/css/reset.css">
 <link rel="stylesheet" href="../letsnotbeliketaesu/css/notosanskr.css">
-<link rel="stylesheet" href="../letsnotbeliketaesu/css/NewHader.css">
+<link rel="stylesheet" href="../letsnotbeliketaesu/css/header.css">
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -88,7 +88,7 @@ ul {
 }
 
 .book_wrap button {
-	width: 110px;
+	width: 120px;
 	height: 40px;
 	background: #fff;
 	border: 0px;
@@ -97,6 +97,7 @@ ul {
 	color: gray;
 	transition: .3s ease;
 	position: absolute;
+	
 }
 
 .book_wrap .wish_btn {
@@ -184,7 +185,7 @@ ul {
 		position: absolute;
 		top: 50%;
 		left: 50%;
-		margin: -150px 0 0 300px;
+		margin: -150px 0 0 -300px;
 		display: none;
 		z-index:33;
 		border-radius: 2px;
@@ -249,7 +250,7 @@ ul {
 
 	}
 	#body_blind_wrap{
-		position: absolute;
+		position: fixed;
 		width: 100%;
 		height: 100%;
 		margin: 0;
@@ -259,6 +260,7 @@ ul {
 		background-color: #000000;
 		opacity: 0.3;
 		display: none;
+		top:0;
 
 	}
 	#comment_content_wrap_star_grade_wrap{
@@ -276,7 +278,9 @@ ul {
 		position: absolute;
 
 	}
-	#comment_content_wrap_star_grade_head_up{ margin: 2px 0 0 106px; }
+	#comment_content_wrap_star_grade_head_up{ 
+	margin: 2px 0 0 106px;
+	 }
 	#comment_content_wrap_star_grade_body{
 		width: 100%;
 		height: 90%;
@@ -361,6 +365,11 @@ ul {
     left: 51%;
     margin: 127px 0 0 -533px;
   }
+  .book_wrap {
+  	position: absolute;
+  	margin-top: -500px;
+  }
+  
 
 </style>
 </head>
@@ -404,7 +413,6 @@ ul {
  
 
 	
-	
 	<div id="body_blind_wrap"></div>
 		<div id="comment">
 	<div id="comment_head">
@@ -437,21 +445,13 @@ ul {
 					</div >
 
 					<div id="comment_content_wrap_star_grade_body_bottom_text">
-						<h4 style="text-align: center;margin-bottom: 15px;margin-top: 17px;">댓글 달려면 별점 클릭</h4>
-
+						<h4 style="text-align: center; padding-top: 55px;">댓글 달려면 별점 클릭</h4>
 					</div>
 
 
 
 
-					<div class="book_wrap">
-									<button class="wish_btn" >
-										<i class="fa fa-heart"></i>보고싶어요
-									</button>
-									<button class="comment_btn">
-										<i class="fa fa-comment"></i> 관심없어요
-									</button>
-						</div>
+	
 					</div>
 				</div>
 			</i>
@@ -511,11 +511,11 @@ ul {
 									<div class="tail <c:if test="${book.star_point eq 5}">true</c:if>"></div></i>
 							</div>
 									
-							<button class="wish_btn">
+							<button class="wish_btn" id="ContentButton">
 								<i class="fa fa-heart"></i>보고싶어요
 							</button>
 							
-							<button class="comment_btn" data-comment="${book.content}">
+							<button class="comment_btn" id="ContentButton" data-comment="${book.content}">
 								<i class="fa fa-comment"></i> 코멘트쓰기
 							</button>
 						</div> <img src="${book.image}" alt="${book.title}"/>
@@ -528,12 +528,14 @@ ul {
 
 <div id="userpage">
 <a id="see" href="#">보고싶어요</a>
-<a id="saw" href="mypage2.do">봤어요</a>
-<a id="interested" href="mypage3.do">관심없어요</a>
+<a id="saw" onclick="location.href='mypage2.do'">봤어요</a>
+<a id="interested" onclick="location.href='mypage3.do'">관심없어요</a>
 <p id="songeunBar"></p>
+
 
 </div>
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+	
 <script src="../letsnotbeliketaesu/js/default.js"></script>
 	<script>
 
@@ -792,7 +794,7 @@ ul {
 
 								dataType:"json",//json
 
-								data:{"isbn":$(this).closest(".star_rating").attr('id'),"review_writer":"bong"},
+								data:{"isbn":$(this).closest(".star_rating").attr('id')},
 
 									
 
@@ -848,7 +850,7 @@ ul {
 
 							dataType:"json",//json
 
-							data:{"isbn":$(this).closest(".star_rating").attr('id'),"email":"bong","starPoint":$(this).closest('i').prevAll('i').length+0.5},
+							data:{"isbn":$(this).closest(".star_rating").attr('id'),"starPoint":$(this).closest('i').prevAll('i').length+0.5},
 
 							error:function(request,status,error){
 
@@ -894,7 +896,7 @@ ul {
 
 							dataType:"json",//json
 
-							data:{"starPoint":$(this).closest('i').prevAll('i').length+0.5,"isbn":$(this).closest(".star_rating").attr('id'),"reviewNum":0,"email":"bong"},
+							data:{"starPoint":$(this).closest('i').prevAll('i').length+0.5,"isbn":$(this).closest(".star_rating").attr('id'),"reviewNum":0},
 
 							error:function(request,status,error){
 
@@ -1040,7 +1042,7 @@ ul {
 
 							dataType:"json",//json
 
-							data:{"isbn":$(this).closest(".star_rating").attr('id'),"email":"bong","starPoint":$(this).closest('i').prevAll('i').length+1},
+							data:{"isbn":$(this).closest(".star_rating").attr('id'),"starPoint":$(this).closest('i').prevAll('i').length+1},
 
 							error:function(request,status,error){
 
@@ -1086,7 +1088,7 @@ ul {
 
 							dataType:"json",//json
 
-							data:{"starPoint":$(this).closest('i').prevAll('i').length+1,"isbn":$(this).closest(".star_rating").attr('id'),"email":"bong",
+							data:{"starPoint":$(this).closest('i').prevAll('i').length+1,"isbn":$(this).closest(".star_rating").attr('id'),
 
 								"reviewNum":0},
 
@@ -1400,6 +1402,7 @@ ul {
 					});//ajax
 	});
 	
+
 	
 	</script>
 
