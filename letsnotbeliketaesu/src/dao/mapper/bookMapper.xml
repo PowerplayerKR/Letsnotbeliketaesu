@@ -63,7 +63,7 @@
 	<select id="bookSearchMore" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 				SELECT CAST(@ROWNUM := @ROWNUM + 1 AS signed integer) ROWNUM,book.*
 				FROM book left join star_point_list on(book.isbn=star_point_list.isbn
-				and star_point_list.star_point_email='bong'),
+				and star_point_list.star_point_email=#{email}),
 				(SELECT @ROWNUM := 0) R
 				<include refid="search"></include>
 				ORDER BY public_date desc
