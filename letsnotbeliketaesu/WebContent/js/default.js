@@ -61,7 +61,16 @@ function report(a) {
 	})
 
 };
-
+function starSub(index,ht,arry){
+	
+	arry.each(function(){
+		$(this).find('.true').removeClass('true');
+		if(index>=0)$($($(this).children('i')[index]).children("div")[ht]).addClass('true');
+		
+		});
+	
+	$(arry).trigger('mouseleave');
+}
 $(function(){$('.star_rating').trigger('mouseleave')});
 $('.star_rating .head,.star_rating .tail').mouseenter(function(){
     var offset=$(this).offset(),
