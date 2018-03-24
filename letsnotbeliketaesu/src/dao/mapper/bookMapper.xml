@@ -114,44 +114,7 @@
 
 	<!-- 바꿈 바꿈 -->
 
-	<insert id="starInsert" parameterType="java.util.HashMap">
-
-		insert into
-		star_point_list(star_point_email,isbn,review_num,star_point,regdate)
-
-		values(#{email},#{isbn},#{reviewNum},#{starPoint},now())
-
-	</insert>
-
-	<!-- 바꿈 바꿈 -->
-
-	<update id="starUpdate" parameterType="java.util.HashMap">
-
-		update star_point_list
-
-		set
-
-		star_point=#{starPoint},
-
-		regdate=now()
-
-		where
-
-		star_point_email=#{email} and isbn=#{isbn}
-
-
-
-	</update>
-
-	<!-- 바꿈 바꿈 -->
-
-	<delete id="starDelete" parameterType="java.util.HashMap">
-
-		delete from star_point_list where star_point_email=#{email} and isbn=#{isbn}
-
-
-
-	</delete>
+	
 
 	<!-- 바꿈 바꿈 -->
 
