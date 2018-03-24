@@ -12,7 +12,6 @@
 		<li><a href="bestBook.do">베스트 셀러</a></li>
 		<li><a href="newBook.do">신간</a></li>
 		<li><a href="recommended.do">책 추천</a></li>
-		<li><a href="recommend.do">책 평가 늘리기</a></li>
 		<li class="search">
 			<form action="bookSearch.do">
 				<select name="searchOption" id="">
