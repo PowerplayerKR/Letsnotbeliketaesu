@@ -21,8 +21,8 @@
 					<option value="publisher" <c:if test="${search.searchOption eq 'publisher' }">selected</c:if>  >출판사</option>
 				</select>
 				<input type="search" name="keyword" id="search" placeholder="검색"
-					style="width: 500px; line-height:normal !important;"> 
-					<input type="submit" value="${search.keyword}">  style="line-height:normal !important;" value="검색하기">
+					style="width: 500px; line-height:normal !important;" value="${search.keyword}"> 
+					<input type="submit"  style="line-height:normal !important;" value="검색하기">
 			</form>
 		</li>
 	</ul>
