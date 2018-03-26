@@ -25,18 +25,20 @@ $(".wish_btn").click(
 
 		});
 
-function report(a) {
+function report(event) {
+
 	var email = "";
-	email = a.data("email");
+	email = $(this).data("email");
 	console.log(email);
 	var num = "";
-	num = a.data("num");
+	num = $(this).data("num");
 	console.log(num);
 
 	$(".report_text_warp").show();
 	$("#body_blind_wrap").show();
 
 	$(".report_submit").click(function() {
+		
 		$.ajax({
 
 			url : "reviewReport.do",
@@ -52,10 +54,10 @@ function report(a) {
 				alert("이미 누르셨습니다.");
 			},
 			success : function() {
-				$(".report_reason").hide();
+				$(".report_text_warp").hide();
 				$("#body_blind_wrap").hide();
 				$(".report_txt").val("");
-				$(this).preventDefault();
+				event.preventDefault();
 			}
 		});// ajax
 	})
@@ -72,6 +74,7 @@ function starSub(index,ht,arry){
 	$(arry).trigger('mouseleave');
 }
 $('#star_check').click(function() {
+	console.log("스타체크");
 	$('#comment_content_wrap_star_grade_wrap').show();
 	$('#comment_blind_wrap').show();
 });
@@ -154,9 +157,9 @@ $('.comment_btn').on("click", function(){
 						'overflow' : 'hidden',
 						'height' : '100%'
 					});
-					$(".new_book_wrap").css({"position":"fixed","left":"301px","top":top+"px"});
-					$(".book_wrap").css({"position":"fixed","left":"472px","top":top+"px"});;
-					$("#content").css({"position":"fixed","left":"300px","top":top+"px"});
+//					$(".new_book_wrap").css({"position":"fixed","left":"301px","top":top+"px"});
+//					$(".book_wrap").css({"position":"fixed","left":"472px","top":top+"px"});;
+//					$("#content").css({"position":"fixed","left":"300px","top":top+"px"});
 					$("#content").data("scrollTop",scrollTop);
 					$('#element').on('scroll touchmove mousewheel',
 							function(event) {
@@ -170,12 +173,10 @@ $('.comment_btn').on("click", function(){
 							'src'))
 					$('#comment').show();
 					$('#comment_title').text(
-							$(this).closest('.book_list').find('img').attr(
-									'alt'));
+							$(this).data("title"));
 					$('#comment_content_wrap_img').attr(
 							'src',
-							$(this).closest('.book_list').find('img').attr(
-									'src'));
+							$(this).data('img'));
 					$('#body_blind_wrap').show();
 					//,#comment_content_wrap .star_rating
 					$('#comment_content_wrap_star_grade_body_star .star_rating,#comment_content_wrap .star_rating')
@@ -195,7 +196,9 @@ $('.comment_btn').on("click", function(){
 					}
 					else{
 						starSub(-1,-1,$(zzz));
+						console.log(x.hasClass('true'));
 						$('#star_check').trigger('click');
+						console.log("혹시?");
 					}
 					
 					
@@ -214,15 +217,15 @@ $('#body_blind_wrap').click(
 						'height' : 'auto'
 					});
 					var scroll="";
-					$(".new_book_wrap").css({"position":"relative","left":"","top":"0px"});
-					$(".book_wrap").css({"position":"relative","left":"","top":"150px"});;
+//					$(".new_book_wrap").css({"position":"relative","left":"","top":"0px"});
+//					$(".book_wrap").css({"position":"relative","left":"","top":"150px"});;
 					scroll = $(".new_book_wrap").attr("data-scroll");
 					$(window).scrollTop(scroll);
 					$(".book_wrap").attr("data-scroll", "");
 					$(".new_book_wrap").attr("data-scroll", "");
 					$('#element').off('scroll touchmove mousewheel');
 					$('#comment').hide();
-					$(".report_reason").hide();
+					$(".report_text_warp").hide();
 					$(this).hide();
 
 					$('#comment_content_wrap_star_grade_wrap').hide();

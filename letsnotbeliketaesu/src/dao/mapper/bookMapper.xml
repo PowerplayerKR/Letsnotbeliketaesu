@@ -8,7 +8,11 @@
 			<when test=""></when>
 		</choose>
 	</sql>
-
+	<sql id="starReview">
+			left join star_point_list on(book.isbn=star_point_list.isbn and star_point_list.star_point_email=#{email})
+			left join review_list on(book.isbn=review_list.isbn and review_list.review_email=#{email})
+	</sql>
+	
 	<select id="selectAllBook" resultType="java.util.HashMap">
 		SELECT *
 		FROM book
@@ -52,10 +56,7 @@
 		</choose>
 	</sql>
 
-	<sql id="starReview">
-			left join star_point_list on(book.isbn=star_point_list.isbn and star_point_list.star_point_email=#{email})
-			left join review_list on(book.isbn=review_list.isbn and review_list.review_email=#{email})
-	</sql>
+
 
 	<select id="bookSearch" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 			SELECT CAST(@ROWNUM := @ROWNUM + 1 AS signed integer) AS ROWNUM,book.*,star_point_list.star_point,review_list.content
@@ -95,8 +96,8 @@
 		<include refid="selectUserBook"></include>
 	</select>
 
-	<select id="selectBookMain" resultType="java.util.HashMap">
-		SELECT * FROM book
+	<select id="selectBookMain" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+		SELECT book.*,star_point_list.star_point,review_list.content  FROM book <include refid="starReview"></include>
 		order
 		by rand() limit 6
 	</select>

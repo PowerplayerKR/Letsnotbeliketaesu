@@ -74,7 +74,7 @@ body {
 	border-radius: 100px;
 }
 
-.report_reason{
+.report_text_warp{
 		position: absolute;
 		z-index: 33;
 		left: 50%;

@@ -14,7 +14,7 @@ public interface INewBookDao {
 
 	public List<HashMap<String, Object>> selectAllNewBook();
 
-	public List<HashMap<String, Object>> selectBookMain();
+	public List<HashMap<String, Object>> selectBookMain(HashMap<String, Object> params);
 	
 	public List<HashMap<String, Object>> selectNewBookMore(int num); 
 }

@@ -41,7 +41,7 @@ public class BestBookService {
 		bestBookDao.deleteBestBook(num);
 	}
 
-	public List<HashMap<String, Object>> selectBookMain() {
-		return bestBookDao.selectBookMain();
+	public List<HashMap<String, Object>> selectBookMain(HashMap<String, Object> params) {
+		return bestBookDao.selectBookMain(params);
 	}
 }

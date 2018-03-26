@@ -369,7 +369,7 @@
 		height: 250px;
 		position: absolute;
 		margin: 0 0 0 -111px;
-		z-index: 51;
+		z-index: 101;
 		display: none;
 	}
 	
@@ -399,7 +399,7 @@
 		background: white;
 		opacity: 0.5;
 		display: none;
-		z-index: 50;
+		z-index: 100;
 	}
 	
 	#comment_content_wrap_star_grade_body_star {
@@ -704,34 +704,12 @@
 	.report_text_warp{
 		display: none;
 	}
-	.loader {
-		position: fixed;
-		top:0;
-		left:0;
-	    width: 10000px; 
-	    height: 10000px;
-	    background: rgba(51, 51, 51, 0.5);
-	    display: none;
-	    z-index: 20;
-	}
-	.loader_img{
-		width: 400px;
-		height: 400px;
-		position: fixed;
-		top: 50%;
-		left: 50%;
-		margin-left: -200px;
-		margin-top: -200px;
-	}
 	.book_info_ul{
 		margin-bottom: 50px;
 	}
 </style>
 </head>
 <body>
-<div class="loader">
-	<img class="loader_img" src="../letsnotbeliketaesu/img/ajax_loader6.gif">
-</div>
 	<div class="report_text_warp">
 		<form>
 				<textarea class="report_txt" placeholder="여기에 사유를(을) 입력해주세요 " style="resize: none; width: 1000px; height: 100px;"></textarea>
@@ -768,7 +746,7 @@
 
 							</div>
 							<div id="comment_content_wrap_star_grade_body_star">
-								<div class="star_rating" style="text-align: center;">
+							<div class="star_rating" style="text-align: center;">
 								<i class="fa fa-star-o fa-2x"   aria-hidden="true"><div class="head"></div><div class="tail"></div><span></span></i>
 								<i class="fa fa-star-o fa-2x"  aria-hidden="true"><div class="head"></div><div class="tail"></div><span></span></i>
 								<i class="fa fa-star-o fa-2x"  aria-hidden="true"><div class="head"></div><div class="tail"></div><span></span></i>
@@ -787,14 +765,7 @@
 
 
 
-							<div class="book_wrap">
-								<button class="wish_btn">
-									<i class="fa fa-heart"></i>보고싶어요
-								</button>
-								<button class="comment_btn">
-									<i class="fa fa-comment"></i> 관심없어요
-								</button>
-							</div>
+							
 						</div>
 					</div>
 				</i> <i class="fa fa-times fa-2x"
@@ -869,7 +840,7 @@
 		</div>
 		<div id="content">
 			<div>
-				<span class="booktitle booktitle-top-0 left-0">신간</span>
+				<span class="booktitle booktitle-top-0 left-0"><a href="newBook.do">신간</a></span>
 				<ul class="book_wrap">
 					<c:forEach var="book" items="${newBook}" varStatus="status">
 						<li class="book_list top-0 left-${status.index}" data-isbn="${book.isbn}"data-title="${book.title}">
@@ -902,7 +873,7 @@
 									<button class="wish_btn">
 										<i class="fa fa-heart"></i>보고싶어요
 									</button>
-									<button class="comment_btn" >
+									<button class="comment_btn"  data-img="${book.image}" data-title="${book.title}" data-comment="${book.content}" >
 										<i class="fa fa-comment" data-comment="${book.content}"></i> 코멘트쓰기
 									</button>
 								</div> 
@@ -915,7 +886,7 @@
 			</div>
 
 			<div>
-				<span class="booktitle booktitle-top-1 left-0">베스트 셀러</span>
+				<span class="booktitle booktitle-top-1 left-0"><a href="bestBook.do">베스트 셀러</a></span>
 				<ul class="book_wrap">
 					<c:forEach var="book" items="${bestBook}" varStatus="status">
 						<li class="book_list top-1 left-${status.index}" data-isbn="${book.isbn}"
@@ -924,7 +895,7 @@
 									<div class="book_title">
 										<h3>${book.title}</h3>
 									</div>
-									<div class="star_rating" id="${book.isbn}">
+									<div class="star_rating" data-isbn="${book.isbn}">
 										<i class="fa fa-star-o fa-2x" aria-hidden="true"><div
 												class="head <c:if test="${book.star_point eq 0.5}">true</c:if>"></div>
 											<div
@@ -949,7 +920,7 @@
 									<button class="wish_btn">
 										<i class="fa fa-heart"></i>보고싶어요
 									</button>
-									<button class="comment_btn">
+									<button class="comment_btn"  data-img="${book.image}" data-title="${book.title}" data-comment="${book.content}" >
 										<i class="fa fa-comment"></i> 코멘트쓰기
 									</button>
 								</div>
@@ -970,7 +941,7 @@
 									<div class="book_title">
 										<h3>${book.title}</h3>
 									</div>
-									<div class="star_rating" id="${book.isbn}">
+									<div class="star_rating" data-isbn="${book.isbn}">
 										<i class="fa fa-star-o fa-2x" aria-hidden="true"><div
 												class="head <c:if test="${book.star_point eq 0.5}">true</c:if>"></div>
 											<div
@@ -995,7 +966,7 @@
 									<button class="wish_btn">
 										<i class="fa fa-heart"></i>보고싶어요
 									</button>
-									<button class="comment_btn" data-comment="${book.content}">
+									<button class="comment_btn" data-comment="${book.content}"  data-img="${book.image}" data-title="${book.title}" data-comment="${book.content}" >
 										<i class="fa fa-comment"></i> 코멘트쓰기
 									</button>
 								</div> 
@@ -1057,7 +1028,6 @@
 		
 		
 		$(".book_img_wrap").click(function() {
-			$(".loader").show();
 			var q = "";
 			q = $(this).data('title');
 			function getBook() {
@@ -1142,15 +1112,14 @@
 			getReview();
 			getBook();
 			function screenHide() {
-				$(".loader").hide();
-				$('.book_info_table').show();
-				$('.screen').show();	
+					$('.book_info_table').show();
+					$('.screen').show();	
 			}
 		});
 		
 		var list = $('.best_book_list');
 		list.click(function() {
-			$(".loader").show();
+			
 			var q = "";
 			q = $(this).data('title');
 			function getBook() {
@@ -1233,9 +1202,8 @@
 			getReview();
 			getBook();
 			function screenHide() {
-				$(".loader").hide();
-				$('.book_info_table').show();
-				$('.screen').show();	
+					$('.book_info_table').show();
+					$('.screen').show();	
 			}
 		});
 		
@@ -1274,7 +1242,7 @@
 						data:{"isbn":isbn},//넘어가는 파라미터
 						error:function(){
 							alert("에러!!");
-						},	
+						},
 						success:function(json) {
 							$(json).each(function() {
 								$(".book_review_start").text("코멘트 ("+this.num+")");

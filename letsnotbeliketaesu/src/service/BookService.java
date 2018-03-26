@@ -49,8 +49,8 @@ public class BookService {
 		return bookDao.selectUserBook(params);
 	}
 
-	public List<HashMap<String, Object>> selectBookMain() {
-		return bookDao.selectBookMain();
+	public List<HashMap<String, Object>> selectBookMain(HashMap<String, Object> params) {
+		return bookDao.selectBookMain(params);
 	}
 
 	public List<HashMap<String, Object>> bookAutocomplete(HashMap<String, Object> params) {

@@ -33,8 +33,8 @@ public class NewBookService {
 		newBookDao.deleteNewBook(num);
 	}
 
-	public List<HashMap<String, Object>> selectBookMain() {
-		return newBookDao.selectBookMain();
+	public List<HashMap<String, Object>> selectBookMain(HashMap<String, Object> params) {
+		return newBookDao.selectBookMain(params);
 	}
 	
 	public List<HashMap<String, Object>> selectNewBookMore(int num) {

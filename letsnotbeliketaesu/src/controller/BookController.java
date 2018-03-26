@@ -63,21 +63,25 @@ public class BookController {
 		List<HashMap<String, Object>> bookRankingList = bestBookService.selectRankingBestBook();
 
 		model.addAttribute("bookRanking", bookRankingList);
+		
+		
+		
+		List<HashMap<String, Object>> book = bookService.selectBookMain(userInfo);
 
-		List<HashMap<String, Object>> book = bookService.selectBookMain();
+		List<HashMap<String, Object>> bestBook = bestBookService.selectBookMain(userInfo);
 
-		List<HashMap<String, Object>> bestBook = bestBookService.selectBookMain();
-
-		List<HashMap<String, Object>> newBook = newBookService.selectBookMain();
+		List<HashMap<String, Object>> newBook = newBookService.selectBookMain(userInfo);
 
 		model.addAttribute("userInfo", userInfo);
 
 		model.addAttribute("book", book);
-
+		
 		model.addAttribute("bestBook", bestBook);
 
 		model.addAttribute("newBook", newBook);
-
+		System.out.println(book);
+		System.out.println(bestBook);
+		System.out.println(newBook);
 		return "main";
 
 	}

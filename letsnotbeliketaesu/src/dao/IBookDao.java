@@ -22,7 +22,7 @@ public interface IBookDao {
 
 	public List<HashMap<String, Object>> selectUserBook(HashMap<String, Object> params);
 
-	public List<HashMap<String, Object>> selectBookMain();
+	public List<HashMap<String, Object>> selectBookMain(HashMap<String, Object> params);
 
 	public List<HashMap<String, Object>> bookAutocomplete(HashMap<String, Object> params);
 	

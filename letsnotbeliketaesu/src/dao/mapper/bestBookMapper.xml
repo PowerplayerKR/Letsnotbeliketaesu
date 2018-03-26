@@ -3,6 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dao.IBestBookDao">
+	<sql id="starReview">
+			left join star_point_list on(best_book.isbn=star_point_list.isbn and star_point_list.star_point_email=#{email})
+			left join review_list on(best_book.isbn=review_list.isbn and review_list.review_email=#{email})
+	</sql>
 	<select id="selectAllBestBook" resultType="java.util.HashMap">
 		SELECT *
 		FROM best_book
@@ -44,8 +48,8 @@
 		DELETE FROM best_book
 		WHERE num=#{num}
 	</delete>
-	<select id="selectBookMain" resultType="java.util.HashMap">
-		select * from best_book
+	<select id="selectBookMain" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+		select best_book.*,star_point_list.star_point,review_list.content  from best_book <include refid="starReview"></include>
 		order
 		by rand() limit 6
 	</select>
