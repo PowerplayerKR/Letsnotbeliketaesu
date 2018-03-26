@@ -128,6 +128,7 @@ public class BookController {
 		HashMap<String, Object> userInfo = (HashMap<String, Object>) session.getAttribute("userInfo");
 		params.put("email", userInfo.get("email"));
 		List<HashMap<String, Object>> searchBookList = bookService.bookSearch(params);
+		mav.addObject("search", params);
 		mav.addObject("searchBookList", searchBookList);
 		mav.setViewName("bookSearchList");
 		return mav;
