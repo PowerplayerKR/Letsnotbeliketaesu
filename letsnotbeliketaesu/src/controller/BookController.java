@@ -177,7 +177,7 @@ public class BookController {
 
 		System.out.println(bookService.selectUserBook(params));
 
-		return "mypage";
+		return "mypage1";
 
 	}
 
