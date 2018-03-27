@@ -41,7 +41,6 @@ ul {
 	list-style: none;
 	margin-left:17%;
 	padding-top: 23%;
-
 	
 }
 .book_wrap li {
@@ -364,10 +363,10 @@ ul {
     position: absolute;
     top: 50%;
     left: 51%;
-    margin: -362px 0 0 -439px;
+    margin: -362px 0 0 -343px;
   }
   .book_wrap {
-  	position: fixed;
+  	position: absolute;
   	margin-top: -500px;
   }
   
@@ -438,13 +437,13 @@ ul {
 		<div id="comment_content_wrap">
 			<img src="http://chulsa.kr/files/attach/images/67/647/673/018/220ebc4544181643a70ac6f4af9c617f.jpg" id="comment_content_wrap_img">
 			<tr></tr>
-			<div class="star_rating" style="text-align: center;">
-							<i class="fa fa-star-o fa-2x"   aria-hidden="true"><div></div><div ></div><span></span></i>
-							<i class="fa fa-star-o fa-2x"  aria-hidden="true"><div></div><div ></div><span></span></i>
-							<i class="fa fa-star-o fa-2x"  aria-hidden="true"><div></div><div ></div><span></span></i>
-							<i class="fa fa-star-o fa-2x"  aria-hidden="true"><div></div><div ></div><span></span></i>
-							<i class="fa fa-star-o fa-2x"  aria-hidden="true"><div></div><div ></div><span></span></i>
-						</div>
+			<div  id="comment_content_wrap_star_rating" style="text-align: center;">
+				<i   aria-hidden="true"></i>
+				<i   aria-hidden="true"></i>
+				<i   aria-hidden="true"></i>
+				<i   aria-hidden="true"></i>
+				<i   aria-hidden="true"></i>
+			</div>
 			<form>
 		<textarea placeholder="여기에 댓글을 입력해주세요 " id="inputText" name="comment"></textarea>
 
@@ -471,7 +470,7 @@ ul {
 				<li><a href="#">
 						<div class="info_box">
 							<h3 class="" style="font-size: 13px;">${book.title}</h3>
-							<div class="star_rating" data-isbn="${book.isbn}">
+							<div class="star_rating" id="${book.isbn}">
 								<i class="fa fa-star-o fa-2x" aria-hidden="true"><div
 										class="head <c:if test="${book.star_point eq 0.5}">true</c:if>"></div>
 									<div class="tail <c:if test="${book.star_point eq 1}">true</c:if>"></div></i> <i class="fa fa-star-o fa-2x"
@@ -489,7 +488,7 @@ ul {
 								<i class="fa fa-heart"></i>보고싶어요
 							</button>
 							
-							<button class="comment_btn" id="ContentButton" data-img="${book.image}" data-title="${book.title}" data-comment="${book.content}">
+							<button class="comment_btn" id="ContentButton" data-comment="${book.content}">
 								<i class="fa fa-comment"></i> 코멘트쓰기
 							</button>
 						</div> <img src="${book.image}" alt="${book.title}"/>
@@ -502,8 +501,8 @@ ul {
 
 <div id="userpage">
 <a id="see" onclick="location.href='mypage1.do'">보고싶어요</a>
-<a id="saw" href="#">봤어요</a>
-<a id="interested" onclick="location.href='mypage3.do'">관심없어요</a>
+<a id="saw" onclick="location.href='mypage2.do'">봤어요</a>
+<a id="interested" href="#">관심없어요</a>
 <p id="songeunBar"></p>
 
 </div>
@@ -783,7 +782,7 @@ ul {
 </script>
 	<script>
 	$(".wish_btn").click(function() {
-             
+
 					$.ajax({
 
 						url:"InsertLike.do",
@@ -794,16 +793,21 @@ ul {
 					
 						data:{"isbn":$(this).closest("a").find(".star_rating").attr('id')},							
 						error:function(request,status,error){
-							alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);	
-							a++;
+							alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);						
 						},
 						success:function(json) {
 							console.log(json);
 						}
 					});//ajax
 					$(this).css("color","hotpink");
-				
+	});
+	
+
+	
 	</script>
+
+
+
 
 </body>
 </html>
