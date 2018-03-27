@@ -143,7 +143,11 @@ public class BookController {
 
 	@RequestMapping("bookSearchMore.do")
 	@ResponseBody
-	public ResponseEntity<String> bookSearchMore(@RequestParam HashMap<String, Object> params) throws Exception {
+	public ResponseEntity<String> bookSearchMore(@RequestParam HashMap<String, Object> params, HttpSession session) throws Exception {
+		HashMap<String, Object> userInfo = (HashMap<String, Object>) session.getAttribute("userInfo");
+		
+		params.put("email", userInfo.get("email"));
+		
 		List<HashMap<String, Object>> bookInfo = bookService.bookSearchMore(params);
 
 		List<HashMap<String, Object>> list = new ArrayList<>();

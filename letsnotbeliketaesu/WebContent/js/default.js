@@ -79,7 +79,7 @@ $('#star_check').click(function() {
 	$('#comment_blind_wrap').show();
 });
 $(function(){$('.star_rating').trigger('mouseleave')});
-$('.star_rating .head,.star_rating .tail').mouseenter(function(){
+$(document).on('mouseenter','.star_rating .head,.star_rating .tail',function(){
     var offset=$(this).offset(),
         active=$(this).hasClass('true'),
 		score=$(this).parent().index()*2+$(this).index();
@@ -89,7 +89,8 @@ $('.star_rating .head,.star_rating .tail').mouseenter(function(){
 			'보통 이예요','볼만 해요','재미 있어요','훌륭 해요','최고예요!'])[score]);
     $(this).closest('.star_rating').children().removeClass('fa-star-o fa-star-half-o fa-star')
 		.each(function(){var sub=score-$(this).index()*2;$(this).addClass(sub?sub<0?'fa-star-o':'fa-star':'fa-star-half-o')});
-}).click(function() {
+})
+$(document).on('click','.star_rating .head,.star_rating .tail',function() {
 	var a=$(this).closest(".star_rating").find(".true");// 별점있는거  th는 내가 
 	console.log("클릭 console"+a.hasClass('true'));
 	if(a.length===1){
@@ -140,7 +141,7 @@ $('.star_rating .head,.star_rating .tail').mouseenter(function(){
 		}
 	 }
 });
-$('.star_rating').mouseleave(function(){
+$(document).on('mouseleave','.star_rating',function(){
 	var $active=$(this).find('.true'),
 		score=$active.length?$active.parent().index()*2+$active.index():-1;
 	$('#tool_tip').hide();

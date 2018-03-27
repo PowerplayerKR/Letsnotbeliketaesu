@@ -778,7 +778,7 @@ body {
 	                              	
 	                              	var book_title = $("<h3 class='book_title'>").text(this.title);
 	                                
-	                              	var star_rating = $("<div class='star_rating' id='"+this.num+"'>");
+	                              	var star_rating = $("<div class='star_rating' data-isbn='"+this.isbn+"'>");
 	                              	
 	                              	var star_icon1 = $("<i class='fa fa-star-o fa-2x' aria-hidden='true'>");
 	                              	var star_icon2 = $("<i class='fa fa-star-o fa-2x' aria-hidden='true'>");
@@ -913,7 +913,8 @@ body {
 	                                var info_wrap = $("<div class='info_wrap' data-title='"+this.title+"' data-isbn='"+this.isbn+"'>").append(book_img_wrap,info_box);
 
 	                              	li.append(info_wrap);
-	                              	$(".book_wrap").append(li);   
+	                              	$(".book_wrap").append(li);  
+	                              	star_rating.trigger('mouseleave');
 	                        });// each
 	                    }// if : data!=null
 	                }// success
