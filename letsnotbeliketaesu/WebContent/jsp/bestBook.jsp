@@ -856,6 +856,84 @@
 	.book_info_ul{
 		margin-bottom: 50px;
 	}
+	.wish_btn {
+            left: 0px;
+        }
+        .comment_btn {
+            right: 0px;
+        }
+        .wish_btn:hover {
+
+            color: hotpink;
+
+        }
+        .comment_btn:hover {
+
+            color: #4DB6AC;
+
+        }
+        .wish_btn,.comment_btn {
+            width: 110px;
+            height: 40px;
+            background: #fff;
+            border: 0px;
+            margin-top: 25px;
+            cursor: pointer;
+            color: gray;
+            transition: .3s ease;
+            position: absolute;
+        }
+        .details_book_img_wrap{
+        	position: relative;
+            width: 220px;
+            cursor: pointer;
+        }
+        .details_title{
+        	position: relative;
+    		left: 10px;
+        }
+        
+        
+        
+	.info{
+		width:500px;
+		position:absolute;	
+		left:220px;
+		top:20px;
+	    margin: 0;
+    	padding: 0;
+    	border: 0;
+    	font: inherit;
+    	font-size: 100%;
+    	vertical-align: baseline;
+    	border-bottom: 1px solid #ded6c7;
+	}
+    .details_info_wrap:hover .book_img::before {
+		content: "";
+		width: 220px;
+		height: 314px;
+		position: absolute;
+		display: block;
+		transition: .5s ease;
+		background: rgba(0, 0, 0, .7)
+	}
+	.details_info_wrap{
+		 position: relative;
+		 width: 220px;
+		 overflow: hidden;
+	}
+	.book_img_wrap,.details_book_img_wrap:hover .book_img::before {
+		content: "";
+		width: 220px;
+		height: 314px;
+		position: absolute;
+		display: block;
+		transition: .5s ease;
+		background: rgba(0, 0, 0, .7)
+	}
+	.book_img_wrap, .details_book_img_wrap,:hover+.info_box{	
+    	transform: translateY(0px);
+	}
 </style>
 </head>
 <body>
@@ -864,18 +942,54 @@
 </div>
 <div class="screen"></div>
 	<div class="book_info_table">
-		<div class="book_info_table_wrap">
-			<div class="info">
-				<div class="title">제목</div>
-			</div>
-			<div class="book_writer">작가</div>
-		</div>
+        <div class="book_info_table_wrap">
+            <div class="info">
+                <div class="details_title">제목</div>
+            </div>
+            <div class="book_writer">작가</div>
+            <div class="details_info_wrap">
+                <div class="details_book_img_wrap">
+                    <div class="book_img"></div>
+                </div>
+                <div class="info_box">
+                    <div class="book_title">
+                        <h3>책 제목</h3>
+                    </div>
+                   <div class="star_rating" data-isbn="">
+						<i class="fa fa-star-o fa-2x" aria-hidden="true"><div
+								class="head <c:if test="${book.star_point eq 0.5}">true</c:if>"></div>
+							<div
+								class="tail <c:if test="${book.star_point eq 1}">true</c:if>"></div></i>
+						<i class="fa fa-star-o fa-2x" aria-hidden="true"><div
+								class="head  <c:if test="${book.star_point eq 1.5}">true</c:if>"></div>
+							<div
+								class="tail <c:if test="${book.star_point eq 2}">true</c:if>"></div></i>
+						<i class="fa fa-star-o fa-2x" aria-hidden="true"><div
+								class="head <c:if test="${book.star_point eq 2.5}">true</c:if>"></div>
+							<div
+								class="tail <c:if test="${book.star_point eq 3}">true</c:if>"></div></i>
+						<i class="fa fa-star-o fa-2x" aria-hidden="true "><div
+								class="head <c:if test="${book.star_point eq 3.5}">true</c:if>"></div>
+							<div
+								class="tail <c:if test="${book.star_point eq 4}">true</c:if>"></div></i>
+						<i class="fa fa-star-o fa-2x" aria-hidden="true"><div
+								class="head <c:if test="${book.star_point eq 4.5}">true</c:if>"></div>
+							<div
+								class="tail <c:if test="${book.star_point eq 5}">true</c:if>"></div></i>
+					</div>
+                    <button class="wish_btn">
+                        <i class="fa fa-heart"></i>보고싶어요
+                    </button>
+                    <button class="comment_btn">
+                        <i class="fa fa-comment"></i> 코멘트쓰기
+                    </button>
+                </div>
+            </div>
+        </div>
 
-		<div class="book_intro_start">줄거리</div>
-		<div class="book_intro">내용</div>
-		<div class="book_review_start">코멘트</div>
-		<img class="cover" alt="" src="">
-
+        <div class="book_intro_start">줄거리</div>
+        <div class="book_intro">내용</div>
+        <div class="book_review_start">코멘트</div>
 		<ul class="book_info_ul">
 			<li class="book_info_li" data-isbn></li>
 		</ul>
