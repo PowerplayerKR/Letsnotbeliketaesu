@@ -783,7 +783,7 @@ ul {
 </script>
 	<script>
 	$(".wish_btn").click(function() {
-
+             
 					$.ajax({
 
 						url:"InsertLike.do",
@@ -794,17 +794,15 @@ ul {
 					
 						data:{"isbn":$(this).closest("a").find(".star_rating").attr('id')},							
 						error:function(request,status,error){
-							alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);						
+							alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);	
+							a++;
 						},
 						success:function(json) {
 							console.log(json);
 						}
 					});//ajax
 					$(this).css("color","hotpink");
-	});
-	
-
-	
+				
 	</script>
 
 </body>
