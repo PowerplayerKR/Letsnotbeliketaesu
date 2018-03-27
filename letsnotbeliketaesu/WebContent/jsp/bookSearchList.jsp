@@ -73,16 +73,17 @@ body {
 		position: relative;
 	}
 
- .info_box {
-	width: 220px;
-	height: 170px;
-	position: absolute;
-	top: 170px;
-	left: 0;
-	background: #fff;
-	transform: translateY(340px);
-	transition: .3s ease;
-}
+ 	.info_box {
+		width: 220px;
+		height: 157px;
+		position: absolute;
+		top: 157px;
+		left: 0;
+		background: #fff;
+		transform: translateY(340px);
+		transition: .3s ease;
+		text-align: center;
+	}
 
 .book_wrap h1 {
 	color: orange;
@@ -136,25 +137,6 @@ body {
 .book_wrap li:nth-child(7) button {
 	top: 70px
 }
-
-	.book_img_wrap:hover .book_img::before {
-		content: "";
-		width: 220px;
-		height: 314px;
-		position: absolute;
-		display: block;
-		transition: .5s ease;
-		background: rgba(0, 0, 0, .7)
-	}	
-	.info_wrap:hover .book_img::before {
-		content: "";
-		width: 220px;
-		height: 314px;
-		position: absolute;
-		display: block;
-		transition: .5s ease;
-		background: rgba(0, 0, 0, .7)
-	}
 
 
 .star_rating {
@@ -363,14 +345,16 @@ body {
 	    display: none;
 	    z-index: 11;
 	}
+	
 	.book_info_table_wrap {
 		position: relative;
 		width: 800px;
-		height: 290px;
+		height: 314px;
 		border-bottom: 1px solid #d5d5d5;
 		background-color: white;
 	}
 	.info{
+		width:500px;
 		position:absolute;	
 		left:220px;
 		top:20px;
@@ -659,15 +643,6 @@ body {
 		transition: .5s ease;
 		background: rgba(0, 0, 0, .7)
 	}
-	.info_wrap:hover .book_img::before {
-		content: "";
-		width: 220px;
-		height: 314px;
-		position: absolute;
-		display: block;
-		transition: .5s ease;
-		background: rgba(0, 0, 0, .7)
-	}
 	.details_info_wrap{
 		 position: relative;
 		 width: 220px;
@@ -688,11 +663,6 @@ body {
 	.info_box:hover {
 		transform: translateY(0px);
 	}
-	
-	#searched_movies_title{
-		position: relative;
-		top: 150px;
-	}	
 </style>
 </head>
 
@@ -842,6 +812,9 @@ body {
 	<div id="wrap">
 		<jsp:include page="/template/header.jsp"></jsp:include>
 		<div id="content">
+			<div id="searched_movies_title" class="container_12">
+  				입력하신 <span id="search_query">${param.keyword}</span> 의 검색 결과입니다.  <span class="count"></span>
+			</div>
 			<ul class="book_wrap" >
 				<c:forEach var="book" items="${searchBookList}">
 					<li class="book_list" data-title="${book.title}" data-isbn="${book.isbn}" data-num="${book.ROWNUM}">
@@ -1069,7 +1042,8 @@ body {
 	function bookClick(title,isbn) {
 		$(".loader").show();
 		var scrollTop = $(window).scrollTop();
-		var top = 150 - $(window).scrollTop();
+		var top = 167 - $(window).scrollTop();
+		$("details_info_wrap .star_rating").data("isbn");
 		$(".book_wrap").data("scrollTop",scrollTop);
 		$(".book_wrap").css({"position":"fixed","left":"326.5px","top":top+"px"});
 		function getBook() {
@@ -1083,14 +1057,15 @@ body {
 				},
 				success:function(json) {
 					$(json).each(function() {
-					var title = $('.title');
+					var title = $('.details_title');
 					var bookWriter = $('.book_writer');
 					var book_intro = $('.book_intro');
-					var cover = $('.cover');
+					var img = $('.details_book_img_wrap .book_img');
+					var book_title = $(".book_info_table_wrap .book_title h3");
 					title.text(this.title);
+					book_title.text(this.title);
 					bookWriter.text(this.book_writer);
-					cover.attr('src',this.image);
-					cover.attr('alt',this.title+'의 커버 사진');
+					img.css({'background-image':"url("+this.image+")"});
 					book_intro.text(this.introduce);
 					});//each() end
 					setTimeout(screenHide, 500);
@@ -1116,9 +1091,9 @@ body {
 						var content = $("<div class='content_wrap'>").text(this.content);
 						var review_update_date = $("<p class='review_update_date'>").text(this.regdate);
 						var user_img = $("<img class='user_img' src='../last_project/img/user.jpg'>");
-						
+						var report = $("<button onclick='report($(this));' data-email='"+this.review_email+"' data-num='"+this.num+"'>신고하기</button>");
 						review_balloon.append(review_writer,content,review_update_date);
-						review_box.append(user_img,review_balloon);
+						review_box.append(user_img,review_balloon,report);
 						$(".book_info_li").append(review_box);
 						Cnum= this.ROWNUM;
 						
