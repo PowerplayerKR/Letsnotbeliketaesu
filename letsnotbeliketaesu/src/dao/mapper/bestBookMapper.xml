@@ -7,19 +7,17 @@
 			left join star_point_list on(best_book.isbn=star_point_list.isbn and star_point_list.star_point_email=#{email})
 			left join review_list on(best_book.isbn=review_list.isbn and review_list.review_email=#{email})
 	</sql>
-	<select id="selectAllBestBook" resultType="java.util.HashMap">
-		SELECT *
-		FROM best_book
-		ORDER BY num
+	<select id="selectAllBestBook" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+		SELECT best_book.*,star_point_list.star_point,review_list.content  from best_book <include refid="starReview"></include>
+		ORDER BY best_book.num
 		LIMIT 0,20
 	</select>
-	<select id="selectBestBookMore" parameterType="int"
+	<select id="selectBestBookMore" parameterType="java.util.HashMap"
 		resultType="java.util.HashMap">
-		SELECT *
-		FROM best_book
-		WHERE num>#{num}
-		AND num <![CDATA[<=]]>#{num}+20
-		ORDER BY num
+		SELECT best_book.*,star_point_list.star_point,review_list.content  from best_book <include refid="starReview"></include>
+		WHERE best_book.num>#{num}
+		AND best_book.num <![CDATA[<=]]>#{num}+20
+		ORDER BY best_book.num
 	</select>
 	<select id="selectBestBook" parameterType="int" resultType="java.util.HashMap">
 		SELECT *

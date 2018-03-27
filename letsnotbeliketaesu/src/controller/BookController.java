@@ -63,9 +63,7 @@ public class BookController {
 		List<HashMap<String, Object>> bookRankingList = bestBookService.selectRankingBestBook();
 
 		model.addAttribute("bookRanking", bookRankingList);
-		
-		
-		
+
 		List<HashMap<String, Object>> book = bookService.selectBookMain(userInfo);
 
 		List<HashMap<String, Object>> bestBook = bestBookService.selectBookMain(userInfo);
@@ -75,36 +73,39 @@ public class BookController {
 		model.addAttribute("userInfo", userInfo);
 
 		model.addAttribute("book", book);
-		
+
 		model.addAttribute("bestBook", bestBook);
 
 		model.addAttribute("newBook", newBook);
-		System.out.println(book);
-		System.out.println(bestBook);
-		System.out.println(newBook);
+
 		return "main";
 
 	}
 
 	@RequestMapping("bestBook.do")
-	public ModelAndView bestBook() {
+	public String bestBook(HttpSession session, Model model) {
 
-		ModelAndView mav = new ModelAndView();
+		HashMap<String, Object> userInfo = (HashMap<String, Object>) session.getAttribute("userInfo");
 
-		List<HashMap<String, Object>> bestBookList = bestBookService.selectAllBestBook();
+		if (userInfo == null)
 
-		mav.addObject("bestBookList", bestBookList);
+			return "redirect:loginForm.do";
 
-		mav.setViewName("bestBook");
+		List<HashMap<String, Object>> bestBookList = bestBookService.selectAllBestBook(userInfo);
+		System.out.println(bestBookList);
+		model.addAttribute("bestBookList", bestBookList);
 
-		return mav;
+		return "bestBook";
 
 	}
 
 	@RequestMapping("bestBookMore.do")
 	@ResponseBody
-	public ResponseEntity<String> bestBookMore(@RequestParam int num) throws Exception {
-		List<HashMap<String, Object>> bestBookList = bestBookService.selectBestBookMore(num);
+	public ResponseEntity<String> bestBookMore(@RequestParam int num, HttpSession session) throws Exception {
+		
+		HashMap<String, Object> userInfo = (HashMap<String, Object>) session.getAttribute("userInfo");
+		userInfo.put("num", num);
+		List<HashMap<String, Object>> bestBookList = bestBookService.selectBestBookMore(userInfo);
 		String json = new ObjectMapper().writeValueAsString(bestBookList);
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
@@ -112,17 +113,19 @@ public class BookController {
 	}
 
 	@RequestMapping("newBook.do")
-	public ModelAndView newBook() {
+	public String newBook(HttpSession session, Model model) {
+		
+		HashMap<String, Object> userInfo = (HashMap<String, Object>) session.getAttribute("userInfo");
 
-		ModelAndView mav = new ModelAndView();
+		if (userInfo == null)
 
-		List<HashMap<String, Object>> newBookList = newBookService.selectAllNewBook();
+			return "redirect:loginForm.do";
 
-		mav.addObject("newBookList", newBookList);
+		List<HashMap<String, Object>> newBookList = newBookService.selectAllNewBook(userInfo);
 
-		mav.setViewName("newBook");
+		model.addAttribute("newBookList", newBookList);
 
-		return mav;
+		return "newBook";
 
 	}
 
@@ -307,9 +310,13 @@ public class BookController {
 
 	@ResponseBody
 
-	public ResponseEntity<String> newBookMore(@RequestParam int num) throws Exception {
+	public ResponseEntity<String> newBookMore(@RequestParam int num,HttpSession session) throws Exception {
+		
+		HashMap<String, Object> userInfo = (HashMap<String, Object>) session.getAttribute("userInfo");
 
-		List<HashMap<String, Object>> newBookList = newBookService.selectNewBookMore(num);
+		userInfo.put("num", num);
+		
+		List<HashMap<String, Object>> newBookList = newBookService.selectNewBookMore(userInfo);
 
 		String json = new ObjectMapper().writeValueAsString(newBookList);
 

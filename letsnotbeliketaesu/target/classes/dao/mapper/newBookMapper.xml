@@ -7,13 +7,11 @@
 			left join star_point_list on(new_book.isbn=star_point_list.isbn and star_point_list.star_point_email=#{email})
 			left join review_list on(new_book.isbn=review_list.isbn and review_list.review_email=#{email})
 	</sql>
-	<select id="selectAllNewBook" resultType="java.util.HashMap">
+	<select id="selectAllNewBook" resultType="java.util.HashMap" parameterType="java.util.HashMap">
 
-		SELECT *
+		SELECT new_book.*,star_point_list.star_point,review_list.content  FROM new_book <include refid="starReview"></include>
 
-		FROM new_book
-
-		ORDER BY num desc
+		ORDER BY new_book.num desc
 
 		LIMIT 0,20
 
@@ -43,17 +41,15 @@
 		SELECT new_book.*,star_point_list.star_point,review_list.content  FROM new_book <include refid="starReview"></include>
 		order by rand() limit 6
 	</select>
-	<select id="selectNewBookMore" parameterType="int" resultType="java.util.HashMap">
+	<select id="selectNewBookMore" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 
-		SELECT *
+		SELECT new_book.*,star_point_list.star_point,review_list.content  FROM new_book <include refid="starReview"></include>
 
-		FROM new_book
+		WHERE new_book.num<![CDATA[<]]>#{num}
 
-		WHERE num<![CDATA[<]]>#{num}
+		AND new_book.num >= #{num}-20
 
-		AND num >= #{num}-20
-
-		ORDER BY num desc
+		ORDER BY new_book.num desc
 
 	</select>
 

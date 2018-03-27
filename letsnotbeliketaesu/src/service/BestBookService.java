@@ -13,16 +13,16 @@ public class BestBookService {
 	@Autowired
 	private IBestBookDao bestBookDao;
 
-	public List<HashMap<String, Object>> selectAllBestBook() {
-		return bestBookDao.selectAllBestBook();
+	public List<HashMap<String, Object>> selectAllBestBook(HashMap<String, Object> params) {
+		return bestBookDao.selectAllBestBook(params);
 	}
 
 	public List<HashMap<String, Object>> selectRankingBestBook() {
 		return bestBookDao.selectRankingBestBook();
 	}
 	
-	public List<HashMap<String, Object>> selectBestBookMore(int num){
-		return bestBookDao.selectBestBookMore(num);
+	public List<HashMap<String, Object>> selectBestBookMore(HashMap<String, Object> params){
+		return bestBookDao.selectBestBookMore(params);
 	}
 
 	public HashMap<String, Object> selectBestBook(int num) {

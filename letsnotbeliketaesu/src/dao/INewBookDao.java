@@ -12,9 +12,9 @@ public interface INewBookDao {
 
 	public HashMap<String, Object> selectNewBook(int num);
 
-	public List<HashMap<String, Object>> selectAllNewBook();
+	public List<HashMap<String, Object>> selectAllNewBook(HashMap<String, Object> params);
 
 	public List<HashMap<String, Object>> selectBookMain(HashMap<String, Object> params);
 	
-	public List<HashMap<String, Object>> selectNewBookMore(int num); 
+	public List<HashMap<String, Object>> selectNewBookMore(HashMap<String, Object> params); 
 }

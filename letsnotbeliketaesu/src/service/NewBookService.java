@@ -13,8 +13,8 @@ public class NewBookService {
 	@Autowired
 	private INewBookDao newBookDao;
 
-	public List<HashMap<String, Object>> selectAllNewBook() {
-		return newBookDao.selectAllNewBook();
+	public List<HashMap<String, Object>> selectAllNewBook(HashMap<String, Object> params) {
+		return newBookDao.selectAllNewBook(params);
 	}
 
 	public HashMap<String, Object> selectNewBook(int num) {
@@ -37,9 +37,9 @@ public class NewBookService {
 		return newBookDao.selectBookMain(params);
 	}
 	
-	public List<HashMap<String, Object>> selectNewBookMore(int num) {
+	public List<HashMap<String, Object>> selectNewBookMore(HashMap<String, Object> params) {
 
-		return newBookDao.selectNewBookMore(num);
+		return newBookDao.selectNewBookMore(params);
 
 	}
 }

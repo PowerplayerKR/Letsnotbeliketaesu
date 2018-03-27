@@ -710,7 +710,7 @@ body {
 			     			</div>
 							<div class="info_box">
 									<h3 class="book_title">${book.title}</h3>
-									<div class="star_rating" id="${book.num}">
+									<div class="star_rating" data-isbn="${book.isbn}">
 										<i class="fa fa-star-o fa-2x" aria-hidden="true">
 											<div class="head <c:if test="${book.star_point eq 0.5}">true</c:if>"></div>
 											<div class="tail <c:if test="${book.star_point eq 1}">true</c:if>"></div>

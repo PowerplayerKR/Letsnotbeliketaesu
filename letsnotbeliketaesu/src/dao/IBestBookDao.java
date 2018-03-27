@@ -12,11 +12,11 @@ public interface IBestBookDao {
 
 	public HashMap<String, Object> selectBestBook(int num);
 
-	public List<HashMap<String, Object>> selectAllBestBook();
+	public List<HashMap<String, Object>> selectAllBestBook(HashMap<String, Object> params);
 
 	public List<HashMap<String, Object>> selectRankingBestBook();
 
-	public List<HashMap<String, Object>> selectBestBookMore(int num);	
+	public List<HashMap<String, Object>> selectBestBookMore(HashMap<String, Object> params);	
 	
 	public List<HashMap<String, Object>> selectBookMain(HashMap<String, Object> params);
 }

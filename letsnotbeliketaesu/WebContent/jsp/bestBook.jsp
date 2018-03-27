@@ -986,7 +986,7 @@
 						<div class="book_title">
 							<h3>${book.title}</h3>		
 						</div>
-						<div class="star_rating" id="${book.isbn}">
+						<div class="star_rating" data-isbn="${book.isbn}">
 							<i class="fa fa-star-o fa-2x" aria-hidden="true"><div
 									class="head <c:if test="${book.star_point eq 0.5}">true</c:if>"></div>
 								<div
