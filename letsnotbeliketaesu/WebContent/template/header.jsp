@@ -27,7 +27,8 @@
 		</li>
 	</ul>
 	<div id="user">
-			${userInfo.name }	
+			${userInfo.name }
+		<button id="userButton" onclick="location.href='logout.do'">로그아웃</button>
 		<img src="logo.jpg" alt="name's img"
 			style="height: 48px; width: 48px;"> <a href="mypage1.do">마이페이지</a>
 	</div>
