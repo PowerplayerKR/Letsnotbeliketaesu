@@ -803,7 +803,7 @@ $("textarea").on('keydown keyup', function() {
 
 						dataType:"json",//json
 					
-						data:{"isbn":$(this).closest("a").find(".star_rating").attr('id')},							
+						data:{"isbn":$(this).closest("a").find(".star_rating").attr('data-isbn')},							
 						error:function(request,status,error){
 							alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);						
 						},
