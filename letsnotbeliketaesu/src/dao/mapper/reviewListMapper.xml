@@ -13,15 +13,15 @@
   		WHERE isbn = #{isbn}
   	</select>
   	<select id="selectReviewList" parameterType="String" resultType="java.util.HashMap">
-  			SELECT CAST(@ROWNUM := @ROWNUM + 1 AS signed integer) AS ROWNUM,review_writer,content,isbn,DATE_FORMAT(regdate, "%Y년 %m월 %d일") as 'regdate',review_email,num
-			FROM (SELECT @ROWNUM := 0) R,review_list
+  			SELECT CAST(@ROWNUM := @ROWNUM + 1 AS signed integer) AS ROWNUM,review_writer,content,review_list.isbn,DATE_FORMAT(review_list.regdate, "%Y년 %m월 %d일") as 'review_list.regdate',review_email,num,star_point_list.star_point
+			FROM (SELECT @ROWNUM := 0) R,review_list join star_point_list on(review_list.isbn=star_point_list.isbn and review_list.review_email=star_point_list.star_point_email )
 			WHERE isbn = #{isbn}
             ORDER BY num desc
   			LIMIT 0,5
   	</select>
   	<select id="selectReviewListMore" parameterType="java.util.HashMap" resultType="java.util.HashMap">
-  			SELECT CAST(@ROWNUM := @ROWNUM + 1 AS signed integer) AS ROWNUM,review_writer,content,isbn,DATE_FORMAT(regdate, "%Y년 %m월 %d일") as 'regdate',review_email,num
-			FROM (SELECT @ROWNUM := 0) R,review_list
+  		SELECT CAST(@ROWNUM := @ROWNUM + 1 AS signed integer) AS ROWNUM,review_writer,content,review_list.isbn,DATE_FORMAT(review_list.regdate, "%Y년 %m월 %d일") as 'review_list.regdate',review_email,num,star_point_list.star_point
+			FROM (SELECT @ROWNUM := 0) R,review_list join star_point_list on(review_list.isbn=star_point_list.isbn and review_list.review_email=star_point_list.star_point_email )
 			WHERE isbn = #{isbn}
             ORDER BY num desc
   	</select>
