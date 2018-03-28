@@ -663,10 +663,36 @@ body {
 	.info_box:hover {
 		transform: translateY(0px);
 	}
+		.review_writer .review_star_rating {
+	margin-left:10px;
+	color:#ccc
+	}
+	.review_star_rating i.fa-star, .review_star_rating i.fa-star-half-o {
+	color: yellow;
+}
+	#comment_confirm{
+  position: fixed;
+  width: 320px;
+  height: 100px;
+  background: #ccc;
+  z-index:200;
+  left:50%;
+  top:15%;
+  margin-left: -160px;
+  border-radius: 300px;
+  display:none;
+ }
+ #comment_confirm span{
+ color:red;
+ text-align:center;
+ line-height: 100px;
+ font-size: 25px;
+ }
 </style>
 </head>
 
 <body>
+	<div id="comment_confirm"><span >댓글이 변경되었습니다</span></div>
 <div class="loader">
 	<img class="loader_img" src="../letsnotbeliketaesu/img/ajax_loader6.gif">
 </div>
@@ -1088,13 +1114,19 @@ body {
 						var review_box = $("<div class='review_box' data-num='"+this.ROWNUM+"'>");
 						var review_balloon = $("<div class='review_balloon'>");
 						var review_writer = $("<div class='review_writer'>").text(this.review_writer);
+						var span_star=$("<span class='review_star_rating'><i class='fa  fa-1x'   aria-hidden='true'></i><i class='fa  fa-1x'   aria-hidden='true'></i><i class='fa  fa-1x'   aria-hidden='true'></i><i class='fa  fa-1x'   aria-hidden='true'></i><i class='fa  fa-1x'   aria-hidden='true'></i></span>");
 						var content = $("<div class='content_wrap'>").text(this.content);
 						var review_update_date = $("<p class='review_update_date'>").text(this.regdate);
 						var user_img = $("<img class='user_img' src='../last_project/img/user.jpg'>");
 						var report = $("<button onclick='report($(this));' data-email='"+this.review_email+"' data-num='"+this.num+"'>신고하기</button>");
+						review_writer.append(span_star);
 						review_balloon.append(review_writer,content,review_update_date);
 						review_box.append(user_img,review_balloon,report);
 						$(".book_info_li").append(review_box);
+						var star_point=this.star_point;		
+						span_star.children('i').each(function () { //'fa-star-half-o' 'fa-star'
+							$(this).addClass($(this).index()<star_point?star_point/($(this).index()+1)<1?'fa-star-half-o':'fa-star':'fa-star-o' );
+						})
 						Cnum= this.ROWNUM;
 						
 					});//each() end
@@ -1150,13 +1182,18 @@ body {
 					var review_box = $("<div class='review_box' data-num='"+this.ROWNUM+"'>");
 					var review_balloon = $("<div class='review_balloon'>");
 					var review_writer = $("<div class='review_writer'>").text(this.review_writer);
+					var span_star=$("<span class='review_star_rating'><i class='fa  fa-1x'   aria-hidden='true'></i><i class='fa  fa-1x'   aria-hidden='true'></i><i class='fa  fa-1x'   aria-hidden='true'></i><i class='fa  fa-1x'   aria-hidden='true'></i><i class='fa  fa-1x'   aria-hidden='true'></i></span>");
 					var content = $("<div class='content_wrap'>").text(this.content);
 					var review_update_date = $("<p class='review_update_date'>").text(this.regdate);
 					var user_img = $("<img class='user_img' src='../last_project/img/user.jpg'>");
-					
+					review_writer.append(span_star);
 					review_balloon.append(review_writer,content,review_update_date);
-					review_box.append(user_img,review_balloon);
+					review_box.append(user_img,review_balloon)
 					$(".book_info_li").append(review_box);
+					var star_point=this.star_point;		
+					span_star.children('i').each(function () { //'fa-star-half-o' 'fa-star'
+							$(this).addClass($(this).index()<star_point?star_point/($(this).index()+1)<1?'fa-star-half-o':'fa-star':'fa-star-o' );
+						})
 					Cnum= this.ROWNUM;
 				});//each() end
 				
