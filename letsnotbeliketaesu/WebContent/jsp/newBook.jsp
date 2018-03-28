@@ -1115,7 +1115,13 @@ body {
 				}//success end
 			});//$.ajax() end
 		}//getReview() end
-		
+			var image = $(this).data("img");
+		var comm = $(this).data("comment");
+		$(".book_info_table .comment_btn").data({ 
+			  "img": image,
+			  "title": title,
+			  "comment":comm 
+			});
 		getReview();
 		getBook();
 		function screenHide() {
