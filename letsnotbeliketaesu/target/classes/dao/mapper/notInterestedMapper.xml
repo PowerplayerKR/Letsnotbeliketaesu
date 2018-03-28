@@ -14,16 +14,16 @@
   	</select>
   	<insert id="insertNotInterested" parameterType="java.util.HashMap">
   		INSERT INTO not_interested
-  		VALUES 0,#{user_name},#{book_num},#{regdate}
+  		VALUES(0,#{email},#{isbn},now())
   	</insert>
   	<update id="updateNotInterested" parameterType="java.util.HashMap" >
   		UPDATE not_interested
   		SET user_name=#{user_name},book_num=#{book_num},regdate=#{regdate}
   		WHERE num=#{num}
   	</update>
-  	<delete id="deleteNotInterested" parameterType="int">
+  	<delete id="deleteNotInterested" parameterType="java.util.HashMap">
   		DELETE FROM not_interested
-  		WHERE num=#{num}
+  		WHERE email = #{email} and isbn = #{isbn}
   	</delete>
   	
   </mapper>

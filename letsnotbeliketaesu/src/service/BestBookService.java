@@ -17,8 +17,8 @@ public class BestBookService {
 		return bestBookDao.selectAllBestBook(params);
 	}
 
-	public List<HashMap<String, Object>> selectRankingBestBook() {
-		return bestBookDao.selectRankingBestBook();
+	public List<HashMap<String, Object>> selectRankingBestBook(HashMap<String, Object> params) {
+		return bestBookDao.selectRankingBestBook(params);
 	}
 	
 	public List<HashMap<String, Object>> selectBestBookMore(HashMap<String, Object> params){

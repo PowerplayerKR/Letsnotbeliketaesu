@@ -28,7 +28,7 @@ public class NotInterestedService {
 	public void updateNotInterested(HashMap<String, Object> params) {
 		notInterestedDao.updateNotInterested(params);
 	}
-	public void deleteNotInterested(int num) {
-		notInterestedDao.deleteNotInterested(num);
+	public void deleteNotInterested(HashMap<String, Object> params) {
+		notInterestedDao.deleteNotInterested(params);
 	}
 }

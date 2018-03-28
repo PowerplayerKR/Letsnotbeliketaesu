@@ -7,16 +7,27 @@
 			left join star_point_list on(best_book.isbn=star_point_list.isbn and star_point_list.star_point_email=#{email})
 			left join review_list on(best_book.isbn=review_list.isbn and review_list.review_email=#{email})
 	</sql>
+	<sql id="notInterested">
+		left join not_interested on(best_book.isbn=not_interested.isbn and not_interested.email=#{email})
+	</sql>
+	<sql id="notInterestedWhere">
+		where not_interested.isbn is null
+	</sql>
+	<sql id="notInterestedAnd">
+		and not_interested.isbn is null
+	</sql>
 	<select id="selectAllBestBook" resultType="java.util.HashMap" parameterType="java.util.HashMap">
-		SELECT best_book.*,star_point_list.star_point,review_list.content  from best_book <include refid="starReview"></include>
+		SELECT best_book.*,star_point_list.star_point,review_list.content  from best_book <include refid="starReview"></include><include refid="notInterested"></include>
+		<include refid="notInterestedWhere"></include>
 		ORDER BY best_book.num
 		LIMIT 0,20
 	</select>
 	<select id="selectBestBookMore" parameterType="java.util.HashMap"
 		resultType="java.util.HashMap">
-		SELECT best_book.*,star_point_list.star_point,review_list.content  from best_book <include refid="starReview"></include>
+		SELECT best_book.*,star_point_list.star_point,review_list.content  from best_book <include refid="starReview"></include><include refid="notInterested"></include>
 		WHERE best_book.num>#{num}
 		AND best_book.num <![CDATA[<=]]>#{num}+20
+		<include refid="notInterestedAnd"></include>
 		ORDER BY best_book.num
 	</select>
 	<select id="selectBestBook" parameterType="int" resultType="java.util.HashMap">
@@ -24,10 +35,12 @@
 		FROM best_book
 		WHERE num=#{num}
 	</select>
-	<select id="selectRankingBestBook" resultType="java.util.HashMap">
+	<select id="selectRankingBestBook" resultType="java.util.HashMap" parameterType="java.util.HashMap">
 		SELECT *
 		FROM best_book
-		ORDER BY num ASC
+		<include refid="notInterested"></include>
+		<include refid="notInterestedWhere"></include>
+		ORDER BY best_book.num ASC
 		limit 0,10;
 	</select>
 	<insert id="insertBestBook" parameterType="java.util.HashMap">
@@ -48,6 +61,8 @@
 	</delete>
 	<select id="selectBookMain" resultType="java.util.HashMap" parameterType="java.util.HashMap">
 		select best_book.*,star_point_list.star_point,review_list.content  from best_book <include refid="starReview"></include>
+		<include refid="notInterested"></include>
+		<include refid="notInterestedWhere"></include>
 		order
 		by rand() limit 6
 	</select>

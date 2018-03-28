@@ -7,10 +7,19 @@
 			left join star_point_list on(new_book.isbn=star_point_list.isbn and star_point_list.star_point_email=#{email})
 			left join review_list on(new_book.isbn=review_list.isbn and review_list.review_email=#{email})
 	</sql>
+	<sql id="notInterested">
+		left join not_interested on(new_book.isbn=not_interested.isbn and not_interested.email=#{email})
+	</sql>
+	<sql id="notInterestedWhere">
+		where not_interested.isbn is null
+	</sql>
+	<sql id="notInterestedAnd">
+		and not_interested.isbn is null
+	</sql>
 	<select id="selectAllNewBook" resultType="java.util.HashMap" parameterType="java.util.HashMap">
 
 		SELECT new_book.*,star_point_list.star_point,review_list.content  FROM new_book <include refid="starReview"></include>
-
+		<include refid="notInterested"></include><include refid="notInterestedWhere"></include>
 		ORDER BY new_book.num desc
 
 		LIMIT 0,20

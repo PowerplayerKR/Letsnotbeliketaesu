@@ -12,7 +12,15 @@
 			left join star_point_list on(book.isbn=star_point_list.isbn and star_point_list.star_point_email=#{email})
 			left join review_list on(book.isbn=review_list.isbn and review_list.review_email=#{email})
 	</sql>
-	
+	<sql id="notInterested">
+		left join not_interested on(book.isbn=not_interested.isbn and not_interested.email=#{email})
+	</sql>
+	<sql id="notInterestedWhere">
+		where not_interested.isbn is null
+	</sql>
+	<sql id="notInterestedAnd">
+		and not_interested.isbn is null
+	</sql>
 	<select id="selectAllBook" resultType="java.util.HashMap">
 		SELECT *
 		FROM book
@@ -60,9 +68,10 @@
 
 	<select id="bookSearch" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 			SELECT CAST(@ROWNUM := @ROWNUM + 1 AS signed integer) AS ROWNUM,book.*,star_point_list.star_point,review_list.content
-			FROM book<include refid="starReview"></include>,(SELECT @ROWNUM := 0) R
+			FROM book <include refid="starReview"></include>
+			,(SELECT @ROWNUM := 0) R
 			<include refid="search"></include>
-			ORDER BY public_date desc
+			ORDER BY book.public_date desc
 			LIMIT 0,20
 	</select>
 	
@@ -70,7 +79,7 @@
 				SELECT CAST(@ROWNUM := @ROWNUM + 1 AS signed integer) ROWNUM,book.*,star_point_list.star_point,review_list.content  FROM book <include refid="starReview"></include>
 				,(SELECT @ROWNUM := 0) R
 				<include refid="search"></include>
-				ORDER BY public_date desc
+				ORDER BY book.public_date desc
 	</select>
 <sql id="selectUserBook">
 		<choose> 

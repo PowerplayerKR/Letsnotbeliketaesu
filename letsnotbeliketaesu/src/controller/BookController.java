@@ -60,7 +60,7 @@ public class BookController {
 
 			return "redirect:loginForm.do";
 
-		List<HashMap<String, Object>> bookRankingList = bestBookService.selectRankingBestBook();
+		List<HashMap<String, Object>> bookRankingList = bestBookService.selectRankingBestBook(userInfo);
 
 		model.addAttribute("bookRanking", bookRankingList);
 
@@ -138,6 +138,8 @@ public class BookController {
 		mav.addObject("search", params);
 		mav.addObject("searchBookList", searchBookList);
 		mav.setViewName("bookSearchList");
+		System.out.println(params);
+		System.out.println(searchBookList);
 		return mav;
 	}
 
@@ -350,6 +352,26 @@ public class BookController {
 		params.put("email", userInfo.get("email"));
 		favoritesService.insertFavorites(params);
 		return "{\"booknum\":\"오류내지마\" }";
+	}
+	
+	@RequestMapping("InsertNot.do")
+	@ResponseBody
+	public String InsertNot(@RequestParam HashMap<String, Object> params, HttpSession session) {
+		params.put("isbn", "K712532906");
+		HashMap<String, Object> userInfo = (HashMap<String, Object>) session.getAttribute("userInfo");
+		params.put("email", userInfo.get("email"));
+		notInterested.insertNotInterested(params);
+		return "";
+	}
+	
+	@RequestMapping("DeleteNot.do")
+	@ResponseBody
+	public String DeleteNot(@RequestParam HashMap<String, Object> params, HttpSession session) {
+		params.put("isbn", "K022532597");
+		HashMap<String, Object> userInfo = (HashMap<String, Object>) session.getAttribute("userInfo");
+		params.put("email", userInfo.get("email"));
+		notInterested.deleteNotInterested(params);
+		return "";
 	}
 
 }

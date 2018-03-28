@@ -14,7 +14,7 @@ public interface IBestBookDao {
 
 	public List<HashMap<String, Object>> selectAllBestBook(HashMap<String, Object> params);
 
-	public List<HashMap<String, Object>> selectRankingBestBook();
+	public List<HashMap<String, Object>> selectRankingBestBook(HashMap<String, Object> params);
 
 	public List<HashMap<String, Object>> selectBestBookMore(HashMap<String, Object> params);	
 	
