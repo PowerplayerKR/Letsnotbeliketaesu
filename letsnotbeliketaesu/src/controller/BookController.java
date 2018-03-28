@@ -357,7 +357,7 @@ public class BookController {
 	@RequestMapping("InsertNot.do")
 	@ResponseBody
 	public String InsertNot(@RequestParam HashMap<String, Object> params, HttpSession session) {
-		params.put("isbn", "K712532906");
+
 		HashMap<String, Object> userInfo = (HashMap<String, Object>) session.getAttribute("userInfo");
 		params.put("email", userInfo.get("email"));
 		notInterested.insertNotInterested(params);
@@ -367,7 +367,7 @@ public class BookController {
 	@RequestMapping("DeleteNot.do")
 	@ResponseBody
 	public String DeleteNot(@RequestParam HashMap<String, Object> params, HttpSession session) {
-		params.put("isbn", "K022532597");
+
 		HashMap<String, Object> userInfo = (HashMap<String, Object>) session.getAttribute("userInfo");
 		params.put("email", userInfo.get("email"));
 		notInterested.deleteNotInterested(params);
