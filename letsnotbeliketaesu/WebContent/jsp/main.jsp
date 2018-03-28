@@ -707,6 +707,32 @@
 	.book_info_ul{
 		margin-bottom: 50px;
 	}
+	.review_writer .review_star_rating {
+	margin-left:10px;
+	color:#ccc
+	}
+	.review_star_rating i.fa-star, .review_star_rating i.fa-star-half-o {
+	color: yellow;
+}
+	#comment_confirm{
+  position: fixed;
+  width: 320px;
+  height: 100px;
+  background: #ccc;
+  z-index:200;
+  left:50%;
+  top:15%;
+  margin-left: -160px;
+  border-radius: 300px;
+  display:none;
+ }
+ #comment_confirm span{
+ color:red;
+ text-align:center;
+ line-height: 100px;
+ font-size: 25px;
+ text-align: center
+ }
 </style>
 </head>
 <body>
