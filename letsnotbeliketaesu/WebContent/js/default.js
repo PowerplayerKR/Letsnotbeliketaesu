@@ -1,5 +1,5 @@
-$(".wish_btn").click(
-		function() {
+$(".wish_btn").click(function() {
+             
 			var isbn = "";
 			isbn = $(this).closest("a").find(".star_rating")
 					.attr('data-isbn');
@@ -21,9 +21,10 @@ $(".wish_btn").click(
 					console.log(json);
 				}
 			});// ajax
+		
 			$(this).css("color", "hotpink");
-
-		});
+		
+	});
 
 function report(event) {
 
