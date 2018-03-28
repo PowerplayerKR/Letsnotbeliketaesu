@@ -40,7 +40,7 @@ ul {
 	height: 100%;
 	list-style: none;
 	margin-left:17%;
-	padding-top: 20%;
+	padding-top: 23%;
 	
 }
 .book_wrap li {
@@ -332,7 +332,7 @@ ul {
     position: absolute;
     top: 50%;
     left: 50%;
-    margin: 109px 0 0 -530px;
+    margin: -380px 0 0 -530px;
     text-decoration: none;
       color: #646464;
   }
@@ -342,7 +342,7 @@ ul {
     position: absolute;
     top: 50%;
     left: 50%;
-    margin: 109px 0 0 -435px;
+    margin: -380px 0 0 -435px;
     text-decoration: none;
       color: #646464;
   }
@@ -352,7 +352,7 @@ ul {
     position: absolute;
     top: 50%;
     left: 52%;
-    margin: 109px 0 0 -380px;
+    margin: -380px 0 0 -380px;
     text-decoration: none;
     color: #646464;
   }
@@ -363,7 +363,7 @@ ul {
     position: absolute;
     top: 50%;
     left: 51%;
-    margin: 127px 0 0 -343px;
+    margin: -362px 0 0 -343px;
   }
   .book_wrap {
   	position: absolute;
@@ -383,34 +383,7 @@ ul {
 		</form>
 	</div>
  <jsp:include page="/template/header.jsp"></jsp:include>
- <div id="myCarousel" class="carousel slide" data-ride="carousel">
 
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-      <div class="item active">
-        <img src="../letsnotbeliketaesu/jsp/ad.jpg" alt="Los Angeles"  style="width:100%;" >
-      </div>
-
-      <div class="item">
-        <img src="../letsnotbeliketaesu/jsp/ac.jpg" alt="Chicago" style="width:100%;">
-      </div>
-
-      <div class="item">
-        <img src="../letsnotbeliketaesu/jsp/af.jpg" alt="New york" style="width:100%;">
-      </div>
-    </div>
-
-    <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
- 
 
 	
 	<div id="body_blind_wrap"></div>
@@ -535,848 +508,304 @@ ul {
 </div>
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 	
-<script src="../letsnotbeliketaesu/js/default.js"></script>
+
 	<script>
 
-	$(document).ready(function () {
 
-
-		$('.star_rating').trigger('mouseleave');
-
-    });
-
-		$(".star_rating  i .tail").mouseenter(
-
-				function(event) {
-
-					 var offset=$(this).offset();
-
-			           var  toolTip=$('#tool_tip');
-
- 
-
-			            toolTip.css({"top":offset.top+50,"left":offset.left-30});
-
- 
-
-			            if($(this).hasClass('true')){
-
-			                toolTip.find('p').text('취소하기');
-
-			            }else{
-
-			                switch ($(this).closest('i').prevAll().length){
-
-			                    case 0:toolTip.find('p').text('싫어요');break;
-
-			                    case 1:toolTip.find('p').text('별로예요');break;
-
-			                    case 2:toolTip.find('p').text('보통 이예요');break;
-
-			                    case 3:toolTip.find('p').text('재미 있어요');break;
-
-			                    case 4:toolTip.find('p').text('최고예요!');
-
-			                }
-
-			            }
-
- 
-
-			            toolTip.show();
-
-					
-
-						$(this).closest("i").parent().children("i")
-
-								.removeClass("fa fa-star 2x").removeClass(
-
-										"fa fa-star-o fa-2x").removeClass(
-
-										"fa fa-star-half-o fa-2x");
-
-						$(this).closest("i").addClass("fa fa-star fa-2x")
-
-								.prevAll("i").addClass("fa fa-star fa-2x");
-
-						$(this).closest("i").nextAll("i").addClass(
-
-								"fa fa-star-o fa-2x");
-
- 
-
-					
-
- 
-
-					return false;
-
-				});
-
+	function starSub(index,ht,arry){
 		
+		arry.each(function(){
+			$(this).find('.true').removeClass('true');
+			if(index>=0)$($($(this).children('i')[index]).children("div")[ht]).addClass('true');
+			
+			});
+		
+		$(arry).trigger('mouseleave');
+	}
+	$('#star_check').click(function() {
+		$('#comment_content_wrap_star_grade_wrap').show();
+		$('#comment_blind_wrap').show();
+	});
+	$(function(){$('.star_rating').trigger('mouseleave')});
+	$('.star_rating .head,.star_rating .tail').mouseenter(function(){
+	    var offset=$(this).offset(),
+	        active=$(this).hasClass('true'),
+			score=$(this).parent().index()*2+$(this).index();
+	    $('#tool_tip').show().css({'top':offset.top+50,'left': offset.left-38})
+			.find('p').css({color:active?'red':'black'})
+			.text(active?'취소하기':(['최악 이에요','싫어요','재미 없어요','별로예요','부족 해요',
+				'보통 이예요','볼만 해요','재미 있어요','훌륭 해요','최고예요!'])[score]);
+	    $(this).closest('.star_rating').children().removeClass('fa-star-o fa-star-half-o fa-star')
+			.each(function(){var sub=score-$(this).index()*2;$(this).addClass(sub?sub<0?'fa-star-o':'fa-star':'fa-star-half-o')});
+	}).click(function() {
+		var a=$(this).closest(".star_rating").find(".true");// 별점있는거  th는 내가 
+		console.log("클릭 console"+a.hasClass('true'));
+		if(a.length===1){
+			if(!($(this).hasClass("true"))){
+				$(this).addClass("true")
+				console.log("실행되지마 제발!~!~!~!1");
+			}
+			a.removeClass("true");
+			console.log(a);
+		}else{
+			$(this).addClass("true");
+			console.log("실행되지마 제발!~!~!~!2");
+		}
 
-		$(".star_rating i .head").mouseenter(
-
-				function(event) {
-
-				
-
-					var offset=$(this).offset();
-
-					var  toolTip=$('#tool_tip');
-
- 
-
-	                toolTip.css({"top":offset.top+50,"left":offset.left-30});
-
- 
-
-	                if($(this).hasClass('true')){
-
-	                    toolTip.find('p').text('취소하기');
-
-	                }else{
-
-	                    switch ($(this).closest('i').prevAll().length){
-
-							case 0:toolTip.find('p').text('최악 이에요');break;
-
-							case 1:toolTip.find('p').text('재미 없어요');break;
-
-							case 2:toolTip.find('p').text('부족 해요');break;
-
-							case 3:toolTip.find('p').text('볼만 해요');break;
-
-							case 4:toolTip.find('p').text('훌륭 해요');
-
-						}
-
-	                }
-
-	                toolTip.show();
-
-					
-
-					$(this).closest("i").parent().children("i").removeClass(
-
-							"fa fa-star 2x").removeClass("fa fa-star-o fa-2x")
-
-							.removeClass("fa fa-star-half-o fa-2x");
-
-					$(this).closest("i").addClass("fa fa-star-half-o fa-2x")
-
-							.prevAll("i").addClass("fa fa-star fa-2x");
-
-					$(this).closest("i").nextAll("i").addClass(
-
-							"fa fa-star-o fa-2x");
-
- 
-
-					return false;
-
+		var starPoint=$(this).index()?1:0.5;
+		$.ajax({
+			url : "starQuery.do",
+			type : "post",// post방식
+			data : {
+				"isbn" : $(this).closest(".star_rating")
+					.data('isbn'),
+				"star_point" : $(this).closest('i').prevAll(
+						'i').length +starPoint,
+			},
+			error : function(request, status, error) {
+				alert("code:" + request.status + "\n"
+						+ "message:" + request.responseText
+						+ "\n" + "error:" + error);
+			},
+			success : function(json) {
+				console.log(json);
+			}
+			
+		});// $.ajax() end$('.star_rating"[data-i="+$(this).closest(".star_rating").data("isbn")+"]"')
+		 if(!($(this).closest('.info_box').hasClass('.info_box'))){
+			 var qqq=$(this);
+			 var zzz= new Array();
+				$('.star_rating').each(function () {
+				    if ( $(this).data('isbn') === qqq.closest(".star_rating").data("isbn") ) {
+				        // do whatever you wanted to do with it
+				    	zzz.push($(this));
+				    } 
 				});
+			if($(this).hasClass("true")){
+			starSub($(this).closest('i').prevAll('i').length,$(this).index(),$(zzz));
+			}else{
+				starSub(-1,-1,$(zzz));
+			}
+		 }
+	});
+	$('.star_rating').mouseleave(function(){
+		var $active=$(this).find('.true'),
+			score=$active.length?$active.parent().index()*2+$active.index():-1;
+		$('#tool_tip').hide();
+	    $(this).children().removeClass('fa-star-o fa-star-half-o fa-star')
+	        .each(function(){var sub=score-$(this).index()*2;$(this).addClass(sub?sub<0?'fa-star-o':'fa-star':'fa-star-half-o')});
+	});
+	$('.comment_btn').on("click", function(){
+						var top = 150 - $(window).scrollTop();
+						var scrollTop = $(window).scrollTop();
+						// 스크롤 막기
+					
+						$(".new_book_wrap").attr("data-scroll", scrollTop);
+						$('html, body').css({
+							'overflow' : 'hidden',
+							'height' : '100%'
+						});
+			
+						$("#content").data("scrollTop",scrollTop);
+						$('#element').on('scroll touchmove mousewheel',
+								function(event) {
+									event.preventDefault();
+									event.stopPropagation();
+									return false;
+								});
+						console.log($(this).closest('.book_list').find('img').attr(
+								'alt'));
+						console.log($(this).closest('.book_list').find('img').attr(
+								'src'))
+						$('#comment').show();
+						$('#comment_title').text(
+								$(this).closest('.book_list').find('img').attr(
+										'alt'));
+						$('#comment_content_wrap_img').attr(
+								'src',
+								$(this).closest('.book_list').find('img').attr(
+										'src'));
+						$('#body_blind_wrap').show();
+						//,#comment_content_wrap .star_rating
+						$('#comment_content_wrap_star_grade_body_star .star_rating,#comment_content_wrap .star_rating')
+						.data('isbn',$(this).closest('.info_box').find('.star_rating').data('isbn'));
+						var qqq=$(this);
+						var zzz= new Array();
+						$('.star_rating').each(function () {
+						    if ( $(this).data('isbn') === qqq.closest(".info_box").find(".star_rating").data("isbn") ) {
+						        // do whatever you wanted to do with it
+						    	console.log("몇번 돌아감?");
+						    	zzz.push($(this));
+						    } 
+						});
+						var x = $(this).closest('.info_box').find('.true');
+						if(x.hasClass('true')){
+							starSub(x.closest('i').prevAll('i').length,x.index(),$(zzz));
+						}
+						else{
+							starSub(-1,-1,$(zzz));
+							$('#star_check').trigger('click');
+						}
+						
+						
+				$('#inputText').val($(this).data('comment'));
+						$('#inputText').data('comment', $(this).data('comment'));
+						if ($(this).data('comment') == "") {
+							$('#comment_content_wrap_button').attr("disabled",
+									"true");
+						}
+						
+					});
+	$('#body_blind_wrap').click(
+					function() {
+						$('html, body').css({
+							'overflow' : '',
+							'height' : 'auto'
+						});
+						var scroll="";
+					
+						scroll = $(".new_book_wrap").attr("data-scroll");
+						$(window).scrollTop(scroll);
+						$(".book_wrap").attr("data-scroll", "");
+						$(".new_book_wrap").attr("data-scroll", "");
+						$('#element').off('scroll touchmove mousewheel');
+						$('#comment').hide();
+						$(".report_reason").hide();
+						$(this).hide();
 
- 
+						$('#comment_content_wrap_star_grade_wrap').hide();
 
-		$(".star_rating").mouseleave(
+						$('#comment_blind_wrap').hide();
 
-				function() {
+					});
+	$('#comment_blind_wrap').click(function() {
+		$('#comment_content_wrap_star_grade_wrap').hide();
+		$(this).hide();
+	});
 
-					var a = $(this).find('.true');
+	$('#comment_head_end')
+			.click(
+					function() {
+						$('#comment_content_wrap_star_grade_wrap').hide();
+						$('#comment').hide();
+						$('#body_blind_wrap').hide();
+					});
+	$("#comment form")
+			.on(
+					"submit",
+					function(event) {
 
- 
+						event.preventDefault();
+						var beforeComment = $('#inputText').data('comment');
+						var comment = $(this).find('[name=comment]').val();
+						console.log(comment)
+						if ($(
+								'#comment_content_wrap_star_grade_body_star .star_rating')
+								.find('.true').hasClass('true')) {
+							if (comment.trim() == "" || beforeComment == comment) {
+								alert("제데로 입력해주세요");
+							} else {
+								console.log(beforeComment);
+								if (!beforeComment) {
 
-					if (a.length > 0) {
-
-						$(this).children("i").removeClass("fa fa-star fa-2x")
-
-								.removeClass("fa fa-star-o fa-2x").removeClass(
-
-										"fa fa-star-half-o fa-2x");
-
- 
-
-						if (a.hasClass('head')) {
-
-							a.closest("i").addClass("fa fa-star-half-o fa-2x")
-
-									.prevAll("i").addClass("fa fa-star fa-2x");
-
-							a.closest("i").nextAll("i").addClass(
-
-									"fa fa-star-o fa-2x");
-
+									$
+											.ajax({
+												url : "reviewInsert.do",
+												type : "post",// post방식
+												dataType : "json",// json
+												data : {
+													"isbn" : $(
+															'#comment_content_wrap_star_grade_body_star .star_rating')
+															.data('isbn'),
+													"content" : comment
+												},
+												error : function(request, status,
+														error) {
+													alert("code:" + request.status
+															+ "\n" + "message:"
+															+ request.responseText
+															+ "\n" + "error:"
+															+ error);
+												},
+												success : function(json) {
+													console.log(json);
+												}
+											});// $.ajax() end
+									$('.star_rating[data-isbn='+$(this).closest('.info_box').find(".star_rating").data("isbn")+']').closest('.info_box').find(
+									'.comment_btn')
+									.data('comment', comment);
+									$('#inputText').data('comment', comment);
+								} else {
+									$
+											.ajax({
+												url : "reviewUpdate.do",
+												type : "post",// post방식
+												dataType : "json",// json
+												data : {
+													"isbn" : $(
+															'#comment_content_wrap_star_grade_body_star .star_rating')
+															.data('isbn'),
+													"content" : comment
+												},
+												error : function(request, status,
+														error) {
+													alert("code:" + request.status
+															+ "\n" + "message:"
+															+ request.responseText
+															+ "\n" + "error:"
+															+ error);
+												},
+												success : function(json) {
+													console.log(json);
+												}
+											});// $.ajax() end
+									$('.star_rating[data-isbn='+$(this).closest('#comment_content_wrap').find(".star_rating").data("isbn")+']').closest('.info_box').find(
+											'.comment_btn')
+											.data('comment', comment);
+									$('#inputText').data('comment', comment);
+								}
+							}
 						} else {
-
-							a.closest("i").addClass("fa fa-star fa-2x")
-
-									.prevAll("i").addClass("fa fa-star fa-2x");
-
-							a.closest("i").nextAll("i").addClass(
-
-									"fa fa-star-o fa-2x");
-
+							$('#star_check').trigger('click');
+							console.log("실행되면안됨");
 						}
-
- 
-
-					} else {
-
-						$(this).children("i").removeClass("fa fa-star fa-2x")
-
-								.removeClass("fa fa-star-o fa-2x").removeClass(
-
-										"fa fa-star-half-o fa-2x");
-
-						$(this).children("i").addClass("fa fa-star-o fa-2x");
-
-					}
-
-					  $('#tool_tip').hide();
-
-				})
-
-		$(".star_rating .head").click(
-
-				function(event) {
-
-					
-
-					if ($(this).hasClass("true")) {
-
-						var result = confirm('확인을 누르실경우 댓글까지 함께 삭제됩니다.')
-
- 
-
-					if(result){
-
-						$.ajax({
-
-							url:"starDelete.do",
-
-							type:"post",//post방식
-
-							dataType:"json",//json
-
-							data:{"isbn":$(this).closest(".star_rating").attr('id')},
-
-								
-
-							error:function(request,status,error){
-
-								alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-
- 
-
-							
-
-							},
-
-							success:function(json) {
-
-								console.log(json);
-
-							}
-
-						});//$.ajax() end
-
-						
-
-						if($('#inputText').data('comment')!=""||$(this).closest('.info_box').find('.comment_btn').data("comment")!=""){
-
-							$.ajax({
-
-								url:"reviewDelete.do",
-
-								type:"post",//post방식
-
-								dataType:"json",//json
-
-								data:{"isbn":$(this).closest(".star_rating").attr('id')},
-
-									
-
-								error:function(request,status,error){
-
-									alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-
- 
-
-								
-
-								},
-
-								success:function(json) {
-
-									console.log(json);
-
-								}
-
-							});//$.ajax() end
-
-							
-
-						}
-
-						
-
-						
-
-						$(this).closest('.star_rating').find(
-
-						'.true').removeClass('true')
-
-						if($('#fake').length>0){
-
-							$('#fake').find('.true').removeClass('true');
-
-							$('#fake').trigger('mouseleave');
-
-							
-
-						}		
-
-					  }
-
-					}else if($(this).closest('.star_rating').find('.true').length==1){
-
-						$.ajax({
-
-							url:"starUpdate.do",
-
-							type:"post",//post방식
-
-							dataType:"json",//json
-
-							data:{"isbn":$(this).closest(".star_rating").attr('id'),"starPoint":$(this).closest('i').prevAll('i').length+0.5},
-
-							error:function(request,status,error){
-
-								alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-
-							},
-
-							success:function(json) {
-
-								console.log(json);
-
-							}
-
-						});//$.ajax() end
-
-						$(this).closest('.star_rating').find(
-
-						'.true').removeClass('true')
-
-						$(this).addClass("true");
-
-						if($('#fake').length>0){
-
-							console.log("ㅎ허ㅓ허허허");
-
-							$('#fake').find('.true').removeClass('true');
-
-							$($('#fake').children('i')[$(this).closest('i').prevAll('i').length]).find('.head').addClass('true')
-
-							$('#fake').trigger('mouseleave');
-
-						}		
-
-						
-
-					}else {
-
-						$.ajax({
-
-							url:"starInsert.do",
-
-							type:"post",//post방식
-
-							dataType:"json",//json
-
-							data:{"starPoint":$(this).closest('i').prevAll('i').length+0.5,"isbn":$(this).closest(".star_rating").attr('id'),"reviewNum":0},
-
-							error:function(request,status,error){
-
-								alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-
-							},
-						
-
-							success:function(json) {
-
-								console.log(json);
-
-							}
-
-						});//$.ajax() end
-						
-						
-						
-
-						$(this).addClass("true");
-
-						if($('#fake').length>0){
-
-						
-
-							$('#fake').find('.true').removeClass('true');
-
-							$($('#fake').children('i')[$(this).closest('i').prevAll('i').length]).find('.head').addClass('true')
-
-							$('#fake').trigger('mouseleave');
-
-						}					
-
-					}
-
- 
-
-					return false;
-
-				});
-
-		$(".star_rating .tail").click(
-
-				function(event) {
-
-					
-
-					if ($(this).hasClass("true")) {
-
-						var result = confirm('확인을 누르실경우 댓글까지 함께 삭제됩니다.')
-
- 
-
-						if(result){
-
-						$.ajax({
-
-							url:"starDelete.do",
-
-							type:"post",//post방식
-
-							dataType:"json",//json
-
-							data:{"isbn":$(this).closest(".star_rating").attr('id')},
-
-							error:function(request,status,error){
-
-								alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-
-							},
-
-							success:function(json) {
-
-								console.log(json);
-
-							}
-
-						});//$.ajax() end
-
-						
-
-						if($('#inputText').data('comment')!=""||$(this).closest('.info_box').find('.comment_btn').data('comment')!=""){
-
-							$.ajax({
-
-								url:"reviewDelete.do",
-
-								type:"post",//post방식
-
-								dataType:"json",//json
-
-								data:{"isbn":$(this).closest(".star_rating").attr('id')},
-
-									
-
-								error:function(request,status,error){
-
-									alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-
- 
-
-								
-
-								},
-
-								success:function(json) {
-
-									console.log(json);
-
-								}
-
-							});//$.ajax() end
-
-							
-
-						}
-
-						
-
-						$(this).closest('.star_rating').find(
-
-						'.true').removeClass('true')
-
-						if($('#fake').length>0){
-
-							$('#fake').find('.true').removeClass('true');
-
-							$('#fake').trigger('mouseleave');
-
-							
-
-						}	
-
-					  }
-
-					}else if($(this).closest('.star_rating').find('.true').length==1){
-
-						$.ajax({
-
-							url:"starUpdate.do",
-
-							type:"post",//post방식
-
-							dataType:"json",//json
-
-							data:{"isbn":$(this).closest(".star_rating").attr('id'),"starPoint":$(this).closest('i').prevAll('i').length+1},
-
-							error:function(request,status,error){
-
-								alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-
-							},
-
-							success:function(json) {
-
-								console.log(json);
-
-							}
-
-						});//$.ajax() end
-
-						$(this).closest('.star_rating').find(
-
-						'.true').removeClass('true')
-
-						$(this).addClass("true");
-
-						if($('#fake').length>0){
-
-						
-
-							$('#fake').find('.true').removeClass('true');
-
-							$($('#fake').children('i')[$(this).closest('i').prevAll('i').length]).find('.tail').addClass('true')
-
-							$('#fake').trigger('mouseleave');
-
-						}		
-
-					} 
-
-					else {
-
-						$.ajax({
-
-							url:"starInsert.do",
-
-							type:"post",//post방식
-
-							dataType:"json",//json
-
-							data:{"starPoint":$(this).closest('i').prevAll('i').length+1,"isbn":$(this).closest(".star_rating").attr('id'),
-
-								"reviewNum":0},
-
-							error:function(request,status,error){
-
-								alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-
-							},
-
-							success:function(json) {
-
-								console.log(json);
-
-							}
-
-						});//$.ajax() end
-
-						
-
-						
-
-						
-
-						$(this).addClass("true");
-
-						if($('#fake').length>0){
-
-							
-
-							$('#fake').find('.true').removeClass('true');
-
-							$($('#fake').children('i')[$(this).closest('i').prevAll('i').length]).find('.tail').addClass('true')
-
-							$('#fake').trigger('mouseleave');
-
-						}
-
-						
-
-					}
-
-					console.log("5");
-
-					return false;
-
-				});				
-		$('.comment_btn').click(function () {
-
-	        $('#comment').show();
-
-	        $('#body_blind_wrap').show();
-	        
-	        var x=$(this).closest('.info_box').find('.true');
-
-	        $('#comment_content_wrap_star_grade_body_star .star_rating').attr('id',$(this).closest('.info_box').find('.star_rating').attr('id'));
-	        
-	        $(this).closest('.info_box').find('.star_rating').removeAttr('id').attr('id',"fake");
-	       
-	       $('#comment_content_wrap_star_rating').children('i').removeClass("fa fa-star fa-1x").removeClass("fa fa-star-o fa-1x").removeClass("fa fa-star-half-o fa-1x");
-	      
-	       $('#inputText').val($(this).data('comment'));
-
-	       $('#inputText').data('comment',$(this).data('comment'));
-
-	       if($(this).data('comment')==""){
-
-	    	   $('#comment_content_wrap_button').attr("disabled","true");
-
-	       }
-
-	        if(x.hasClass('true')==true){
-
-	        	if(x.hasClass('head')==true){
-
-	        		$($('#comment_content_wrap_star_grade_body_star .star_rating').children('i')[x.closest('i').prevAll('i').length]).find('.head').addClass('true');	     
-	        		$($('#comment_content_wrap_star_rating').children('i')[x.closest('i').prevAll('i').length]).addClass("fa fa-star-half-o fa-1x").prevAll("i").addClass("fa fa-star fa-1x");	
-	        		$($('#comment_content_wrap_star_rating').children('i')[x.closest('i').prevAll('i').length]).nextAll("i").addClass("fa fa-star-o fa-1x");
-
-	        	}
-
-	        	else{	
-	        		$($('#comment_content_wrap_star_rating').children('i')[x.closest('i').prevAll('i').length]).addClass("fa fa-star fa-1x").prevAll("i").addClass("fa fa-star fa-1x");	
-
-	        		$($('#comment_content_wrap_star_rating').children('i')[x.closest('i').prevAll('i').length]).nextAll("i").addClass("fa fa-star-o fa-1x");         
-
-	        			
-
-	        			 $($('#comment_content_wrap_star_grade_body_star .star_rating').children('i')[x.closest('i').prevAll('i').length]).find('.tail').addClass('true') 
-
-	        	}
-
-	        	$('#comment_content_wrap_star_grade_body_star .star_rating').trigger('mouseleave');
-
-	        }else{
-
-	        	$('#star_check').trigger('click');
-	        }
-
-
-	    });
-
-	    $('#body_blind_wrap').click(function () {
-
-	        $('#comment').hide();
-
-	        $(this).hide();
-
-	        $('#comment_content_wrap_star_grade_wrap').hide();
-
-	        $('#comment_blind_wrap').hide();
-
-	        $('#comment_content_wrap_star_grade_body_star .star_rating').find('.true').removeClass('true');
-
-	        $('#comment_content_wrap_star_grade_body_star .star_rating').trigger('mouseleave');
-
-	        $('#fake').removeAttr('id').attr('id', $('#comment_content_wrap_star_grade_body_star .star_rating').attr('id'));
-
-	        $('#comment_content_wrap_star_grade_body_star .star_rating').removeAttr('id');
-
-	    });
-
-		$('#comment_blind_wrap').click(function () {
-
-			$('#comment_content_wrap_star_grade_wrap').hide();
-
-			$(this).hide();
-
-		});
-
- 
-
-		$('#star_check').click(function () {
-
-			$('#comment_content_wrap_star_grade_wrap').show();
-
-			$('#comment_blind_wrap').show();
-
-	    });
-
-		$('#comment_head_end').click(function () {
-
-	        $('#comment_content_wrap_star_grade_wrap').hide();
-
-	        $('#comment').hide();
-
-	        $('#body_blind_wrap').hide();
-
-	        $('#comment_content_wrap_star_grade_body_star .star_rating').find('.true').removeClass('true');
-
-	        $('#comment_content_wrap_star_grade_body_star .star_rating').trigger('mouseleave');
-
-	        $('#fake').removeAttr('id').attr('id', $('#comment_content_wrap_star_grade_body_star .star_rating').attr('id'));
-
-	        $('#comment_content_wrap_star_grade_body_star .star_rating').removeAttr('id');
-
-	        
-
-	    });
-
-	  $("form").on("submit", function(event) {
-
-   			event.preventDefault();
-
-   			var beforeComment=$('#inputText').data('comment');
-
-   			var comment=$(this).find('[name=comment]').val();
-
-   			console.log(comment)
-
-   			if($('#comment_content_wrap_star_grade_body_star .star_rating').find('.true').hasClass('true')){
-
-   			if(comment.trim()==""||beforeComment==comment){
-
-   				alert("제데로 입력해주세요");
-
-   			}else{
-
-   				
-
-   				if(beforeComment==""){
-
-   				$.ajax({
-
-					url:"reviewInsert.do",
-
-					type:"post",//post방식
-
-					dataType:"json",//json
-
-					data:{"isbn":$('#comment_content_wrap_star_grade_body_star .star_rating').attr('id'),"content":comment,
-
-						 
-
-					},
-
-					error:function(request,status,error){
-
-						alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-
-					},
-
-					success:function(json) {
-
-						console.log(json);
-
-					}
-
-				});//$.ajax() end
-
-   					$('#fake').closest('.info_box').find('.comment_btn').data('comment',comment);
-
-					$('#inputText').data('comment',comment);
-
-   					}else{
-
-   						$.ajax({
-
-   							url:"reviewUpdate.do",
-
-   							type:"post",//post방식
-
-   							dataType:"json",//json
-
-   							data:{"isbn":$('#comment_content_wrap_star_grade_body_star .star_rating').attr('id'),"content":comment,
-
-   							
-
-   							},
-
-   							error:function(request,status,error){
-
-   								alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-
-   							},
-
-   							success:function(json) {
-
-   								console.log(json);
-
-   							}
-
-   						});//$.ajax() end
-
-   						$('#fake').closest('.info_box').find('.comment_btn').data('comment',comment);
-
-   						$('#inputText').data('comment',comment);
-
-   					}
-
-   				
-
-   			}
-
-   		}else{
-
-   			$('#star_check').trigger('click');
-
-   			}
-
-		});
+					});
+	$("textarea").on('keydown keyup', function() {
+		if ($(this).val().length > 2000 || $(this).val().length == 0) {
+			$("#comment_content_wrap_button").attr("disabled", "true");
+		} else {
+			$("#comment_content_wrap_button").removeAttr("disabled");
+		}
+	});
 
 	
+</script>
+	<script>
+	$(".wish_btn").click(function() {
 
-	  $("textarea").on('keydown keyup',function(){
+					$.ajax({
 
-	    	
+						url:"InsertLike.do",
 
-	    	if($(this).val().length>2000||$(this).val().length==0){
+						type:"post",//post방식
 
-	    		
+						dataType:"json",//json
+					
+						data:{"isbn":$(this).closest("a").find(".star_rating").attr('data-isbn')},							
+						error:function(request,status,error){
+							alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);						
+						},
+						success:function(json) {
+							console.log(json);
+						}
+					});//ajax
+					$(this).css("color","hotpink");
+	});
+	
 
-	    		$("#comment_content_wrap_button").attr("disabled","true");	    	
-
-	    	}else{
-
-	    		
-
-	    		$("#comment_content_wrap_button").removeAttr("disabled");
-
-	    		
-
-	    	}
-
-	    });
-
-	    
-
+	
 	</script>
-	
+
 
 
 
