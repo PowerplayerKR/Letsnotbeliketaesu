@@ -69,16 +69,20 @@
 	<select id="bookSearch" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 			SELECT CAST(@ROWNUM := @ROWNUM + 1 AS signed integer) AS ROWNUM,book.*,star_point_list.star_point,review_list.content
 			FROM book <include refid="starReview"></include>
+			<include refid="notInterested"></include>
 			,(SELECT @ROWNUM := 0) R
 			<include refid="search"></include>
+			<include refid="notInterestedAnd"></include>
 			ORDER BY book.public_date desc
 			LIMIT 0,20
 	</select>
 	
 	<select id="bookSearchMore" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 				SELECT CAST(@ROWNUM := @ROWNUM + 1 AS signed integer) ROWNUM,book.*,star_point_list.star_point,review_list.content  FROM book <include refid="starReview"></include>
+				<include refid="notInterested"></include>
 				,(SELECT @ROWNUM := 0) R
 				<include refid="search"></include>
+				<include refid="notInterestedAnd"></include>
 				ORDER BY book.public_date desc
 	</select>
 <sql id="selectUserBook">
@@ -104,7 +108,8 @@
 	</select>
 
 	<select id="selectBookMain" resultType="java.util.HashMap" parameterType="java.util.HashMap">
-		SELECT book.*,star_point_list.star_point,review_list.content  FROM book <include refid="starReview"></include>
+		SELECT book.*,star_point_list.star_point,review_list.content  FROM book <include refid="starReview"></include><include refid="notInterested"></include>
+		<include refid="notInterestedWhere"></include>
 		order
 		by rand() limit 6
 	</select>
