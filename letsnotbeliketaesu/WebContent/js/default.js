@@ -78,6 +78,14 @@ $('#star_check').click(function() {
 	$('#comment_content_wrap_star_grade_wrap').show();
 	$('#comment_blind_wrap').show();
 });
+function comment_set_timeout(content) {
+	$('#comment_confirm').show();
+	$('#comment_confirm span').text(content);
+	setTimeout(function()
+		    {
+		$('#comment_confirm').hide();
+		    },500);
+}
 $(function(){$('.star_rating').trigger('mouseleave')});
 $(document).on('mouseenter','.star_rating .head,.star_rating .tail',function(){
     var offset=$(this).offset(),
@@ -91,18 +99,43 @@ $(document).on('mouseenter','.star_rating .head,.star_rating .tail',function(){
 		.each(function(){var sub=score-$(this).index()*2;$(this).addClass(sub?sub<0?'fa-star-o':'fa-star':'fa-star-half-o')});
 })
 $(document).on('click','.star_rating .head,.star_rating .tail',function() {
+	comment=$(this).closest('.info_box').find('.comment_btn');
 	var a=$(this).closest(".star_rating").find(".true");// 별점있는거  th는 내가 
-	console.log("클릭 console"+a.hasClass('true'));
+    var b=true;
+
+	if(comment.data('comment')!=''&&$(this).hasClass("true"))b=confirm('댓글까지 삭제되는데 삭제하시겠습니까?');
+
+	
+    	if(b){
+    		
+    		if(comment.data('comment')!=''&&$(this).hasClass("true")){
+    		$.ajax({
+    			url : "reviewDelete.do",
+    			type : "post",// post방식
+    			data : {
+    				"isbn" : $(this).closest(".star_rating")
+    					.data('isbn')
+    			},
+    			error : function(request, status, error) {
+    				alert("code:" + request.status + "\n"
+    						+ "message:" + request.responseText
+    						+ "\n" + "error:" + error);
+    			},
+    			success : function(json) {
+    				comment_set_timeout("댓글이 삭제되었습니다.");
+    				comment.data('comment','');
+    			}
+    		});
+    		}
 	if(a.length===1){
 		if(!($(this).hasClass("true"))){
 			$(this).addClass("true")
-			console.log("실행되지마 제발!~!~!~!1");
 		}
 		a.removeClass("true");
-		console.log(a);
+		
 	}else{
 		$(this).addClass("true");
-		console.log("실행되지마 제발!~!~!~!2");
+		
 	}
 
 	var starPoint=$(this).index()?1:0.5;
@@ -121,10 +154,10 @@ $(document).on('click','.star_rating .head,.star_rating .tail',function() {
 					+ "\n" + "error:" + error);
 		},
 		success : function(json) {
-			console.log(json);
+			
 		}
-		
-	});// $.ajax() end$('.star_rating"[data-i="+$(this).closest(".star_rating").data("isbn")+"]"')
+	});
+	
 	 if(!($(this).closest('.info_box').hasClass('.info_box'))){
 		 var qqq=$(this);
 		 var zzz= new Array();
@@ -140,6 +173,7 @@ $(document).on('click','.star_rating .head,.star_rating .tail',function() {
 			starSub(-1,-1,$(zzz));
 		}
 	 }
+    	}
 });
 $(document).on('mouseleave','.star_rating',function(){
 	var $active=$(this).find('.true'),
@@ -284,12 +318,13 @@ $("#comment form")
 														+ error);
 											},
 											success : function(json) {
-												console.log(json);
+												comment_set_timeout("댓글이 입력되었습니다.")
+											
 											}
 										});// $.ajax() end
-								$('.star_rating[data-isbn='+$(this).closest('.info_box').find(".star_rating").data("isbn")+']').closest('.info_box').find(
+								$('.star_rating[data-isbn='+$(this).closest('#comment_content_wrap').find(".star_rating").data("isbn")+']').closest('.info_box').find(
 								'.comment_btn')
-								.data('comment', comment);
+								.data('comment',comment);
 								$('#inputText').data('comment', comment);
 							} else {
 								$
@@ -312,13 +347,13 @@ $("#comment form")
 														+ error);
 											},
 											success : function(json) {
-												console.log(json);
+												comment_set_timeout("댓글이 수정되었습니다.")
 											}
 										});// $.ajax() end
 								$('.star_rating[data-isbn='+$(this).closest('#comment_content_wrap').find(".star_rating").data("isbn")+']').closest('.info_box').find(
 										'.comment_btn')
-										.data('comment', comment);
-								$('#inputText').data('comment', comment);
+										.data('comment',comment);
+								$('#inputText').data('comment',comment);
 							}
 						}
 					} else {
