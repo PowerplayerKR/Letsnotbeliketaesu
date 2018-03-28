@@ -1201,7 +1201,7 @@
 					url:"getBook.do",
 					type:"post",//post방식
 					dataType:"json",//json
-					data:{"title":q},//넘어가는 파라미터
+					data:{"title":title},//넘어가는 파라미터
 					error:function(){
 						alert("에러!!");
 					},
