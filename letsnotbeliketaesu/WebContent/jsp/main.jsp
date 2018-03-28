@@ -16,18 +16,6 @@
 	body {
 		background: #E5E5E5;
 		font-family: 'Noto Sans KR', sans-serif;
-		text-align: center;
-	}
-	.book_info_table {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		background: rgb(250, 248, 248);
-		width: 800px;
-		margin-left: -400px;
-		margin-top: -400px;
-		display: none;
-		z-index: 5;
 	}
 	
 	.book_list {
@@ -209,6 +197,7 @@
 	
 	.info_box h3 {
 		overflow: hidden;
+		text-align: center;
 	}
 	
 	.book_wrap li:hover {
@@ -220,7 +209,7 @@
 		top: 70px
 	}
 	
-	.book_img_wrap:hover::before {
+	.book_img_wrap::hover .book_img::before {
 		content: "";
 		width: 220px;
 		height: 314px;
@@ -230,18 +219,10 @@
 		background: rgba(0, 0, 0, .7)
 	}
 	
-	.info_box:hover+.book_img_wrap::before {
-		content: "";
-		width: 220px;
-		height: 314px;
-		position: absolute;
-		display: block;
-		transition: .5s ease;
-		background: rgba(0, 0, 0, .7)
-	}
 	
 	.star_rating {
 		letter-spacing: -4px;
+		text-align: center;
 	}
 	
 	.star_rating i {
@@ -513,15 +494,14 @@
 	}
 	
 	.book_info_table{
-		position: relative;
-		top: 50%;
-		left: 50%;
-		background: rgb(250,248,248);
-		width: 800px;
-		margin-left:460px;
-		margin-top: -200px;
-		display: none;
-		z-index: 5;
+		position: absolute;
+	    left: 50%;
+	    background: rgb(250,248,248);
+	    width: 800px;
+	    margin-left: -401px;
+	    margin-top: 150px;
+	    display: none;
+	    z-index: 5;
 	}
 	
 	.book_info_wrap {
@@ -566,18 +546,6 @@
 		left:230px;
 		top:80px;
 	}
-	.info{
-		position:absolute;	
-		left:220px;
-		top:20px;
-	    margin: 0;
-    	padding: 0;
-    	border: 0;
-    	font: inherit;
-    	font-size: 100%;
-    	vertical-align: baseline;
-    	border-bottom: 1px solid #ded6c7;
-    }
     .book_intro_start{	
     	font-size: 14px;
     	font-weight: bold;
@@ -707,32 +675,160 @@
 	.book_info_ul{
 		margin-bottom: 50px;
 	}
-	.review_writer .review_star_rating {
-	margin-left:10px;
-	color:#ccc
+	.loader {
+		position: fixed;
+		top:0;
+		left:0;
+	    width: 10000px; 
+	    height: 10000px;
+	    background: rgba(51, 51, 51, 0.5);
+	    display: none;
+	    z-index: 20;
 	}
-	.review_star_rating i.fa-star, .review_star_rating i.fa-star-half-o {
-	color: yellow;
-}
-	#comment_confirm{
-  position: fixed;
-  width: 320px;
-  height: 100px;
-  background: #ccc;
-  z-index:200;
-  left:50%;
-  top:15%;
-  margin-left: -160px;
-  border-radius: 300px;
-  display:none;
- }
- #comment_confirm span{
- color:red;
- text-align:center;
- line-height: 100px;
- font-size: 25px;
- text-align: center
- }
+	.loader_img{
+		width: 400px;
+		height: 400px;
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		margin-left: -200px;
+		margin-top: -200px;
+	}
+	.wish_btn {
+            left: 0px;
+        }
+        .comment_btn {
+            right: 0px;
+        }
+        .wish_btn:hover {
+
+            color: hotpink;
+
+        }
+        .comment_btn:hover {
+
+            color: #4DB6AC;
+
+        }
+        .wish_btn,.comment_btn {
+            width: 110px;
+            height: 40px;
+            background: #fff;
+            border: 0px;
+            margin-top: 25px;
+            cursor: pointer;
+            color: gray;
+            transition: .3s ease;
+            position: absolute;
+        }
+        .details_book_img_wrap{
+        	position: relative;
+            width: 220px;
+            cursor: pointer;
+        }
+        .details_title{
+        	position: relative;
+    		left: 10px;
+        }
+        
+        
+        
+	.info{
+		width:500px;
+		position:absolute;	
+		left:220px;
+		top:20px;
+	    margin: 0;
+    	padding: 0;
+    	border: 0;
+    	font: inherit;
+    	font-size: 100%;
+    	vertical-align: baseline;
+    	border-bottom: 1px solid #ded6c7;
+	}	
+	.info_wrap:hover .book_img::before {
+		content: "";
+		width: 220px;
+		height: 314px;
+		position: absolute;
+		display: block;
+		transition: .5s ease;
+		background: rgba(0, 0, 0, .7)
+	}
+	
+    .details_info_wrap:hover .book_img::before {
+		content: "";
+		width: 220px;
+		height: 314px;
+		position: absolute;
+		display: block;
+		transition: .5s ease;
+		background: rgba(0, 0, 0, .7)
+	}
+	.info_wrap:hover .book_img::before {
+		content: "";
+		width: 220px;
+		height: 314px;
+		position: absolute;
+		display: block;
+		transition: .5s ease;
+		background: rgba(0, 0, 0, .7)
+	}
+	.details_info_wrap{
+		 position: relative;
+		 width: 220px;
+		 overflow: hidden;
+	}
+	.details_book_img_wrap:hover .book_img::before {
+		content: "";
+		width: 220px;
+		height: 314px;
+		position: absolute;
+		display: block;
+		transition: .5s ease;
+		background: rgba(0, 0, 0, .7)
+	}
+	.details_book_img_wrap,:hover+.info_box{	
+    	transform: translateY(0px);
+	}
+	.info_box:hover {
+		transform: translateY(0px);
+	}
+	
+	#searched_movies_title{
+		position: relative;
+		top: 150px;
+	}
+	.book_img{
+        width: 220px;
+        height: 314px;
+        display:inline-block;
+        background-size: cover;
+        background-repeat: no-repeat;
+        position: relative;
+        overflow: hidden;
+    }
+    .book_info_table_wrap {
+		position: relative;
+		width: 800px;
+		height: 314px;
+		border-bottom: 1px solid #d5d5d5;
+		background-color: white;
+	}
+	 .info_box {
+		width: 220px;
+		height: 157px;
+		position: absolute;
+		top: 157px;
+		left: 0;
+		background: #fff;
+		transform: translateY(340px);
+		transition: .3s ease;
+	}
+	a{
+		text-decoration: none;
+		color: black;
+	}
 </style>
 </head>
 <body>
