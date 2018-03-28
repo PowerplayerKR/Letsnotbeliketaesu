@@ -1194,8 +1194,8 @@
 		
 		
 		$(".book_img_wrap").click(function() {
-			var q = "";
-			q = $(this).data('title');
+			var title = "";
+			title = $(this).data('title');
 			function getBook() {
 				$.ajax({
 					url:"getBook.do",
