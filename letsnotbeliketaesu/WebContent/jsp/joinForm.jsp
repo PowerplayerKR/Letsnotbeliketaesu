@@ -42,13 +42,17 @@
     width: 350px;
 
   }
+  a{
+  	text-decoration: none;
+  	color:black;
+  }
 
   </style>
   </head>
 <body>
 
 <div class="container">
-<h1>회원가입 페이지</h1>
+<h1><a href="loginForm.do">회원가입 페이지</a></h1>
   <form action="join.do"id="login" >
     <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
