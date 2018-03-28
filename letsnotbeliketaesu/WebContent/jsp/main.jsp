@@ -556,6 +556,8 @@
     }
     .book_intro{
     	margin-left: 20px;
+    	line-height: 25px;
+    	padding-right: 40px;
     }
     .book_review_start{
     	margin-top: 20px;
