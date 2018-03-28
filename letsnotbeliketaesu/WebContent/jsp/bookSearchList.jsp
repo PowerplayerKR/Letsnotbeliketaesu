@@ -849,7 +849,7 @@ body {
 				 				<div style="background-image: url('${book.image}');" class="book_img"></div>
 			     			</div>
 							<div class="info_box">
-							<button style="top:-190px;right:30px;height: 30px;width: 40px;" class="ban_btn" data-isbn="${book.isbn }">
+							<button style="top:-180px;background:none;right:30px;height: 30px;width: 40px;" class="ban_btn" data-isbn="${book.isbn }">
 										<i class="fa fa-ban fa-2x" ></i>
 									</button>
 									<h3 class="book_title">${book.title}</h3>
@@ -917,8 +917,9 @@ body {
 	                                
 	                              	var li = $("<li class='book_list' data-num='"+this.ROWNUM+"'>");
 	                                
-	                              	var info_box = $("<div class='info_box'>");
+	                              	var info_box = $("<div class='info_box'> <button style='top:-180px;background:none;right:30px;height: 30px;width: 40px;' class='ban_btn' data-isbn='"+this.isbn+"'><i class='fa fa-ban fa-2x' ></i></button>");
 	                              	
+		
 	                              	var book_title = $("<h3 class='book_title'>").text(this.title);
 	                                
 	                              	var star_rating = $("<div class='star_rating' data-isbn='"+this.isbn+"'>");
