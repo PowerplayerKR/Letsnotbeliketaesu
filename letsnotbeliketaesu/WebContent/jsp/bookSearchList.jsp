@@ -393,8 +393,6 @@ body {
     	margin-bottom: 20px;
     }
     .book_intro{
-	    line-height: 25px;
-    	padding-right: 40px;
     	margin-left: 20px;
     }
      .book_review_start{
@@ -821,11 +819,11 @@ body {
 			<img src="http://chulsa.kr/files/attach/images/67/647/673/018/220ebc4544181643a70ac6f4af9c617f.jpg" id="comment_content_wrap_img">
 			<tr></tr>
 			<div  class="star_rating" style="text-align: center;">
-				<i   aria-hidden="true"><div></div><div></div></i>
-				<i   aria-hidden="true"><div></div><div></div></i>
-				<i   aria-hidden="true"><div></div><div></div></i>
-				<i   aria-hidden="true"><div></div><div></div></i>
-				<i   aria-hidden="true"><div></div><div></div></i>
+				<i class="fa "   aria-hidden="true"><div></div><div></div></i>
+				<i class="fa "  aria-hidden="true"><div></div><div></div></i>
+				<i class="fa "  aria-hidden="true"><div></div><div></div></i>
+				<i class="fa "  aria-hidden="true"><div></div><div></div></i>
+				<i class="fa "  aria-hidden="true"><div></div><div></div></i>
 			</div>
 			<form>
 		<textarea placeholder="여기에 댓글을 입력해주세요 " id="inputText" name="comment"></textarea>
@@ -851,6 +849,9 @@ body {
 				 				<div style="background-image: url('${book.image}');" class="book_img"></div>
 			     			</div>
 							<div class="info_box">
+							<button style="top:-190px;right:30px;height: 30px;width: 40px;" class="ban_btn" data-isbn="${book.isbn }">
+										<i class="fa fa-ban fa-2x" ></i>
+									</button>
 									<h3 class="book_title">${book.title}</h3>
 									<div class="star_rating"  data-isbn="${book.isbn}">
 										<i class="fa fa-star-o fa-2x" aria-hidden="true">
