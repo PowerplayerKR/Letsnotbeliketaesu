@@ -993,8 +993,7 @@
 			<div>
 				<ol>
 					<c:forEach var="bestBook" items="${bookRanking}">
-						<li class="best_book_list" data-isbn="${bestBook.isbn}"
-							data-title="${bestBook.title}"><a href="#"><span>${bestBook.num}</span>${bestBook.title}</a>
+						<li class="best_book_list" data-img="${book.image}" data-title="${book.title}" data-comment="${book.content}" data-isbn="${book.isbn}"><a href="#"><span>${bestBook.num}</span>${bestBook.title}</a>
 						</li>
 					</c:forEach>
 				</ol>
