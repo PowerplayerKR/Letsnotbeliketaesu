@@ -883,7 +883,7 @@ body {
 	                                
 	                              	var li = $("<li class='book_list' data-num='"+this.num+"'>");
 	                                
-	                              	var info_box = $("<div class='info_box'>");
+	                              	var info_box = $("<div class='info_box'> <button style='top:-180px;background:none;right:30px;height: 30px;width: 40px;' class='ban_btn' data-isbn='"+this.isbn+"'><i class='fa fa-ban fa-2x' ></i></button>");
 	                              	
 	                              	var book_title = $("<h3 class='book_title'>").text(this.title);
 	                                
