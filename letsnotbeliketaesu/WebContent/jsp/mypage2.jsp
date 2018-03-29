@@ -511,6 +511,7 @@ ul {
 
 </div>
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script src="../letsnotbeliketaesu/js/default.js"></script>
 	
 
 	<script>
@@ -784,35 +785,7 @@ ul {
 
 	
 </script>
-	<script>
-	$(".wish_btn").click(function() {
-             
-			var isbn = "";
-			isbn = $(this).closest("a").find(".star_rating")
-					.attr('data-isbn');
-			$.ajax({
 
-				url : "InsertLike.do",
-
-				type : "post",// post방식
-
-				dataType : "json",// json
-
-				data : {
-					"isbn" : isbn
-				},
-				error : function(request, status, error) {
-					alert("이미 누르셨습니다.");
-				},
-				success : function(json) {
-					console.log(json);
-				}
-			});// ajax
-		
-			$(this).css("color", "hotpink");
-		
-	});
-	</script>
 
 </body>
 </html>
