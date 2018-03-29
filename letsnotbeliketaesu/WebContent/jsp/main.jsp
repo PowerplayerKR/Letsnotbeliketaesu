@@ -1421,6 +1421,7 @@
 		});//click() end
 		
 		$('.screen').click(function() {
+			$(".book_wrap").css("position","");
 			$('.book_info_table').hide();
 			$('.screen').hide();
 			$('.book_info_li').empty();
