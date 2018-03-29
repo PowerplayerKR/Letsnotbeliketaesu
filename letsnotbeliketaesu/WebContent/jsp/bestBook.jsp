@@ -946,6 +946,7 @@
 	<div class="book_info_table">
         <div class="book_info_table_wrap">
             <div class="info">
+		    <button style="top:-180px;background:none;right:30px;height: 30px;width: 40px;" class="ban_btn" data-isbn="${book.isbn}"><i class="fa fa-ban fa-2x" ></i></button>
                 <div class="details_title">제목</div>
             </div>
             <div class="book_writer">작가</div>
@@ -1099,6 +1100,7 @@
 			 			<div style="background-image: url('${book.image}');" class="book_img"></div>
 		     	</div>
 			     <div class="info_box">
+				     <button style="top:-180px;background:none;right:30px;height: 30px;width: 40px;" class="ban_btn" data-isbn="${book.isbn}"><i class="fa fa-ban fa-2x" ></i></button>
 						<div class="book_title">
 							<h3>${book.title}</h3>		
 						</div>
