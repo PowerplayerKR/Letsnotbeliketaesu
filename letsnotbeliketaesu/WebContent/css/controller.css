@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+ #controller{
+            position: fixed;
+            top:50%;
+            right: 10%;
+            margin:-50px 0 0 -100px;
+            width: 120px;
+            height: 200px;
+            background: #ccc;
+            text-align: center;
+            line-height: 100px;
+			display: none;
+        }
+
+        #controller_headr{
+            position: absolute;
+            width: 100%;
+            height: 20%;
+        }
+        #controller_headr i{
+            position: absolute;
+            right: 2%;
+        }
+
+        #controller_body{
+            position: absolute;
+            width: 100%;
+            height: 50%;
+            top:20%;
+        }
+        #controller_bottom{
+            position: absolute;
+            width: 100%;
+            height: 30%;
+            top:70%;
+        }
+        #controller_bottom_up{
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            top:-20%;
+            right: 0;
+            
+        }
+        #controller_bottom_down{
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            top:-20%;
+            left: 0;
+        }

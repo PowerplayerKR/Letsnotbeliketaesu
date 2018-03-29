@@ -7,8 +7,7 @@ body {
 
 #wrap {
 	width: 100%;
-	position: relative;
-	top:200px;
+	margin: auto;
 }
 
 #header {
@@ -20,7 +19,7 @@ body {
 	font-weight: bold;
 	overflow: auto;
 	z-index: 1;
-	color: black;
+	color:black;
 }
 
 #header img {
@@ -61,6 +60,15 @@ body {
 	background-color: aquamarine;
 	text-align: center;
 }
+
+#content {
+	height: auto;
+	float: right;
+	margin-right: 500px;
+	margin-top: -230px;
+}
+
+
 .search {
 	text-align: center;
 }
@@ -73,7 +81,6 @@ body {
 #user img {
 	border-radius: 100px;
 }
-
 .report_text_warp{
 		position: absolute;
 		z-index: 33;
@@ -82,10 +89,4 @@ body {
 		margin:-50px 0 0 -500px;
 		display: none;
 	}
-#userButton{
-	width:50px;
-	height:50px;
 	
-	background-color: green;
-}
-
