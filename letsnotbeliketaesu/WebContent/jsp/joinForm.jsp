@@ -125,25 +125,18 @@
 					u_pwd.focus();
 					return false;
 				}//pwd if
-			}// pwd else
-			
-		});
-	   });
-	   $(function() {
-			$('#pwd').keyup(function () {
-				$('font[name=check]').text('');
-			});
-			$('#pwdCheck').keyup(function () {
+			}// pwd else	
 				if($('#pwd').val()!=$('#pwdCheck').val()){
 					$('font[name=check]').text('');
 					$('font[name=check]').html('암호틀림');
-				}else{
-					$('font[name=check]').text('');
-					$('font[name=check]').html('암호맞음');
-				}
-			});
-		   
-	});
+					return false;
+				}//if
+				
+			
+			
+		});
+	   });
+	  
 	</script>
 	
 
