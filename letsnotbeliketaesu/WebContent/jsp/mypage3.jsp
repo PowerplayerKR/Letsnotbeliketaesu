@@ -512,7 +512,7 @@ ul {
 
 </div>
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-	
+		<script src="../letsnotbeliketaesu/js/default.js"></script>
 
 <script>
 
@@ -794,41 +794,7 @@ $("textarea").on('keydown keyup', function() {
 
 
 
-	<script>
-	$(".wish_btn").click(
-			function() {
-				var isbn = "";
-			
-				isbn = $(this).closest("a").find(".star_rating")
-				.attr('data-isbn');
-				$.ajax({
-
-					url : "InsertLike.do",
-
-					type : "post",// post방식
-
-					dataType : "json",// json
-
-					data : {
-						"isbn" : isbn
-					},
-					error : function(request, status, error) {
-        				alert("code:" + request.status + "\n"
-        						+ "message:"
-        						+ request.responseText + "\n"
-        						+ "error:" + error);
-        			},
-					success : function(json) {
-						console.log(json);
-					
-						
-					}
-				});// ajax
-				
-			});
-
 	
-	</script>
 
 </body>
 </html>
