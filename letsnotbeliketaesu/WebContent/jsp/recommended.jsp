@@ -327,7 +327,9 @@ ul {
 			margin: -22px 0 0 -9px;
 			position: absolute;
 		}
-	
+	.recommendedC{
+		color: aqua;
+	}
 
 </style>
 </head>

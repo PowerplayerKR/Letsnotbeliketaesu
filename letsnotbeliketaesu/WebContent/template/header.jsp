@@ -10,9 +10,9 @@
 				</a>
 			</h1>
 		</li>
-		<li><a href="bestBook.do">베스트 셀러</a></li>
-		<li><a href="newBook.do">신간</a></li>
-		<li><a href="recommended.do">책 추천</a></li>
+		<li><a href="bestBook.do" class="bestBookC">베스트 셀러</a></li>
+		<li><a href="newBook.do" class="newBookC">신간</a></li>
+		<li><a href="recommended.do" class="recommendedC">책 추천</a></li>
 		<li class="search">
 			<form action="bookSearch.do">
 				<select name="searchOption" id="">
@@ -30,6 +30,6 @@
 			${userInfo.name }
 		<button id="userButton" onclick="location.href='logout.do'">로그아웃</button>
 		<img src="logo.jpg" alt="name's img"
-			style="height: 48px; width: 48px;"> <a href="mypage1.do">마이페이지</a>
+			style="height: 48px; width: 48px;"> <a href="mypage1.do" class="myPageC">마이페이지</a>
 	</div>
 </div>

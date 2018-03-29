@@ -665,6 +665,9 @@ body {
 	.info_box:hover {
 		transform: translateY(0px);
 	}
+	.newBookC{
+		color: aqua;
+	}
 </style>
 </head>
 

@@ -370,7 +370,10 @@ ul {
   	position: fixed;
   	margin-top: -500px;
   }
-  
+
+.myPageC{
+  	color: aqua;
+  }  
 
 </style>
 </head>

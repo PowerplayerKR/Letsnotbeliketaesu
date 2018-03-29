@@ -831,6 +831,9 @@
 		text-decoration: none;
 		color: black;
 	}
+	.logo{
+		color: aqua;
+	}
 </style>
 </head>
 <body>

@@ -20,6 +20,7 @@ body {
 	font-weight: bold;
 	overflow: auto;
 	z-index: 1;
+	color: black;
 }
 
 #header img {
@@ -30,7 +31,6 @@ body {
 #header a {
 	text-decoration: none;
 	transition: .3s ease-out;
-	color: #000;
 }
 
 #header a:hover {

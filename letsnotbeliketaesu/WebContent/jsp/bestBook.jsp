@@ -936,6 +936,9 @@
 	.book_img_wrap, .details_book_img_wrap,:hover+.info_box{	
     	transform: translateY(0px);
 	}
+	.bestBookC{
+		color: aqua;
+	}
 </style>
 </head>
 <body>
