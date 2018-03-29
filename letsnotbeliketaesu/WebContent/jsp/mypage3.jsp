@@ -363,7 +363,7 @@ ul {
     position: absolute;
     top: 50%;
     left: 51%;
-    margin: -362px 0 0 -533px;
+    margin: -362px 0 0 -353px;
   }
   .book_wrap {
   	position: absolute;
