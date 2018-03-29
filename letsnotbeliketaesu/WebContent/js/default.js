@@ -1,8 +1,8 @@
 $(".wish_btn").click(function() {
              
 			var isbn = "";
-			isbn = $(this).closest("a").find(".star_rating")
-					.attr('data-isbn');
+			isbn = $(this).closest(".info_box").find(".star_rating")
+					.attr("data-isbn");
 			$.ajax({
 
 				url : "InsertLike.do",
