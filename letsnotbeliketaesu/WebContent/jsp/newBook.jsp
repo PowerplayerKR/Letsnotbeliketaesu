@@ -822,6 +822,7 @@ body {
 				 				<div style="background-image: url('${book.image}');" class="book_img"></div>
 			     			</div>
 							<div class="info_box">
+								<button style="top:-180px;background:none;right:30px;height: 30px;width: 40px;" class="ban_btn" data-isbn="${book.isbn}"><i class="fa fa-ban fa-2x" ></i></button>
 									<h3 class="book_title">${book.title}</h3>
 									<div class="star_rating" id="${book.num}">
 										<i class="fa fa-star-o fa-2x" aria-hidden="true">
