@@ -168,6 +168,8 @@ $(document).on('click','.star_rating .head,.star_rating .tail',function() {
     			success : function(json) {
     				comment_set_timeout("댓글이 삭제되었습니다.");
     				comment.data('comment','');
+    				$('#inputText').val('');
+    				$('#inputText').text('');
     			}
     		});
     		}
@@ -333,6 +335,7 @@ $("#comment form")
 					var beforeComment = $('#inputText').data('comment');
 					var comment = $(this).find('[name=comment]').val();
 					console.log(comment)
+					console.log(beforeComment);
 					if ($(
 							'#comment_content_wrap_star_grade_body_star .star_rating')
 							.find('.true').hasClass('true')) {
@@ -369,7 +372,7 @@ $("#comment form")
 								$('.star_rating[data-isbn='+$(this).closest('#comment_content_wrap').find(".star_rating").data("isbn")+']').closest('.info_box').find(
 								'.comment_btn')
 								.data('comment',comment);
-								$('#inputText').data('comment', comment);
+								$('#inputText').data('comment',comment);
 							} else {
 								$
 										.ajax({

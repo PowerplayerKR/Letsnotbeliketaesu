@@ -98,20 +98,30 @@ public class BookController {
 		return "bestBook";
 
 	}
-
+	
 	@RequestMapping("bestBookMore.do")
+
 	@ResponseBody
-	public ResponseEntity<String> bestBookMore(@RequestParam int num, HttpSession session) throws Exception {
+
+	public ResponseEntity<String>bestBookMore(@RequestParam int num,HttpSession session) throws Exception{
 		
 		HashMap<String, Object> userInfo = (HashMap<String, Object>) session.getAttribute("userInfo");
+		
 		userInfo.put("num", num);
-		List<HashMap<String, Object>> bestBookList = bestBookService.selectBestBookMore(userInfo);
+
+		List<HashMap<String,Object>> bestBookList = bestBookService.selectBestBookMore(userInfo);
+
 		String json = new ObjectMapper().writeValueAsString(bestBookList);
+
 		HttpHeaders responseHeaders = new HttpHeaders();
+
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+
 		return new ResponseEntity(json, responseHeaders, HttpStatus.OK);
+
 	}
 
+	
 	@RequestMapping("newBook.do")
 	public String newBook(HttpSession session, Model model) {
 		
@@ -145,25 +155,39 @@ public class BookController {
 
 	@RequestMapping("bookSearchMore.do")
 	@ResponseBody
-	public ResponseEntity<String> bookSearchMore(@RequestParam HashMap<String, Object> params, HttpSession session) throws Exception {
+	public ResponseEntity<String> bookSearchMore(@RequestParam HashMap<String,Object> params, HttpSession session) throws Exception{
+
 		HashMap<String, Object> userInfo = (HashMap<String, Object>) session.getAttribute("userInfo");
-		
 		params.put("email", userInfo.get("email"));
-		
+		System.out.println(params);
 		List<HashMap<String, Object>> bookInfo = bookService.bookSearchMore(params);
 
+		
+
 		List<HashMap<String, Object>> list = new ArrayList<>();
-		for (HashMap<String, Object> map : bookInfo) {
+
+		for(HashMap<String, Object> map:bookInfo) {
+
 			int rownum = Integer.valueOf(map.get("ROWNUM").toString());
+
 			int lastNum = Integer.valueOf(params.get("num").toString());
-			if (rownum > lastNum && rownum <= lastNum + 20) {
+
+			if(rownum>lastNum && rownum<=lastNum+20) {
+
 				list.add(map);
+
 			}
+
 		}
+
 		String json = new ObjectMapper().writeValueAsString(list);
+
 		HttpHeaders responseHeaders = new HttpHeaders();
+
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+
 		return new ResponseEntity(json, responseHeaders, HttpStatus.CREATED);
+
 	}
 
 	@RequestMapping("mypage1.do")

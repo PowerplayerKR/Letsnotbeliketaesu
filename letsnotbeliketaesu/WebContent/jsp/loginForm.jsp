@@ -144,9 +144,8 @@
     if (GoogleAuth.isSignedIn.get()) {
       // User is authorized and has clicked 'Sign out' button.
       	GoogleAuth.signOut();
-    	
-    	console.log(GoogleAuth.currentUser.get().getId());
-    	console.log(GoogleAuth.currentUser.get().isSignedIn ());
+      	 GoogleAuth.signIn(option);
+      	setSigninStatus();
     	// Example 2: Use gapi.client.request(args) function
     	
     } else {

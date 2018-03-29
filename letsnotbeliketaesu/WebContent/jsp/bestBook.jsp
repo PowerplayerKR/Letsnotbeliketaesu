@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../letsnotbeliketaesu/css/header.css">
+<link rel="stylesheet" href="../letsnotbeliketaesu/css/controller.css">
 <link rel="stylesheet" href="../letsnotbeliketaesu/css/reset.css">
 <link rel="stylesheet" href="../letsnotbeliketaesu/css/notosanskr.css">
 <link rel="stylesheet" type="text/css"
@@ -939,6 +940,10 @@
 	.bestBookC{
 		color: aqua;
 	}
+	a{
+		text-decoration: none;
+		color: black;
+	}
 </style>
 </head>
 <body>
@@ -1155,9 +1160,39 @@
      	</div>
 	</c:forEach>
 </div>
+
+<div id="controller">
+   
+    <div id="controller_body">
+      	<span title="지금페이지는 베스트북 페이지 입니다.">올려!</span>
+    </div>
+    <div id="controller_bottom">
+        <button id="controller_bottom_up" >
+        <i   class="fa fa-arrow-up fa-2x" aria-hidden="true"></i>
+        </button>
+        <button id="controller_bottom_down">
+        <i   class="fa fa-arrow-down fa-2x" aria-hidden="true"></i>
+        </button>
+    </div>
+</div>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="../letsnotbeliketaesu/js/default.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
+$( function() {
+    $( "#controller" ).draggable({ containment: 'document', scroll: false });
+} );
+
+$("#controller_bottom_up").click(function() {
+	$("html, body").animate({ scrollTop: 0 },400);
+});
+$("#controller_bottom_down").click(function() {
+	$("html, body").animate({ scrollTop: $(document).height() },400);
+});
+$("#controller_headr i").click(function() {
+	$("#controller").hide();
+})
+
 function bookClick(title,isbn) {
 	$(".loader").show();
 	var scrollTop = $(window).scrollTop();
@@ -1332,6 +1367,7 @@ function bookClick(title,isbn) {
 	$(window).scroll(function(){ // ① 스크롤 이벤트 최초 발생
 	    var currentScrollTop = $(window).scrollTop();
 	    if( currentScrollTop - lastScrollTop > 0 ){
+	    	$("#controller").show();
 	        console.log("down-scroll");
 	        // 2. 현재 스크롤의 top 좌표가  > (게시글을 불러온 화면 height - 윈도우창의 height) 되는 순간
 	        if ($(window).scrollTop() >= ($(document).height() - $(window).height()) ){ //② 현재스크롤의 위치가 화면의 보이는 위치보다 크다면

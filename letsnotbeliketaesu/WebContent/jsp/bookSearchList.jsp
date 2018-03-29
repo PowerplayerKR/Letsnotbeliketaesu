@@ -12,7 +12,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <link rel="stylesheet" href="../letsnotbeliketaesu/css/header.css">
-
+<link rel="stylesheet" href="../letsnotbeliketaesu/css/controller.css">
 <link rel="stylesheet" href="../letsnotbeliketaesu/css/reset.css">
 
 <link rel="stylesheet" href="../letsnotbeliketaesu/css/notosanskr.css">
@@ -688,6 +688,10 @@ body {
  line-height: 100px;
  font-size: 25px;
  }
+ a{
+		text-decoration: none;
+		color: black;
+	}
 </style>
 </head>
 
@@ -884,14 +888,47 @@ body {
 	</div>
 	<input type="hidden" class="searchOption" name="searchOption" value="${param.searchOption}">
 	<input type="hidden" class="keyword" name="keyword" value="${param.keyword}">
+	
+	
+	<div id="controller">
+    
+    <div id="controller_body">
+        <span title="지금페이지는 검색 페이지 입니다.검색어는 ${search.keyword}입니다.">올려!</span>
+    </div>
+    <div id="controller_bottom">
+        <button id="controller_bottom_up" >
+        <i   class="fa fa-arrow-up fa-2x" aria-hidden="true"></i>
+        </button>
+        <button id="controller_bottom_down">
+        <i   class="fa fa-arrow-down fa-2x" aria-hidden="true"></i>
+        </button>
+    </div>
+</div>
+	
+	
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="../letsnotbeliketaesu/js/default.js"></script>
- 	<script src="../letsnotbeliketaesu/js/jquery-ui.min.js"></script>
+ 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script>
+	$( function() {
+	    $( "#controller" ).draggable({ containment: 'document', scroll: false });
+	} );
+	
+	$("#controller_bottom_up").click(function() {
+		$("html, body").animate({ scrollTop: 0 },400);
+	});
+	$("#controller_bottom_down").click(function() {
+		$("html, body").animate({ scrollTop: $(document).height() },400);
+	});
+	$("#controller_headr i").click(function() {
+		$("#controller").hide();
+	})
+	
 	var lastScrollTop = 0;
 	// 1. 스크롤 이벤트 발생
 	$(window).scroll(function(){ // ① 스크롤 이벤트 최초 발생
 	    var currentScrollTop = $(window).scrollTop();
+		$("#controller").show();
 	    if( currentScrollTop - lastScrollTop > 0 ){
 	        console.log("down-scroll");
 	        // 2. 현재 스크롤의 top 좌표가  > (게시글을 불러온 화면 height - 윈도우창의 height) 되는 순간

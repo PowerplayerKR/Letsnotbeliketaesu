@@ -96,6 +96,7 @@ public class UserController {
 	@ResponseBody
 	public String googleLogin(@RequestParam HashMap<String, Object> params, HttpSession session) throws Exception {
 		params.put("email",params.get("[U3]"));
+		params.put("name",params.get("[ig]"));
 		session.setAttribute("userInfo",params);
 		System.out.println(params);
 		
