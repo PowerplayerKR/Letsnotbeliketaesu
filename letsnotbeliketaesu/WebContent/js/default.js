@@ -23,14 +23,14 @@ $(".wish_btn").click(function() {
 		
 	});
 $(document).on('click', '.ban_btn', function() {	
-	alert("싫어요를 누르셨습니다.");
+	
 	var isbn = "";
 	if ($(this).hasClass('on')) {
 		isbn = $(this).data("isbn");
 		console.log(isbn);
 		$.ajax({
 
-			url : "DeletNot.do",
+			url : "DeleteNot.do",
 
 			type : "post",// post방식
 
@@ -41,7 +41,7 @@ $(document).on('click', '.ban_btn', function() {
 				alert("블록 에러");
 			},
 			success : function() {
-
+				alert("보기 싫어요를 취소하셨습니다.");
 			}
 		});// ajax
 		$(this).removeClass('on');
@@ -61,7 +61,7 @@ $(document).on('click', '.ban_btn', function() {
 				alert("블록 에러");
 			},
 			success : function() {
-
+				alert("보기싫어요를 누르셨습니다.");
 			}
 		});// ajax
 
