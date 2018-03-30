@@ -1,10 +1,18 @@
 package controller;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,8 +39,55 @@ public class UserController {
 	@RequestMapping("join.do")
 	public String joinForm(@RequestParam HashMap<String, Object> params) {
 
-		userService.insertUser(params);
+		 if(userService.insertUser(params)==1) {
+		JSONParser parser = new JSONParser();
+		File file1=new File("C:\\Users\\choisongeun\\Desktop\\letsnotbeliketaesu\\WebContent\\json\\userInfo.json");
+		System.out.println(file1.exists());
+		if(file1.exists()) {
+		try {
+			System.out.println("1");
+		JSONObject obj = (JSONObject) parser.parse(new FileReader("C:\\Users\\choisongeun\\Desktop\\letsnotbeliketaesu\\WebContent\\json\\userInfo.json"));
+		System.out.println(obj.get("email"));
+		JSONArray list=(JSONArray)obj.get("email");
+		list.add(params.get("email"));
+		obj.put("email",list);
+		FileWriter file = new FileWriter("C:\\Users\\choisongeun\\Desktop\\letsnotbeliketaesu\\WebContent\\json\\userInfo.json");
+        file.write(obj.toJSONString());
+        file.flush();
+        file.close();
+			System.out.println("2");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		}else {
+			System.out.println("3");
+			try {	
+			FileWriter file = new FileWriter("C:\\Users\\choisongeun\\Desktop\\letsnotbeliketaesu\\WebContent\\json\\userInfo.json");
+			
+			JSONObject jobj = new JSONObject();
 
+	        //Json Array 생성.
+			 JSONArray maglist = new JSONArray();
+			List<HashMap<String, Object>> q= (List<HashMap<String, Object>>)userService.selectAllUser();
+			maglist.add(params.get("email"));
+			for(HashMap<String, Object> zz :q) {
+				maglist.add(zz.get("email"));
+				System.out.println(zz.get("email"));
+			}
+			jobj.put("email", maglist);
+			
+	        file.write(jobj.toJSONString());
+	        file.flush();
+	        file.close();
+	        
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			
+		}
+		 }else {
+			 return "redirect:joinForm.do";
+		 }
 		return "redirect:loginForm.do";
 
 	}
