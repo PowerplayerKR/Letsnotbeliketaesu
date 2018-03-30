@@ -1324,14 +1324,17 @@
 					},
 					success:function(json) {
 						$(json).each(function() {
-							var title = $('.title');
+							var title = $('.details_title');	
 							var bookWriter = $('.book_writer');
 							var book_intro = $('.book_intro');
-							var cover = $('.cover');
+							var img = $('.details_book_img_wrap .book_img');
+							var book_title = $(".book_info_table_wrap .book_title h3");
+							var star = $(".book_info_table .star_rating");
+							star.data("isbn",this.isbn);
 							title.text(this.title);
+							book_title.text(this.title);
 							bookWriter.text(this.book_writer);
-							cover.attr('src',this.image);
-							cover.attr('alt',this.title+'의 커버 사진');
+							img.css({'background-image':"url("+this.image+")"});
 							book_intro.text(this.introduce);
 						});//each() end
 						setTimeout(screenHide, 500);
