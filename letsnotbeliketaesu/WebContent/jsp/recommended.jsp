@@ -691,6 +691,7 @@ body {
                     <div class="book_img"></div>
                 </div>
                 <div class="info_box">
+                
                     <div class="book_title">
                         <h3>책 제목</h3>
                     </div>
@@ -719,7 +720,7 @@ body {
                     <button class="wish_btn">
                         <i class="fa fa-heart"></i>보고싶어요
                     </button>
-                    <button class="comment_btn">
+                    <button class="comment_btn" data-img="${book.image}" data-title="${book.title}" data-comment="${book.content}">
                         <i class="fa fa-comment"></i> 코멘트쓰기
                     </button>
                 </div>

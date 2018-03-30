@@ -89,22 +89,27 @@
 		<choose> 
 		 
 			<when test='myPage==1'>
-				favorites on (book.isbn = favorites.isbn and favorites.email = #{email}) 
+				join favorites on (book.isbn = favorites.isbn and favorites.email = #{email})
+				 <include refid="starReview"></include>
+				<include refid="notInterested"></include>
+				<include refid="notInterestedWhere"></include>
 			</when>
 			<when test='myPage==2'>
-				 star_point_list on(book.isbn=star_point_list.isbn and star_point_list.star_point_email=#{email}) left join review_list on(book.isbn=review_list.isbn and review_list.review_email=#{email})
+			join star_point_list on(book.isbn=star_point_list.isbn and star_point_list.star_point_email=#{email}) left join review_list on(book.isbn=review_list.isbn and review_list.review_email=#{email})
+				 <include refid="notInterested"></include>
+				<include refid="notInterestedWhere"></include>
 			</when>
 			<when test='myPage==3'>
-				not_interested on(book.isbn=not_interested.isbn and not_interested.email=#{email})
+				join not_interested on(book.isbn=not_interested.isbn and not_interested.email=#{email})
+				 <include refid="starReview"></include>
 			</when>
 		</choose>
 	</sql>
 	<select id="selectUserBook" parameterType="java.util.HashMap"
 		resultType="java.util.HashMap">
-		SELECT *
-		FROM book
-		join
+		SELECT book.*,star_point_list.star_point,review_list.content  FROM book
 		<include refid="selectUserBook"></include>
+		
 	</select>
 
 	<select id="selectBookMain" resultType="java.util.HashMap" parameterType="java.util.HashMap">

@@ -954,7 +954,6 @@
 	<div class="book_info_table">
         <div class="book_info_table_wrap">
             <div class="info">
-		    <button style="top:-180px;background:none;right:30px;height: 30px;width: 40px;" class="ban_btn" data-isbn="${book.isbn}"><i class="fa fa-ban fa-2x" ></i></button>
                 <div class="details_title">제목</div>
             </div>
             <div class="book_writer">작가</div>
@@ -963,6 +962,7 @@
                     <div class="book_img"></div>
                 </div>
                 <div class="info_box">
+                
                     <div class="book_title">
                         <h3>책 제목</h3>
                     </div>
@@ -991,7 +991,7 @@
                     <button class="wish_btn">
                         <i class="fa fa-heart"></i>보고싶어요
                     </button>
-                    <button class="comment_btn">
+                    <button class="comment_btn" >
                         <i class="fa fa-comment"></i> 코멘트쓰기
                     </button>
                 </div>
@@ -1137,7 +1137,7 @@
 						<button class="wish_btn">
 							<i class="fa fa-heart"></i>보고싶어요
 						</button>
-						<button class="comment_btn" onclick="commentBtnClick();">
+						<button class="comment_btn" onclick="commentBtnClick();" data-img="${book.image}" data-title="${book.title}" data-comment="${book.content}">
 							<i class="fa fa-comment" data-comment="${book.content}"></i> 코멘트쓰기
 						</button>
 					</div>

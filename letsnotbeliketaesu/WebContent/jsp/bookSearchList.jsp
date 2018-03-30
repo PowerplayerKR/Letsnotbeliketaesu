@@ -712,6 +712,7 @@ body {
                     <div class="book_img"></div>
                 </div>
                 <div class="info_box">
+                
                     <div class="book_title">
                         <h3>책 제목</h3>
                     </div>

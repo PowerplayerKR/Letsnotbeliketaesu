@@ -966,6 +966,7 @@
                     <div class="book_img"></div>
                 </div>
                 <div class="info_box">
+                
                     <div class="book_title">
                         <h3>책 제목</h3>
                     </div>
@@ -1360,9 +1361,10 @@
 							var content = $("<div class='content_wrap'>").text(this.content);
 							var review_update_date = $("<p class='review_update_date'>").text(this.regdate);
 							var user_img = $("<img class='user_img' src='../last_project/img/user.jpg'>");
+							var report = $("<button onclick='report($(this));' data-email='"+this.review_email+"' data-num='"+this.num+"'>신고하기</button>");
 							review_writer.append(span_star);
 							review_balloon.append(review_writer,content,review_update_date);
-							review_box.append(user_img,review_balloon)
+							review_box.append(user_img,review_balloon,report)
 							$(".book_info_li").append(review_box);
 							var star_point=this.star_point;		
 							span_star.children('i').each(function () { //'fa-star-half-o' 'fa-star'

@@ -148,8 +148,7 @@ public class BookController {
 		mav.addObject("search", params);
 		mav.addObject("searchBookList", searchBookList);
 		mav.setViewName("bookSearchList");
-		System.out.println(params);
-		System.out.println(searchBookList);
+		
 		return mav;
 	}
 
@@ -199,7 +198,7 @@ public class BookController {
 
 		params.put("email", user.get("email"));
 
-		model.addAttribute("book", bookService.selectUserBook(params));
+		model.addAttribute("mypage", bookService.selectUserBook(params));
 
 		System.out.println(bookService.selectUserBook(params));
 
@@ -212,7 +211,7 @@ public class BookController {
 		HashMap<String, Object> user = (HashMap<String, Object>) session.getAttribute("userInfo");
 		params.put("myPage", 3);
 		params.put("email", user.get("email"));
-		model.addAttribute("book", bookService.selectUserBook(params));
+		model.addAttribute("mypage", bookService.selectUserBook(params));
 		System.out.println(bookService.selectUserBook(params));
 		return "mypage3";
 
@@ -221,13 +220,13 @@ public class BookController {
 	@RequestMapping("mypage2.do")
 	public String StarPage(@RequestParam HashMap<String, Object> params, Model model, HttpSession session) {
 		HashMap<String, Object> user = (HashMap<String, Object>) session.getAttribute("userInfo");
-		System.out.println(user);
 		params.put("myPage", 2);
 		params.put("email", user.get("email"));
-		System.out.println(params);
-		model.addAttribute("book", bookService.selectUserBook(params));
+		System.out.println("2번      "+params);
+		List<HashMap<String, Object>> book = bookService.selectUserBook(params);
+		
+		model.addAttribute("mypage", book);
 		model.addAttribute("user", user);
-		System.out.println(bookService.selectUserBook(params));
 
 		return "mypage2";
 	}
