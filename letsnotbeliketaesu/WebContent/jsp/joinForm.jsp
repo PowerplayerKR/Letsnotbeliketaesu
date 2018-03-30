@@ -57,8 +57,8 @@
     <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
       <input id="email" type="text" class="form-control" name="email" placeholder="Email">
-      <p id="dople">아이디가 중복되었습니다</p>
     </div>
+    <p id="dople">아이디가 중복되었습니다</p>
     <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
       <input id="name" type="text" class="form-control" name="name" placeholder="Name">
@@ -101,7 +101,7 @@
 			
 			var regEmail = /^[A-Za-z0-9_\.\-]+@[A-Za-z\-]+\.[A-Za-z\-]+/;
 			var regId =  /^[\w\W가-힣A-Za-z]{2,20}$/;
-			var regpwd = /^[\w\Wa-z0-9]{2,55}$/;
+			var regpwd =  /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^*()\-_=+\\\|\[\]{};:\'",.<>\/?]).{8,}$/;
 			
 			if($('#dople').css('display')!='none'){
 				alert("아이디가 중복되었습니다");
@@ -114,39 +114,39 @@
 			
 			
 			if(!u_email.val() ){
-				alert("이메일 주소 똑바로 써 ");
+				alert("이메일 주소 공백입니다 ");
 				u_email.focus();
 				return false;
 				//이메일 공백일시
 			}//email if
 			else{
 				if(!regEmail.test(u_email.val())){
-					alert("이메일 ㅅㅂ 똑바로써");
+					alert("이메일 형식이 아니거나 수 가 부족합니다.");
 					u_email.focus();
 					return false;
 					//이메일 똑바로 못썻을시
 				}// email if
 			}// email else
 			if(!u_id.val() ){
-				alert("개시키야 id 똑바로써라");
+				alert("아이디 가 공백입니다.");
 				u_id.focus();
 				return false;
 			}//id if
 			else{
 				if(!regId.test(u_id.val())){
-					alert("아이디 ㅅㅂ 똑바로써 !!!");
+					alert("아이디 수 가 부족합니다");
 					u_id.focus();
 					return false;
 				}//id if
 			}// id else
 			if(!u_pwd.val() ){
-				alert("개시키야 비번 똑바로써라");
+				alert("비밀번호가  공백 입니다.");
 				u_pwd.focus();
 				return false;
 			}//id if
 			else{
 				if(!regpwd.test(u_pwd.val())){
-					alert("비번  ㅅㅂ 똑바로써 !!!");
+					alert("비밀번호 수 가 부족하거나 특수문자가 없습니다.");
 					u_pwd.focus();
 					return false;
 				}//pwd if
