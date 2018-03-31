@@ -1313,7 +1313,7 @@
 		
 		var list = $('.best_book_list');
 		list.click(function() {
-			
+			$(".loader").show();
 			var title = $(this).data('title');
 			function getBook() {
 				$.ajax({
@@ -1412,6 +1412,7 @@
 			getReview();
 			getBook();
 			function screenHide() {
+				$(".loader").hide();
 					$('.book_info_table').show();
 					$('.screen').show();	
 			}
