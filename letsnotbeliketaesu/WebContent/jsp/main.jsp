@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="../letsnotbeliketaesu/css/reset.css">
 <link rel="stylesheet" href="../letsnotbeliketaesu/css/notosanskr.css">
 <link rel="stylesheet" type="text/css"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+Co	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <title>LNBLT Main</title>
 <style>
@@ -1392,6 +1392,8 @@
 									$(".book_review_start").text("코멘트 ("+this.num+")");
 									if(this.num==Cnum || this.num==0){
 										$(".review_more").hide();
+									}
+									if(this.num==0){
 										$(".book_info_table").css("height","700px");
 									}
 								});//each() end
