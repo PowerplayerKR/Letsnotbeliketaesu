@@ -1295,11 +1295,13 @@
 			}//getReview() end
 			var image = $(this).data("img");
 			var comm = $(this).data("comment");
-			$(".book_info_table .comment_btn").data({ 
-				  "img": image,
-				  "title": title,
-				  "comment":comm 
+			$(".book_info_table .comment_btn").attr({ 
+				  "data-img": image,
+				  "data-title": title,
+				  "data-isbn":isbn,
+				  "data-comment":comm 
 				});
+			$(".book_info_table .star_rating").attr("data-isbn",isbn);
 			getReview();
 			getBook();
 			function screenHide() {
@@ -1400,11 +1402,13 @@
 			}//getReview() end
 			var image = $(this).data("img");
 			var comm = $(this).data("comment");
-			$(".book_info_table .comment_btn").data({ 
-				  "img": image,
-				  "title": title,
-				  "comment":comm 
+			$(".book_info_table .comment_btn").attr({ 
+				  "data-img": image,
+				  "data-title": title,
+				  "data-isbn":isbn,
+				  "data-comment":comm 
 				});
+			$(".book_info_table .star_rating").attr("data-isbn",isbn);
 			getReview();
 			getBook();
 			function screenHide() {
