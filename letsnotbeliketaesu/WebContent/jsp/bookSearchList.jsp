@@ -692,6 +692,19 @@ body {
 		text-decoration: none;
 		color: black;
 	}
+	#searched_movies_title{
+		padding: 30px 0 20px;
+	    width: 1180px;
+	    color: #555555;
+	    margin: 0 auto;
+	    font-size: 16px;
+	    position: relative;
+	    top: 150px;
+	}
+	#search_query{
+		 color: #79b3d4;
+    	font-weight: bold;
+	}
 </style>
 </head>
 
@@ -1110,7 +1123,7 @@ body {
 	function bookClick(title,isbn) {
 		$(".loader").show();
 		var scrollTop = $(window).scrollTop();
-		var top = 167 - $(window).scrollTop();
+		var top = 220 - $(window).scrollTop();
 		$("details_info_wrap .star_rating").data("isbn");
 		$(".book_wrap").data("scrollTop",scrollTop);
 		$(".book_wrap").css({"position":"fixed","left":"326.5px","top":top+"px"});
